@@ -1,0 +1,16 @@
+function p:
+read X
+%
+	Y:=nil ;
+	while X do 
+		nop ;
+		Y := X
+	od
+%
+write Y
+
+function p: read X % Y
+:=nil;
+			while X do		nop		;
+	Y:=X
+od % write Y
