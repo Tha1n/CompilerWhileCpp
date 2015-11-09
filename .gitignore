@@ -26,3 +26,13 @@
 *.exe
 *.out
 *.app
+
+#XText GitIgnore
+.metadata/*
+#Find on web
+bin
+.DS_Store
+target
+*.xtendbin
+*.java._trace
+*.java_trace
