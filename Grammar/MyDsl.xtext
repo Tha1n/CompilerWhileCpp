@@ -2,15 +2,15 @@ grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
-Model: prog=Program;
+Model: programme=Program;
 
-Program: (Function  LC*)*;
+Program: (fonctions+=Function  LC*)*;
 
-Function: 'function' LC+ SYMBOL ':' LC+ Definition;
+Function: 'function' LC+ nom=SYMBOL ':' LC+ definition=Definition;
 Definition:
-'read' LC+ Input LC+
-'%' LC* Commands LC+
-'%' LC* 'write' LC+ Output;
+'read' LC+ inputs=Input LC+
+'%' LC* commandes=Commands LC+
+'%' LC* 'write' LC+ outputs=Output;
 
 Input: (VARIABLE ',')*VARIABLE;
 //Permet de reconnaitre des chaines de la forme var1,var2 ou var
@@ -28,7 +28,7 @@ CommandWhile: ('while'|'for') LC+ Expr LC+ 'do' LC* Commands LC* 'od';
 CommandIf: 'if' LC+ Expr LC+ 'then' LC+ Commands LC+ ('else' LC+ Commands LC+)? 'fi';
 CommandForEach: 'foreach' LC+ Expr LC+ 'in' LC+ Expr LC+ 'do' LC+ Commands LC+ 'od';
 
-LC: '\t'|'\r'|'\n'|' ';
+LC: '\t'|'\r'|'\n'|' '|'\r\n';
 //Caracteres de separations
 
 Exprs: =>(Expr',')*Expr;
