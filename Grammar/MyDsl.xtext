@@ -12,11 +12,11 @@ Definition:
 '%' LC* commandes=Commands LC+
 '%' LC* 'write' LC+ outputs=Output;
 
-Input: (VARIABLE ',')*VARIABLE;
+Input: (varIn+=VARIABLE ',')*varIn+=VARIABLE; //varIn = variables Entrée
 //Permet de reconnaitre des chaines de la forme var1,var2 ou var
-Output: (VARIABLE ',')*VARIABLE;
+Output: (varOut+=VARIABLE ',')*varOut+=VARIABLE; //varOut = variables Sorties
 
-Vars: (VARIABLE',')*VARIABLE;
+Vars: (varGen+=VARIABLE',')*varGen+=VARIABLE; //varGen = variables générales
 terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 
 //Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
