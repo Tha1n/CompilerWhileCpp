@@ -26,12 +26,38 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def compile (Program p)'''
-		«for(f: p.fonctions) {
-			f.compile
-		}»
+		«FOR f: p.fonctions»
+			«f.compile»
+		«ENDFOR»
 	'''
 	
 	def compile(Function f)'''
-		function «f.nom»: 
+		function «f.nom»:
+		«f.definition.compile»
+	'''
+	
+	def compile(Definition d)'''
+		read «d.inputs.compile»
+		%
+		«d.commandes.compile»
+		%
+		write «d.outputs.compile»
+	'''
+	
+	def compile(Input i)'''
+		«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1»,«ENDIF»«ENDFOR»
+	'''
+	
+	def compile(Commands c)'''
+		«FOR cm: c.commande»
+			«cm.compile»
+		«ENDFOR»
+	'''
+	def compile(Output o)'''
+		«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1»,«ENDIF»«ENDFOR»
+	'''
+	
+	def compile(Command c)'''
+		UNE COMMANDE :p
 	'''
 }
