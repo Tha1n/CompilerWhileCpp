@@ -1,46 +1,47 @@
 grammar org.xtext.example.mydsl.MyDsl with org.eclipse.xtext.common.Terminals
+hidden(LC)
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
 Model: programme=Program;
 
-Program: (fonctions+=Function  LC*)*;
+Program: (fonctions+=Function  )*;
 
-Function: 'function' LC+ nom=SYMBOL ':' LC+ definition=Definition;
+Function: 'function'  nom=SYMBOL ':'  definition=Definition;
 Definition:
-'read' LC+ inputs=Input LC+
-'%' LC* commandes=Commands LC+
-'%' LC* 'write' LC+ outputs=Output;
+'read'  inputs=Input 
+'%'  commandes=Commands 
+'%'  'write'  outputs=Output;
 
-Input: (varIn+=VARIABLE ',')*varIn+=VARIABLE; //varIn = variables Entrée
+Input: (varIn+=VARIABLE ',')*(varIn+=VARIABLE); //varIn = variables Entrée
 //Permet de reconnaitre des chaines de la forme var1,var2 ou var
-Output: (varOut+=VARIABLE ',')*varOut+=VARIABLE; //varOut = variables Sorties
+Output: (varOut+=VARIABLE ',')*(varOut+=VARIABLE); //varOut = variables Sorties
 
-Vars: (varGen+=VARIABLE',')*varGen+=VARIABLE; //varGen = variables générales
+Vars: (varGen += VARIABLE',')* (varGen += VARIABLE); //varGen = variables générales
 terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 
 //Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
-Commands: =>(Command LC* ';')*Command;
+Commands: =>(commande += Command  ';')*(commande += Command);
 //Permet de reconnaitre des chaines de la forme c1;c2
 //Les differentes commandes
-Command: ('nop' | Vars LC* ':=' LC* Exprs | CommandWhile | CommandIf | CommandForEach);
-CommandWhile: ('while'|'for') LC+ Expr LC+ 'do' LC* Commands LC* 'od';
-CommandIf: 'if' LC+ Expr LC+ 'then' LC+ Commands LC+ ('else' LC+ Commands LC+)? 'fi';
-CommandForEach: 'foreach' LC+ Expr LC+ 'in' LC+ Expr LC+ 'do' LC+ Commands LC+ 'od';
+Command: ( nop ='nop' | vars = Vars  ':='  (exprs+=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
+CommandWhile: ('while'|'for')  expr = Expr  'do'  cmds = Commands  'od';
+CommandIf: 'if'  cond = Expr  'then'  cmdsThen = Commands  ('else'  (cmdsElse = Commands) )? 'fi';
+CommandForEach: 'foreach'  elem = Expr  'in'  ensemb = Expr  'do'  cmds = Commands  'od';
 
-LC: '\t'|'\r'|'\n'|' '|'\r\n';
+terminal LC: '\t'|'\r'|'\n'|' '|'\r\n';
 //Caracteres de separations
 
 Exprs: =>(Expr',')*Expr;
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
 Expr: =>ExprSimple | ExprAnd;
 ExprSimple: ('nil' | VARIABLE | SYMBOL ) |
-'(' LC* 'cons' LC* Expr LC* ')' | '(' LC* 'list' LC* Expr LC* ')' |
-'(' LC* 'hd' LC* Expr LC* ')' | '('LC* 'tl' LC* Expr LC* ')' |
-'(' LC* SYMBOL LC* Expr LC* ')';
-ExprAnd: ExprOr (LC+ 'and' LC+ ExprAnd)?;
-ExprOr: ExprNot (LC+ 'or' LC+ ExprOr)?;
-ExprNot: ('not' LC+)? ExprEq;
+'('  'cons'  Expr  ')' | '('  'list'  Expr  ')' |
+'('  'hd'  Expr  ')' | '(' 'tl'  Expr  ')' |
+'('  SYMBOL  Expr  ')';
+ExprAnd: ExprOr ( 'and'  ExprAnd)?;
+ExprOr: ExprNot ( 'or'  ExprOr)?;
+ExprNot: ('not' )? ExprEq;
 ExprEq: ExprSimple'=?'ExprSimple | '('Expr')';
 
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
