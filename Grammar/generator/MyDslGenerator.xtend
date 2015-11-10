@@ -17,12 +17,20 @@ class MyDslGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(m: resource.allContents.toIterable.filter(Model)) {
-			
-     		for(f: m.programme.fonctions) {
-     			fsa.generateFile("PP.wh", f.compile)
-     		}
-    }
+			fsa.generateFile("PP.wh", m.compile)
+		}
 	}
+	
+	def compile (Model m)'''
+		«m.programme.compile»
+	'''
+	
+	def compile (Program p)'''
+		«for(f: p.fonctions) {
+			f.compile
+		}»
+	'''
+	
 	def compile(Function f)'''
 		function «f.nom»: 
 	'''
