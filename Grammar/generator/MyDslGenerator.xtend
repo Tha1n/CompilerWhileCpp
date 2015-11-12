@@ -31,12 +31,12 @@ class MyDslGenerator implements IGenerator {
 		«ENDFOR»
 	'''
 	
-	def compile(Function f)'''
+	def compile (Function f)'''
 		function «f.nom»:
 		«f.definition.compile»
 	'''
 	
-	def compile(Definition d)'''
+	def compile (Definition d)'''
 		read «d.inputs.compile»
 		%
 		«d.commandes.compile»
@@ -44,20 +44,52 @@ class MyDslGenerator implements IGenerator {
 		write «d.outputs.compile»
 	'''
 	
-	def compile(Input i)'''
-		«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1»,«ENDIF»«ENDFOR»
+	def compile (Input i)'''
+		«FOR in : i.varIn»«in.compile»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»
 	'''
 	
-	def compile(Commands c)'''
+	def compile (Commands c)'''
 		«FOR cm: c.commande»
 			«cm.compile»
 		«ENDFOR»
 	'''
-	def compile(Output o)'''
-		«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1»,«ENDIF»«ENDFOR»
+	def compile (Output o)'''
+		«FOR in : o.varOut»«in.compile»«IF o.varOut.indexOf(in)!=o.varOut.size-1»,«ENDIF»«ENDFOR»
 	'''
 	
-	def compile(Command c)'''
+	def compile (Command c)'''
 		UNE COMMANDE :p
+	'''
+	
+	def compile (Exprs ex)'''
+		«FOR e : ex.expr»«e.compile»«ENDFOR»
+	'''
+	
+	def compile (Expr ex)'''
+		«IF ex.exprSimp!=null»«ex.exprSimp.compile»«ENDIF»
+		«IF ex.exprAnd!=null»«ex.exprAnd.compile»«ENDIF»
+	'''
+	
+	def compile (ExprSimple ex)'''
+	//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	'''
+	
+	def compile (ExprAnd ex)'''
+		«ex.exprOr.compile»
+		«IF ex.exprAnd!=null»«ex.exprAnd.compile»«ENDIF»
+	'''
+	
+	def compile (ExprOr ex)'''
+		«ex.exprNot.compile»
+		«IF ex.exprOr!=null»«ex.exprOr.compile»«ENDIF»
+	'''
+	
+	def compile (ExprNot ex)'''
+		«IF ex.not!=null»not «ENDIF»
+		«ex.exprEq.compile»
+	'''
+	
+	def compile (ExprEq ex)'''
+		«IF ex.expr!=null»(«ex.expr.compile»)«ELSE»«ex.exprSim1.compile» =? «ex.exprSim2.compile»«ENDIF»
 	'''
 }
