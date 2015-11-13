@@ -2,6 +2,7 @@ grammar org.xtext.example.WhileCpp with org.eclipse.xtext.common.Terminals
 
 generate whileCpp "http://www.xtext.org/example/WhileCpp"
 
+
 Program: (fonctions+=Function  )*;
 
 Function: 'function'  nom=SYMBOL ':'  definition=Definition;
@@ -41,6 +42,6 @@ ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple)
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
 
-//Caracteres de separations
 terminal LC: '\t'| ('\r' | '\r\n') |'\n'|' ';
+//Caracteres de separations
 

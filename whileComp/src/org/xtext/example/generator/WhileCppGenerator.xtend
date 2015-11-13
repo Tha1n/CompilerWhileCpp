@@ -14,11 +14,12 @@ import org.xtext.example.whileCpp.*
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class WhileCppGenerator implements IGenerator {
+
+	int ibd = 1 //ident by default
 	
-	int ibd = 2 //ident by default
-	
+	//ident all structures
 	def indent (int level)
-	'''«FOR i : 1..level»«IF level>0»	«ENDIF»«ENDFOR»'''
+	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«IF level>0»«ENDIF»	«ENDFOR»«ENDIF»«ENDFOR»'''
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(p: resource.allContents.toIterable.filter(Program)) {
@@ -33,12 +34,14 @@ class WhileCppGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«f.definition.compile(indent+ibd)»'''
+«f.definition.compile(indent+1)»
+
+'''
 	
 	def compile (Definition d, int indent)
 	'''«indent(indent)»read «d.inputs.compile(0)»
 «indent(indent)»%
-«d.commandes.compile(indent+ibd)»
+«d.commandes.compile(indent+1)»
 «indent(indent)»%
 «indent(indent)»write «d.outputs.compile(0)»'''
 	
@@ -54,31 +57,39 @@ class WhileCppGenerator implements IGenerator {
 	
 	def compile(Command c, int indent)
 '''«switch (c){
-	case c.nop!=null : indent(indent) + "nop ;"
+	case c.nop!=null : indent(indent) + "nop;"
 	case c.cmdIf!=null : c.cmdIf.compile(indent)
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent)
+	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) + ";" 
+	case c.cmdWhile!=null : c.cmdWhile.compile(indent)
+	default : c.class.name
 }
 »'''
+
+
+//TODO regler probleme du point virgule apreès les commandes --> la dernière Commande (de Commandes) n'a pas de ';'
+
+
 	
 	def compile(CommandWhile c, int indent)
-'''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«/*c.expr.compile*/» do
-«c.cmds.compile(indent+ibd)»
+'''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile(0)» do
+«c.cmds.compile(indent+1)»
 «indent(indent)»od'''
 	
 	def compile(CommandIf c, int indent)
 '''«indent(indent)»if «c.cond.compile(0)» then 
-«c.cmdsThen.compile(indent+ibd)»«IF c.cmdsElse!=null»
+«c.cmdsThen.compile(indent+1)»«IF c.cmdsElse!=null»
 «indent(indent)»else
-«c.cmdsElse.compile(indent+ibd)»«ENDIF»
+«c.cmdsElse.compile(indent+1)»«ENDIF»
 «indent(indent)»fi'''
 	
 	def compile(CommandForEach c, int indent)
 '''«indent(indent)»foreach «c.elem.compile(0)» in «c.ensemb.compile(0)» do	
-«c.cmds.compile(indent+ibd)»
+«c.cmds.compile(indent+1)»
 «indent(indent)»od'''
 	
 	def compile(Vars v, int indent)
-'''«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
+'''«indent(indent)»«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Exprs e, int indent)
 '''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''
