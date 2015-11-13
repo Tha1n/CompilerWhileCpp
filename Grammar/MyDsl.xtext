@@ -3,7 +3,6 @@ hidden(LC)
 
 generate myDsl "http://www.xtext.org/example/mydsl/MyDsl"
 
-Model: programme=Program;
 
 Program: (fonctions+=Function  )*;
 
@@ -29,9 +28,6 @@ CommandWhile: (w='while'|'for')  expr = Expr  'do'  cmds = Commands  'od';
 CommandIf: 'if'  cond = Expr  'then'  cmdsThen = Commands  ('else'  (cmdsElse = Commands) )? 'fi';
 CommandForEach: 'foreach'  elem = Expr  'in'  ensemb = Expr  'do'  cmds = Commands  'od';
 
-terminal LC: '\t'|'\r'|'\n'|' '|'\r\n';
-//Caracteres de separations
-
 Exprs: =>(expGen += Expr',')* (expGen += Expr);
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
 Expr: =>(exprSimp = ExprSimple) | (exprAnd = ExprAnd);
@@ -46,3 +42,7 @@ ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple)
 
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
+
+terminal LC: '\t'| ('\r' | '\r\n') |'\n'|' ';
+//Caracteres de separations
+

@@ -4,9 +4,26 @@
 package org.xtext.example.mydsl.generator
 
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.xtext.example.mydsl.myDsl.*
+import org.eclipse.xtext.generator.IGenerator
+import org.xtext.example.mydsl.myDsl.Command
+import org.xtext.example.mydsl.myDsl.CommandForEach
+import org.xtext.example.mydsl.myDsl.CommandIf
+import org.xtext.example.mydsl.myDsl.CommandWhile
+import org.xtext.example.mydsl.myDsl.Commands
+import org.xtext.example.mydsl.myDsl.Definition
+import org.xtext.example.mydsl.myDsl.Expr
+import org.xtext.example.mydsl.myDsl.ExprAnd
+import org.xtext.example.mydsl.myDsl.ExprEq
+import org.xtext.example.mydsl.myDsl.ExprNot
+import org.xtext.example.mydsl.myDsl.ExprOr
+import org.xtext.example.mydsl.myDsl.ExprSimple
+import org.xtext.example.mydsl.myDsl.Exprs
+import org.xtext.example.mydsl.myDsl.Function
+import org.xtext.example.mydsl.myDsl.Input
+import org.xtext.example.mydsl.myDsl.Output
+import org.xtext.example.mydsl.myDsl.Program
+import org.xtext.example.mydsl.myDsl.Vars
 
 /**
  * Generates code from your model files on save.
@@ -15,118 +32,104 @@ import org.xtext.example.mydsl.myDsl.*
  */
 class MyDslGenerator implements IGenerator {
 	
+	int ibd = 2 //ident by default
+	
+	
+	def indent (int level)
+	'''«FOR i : 1..level»«IF level>0»	«ENDIF»«ENDFOR»'''
+	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		for(m: resource.allContents.toIterable.filter(Model)) {
-			fsa.generateFile("PP.wh", m.compile)
+		for(p: resource.allContents.toIterable.filter(Program)) {
+			fsa.generateFile("PP.wh", p.compile(0))
 		}
 	}
 	
-	def compile (Model m)'''
-		«m.programme.compile»
-	'''
+	def compile (Program p, int indent)
+'''«indent(indent)»«FOR f: p.fonctions»
+«f.compile(indent)»
+«indent(indent)»«ENDFOR»'''
 	
-	def compile (Program p)'''
-		«FOR f: p.fonctions»
-			«f.compile»
-		«ENDFOR»
-	'''
+	def compile (Function f, int indent)
+'''«indent(indent)»function «f.nom»:
+«f.definition.compile(indent+ibd)»'''
 	
-	def compile (Function f)'''
-		function «f.nom»:
-		«f.definition.compile»
-	'''
+	def compile (Definition d, int indent)
+	'''«indent(indent)»read «d.inputs.compile(0)»
+«indent(indent)»%
+«d.commandes.compile(indent+ibd)»
+«indent(indent)»%
+«indent(indent)»write «d.outputs.compile(0)»'''
 	
-	def compile (Definition d)'''
-		read «d.inputs.compile»
-		%
-		«d.commandes.compile»
-		%
-		write «d.outputs.compile»
-	'''
+	def compile (Input i, int indent)
+	'''«indent(indent)»«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (Input i)'''
-		«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»
-	'''
-	
-	def compile (Commands c)'''
-		«FOR cm: c.commande»
-			«cm.compile»
-		«ENDFOR»
-	'''
-	def compile (Output o)'''
-		«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1»,«ENDIF»«ENDFOR»
-	'''
-	
-	def compile(Command c)'''
-		«IF c.nop!=null»nop ;«ENDIF»
-		«IF c.vars!=null»«c.vars.compile»«c.exprs.compile»«ENDIF»
-		«IF c.cmdWhile!=null»«c.cmdWhile.compile»«ENDIF»
-		«IF c.cmdIf!=null»«c.cmdIf.compile»«ENDIF»
-		«IF c.cmdForEach!=null»«c.cmdForEach.compile»«ENDIF»
-	'''
-	
-	def compile(CommandWhile c)'''
-		«IF c.w!=null»while «ELSE»for «ENDIF»«/*c.expr.compile*/» do
-			«c.cmds.compile»
-		od
+	def compile (Commands c, int indent)
+	'''«FOR cm: c.commande»
+	«cm.compile(indent)»«ENDFOR»'''
 		
-	'''
+	def compile (Output o, int indent)
+	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile(CommandIf c)'''
-		if «/*c.cond.compile*/» then
-			«c.cmdsThen.compile»
-		«IF c.cmdsElse!=null»else
-			«c.cmdsElse.compile»
-		«ENDIF»
-		fi
-	'''
+	def compile(Command c, int indent)
+'''«switch (c){
+	case c.nop!=null : indent(indent) + "nop ;"
+	case c.cmdIf!=null : c.cmdIf.compile(indent)
+	case c.cmdForEach!=null : c.cmdForEach.compile(indent)
+}
+»'''
 	
-	def compile(CommandForEach c)'''
-		foreach «/*c.elem.compile*/» in «/*c.ensemb.compile*/» do
-			«c.cmds.compile»
-		od
-	'''
+	def compile(CommandWhile c, int indent)
+'''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«/*c.expr.compile*/» do
+«c.cmds.compile(indent+ibd)»
+«indent(indent)»od'''
 	
-	def compile(Vars v)'''
-		«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1»,«ELSE»:=«ENDIF»«ENDFOR»
-	'''
+	def compile(CommandIf c, int indent)
+'''«indent(indent)»if «c.cond.compile(0)» then 
+«c.cmdsThen.compile(indent+ibd)»«IF c.cmdsElse!=null»
+«indent(indent)»else
+«c.cmdsElse.compile(indent+ibd)»«ENDIF»
+«indent(indent)»fi'''
 	
-	def compile(Exprs e)'''
-		«FOR in : e.expGen»«in.compile»«IF e.expGen.indexOf(in)!=e.expGen.size-1»,«ELSE»«ENDIF»«ENDFOR»
-	'''
+	def compile(CommandForEach c, int indent)
+'''«indent(indent)»foreach «c.elem.compile(0)» in «c.ensemb.compile(0)» do	
+«c.cmds.compile(indent+ibd)»
+«indent(indent)»od'''
 	
-	def compile (Expr ex)'''
-		«IF ex.exprSimp!=null»«ex.exprSimp.compile»«ENDIF»
-		«IF ex.exprAnd!=null»«ex.exprAnd.compile»«ENDIF»
-	'''
+	def compile(Vars v, int indent)
+'''«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (ExprSimple ex)'''
-		«IF ex.nil!=null»nil«ENDIF»
-		«IF ex.vari!=null»«ex.vari»«ENDIF»
-		«IF ex.symb!=null»(cons «ex.symb»«ENDIF»
-		«IF ex.exprCons!=null»(cons «ex.exprConsAtt.compile»)«ENDIF»
-		«IF ex.exprList!=null»(list «ex.exprListAtt.compile»)«ENDIF»
-		«IF ex.exprHead!=null»(hd «ex.exprHeadAtt.compile»)«ENDIF»
-		«IF ex.exprTail!=null»(tl «ex.exprTailAtt.compile»)«ENDIF»
-		«IF ex.nomSymb!=null»(«ex.nomSymb» «ex.symbAtt.compile»)«ENDIF»
-	'''
+	def compile(Exprs e, int indent)
+'''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''
 	
-	def compile (ExprAnd ex)'''
-		«ex.exprOr.compile»
-		«IF ex.exprAnd!=null»«ex.exprAndAtt.compile»«ENDIF»
-	'''
+	def compile (Expr ex, int indent)
+'''«switch(ex){
+			case ex.exprSimp!=null : ex.exprSimp.compile(indent)
+			case ex.exprAnd!=null : ex.exprAnd.compile(indent)
+	    }
+	 »'''
 	
-	def compile (ExprOr ex)'''
-		«ex.exprNot.compile»
-		«IF ex.exprOr!=null»«ex.exprOrAtt.compile»«ENDIF»
-	'''
+	def compile (ExprSimple ex, int indent)
+	 '''«indent(indent)»«switch(ex){
+	 	case ex.nil!=null : "nil"
+	 	case ex.vari!=null : ex.vari
+	 	case ex.symb!=null : ex.symb
+	 	case ex.exprCons!=null : "(cons " + ex.exprConsAtt.compile(0) + ")"
+	 	case ex.exprList!=null : "(list "+ ex.exprListAtt.compile(0) + ")"
+	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile(0) + ")"
+	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile(0) +")"
+	 	case ex.nomSymb!=null : "(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
+	 }
+	 »'''
 	
-	def compile (ExprNot ex)'''
-		«IF ex.not!=null»not «ENDIF»
-		«ex.exprEq.compile»
-	'''
+	def compile (ExprAnd ex, int indent)
+	'''«ex.exprOr.compile(indent)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(0)»«ENDIF»'''
 	
-	def compile (ExprEq ex)'''
-		«IF ex.expr!=null»(«ex.expr.compile»)«ELSE»«ex.exprSim1.compile» =? «ex.exprSim2.compile»«ENDIF»
-	'''
+	def compile (ExprOr ex, int indent)
+	'''«ex.exprNot.compile(indent)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(0)»«ENDIF»'''
+	
+	def compile (ExprNot ex, int indent)
+	'''«indent(indent)»«IF ex.not!=null»not «ENDIF»«ex.exprEq.compile(0)»'''
+	
+	def compile (ExprEq ex, int indent)
+	'''«indent(indent)»«IF ex.expr!=null»(«ex.expr.compile(0)»)«ELSE»«ex.exprSim1.compile(0)» =? «ex.exprSim2.compile(0)»«ENDIF»'''
 }
