@@ -24,25 +24,25 @@ terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 Commands: =>(commande += Command  ';')*(commande += Command);
 //Permet de reconnaitre des chaines de la forme c1;c2
 //Les differentes commandes
-Command: ( nop ='nop' | vars = Vars  ':='  (exprs+=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
-CommandWhile: ('while'|'for')  expr = Expr  'do'  cmds = Commands  'od';
+Command: ( nop ='nop' | vars = Vars  ':='  (exprs=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
+CommandWhile: (w='while'|'for')  expr = Expr  'do'  cmds = Commands  'od';
 CommandIf: 'if'  cond = Expr  'then'  cmdsThen = Commands  ('else'  (cmdsElse = Commands) )? 'fi';
 CommandForEach: 'foreach'  elem = Expr  'in'  ensemb = Expr  'do'  cmds = Commands  'od';
 
 terminal LC: '\t'|'\r'|'\n'|' '|'\r\n';
 //Caracteres de separations
 
-Exprs: =>(Expr',')*Expr;
+Exprs: =>(expGen += Expr',')* (expGen += Expr);
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
-Expr: =>ExprSimple | ExprAnd;
-ExprSimple: ('nil' | VARIABLE | SYMBOL ) |
-'('  'cons'  Expr  ')' | '('  'list'  Expr  ')' |
-'('  'hd'  Expr  ')' | '(' 'tl'  Expr  ')' |
-'('  SYMBOL  Expr  ')';
-ExprAnd: ExprOr ( 'and'  ExprAnd)?;
-ExprOr: ExprNot ( 'or'  ExprOr)?;
-ExprNot: ('not' )? ExprEq;
-ExprEq: ExprSimple'=?'ExprSimple | '('Expr')';
+Expr: =>(exprSimp = ExprSimple) | (exprAnd = ExprAnd);
+ExprSimple: (nil = 'nil' | vari = VARIABLE | symb = SYMBOL ) |
+'(' (exprCons = 'cons') (exprConsAtt = Expr) ')' | '(' (exprList = 'list') (exprListAtt = Expr) ')' |
+'(' (exprHead = 'hd') (exprHeadAtt = Expr) ')' | '(' (exprTail = 'tl') (exprTailAtt = Expr) ')' |
+'(' (nomSymb = SYMBOL) (symbAtt = Expr) ')';
+ExprAnd: (exprOr = ExprOr) ((exprAnd = 'and') (exprAndAtt = ExprAnd))?;
+ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
+ExprNot: ((not = 'not'))? (exprEq = ExprEq);
+ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple);
 
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
