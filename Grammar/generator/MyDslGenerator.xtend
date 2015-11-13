@@ -71,7 +71,14 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def compile (ExprSimple ex)'''
-	//TODO !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+		«IF ex.Nil!=null»nil«ENDIF»
+		«IF ex.Var!=null»«ex.Var.compile»«ENDIF»
+		«IF ex.Symb!=null»(cons «ex.Symb.compile»«ENDIF»
+		«IF ex.exprCons!=null»(cons «ex.exprConsAtt.compile»)«ENDIF»
+		«IF ex.exprList!=null»(list «ex.exprListAtt.compile»)«ENDIF»
+		«IF ex.exprHead!=null»(hd «ex.exprHeadAtt.compile»)«ENDIF»
+		«IF ex.exprTail!=null»(tl «ex.exprTailAtt.compile»)«ENDIF»
+		«IF ex.exprSymb!=null»(«ex.exprSymbNom.compile» «ex.exprSymbAtt.compile»)«ENDIF»
 	'''
 	
 	def compile (ExprAnd ex)'''
