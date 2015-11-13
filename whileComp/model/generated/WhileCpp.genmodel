@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" modelDirectory="/whileComp/src-gen" editDirectory="/whileComp.edit/src"
+    editorDirectory="/whileComp.editor/src" modelPluginID="whileComp" forceOverwrite="true"
+    modelName="WhileCpp" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    complianceLevel="6.0" copyrightFields="false" editPluginID="whileComp.edit" editorPluginID="whileComp.editor"
+    runtimeVersion="2.11">
+  <genPackages prefix="WhileCpp" basePackage="org.xtext.example" disposableProviderFactory="true"
+      fileExtensions="wh" ecorePackage="WhileCpp.ecore#/">
+    <genClasses ecoreClass="WhileCpp.ecore#//Program">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Program/fonctions"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Function">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//Function/nom"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Function/definition"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Definition">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Definition/inputs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Definition/commandes"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Definition/outputs"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Input">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//Input/varIn"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Output">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//Output/varOut"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Vars">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//Vars/varGen"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Commands">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Commands/commande"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Command">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//Command/nop"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Command/vars"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Command/exprs"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Command/cmdWhile"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Command/cmdIf"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Command/cmdForEach"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//CommandWhile">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//CommandWhile/w"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandWhile/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandWhile/cmds"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//CommandIf">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandIf/cond"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandIf/cmdsThen"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandIf/cmdsElse"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//CommandForEach">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandForEach/elem"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandForEach/ensemb"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//CommandForEach/cmds"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Exprs">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Exprs/expGen"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//Expr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Expr/exprSimp"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Expr/exprAnd"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//ExprSimple">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/nil"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/vari"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/symb"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprCons"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprConsAtt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprList"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprListAtt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprHead"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprHeadAtt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprTail"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprTailAtt"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/nomSymb"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/symbAtt"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//ExprAnd">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprAnd/exprOr"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprAnd/exprAnd"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprAnd/exprAndAtt"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//ExprOr">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprOr/exprNot"/>
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprOr/exprOr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprOr/exprOrAtt"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//ExprNot">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprNot/not"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprNot/exprEq"/>
+    </genClasses>
+    <genClasses ecoreClass="WhileCpp.ecore#//ExprEq">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprEq/expr"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprEq/exprSim1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprEq/exprSim2"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
