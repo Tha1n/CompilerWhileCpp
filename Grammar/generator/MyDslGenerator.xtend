@@ -45,7 +45,7 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def compile (Input i)'''
-		«FOR in : i.varIn»«in.compile»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»
+		«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»
 	'''
 	
 	def compile (Commands c)'''
@@ -54,15 +54,45 @@ class MyDslGenerator implements IGenerator {
 		«ENDFOR»
 	'''
 	def compile (Output o)'''
-		«FOR in : o.varOut»«in.compile»«IF o.varOut.indexOf(in)!=o.varOut.size-1»,«ENDIF»«ENDFOR»
+		«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1»,«ENDIF»«ENDFOR»
 	'''
 	
-	def compile (Command c)'''
-		UNE COMMANDE :p
+	def compile(Command c)'''
+		«IF c.nop!=null»nop ;«ENDIF»
+		«IF c.vars!=null»«c.vars.compile»«c.exprs.compile»«ENDIF»
+		«IF c.cmdWhile!=null»«c.cmdWhile.compile»«ENDIF»
+		«IF c.cmdIf!=null»«c.cmdIf.compile»«ENDIF»
+		«IF c.cmdForEach!=null»«c.cmdForEach.compile»«ENDIF»
 	'''
 	
-	def compile (Exprs ex)'''
-		«FOR e : ex.expr»«e.compile»«ENDFOR»
+	def compile(CommandWhile c)'''
+		«IF c.w!=null»while «ELSE»for «ENDIF»«/*c.expr.compile*/» do
+			«c.cmds.compile»
+		od
+		
+	'''
+	
+	def compile(CommandIf c)'''
+		if «/*c.cond.compile*/» then
+			«c.cmdsThen.compile»
+		«IF c.cmdsElse!=null»else
+			«c.cmdsElse.compile»
+		«ENDIF»
+		fi
+	'''
+	
+	def compile(CommandForEach c)'''
+		foreach «/*c.elem.compile*/» in «/*c.ensemb.compile*/» do
+			«c.cmds.compile»
+		od
+	'''
+	
+	def compile(Vars v)'''
+		«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1»,«ELSE»:=«ENDIF»«ENDFOR»
+	'''
+	
+	def compile(Exprs e)'''
+		«FOR in : e.expGen»«in.compile»«IF e.expGen.indexOf(in)!=e.expGen.size-1»,«ELSE»«ENDIF»«ENDFOR»
 	'''
 	
 	def compile (Expr ex)'''
@@ -71,24 +101,24 @@ class MyDslGenerator implements IGenerator {
 	'''
 	
 	def compile (ExprSimple ex)'''
-		«IF ex.Nil!=null»nil«ENDIF»
-		«IF ex.Var!=null»«ex.Var.compile»«ENDIF»
-		«IF ex.Symb!=null»(cons «ex.Symb.compile»«ENDIF»
+		«IF ex.nil!=null»nil«ENDIF»
+		«IF ex.vari!=null»«ex.vari»«ENDIF»
+		«IF ex.symb!=null»(cons «ex.symb»«ENDIF»
 		«IF ex.exprCons!=null»(cons «ex.exprConsAtt.compile»)«ENDIF»
 		«IF ex.exprList!=null»(list «ex.exprListAtt.compile»)«ENDIF»
 		«IF ex.exprHead!=null»(hd «ex.exprHeadAtt.compile»)«ENDIF»
 		«IF ex.exprTail!=null»(tl «ex.exprTailAtt.compile»)«ENDIF»
-		«IF ex.exprSymb!=null»(«ex.exprSymbNom.compile» «ex.exprSymbAtt.compile»)«ENDIF»
+		«IF ex.nomSymb!=null»(«ex.nomSymb» «ex.symbAtt.compile»)«ENDIF»
 	'''
 	
 	def compile (ExprAnd ex)'''
 		«ex.exprOr.compile»
-		«IF ex.exprAnd!=null»«ex.exprAnd.compile»«ENDIF»
+		«IF ex.exprAnd!=null»«ex.exprAndAtt.compile»«ENDIF»
 	'''
 	
 	def compile (ExprOr ex)'''
 		«ex.exprNot.compile»
-		«IF ex.exprOr!=null»«ex.exprOr.compile»«ENDIF»
+		«IF ex.exprOr!=null»«ex.exprOrAtt.compile»«ENDIF»
 	'''
 	
 	def compile (ExprNot ex)'''
