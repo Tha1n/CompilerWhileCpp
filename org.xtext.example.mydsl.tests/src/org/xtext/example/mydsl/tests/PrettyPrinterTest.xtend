@@ -52,4 +52,25 @@ write Y''')
         assertTrue(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString == fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
         
 	}
+	
+	/*
+	 * TODO:
+	 * 1. Une ligne = une commande
+	 * 2. Une en-tête de commande composée
+	 * 3. Une fin de commande composée
+	 * 4. Un %
+	 * 5. Une fonction, read, write
+	 * 
+	 * 6. Identation de 2 par défaut
+	 * 7. Pas d'identation devant read, write %
+	 * 8. Identation égale pour début et fin de commande
+	 * 
+	 * 9. ; sur la meme ligne que la commande
+	 * 
+	 * 10. espace devant/derriere := =?
+	 * 11. apres function, read, write, if, while, for, cons, hd, tl, :
+	 * 12. avant les ; do, then, etc.
+	 * 13. entre les parametres.
+	 * 14. pas apres ( et avant )
+	 */
 }
