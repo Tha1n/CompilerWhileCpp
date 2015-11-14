@@ -13,4 +13,3 @@ public class WhileCppStandaloneSetup extends WhileCppStandaloneSetupGenerated{
 		new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 	}
 }
-
