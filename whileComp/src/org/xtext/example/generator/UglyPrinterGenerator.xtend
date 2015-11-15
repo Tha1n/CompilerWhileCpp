@@ -1,26 +1,9 @@
 package org.xtext.example.generator
 
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
-import org.xtext.example.whileCpp.Command
-import org.xtext.example.whileCpp.CommandForEach
-import org.xtext.example.whileCpp.CommandIf
-import org.xtext.example.whileCpp.CommandWhile
-import org.xtext.example.whileCpp.Commands
-import org.xtext.example.whileCpp.Definition
-import org.xtext.example.whileCpp.Expr
-import org.xtext.example.whileCpp.ExprAnd
-import org.xtext.example.whileCpp.ExprEq
-import org.xtext.example.whileCpp.ExprNot
-import org.xtext.example.whileCpp.ExprOr
-import org.xtext.example.whileCpp.ExprSimple
-import org.xtext.example.whileCpp.Exprs
-import org.xtext.example.whileCpp.Function
-import org.xtext.example.whileCpp.Input
-import org.xtext.example.whileCpp.Output
-import org.xtext.example.whileCpp.Program
-import org.xtext.example.whileCpp.Vars
+import org.eclipse.xtext.generator.IFileSystemAccess
+import org.xtext.example.whileCpp.*
 
 class UglyPrinterGenerator implements IGenerator {
 

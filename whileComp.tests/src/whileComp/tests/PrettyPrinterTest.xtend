@@ -7,25 +7,26 @@ import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.junit4.util.ParseHelper
 import org.junit.Test
 import org.junit.runner.RunWith
-import org.xtext.example.whileCpp.MyDslInjectorProvider
-import org.xtext.example.whileCpp.generator.MyDslGenerator
+import org.xtext.example.WhileCppInjectorProvider
+import org.xtext.example.generator.WhileCppGenerator
 import org.xtext.example.whileCpp.Function
+import org.xtext.example.whileCpp.Program
 
 import static org.junit.Assert.*
 
-@InjectWith(MyDslInjectorProvider)
+@InjectWith(WhileCppInjectorProvider)
 @RunWith(XtextRunner)
 class PrettyPrinterTest {
 
 	@Inject
-	ParseHelper<Model> parser
+	ParseHelper<Program> parser
 	@Inject 
-	MyDslGenerator genToTest
+	WhileCppGenerator genToTest
 
 	@Test
 	def void testNameOfAFunction() {
 		var prog = parser.parse("function p: read X % 	Y:=nil ; while X do nop ; Y := X od % write Y")
-		val function = prog.programme.fonctions.get(0) as Function
+		val function = prog.fonctions.get(0) as Function
 		assertTrue(function.nom == "p")
 	}
 	
