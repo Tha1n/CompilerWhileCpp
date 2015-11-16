@@ -1,15 +1,17 @@
 grammar org.xtext.example.WhileCpp with org.eclipse.xtext.common.Terminals
 
+hidden(LC)
+
 generate whileCpp "http://www.xtext.org/example/WhileCpp"
 
 
-Program: (fonctions+=Function  )*;
+Program: (fonctions+=Function )*;
 
-Function: 'function'  nom=SYMBOL ':'  definition=Definition;
+Function: 'function' nom=SYMBOL ':' definition=Definition;
 Definition:
-'read'  inputs=Input 
-'%'  commandes=Commands 
-'%'  'write'  outputs=Output;
+'read' inputs=Input 
+'%' commandes=Commands 
+'%' 'write' outputs=Output;
 
 Input: (varIn+=VARIABLE ',')*(varIn+=VARIABLE); //varIn = variables Entrée
 //Permet de reconnaitre des chaines de la forme var1,var2 ou var
@@ -19,13 +21,13 @@ Vars: (varGen += VARIABLE',')* (varGen += VARIABLE); //varGen = variables géné
 terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 
 //Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
-Commands: =>(commande += Command  ';')*(commande += Command);
+Commands: =>(commande += Command ';')*(commande += Command);
 //Permet de reconnaitre des chaines de la forme c1;c2
 //Les differentes commandes
-Command: ( nop ='nop' | vars = Vars  ':='  (exprs=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
-CommandWhile: (w='while'|'for')  expr = Expr  'do'  cmds = Commands  'od';
-CommandIf: 'if'  cond = Expr  'then'  cmdsThen = Commands  ('else'  (cmdsElse = Commands) )? 'fi';
-CommandForEach: 'foreach'  elem = Expr  'in'  ensemb = Expr  'do'  cmds = Commands  'od';
+Command: ( nop ='nop' | vars = Vars ':=' (exprs=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
+CommandWhile: (w='while'|'for') expr = Expr 'do' cmds = Commands 'od';
+CommandIf: 'if' cond = Expr 'then' cmdsThen = Commands ('else' (cmdsElse = Commands) )? 'fi';
+CommandForEach: 'foreach' elem = Expr 'in' ensemb = Expr 'do' cmds = Commands 'od';
 
 Exprs: =>(expGen += Expr',')* (expGen += Expr);
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
@@ -42,6 +44,7 @@ ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple)
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
 
-terminal LC: '\t'| '\r' | ('\r\n' |'\n') ;
-//Caracteres de separations
 
+
+terminal LC:('\t')*| ('\r')* | ('\r\n')* |('\n')* | (' ')*;
+//Caracteres de separations

@@ -101,7 +101,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(":");
     _builder.newLineIfNotEmpty();
     Definition _definition = f.getDefinition();
-    CharSequence _compile = this.compile(_definition, (indent + 1));
+    CharSequence _compile = this.compile(_definition, indent);
     _builder.append(_compile, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();

@@ -51,7 +51,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«f.definition.compile(indent+1)»
+«f.definition.compile(indent)»
 
 '''
 	

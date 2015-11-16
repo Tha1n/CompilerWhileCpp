@@ -151,7 +151,7 @@ public class WhileCppParser extends AbstractContentAssistParser {
 	
 	@Override
 	protected String[] getInitialHiddenTokens() {
-		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
+		return new String[] { "RULE_LC" };
 	}
 	
 	public WhileCppGrammarAccess getGrammarAccess() {
