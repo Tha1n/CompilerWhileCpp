@@ -1,9 +1,26 @@
 package org.xtext.example.generator
 
 import org.eclipse.emf.ecore.resource.Resource
-import org.eclipse.xtext.generator.IGenerator
 import org.eclipse.xtext.generator.IFileSystemAccess
-import org.xtext.example.whileCpp.*
+import org.eclipse.xtext.generator.IGenerator
+import org.xtext.example.whileCpp.Command
+import org.xtext.example.whileCpp.CommandForEach
+import org.xtext.example.whileCpp.CommandIf
+import org.xtext.example.whileCpp.CommandWhile
+import org.xtext.example.whileCpp.Commands
+import org.xtext.example.whileCpp.Definition
+import org.xtext.example.whileCpp.Expr
+import org.xtext.example.whileCpp.ExprAnd
+import org.xtext.example.whileCpp.ExprEq
+import org.xtext.example.whileCpp.ExprNot
+import org.xtext.example.whileCpp.ExprOr
+import org.xtext.example.whileCpp.ExprSimple
+import org.xtext.example.whileCpp.Exprs
+import org.xtext.example.whileCpp.Function
+import org.xtext.example.whileCpp.Input
+import org.xtext.example.whileCpp.Output
+import org.xtext.example.whileCpp.Program
+import org.xtext.example.whileCpp.Vars
 
 class UglyPrinterGenerator implements IGenerator {
 
@@ -15,7 +32,7 @@ class UglyPrinterGenerator implements IGenerator {
 	
 	def compile (Program p)'''«FOR f: p.fonctions»«f.compile»«ENDFOR»'''
 	
-	def compile (Function f)'''function «f.nom»:«f.definition.compile»'''
+	def compile (Function f)'''function «f.nom»:«f.definition.compile» '''
 	
 	def compile (Definition d)'''read «d.inputs.compile»%«d.commandes.compile»%write «d.outputs.compile»'''
 	
@@ -26,10 +43,10 @@ class UglyPrinterGenerator implements IGenerator {
 	def compile (Output o)'''«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c)'''«switch (c){
-	case c.nop!=null : "nop;"
+	case c.nop!=null : "nop"
 	case c.cmdIf!=null : c.cmdIf.compile
 	case c.cmdForEach!=null : c.cmdForEach.compile
-	case c.vars!=null && c.exprs!=null : c.vars.compile + " := " + c.exprs.compile + ";" 
+	case c.vars!=null && c.exprs!=null : c.vars.compile + " := " + c.exprs.compile 
 	case c.cmdWhile!=null : c.cmdWhile.compile
 	default : c.class.name}»'''
 	
