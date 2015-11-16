@@ -21,11 +21,11 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.FunctionImpl#getNom <em>Nom</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.FunctionImpl#getDefinition <em>Definition</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

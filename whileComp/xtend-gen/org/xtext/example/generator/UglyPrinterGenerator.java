@@ -110,7 +110,6 @@ public class UglyPrinterGenerator implements IGenerator {
     {
       EList<Command> _commande = c.getCommande();
       for(final Command cm : _commande) {
-        _builder.append("\t");
         CharSequence _compile = this.compile(cm);
         _builder.append(_compile, "");
       }
@@ -223,11 +222,11 @@ public class UglyPrinterGenerator implements IGenerator {
     Expr _expr = c.getExpr();
     CharSequence _compile = this.compile(_expr);
     _builder.append(_compile, "");
-    _builder.append(" do");
+    _builder.append(" do ");
     Commands _cmds = c.getCmds();
     Object _compile_1 = this.compile(_cmds);
     _builder.append(_compile_1, "");
-    _builder.append("od");
+    _builder.append(" od");
     return _builder;
   }
   
@@ -245,7 +244,7 @@ public class UglyPrinterGenerator implements IGenerator {
       Commands _cmdsElse = c.getCmdsElse();
       boolean _notEquals = (!Objects.equal(_cmdsElse, null));
       if (_notEquals) {
-        _builder.append("else");
+        _builder.append(" else ");
         Commands _cmdsElse_1 = c.getCmdsElse();
         Object _compile_2 = this.compile(_cmdsElse_1);
         _builder.append(_compile_2, "");
@@ -265,11 +264,11 @@ public class UglyPrinterGenerator implements IGenerator {
     Expr _ensemb = c.getEnsemb();
     CharSequence _compile_1 = this.compile(_ensemb);
     _builder.append(_compile_1, "");
-    _builder.append(" do\t");
+    _builder.append(" do ");
     Commands _cmds = c.getCmds();
     Object _compile_2 = this.compile(_cmds);
     _builder.append(_compile_2, "");
-    _builder.append("od");
+    _builder.append(" od");
     return _builder;
   }
   

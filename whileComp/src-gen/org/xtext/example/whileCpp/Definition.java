@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.Definition#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.Definition#getCommandes <em>Commandes</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.Definition#getOutputs <em>Outputs</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.xtext.example.whileCpp.WhileCppPackage#getDefinition()
  * @model

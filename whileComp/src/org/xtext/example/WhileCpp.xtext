@@ -42,6 +42,6 @@ ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple)
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
 
-terminal LC: '\t'| ('\r' | '\r\n') |'\n'|' ';
+terminal LC: '\t'| '\r' | ('\r\n' |'\n') ;
 //Caracteres de separations
 

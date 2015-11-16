@@ -21,10 +21,10 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.InputImpl#getVarIn <em>Var In</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

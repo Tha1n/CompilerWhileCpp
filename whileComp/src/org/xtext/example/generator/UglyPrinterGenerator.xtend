@@ -21,7 +21,7 @@ class UglyPrinterGenerator implements IGenerator {
 	
 	def compile (Input i)'''«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (Commands c)'''«FOR cm: c.commande»	«cm.compile»«ENDFOR»'''
+	def compile (Commands c)'''«FOR cm: c.commande»«cm.compile»«ENDFOR»'''
 		
 	def compile (Output o)'''«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
@@ -33,16 +33,15 @@ class UglyPrinterGenerator implements IGenerator {
 	case c.cmdWhile!=null : c.cmdWhile.compile
 	default : c.class.name}»'''
 	
-	def compile(CommandWhile c)'''«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile» do«c.cmds.compile»od'''
+	def compile(CommandWhile c)'''«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile» do «c.cmds.compile» od'''
 	
-	def compile(CommandIf c)'''if «c.cond.compile» then «c.cmdsThen.compile»«IF c.cmdsElse!=null»else«c.cmdsElse.compile»«ENDIF»fi'''
+	def compile(CommandIf c)'''if «c.cond.compile» then «c.cmdsThen.compile»«IF c.cmdsElse!=null» else «c.cmdsElse.compile»«ENDIF»fi'''
 	
-	def compile(CommandForEach c)'''foreach «c.elem.compile» in «c.ensemb.compile» do	«c.cmds.compile»od'''
+	def compile(CommandForEach c)'''foreach «c.elem.compile» in «c.ensemb.compile» do «c.cmds.compile» od'''
 	
 	def compile(Vars v)'''«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Exprs e)'''«FOR in : e.expGen»«in.compile»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''
-	
 	def compile (Expr ex)'''«switch(ex){
 			case ex.exprSimp!=null : ex.exprSimp.compile
 			case ex.exprAnd!=null : ex.exprAnd.compile}»'''

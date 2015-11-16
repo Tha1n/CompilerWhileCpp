@@ -52,10 +52,6 @@ public class PrettyPrinterGenerator implements IGenerator {
             {
               IntegerRange _upTo_1 = new IntegerRange(1, this.ibd);
               for(final Integer j : _upTo_1) {
-                {
-                  if ((level > 0)) {
-                  }
-                }
                 _builder.append("\t", "");
               }
             }

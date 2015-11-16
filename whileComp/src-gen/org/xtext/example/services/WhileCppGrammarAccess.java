@@ -1213,7 +1213,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	////Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
 	////Caracteres de separations
 	//terminal LC:
-	//	"\t" | ("\r" | "\r\n") | "\n" | " ";
+	//	"\t" | "\r" | ("\r\n" | "\n");
 	public TerminalRule getLCRule() {
 		return tLC;
 	} 

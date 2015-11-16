@@ -4,7 +4,7 @@
     editorDirectory="/whileComp.editor/src" modelPluginID="whileComp" forceOverwrite="true"
     modelName="WhileCpp" updateClasspath="false" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
     complianceLevel="6.0" copyrightFields="false" editPluginID="whileComp.edit" editorPluginID="whileComp.editor"
-    runtimeVersion="2.11">
+    runtimeVersion="2.10">
   <genPackages prefix="WhileCpp" basePackage="org.xtext.example" disposableProviderFactory="true"
       fileExtensions="wh" ecorePackage="WhileCpp.ecore#/">
     <genClasses ecoreClass="WhileCpp.ecore#//Program">

@@ -11,7 +11,6 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.Command#getNop <em>Nop</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.Command#getVars <em>Vars</em>}</li>
@@ -20,6 +19,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.whileCpp.Command#getCmdIf <em>Cmd If</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.Command#getCmdForEach <em>Cmd For Each</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.xtext.example.whileCpp.WhileCppPackage#getCommand()
  * @model
