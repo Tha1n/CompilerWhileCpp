@@ -37,10 +37,8 @@ target
 *.java._trace
 *.java_trace
 
-#Ignore generated tests  files
-org.xtext.example.mydsl.tests/.settings/*
-org.xtext.example.mydsl.tests/bin/*
-org.xtext.example.mydsl.tests/META-INF/*
+#Ignore generated files
+whileComp/src-gen/*
 
 #Ignore Eclipse files
 *.classpath
