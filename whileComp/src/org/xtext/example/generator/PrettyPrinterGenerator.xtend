@@ -66,7 +66,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	'''«indent(indent)»«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile (Commands c, int indent)
-	'''«FOR cm: c.commande»«cm.compile(indent)»«IF c.commande.indexOf(cm)!=c.commande.size-1»;
+	'''«FOR cm: c.commande»«cm.compile(indent)»«IF c.commande.indexOf(cm)!=c.commande.size-1» ;
 «ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent)

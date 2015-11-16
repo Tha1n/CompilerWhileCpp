@@ -177,7 +177,7 @@ public class PrettyPrinterGenerator implements IGenerator {
           int _minus = (_size - 1);
           boolean _notEquals = (_indexOf != _minus);
           if (_notEquals) {
-            _builder.append(";");
+            _builder.append(" ;");
             _builder.newLineIfNotEmpty();
           }
         }

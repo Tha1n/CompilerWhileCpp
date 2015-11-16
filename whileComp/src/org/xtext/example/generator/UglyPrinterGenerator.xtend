@@ -15,7 +15,7 @@ class UglyPrinterGenerator implements IGenerator {
 	
 	def compile (Program p)'''«FOR f: p.fonctions»«f.compile»«ENDFOR»'''
 	
-	def compile (Function f)'''function «f.nom»:«f.definition.compile»'''
+	def compile (Function f)'''function «f.nom»:«f.definition.compile» '''
 	
 	def compile (Definition d)'''read «d.inputs.compile»%«d.commandes.compile»%write «d.outputs.compile»'''
 	
@@ -26,10 +26,10 @@ class UglyPrinterGenerator implements IGenerator {
 	def compile (Output o)'''«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c)'''«switch (c){
-	case c.nop!=null : "nop;"
+	case c.nop!=null : "nop"
 	case c.cmdIf!=null : c.cmdIf.compile
 	case c.cmdForEach!=null : c.cmdForEach.compile
-	case c.vars!=null && c.exprs!=null : c.vars.compile + " := " + c.exprs.compile + ";" 
+	case c.vars!=null && c.exprs!=null : c.vars.compile + " := " + c.exprs.compile 
 	case c.cmdWhile!=null : c.cmdWhile.compile
 	default : c.class.name}»'''
 	

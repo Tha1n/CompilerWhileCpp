@@ -63,6 +63,7 @@ public class UglyPrinterGenerator implements IGenerator {
     Definition _definition = f.getDefinition();
     CharSequence _compile = this.compile(_definition);
     _builder.append(_compile, "");
+    _builder.append(" ");
     return _builder;
   }
   
@@ -159,7 +160,7 @@ public class UglyPrinterGenerator implements IGenerator {
       boolean _notEquals = (!Objects.equal(_nop, null));
       if (_notEquals) {
         _matched=true;
-        _switchResult = "nop;";
+        _switchResult = "nop";
       }
     }
     if (!_matched) {
@@ -198,8 +199,7 @@ public class UglyPrinterGenerator implements IGenerator {
         String _plus = (_compile + " := ");
         Exprs _exprs_1 = c.getExprs();
         CharSequence _compile_1 = this.compile(_exprs_1);
-        String _plus_1 = (_plus + _compile_1);
-        _switchResult = (_plus_1 + ";");
+        _switchResult = (_plus + _compile_1);
       }
     }
     if (!_matched) {
