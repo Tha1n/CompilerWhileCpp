@@ -112,6 +112,17 @@ public class UglyPrinterGenerator implements IGenerator {
       for(final Command cm : _commande) {
         CharSequence _compile = this.compile(cm);
         _builder.append(_compile, "");
+        {
+          EList<Command> _commande_1 = c.getCommande();
+          int _indexOf = _commande_1.indexOf(cm);
+          EList<Command> _commande_2 = c.getCommande();
+          int _size = _commande_2.size();
+          int _minus = (_size - 1);
+          boolean _notEquals = (_indexOf != _minus);
+          if (_notEquals) {
+            _builder.append(";");
+          }
+        }
       }
     }
     return _builder;

@@ -21,7 +21,7 @@ class UglyPrinterGenerator implements IGenerator {
 	
 	def compile (Input i)'''«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (Commands c)'''«FOR cm: c.commande»«cm.compile»«ENDFOR»'''
+	def compile (Commands c)'''«FOR cm: c.commande»«cm.compile»«IF c.commande.indexOf(cm)!=c.commande.size-1»;«ENDIF»«ENDFOR»'''
 		
 	def compile (Output o)'''«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	

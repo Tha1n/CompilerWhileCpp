@@ -30,7 +30,7 @@ import org.xtext.example.whileCpp.Vars
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class WhileCppGenerator implements IGenerator {
-	
+
 	int ibd = 1 //ident by default
 	
 	//ident all structures
@@ -64,19 +64,19 @@ class WhileCppGenerator implements IGenerator {
 	def compile (Input i, int indent)
 	'''«indent(indent)»«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (Commands c, int indent)
-	'''«FOR cm: c.commande»
-	«cm.compile(indent)»«ENDFOR»'''
+		def compile (Commands c, int indent)
+	'''«FOR cm: c.commande»«cm.compile(indent)»«IF c.commande.indexOf(cm)!=c.commande.size-1»;
+«ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent)
 	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c, int indent)
 '''«switch (c){
-	case c.nop!=null : indent(indent) + "nop;"
+	case c.nop!=null : indent(indent) + "nop"
 	case c.cmdIf!=null : c.cmdIf.compile(indent)
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent)
-	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) + ";" 
+	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) 
 	case c.cmdWhile!=null : c.cmdWhile.compile(indent)
 	default : c.class.name
 }

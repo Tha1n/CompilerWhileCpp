@@ -167,9 +167,20 @@ public class WhileCppGenerator implements IGenerator {
     {
       EList<Command> _commande = c.getCommande();
       for(final Command cm : _commande) {
-        _builder.newLineIfNotEmpty();
         CharSequence _compile = this.compile(cm, indent);
         _builder.append(_compile, "");
+        {
+          EList<Command> _commande_1 = c.getCommande();
+          int _indexOf = _commande_1.indexOf(cm);
+          EList<Command> _commande_2 = c.getCommande();
+          int _size = _commande_2.size();
+          int _minus = (_size - 1);
+          boolean _notEquals = (_indexOf != _minus);
+          if (_notEquals) {
+            _builder.append(";");
+            _builder.newLineIfNotEmpty();
+          }
+        }
       }
     }
     return _builder;
@@ -209,7 +220,7 @@ public class WhileCppGenerator implements IGenerator {
       if (_notEquals) {
         _matched=true;
         CharSequence _indent = this.indent(indent);
-        _switchResult = (_indent + "nop;");
+        _switchResult = (_indent + "nop");
       }
     }
     if (!_matched) {
@@ -248,8 +259,7 @@ public class WhileCppGenerator implements IGenerator {
         String _plus = (_compile + " := ");
         Exprs _exprs_1 = c.getExprs();
         CharSequence _compile_1 = this.compile(_exprs_1, 0);
-        String _plus_1 = (_plus + _compile_1);
-        _switchResult = (_plus_1 + ";");
+        _switchResult = (_plus + _compile_1);
       }
     }
     if (!_matched) {
