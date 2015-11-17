@@ -38,7 +38,8 @@ target
 *.java_trace
 
 #Ignore generated files
-whileComp/src-gen/*
+*/src-gen/*
+*/xtend-gen/*
 
 #Ignore Eclipse files
 *.classpath

@@ -1,3 +1,10 @@
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.util.HashMap;
+import java.util.Map;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.GnuParser;
@@ -11,10 +18,22 @@ import org.xtext.example.generator.WhileCppGenerator;
 public class Whpp {
 	
 	private static WhileCppGenerator generator;
+	//A map which contains the defined indentation
+	private static Map<String, Integer> indentMap;
+	//undefined: <=0 else > 0 
+	private static Integer pageWidth;
+	//"":stdout else the output file
+	private static String outFile;
+	//input program to String
+	private static String inputProg;
 
 	public static void main(String[] parameters) {
 		
 		generator = new WhileCppGenerator();
+		indentMap = new HashMap<String, Integer>();
+		pageWidth = -1;
+		outFile = "";
+		inputProg = "";
 		
 		
 		CommandLine commandLine;
@@ -55,50 +74,74 @@ public class Whpp {
 
             if (commandLine.hasOption("all"))
             {
-                System.out.print("Option All is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("all"));
+            	Integer indentAll = new Integer(commandLine.getOptionValue("all"));
+            	if(indentAll < 0) indentAll = 0;
+            	System.out.println("Indent All: " + indentAll);
+                indentMap.put("All", indentAll);
             }
 
             if (commandLine.hasOption("if"))
             {
-                System.out.print("Option If is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("if"));
+            	Integer indentIf = new Integer(commandLine.getOptionValue("if"));
+                if(indentIf < 0) indentIf = 0;                
+            	System.out.println("Indent If: " + indentIf);
+                indentMap.put("If", indentIf);
             }
 
             if (commandLine.hasOption("for"))
             {
-                System.out.print("Option For is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("for"));
+            	Integer indentFor = new Integer(commandLine.getOptionValue("for"));
+            	if(indentFor < 0) indentFor = 0;
+            	System.out.println("Indent For: " + indentFor);
+                indentMap.put("For", indentFor);
             }
 
             if (commandLine.hasOption("while"))
             {
-                System.out.print("Option While is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("while"));
+            	Integer indentWhile = new Integer(commandLine.getOptionValue("while"));
+            	if(indentWhile < 0) indentWhile = 0;
+            	System.out.println("Indent While: " + indentWhile);
+                indentMap.put("While", indentWhile);
             }
 
             if (commandLine.hasOption("foreach"))
             {
-                System.out.print("Option Foreach is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("foreach"));
+            	Integer indentForeach = new Integer(commandLine.getOptionValue("foreach"));
+            	if(indentForeach < 0) indentForeach = 0;
+            	System.out.println("Indent Foreach: " + indentForeach);
+                indentMap.put("Foreach", indentForeach);
             }
             
             if (commandLine.hasOption("o"))
             {
-                System.out.print("Option Out is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("o"));
+            	outFile = commandLine.getOptionValue("o");
             }
 
             if (commandLine.hasOption("i"))
             {
-                System.out.print("Option In is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("i"));
+            	try {
+            		FileReader fileReader = new FileReader(commandLine.getOptionValue("i"));
+
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    String content = "";
+                    String line;
+                    while((line = bufferedReader.readLine()) != null) {
+                        content += line;
+                    }
+                    inputProg = content;
+                    System.out.print(inputProg);
+                    bufferedReader.close();
+                    
+            	}
+            	catch (Exception e)
+            	{
+            		inputProg = "";
+            	}
             }
             
             if (commandLine.hasOption("page"))
             {
-                System.out.print("Option Page is present.  The value is: ");
-                System.out.println(commandLine.getOptionValue("page"));
+            	pageWidth = new Integer(commandLine.getOptionValue("page"));
             }
         }
         catch (ParseException exception)
@@ -106,7 +149,14 @@ public class Whpp {
             System.out.print("Parse error: ");
             System.out.println(exception.getMessage());
         }
+        
+        callPrettyPrinter();
 
+	}
+	
+	private static void callPrettyPrinter()
+	{
+		//TODO: transform to Resource & IFileSystemAccess
 	}
 
 }
