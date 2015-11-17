@@ -11,12 +11,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.CommandIf#getCond <em>Cond</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.CommandIf#getCmdsThen <em>Cmds Then</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.CommandIf#getCmdsElse <em>Cmds Else</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.xtext.example.whileCpp.WhileCppPackage#getCommandIf()
  * @model
