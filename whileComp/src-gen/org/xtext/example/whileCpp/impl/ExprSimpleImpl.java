@@ -21,6 +21,7 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getNil <em>Nil</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getVari <em>Vari</em>}</li>
@@ -36,7 +37,6 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getNomSymb <em>Nom Symb</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getSymbAtt <em>Symb Att</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

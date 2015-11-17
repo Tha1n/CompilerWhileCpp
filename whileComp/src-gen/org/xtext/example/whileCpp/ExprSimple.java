@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getNil <em>Nil</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getVari <em>Vari</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getNomSymb <em>Nom Symb</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getSymbAtt <em>Symb Att</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple()
  * @model

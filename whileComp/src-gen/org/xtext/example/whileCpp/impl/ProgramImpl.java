@@ -26,10 +26,10 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.ProgramImpl#getFonctions <em>Fonctions</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

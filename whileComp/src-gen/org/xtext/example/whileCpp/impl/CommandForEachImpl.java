@@ -22,12 +22,12 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandForEachImpl#getElem <em>Elem</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandForEachImpl#getEnsemb <em>Ensemb</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandForEachImpl#getCmds <em>Cmds</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

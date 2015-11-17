@@ -23,12 +23,12 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.DefinitionImpl#getInputs <em>Inputs</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.DefinitionImpl#getCommandes <em>Commandes</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.DefinitionImpl#getOutputs <em>Outputs</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
