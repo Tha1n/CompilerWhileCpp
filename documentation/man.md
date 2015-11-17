@@ -2,7 +2,7 @@
   whpp - pretty print while programs
 
 # SYNOPSIS
-  __whpp__ `[OPTION]`...
+  java -jar __whpp__ `[OPTION]`...
 
 # DESCRIPTION
   Transform a ugly indented while program into a beautiful indented while program.
@@ -34,7 +34,7 @@
 
 ## Exit status
   If the `-o` option is not used, whpp print the pretty indented program.   If the `-o` option is used, whpp create a file defined by the option and print the indented program into this file.  
-  //TODO: if the input is not correct
+  If the `-i` option is not used, whpp doesn't print anything.
 
 ## Known bugs
   None

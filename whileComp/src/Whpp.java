@@ -1,6 +1,4 @@
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.util.HashMap;
 import java.util.Map;
@@ -126,7 +124,7 @@ public class Whpp {
                     String content = "";
                     String line;
                     while((line = bufferedReader.readLine()) != null) {
-                        content += line;
+                        content += line + "\n";
                     }
                     inputProg = content;
                     System.out.print(inputProg);
@@ -135,6 +133,7 @@ public class Whpp {
             	}
             	catch (Exception e)
             	{
+                    System.out.print("ERROR: THE FILE " + commandLine.getOptionValue("i") + " DOESN'T EXISTS");
             		inputProg = "";
             	}
             }
