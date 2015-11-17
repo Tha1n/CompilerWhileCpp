@@ -1,6 +1,6 @@
 grammar org.xtext.example.WhileCpp with org.eclipse.xtext.common.Terminals
 
-hidden(LC)
+hidden(LC, WS, ML_COMMENT, SL_COMMENT)
 
 generate whileCpp "http://www.xtext.org/example/WhileCpp"
 
@@ -46,5 +46,5 @@ terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
 
 
 
-terminal LC:('\t')*| ('\r')* | ('\r\n')* |('\n')* | (' ')*;
+terminal LC: (' ')*;
 //Caracteres de separations
