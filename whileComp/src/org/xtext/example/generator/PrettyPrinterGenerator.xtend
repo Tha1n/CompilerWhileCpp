@@ -24,6 +24,10 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
+import java.util.Map
+import org.eclipse.xtext.generator.InMemoryFileSystemAccess
+
+import org.xtext.example.whileCpp.impl.ProgramImpl
 
 /**
  * Generates code from your model files on save.
@@ -34,6 +38,16 @@ class PrettyPrinterGenerator implements IGenerator {
 
 	int ibd = 1 //ident by default
 	
+	
+	def generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
+	{
+		val fsa = new InMemoryFileSystemAccess()
+		val prog = ProgramImpl //TODO: mais WA DA FUCK
+		for(p: prog.eResource.allContents.toIterable.filter(Program)) {
+			fsa.generateFile(outputFile, p.compile(0))
+			}
+	}
+	
 	//ident all structures
 	def indent (int level)
 	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«"\t"»«ENDFOR»«ENDIF»«ENDFOR»'''
@@ -41,9 +55,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.wh", p.compile(0))
-		}
+			}
 	}
-	
+
 	def compile (Program p, int indent)
 '''«indent(indent)»«FOR f: p.fonctions»
 «f.compile(indent)»
