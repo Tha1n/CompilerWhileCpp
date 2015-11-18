@@ -12,6 +12,8 @@ import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.codegen.ecore.Generator;
 import org.xtext.example.generator.WhileCppGenerator;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.xtext.generator.IFileSystemAccess;
 
 public class Whpp {
 	
@@ -51,6 +53,8 @@ public class Whpp {
         Option option_In = OptionBuilder.withArgName("i").hasArg().withDescription("").create("i");
         //width
         Option option_Page = OptionBuilder.withArgName("page").hasArg().withDescription("").create("page");
+        //help
+        Option option_Help = OptionBuilder.withDescription("").create("help");
         
         //Add options
         Options options = new Options();
@@ -64,6 +68,7 @@ public class Whpp {
         options.addOption(option_Out);
         options.addOption(option_In);
         options.addOption(option_Page);
+        options.addOption(option_Help);
 
         try
         {
@@ -142,6 +147,27 @@ public class Whpp {
             {
             	pageWidth = new Integer(commandLine.getOptionValue("page"));
             }
+            
+            if (commandLine.hasOption("help"))
+            {
+            	try {
+            		FileReader fileReader = new FileReader("../documentation/man.md");
+
+                    BufferedReader bufferedReader = new BufferedReader(fileReader);
+                    String content = "";
+                    String line;
+                    while((line = bufferedReader.readLine()) != null) {
+                        content += line + "\n";
+                    }
+                    System.out.print(content);
+                    bufferedReader.close();
+                    
+            	}
+            	catch (Exception e)
+            	{
+            		System.out.println("Go to the documentation folder to see the documentation");
+            	}
+            }
         }
         catch (ParseException exception)
         {
@@ -154,7 +180,7 @@ public class Whpp {
 	}
 	
 	private static void callPrettyPrinter()
-	{
+	{		
 		//TODO: transform to Resource & IFileSystemAccess
 	}
 
