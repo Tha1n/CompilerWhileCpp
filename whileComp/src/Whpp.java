@@ -43,19 +43,19 @@ public class Whpp {
 		
 		CommandLine commandLine;
 		//default identation
-        Option option_All = OptionBuilder.withArgName("all").hasArg().withDescription("").create("all");
+        Option option_All = OptionBuilder.withArgName(Resources.OPT_ALL).hasArg().withDescription("").create(Resources.OPT_ALL);
         //if struct identation
-        Option option_If = OptionBuilder.withArgName("if").hasArg().withDescription("").create("if");
+        Option option_If = OptionBuilder.withArgName(Resources.OPT_IF).hasArg().withDescription("").create(Resources.OPT_IF);
         //if struct identation
         Option option_While = OptionBuilder.withArgName("while").hasArg().withDescription("").create("while");
         //if struct identation
-        Option option_Foreach = OptionBuilder.withArgName("foreach").hasArg().withDescription("").create("foreach");
+        Option option_Foreach = OptionBuilder.withArgName(Resources.OPT_FOREACH).hasArg().withDescription("").create(Resources.OPT_FOREACH);
         //output file
-        Option option_Out = OptionBuilder.withArgName("o").hasArg().withDescription("").create("o");
+        Option option_Out = OptionBuilder.withArgName(Resources.OPT_OUT).hasArg().withDescription("").create(Resources.OPT_OUT);
         //input file
-        Option option_In = OptionBuilder.withArgName("i").hasArg().withDescription("").create("i");
+        Option option_In = OptionBuilder.withArgName(Resources.OPT_IN).hasArg().withDescription("").create(Resources.OPT_IN);
         //width
-        Option option_Page = OptionBuilder.withArgName("page").hasArg().withDescription("").create("page");
+        Option option_Page = OptionBuilder.withArgName(Resources.OPT_PAGE).hasArg().withDescription("").create(Resources.OPT_PAGE);
         //help
         Option option_Help = OptionBuilder.withDescription("").create("help");
         
@@ -77,47 +77,47 @@ public class Whpp {
         	//Parse options
             commandLine = parser.parse(options, parameters);
 
-            if (commandLine.hasOption("all"))
+            if (commandLine.hasOption(Resources.OPT_ALL))
             {
-            	Integer indentAll = new Integer(commandLine.getOptionValue("all"));
+            	Integer indentAll = new Integer(commandLine.getOptionValue(Resources.OPT_ALL));
             	if(indentAll < 0) indentAll = 0;
             	System.out.println("Indent All: " + indentAll);
-                indentMap.put("All", indentAll);
+                indentMap.put(Resources.MAP_ALL, indentAll);
             }
 
-            if (commandLine.hasOption("if"))
+            if (commandLine.hasOption(Resources.OPT_IF))
             {
-            	Integer indentIf = new Integer(commandLine.getOptionValue("if"));
+            	Integer indentIf = new Integer(commandLine.getOptionValue(Resources.OPT_IF));
                 if(indentIf < 0) indentIf = 0;                
             	System.out.println("Indent If: " + indentIf);
-                indentMap.put("If", indentIf);
+                indentMap.put(Resources.MAP_IF, indentIf);
             }
 
-            if (commandLine.hasOption("while"))
+            if (commandLine.hasOption(Resources.OPT_WHILE))
             {
-            	Integer indentWhile = new Integer(commandLine.getOptionValue("while"));
+            	Integer indentWhile = new Integer(commandLine.getOptionValue(Resources.OPT_WHILE));
             	if(indentWhile < 0) indentWhile = 0;
             	System.out.println("Indent While: " + indentWhile);
-                indentMap.put("While", indentWhile);
+                indentMap.put(Resources.MAP_WHILE, indentWhile);
             }
 
-            if (commandLine.hasOption("foreach"))
+            if (commandLine.hasOption(Resources.OPT_FOREACH))
             {
-            	Integer indentForeach = new Integer(commandLine.getOptionValue("foreach"));
+            	Integer indentForeach = new Integer(commandLine.getOptionValue(Resources.OPT_FOREACH));
             	if(indentForeach < 0) indentForeach = 0;
             	System.out.println("Indent Foreach: " + indentForeach);
-                indentMap.put("Foreach", indentForeach);
+                indentMap.put(Resources.MAP_FOREACH, indentForeach);
             }
             
-            if (commandLine.hasOption("o"))
+            if (commandLine.hasOption(Resources.OPT_OUT))
             {
-            	outFile = commandLine.getOptionValue("o");
+            	outFile = commandLine.getOptionValue(Resources.OPT_OUT);
             }
 
-            if (commandLine.hasOption("i"))
+            if (commandLine.hasOption(Resources.OPT_IN))
             {
             	try {
-            		FileReader fileReader = new FileReader(commandLine.getOptionValue("i"));
+            		FileReader fileReader = new FileReader(commandLine.getOptionValue(Resources.OPT_IN));
 
                     BufferedReader bufferedReader = new BufferedReader(fileReader);
                     String content = "";
@@ -132,14 +132,14 @@ public class Whpp {
             	}
             	catch (Exception e)
             	{
-                    System.out.print("ERROR: THE FILE " + commandLine.getOptionValue("i") + " DOESN'T EXISTS");
+                    System.out.print("ERROR: THE FILE " + commandLine.getOptionValue(Resources.OPT_IN) + " DOESN'T EXISTS");
             		inputProg = "";
             	}
             }
             
-            if (commandLine.hasOption("page"))
+            if (commandLine.hasOption(Resources.OPT_PAGE))
             {
-            	pageWidth = new Integer(commandLine.getOptionValue("page"));
+            	pageWidth = new Integer(commandLine.getOptionValue(Resources.OPT_PAGE));
             }
             
             if (commandLine.hasOption("help"))
