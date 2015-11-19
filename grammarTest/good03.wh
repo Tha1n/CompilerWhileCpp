@@ -1,0 +1,10 @@
+function f:read X%
+
+Y:=nil ;
+if X then if nil then if Z then nop fi fi else if U then U :=al;I:= ax else nop fi fi ;
+
+while X do
+nop; nop;
+Y := X;W :=U
+od
+%write Y

@@ -1,0 +1,14 @@
+function f:read X%
+Y:=nil ;foreach X in Y do
+nop; nop;
+Y := X;W :=U
+od%write Y
+
+
+
+
+function f2: read X % Y
+:=nil;
+while X do nop; nop;
+Y:=X
+od % write Y
