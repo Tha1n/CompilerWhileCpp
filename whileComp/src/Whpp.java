@@ -47,7 +47,7 @@ public class Whpp {
         //if struct identation
         Option option_If = OptionBuilder.withArgName(Resources.OPT_IF).hasArg().withDescription("").create(Resources.OPT_IF);
         //if struct identation
-        Option option_While = OptionBuilder.withArgName("while").hasArg().withDescription("").create("while");
+        Option option_While = OptionBuilder.withArgName(Resources.OPT_WHILE).hasArg().withDescription("").create(Resources.OPT_WHILE);
         //if struct identation
         Option option_Foreach = OptionBuilder.withArgName(Resources.OPT_FOREACH).hasArg().withDescription("").create(Resources.OPT_FOREACH);
         //output file
