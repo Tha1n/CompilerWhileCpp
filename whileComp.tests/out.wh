@@ -1,0 +1,9 @@
+function p:
+read X
+%
+		nop ;
+				while X do
+				od
+%
+write Y
+
