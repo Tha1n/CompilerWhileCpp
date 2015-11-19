@@ -25,9 +25,12 @@ import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
 import java.util.Map
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess
-
-import org.xtext.example.whileCpp.impl.ProgramImpl
+import org.eclipse.emf.common.util.URI
+import org.xtext.example.WhileCppStandaloneSetup
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.emf.ecore.util.EcoreUtil
+import java.io.FileWriter
+import java.io.BufferedWriter
 
 /**
  * Generates code from your model files on save.
@@ -35,19 +38,57 @@ import org.xtext.example.whileCpp.impl.ProgramImpl
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class PrettyPrinterGenerator implements IGenerator {
+	
 
-	int ibd = 1 //ident by default
+	int ibd = 1
+	int ibif = 1
+	int ibforeach = 1
+	int ibwhile = 1
 	
-	
-	def static void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
+	def void parseMap(Map<String, Integer> indent)
 	{
-		val fsa = new InMemoryFileSystemAccess()
-		println(in);
+		if(indent.get("All") != null)
+		{
+			ibd = indent.get("All")
+			ibif = ibd
+			ibforeach = ibif
+			ibwhile = ibif
+		}
+		if(indent.get("If") != null)
+		  ibif = indent.get("If")
+		if(indent.get("While") != null)
+		  ibwhile = indent.get("While")
+		if(indent.get("Foreach") != null)
+		  ibforeach = indent.get("Foreach")
+	}
+	
+	
+	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
+	{
+		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
+		val resourceSet = injector.getInstance(XtextResourceSet);
+		val uri = URI.createURI(in);
+		val xtextResource = resourceSet.getResource(uri, true);
+		EcoreUtil.resolveAll(xtextResource);
 		
-		/*val prog = ProgramImpl //TODO: mais WA DA FUCK
-		for(p: prog.eResource.allContents.toIterable.filter(Program)) {
-			fsa.generateFile(outputFile, p.compile(0))
-			}*/
+		parseMap(indentation)
+		
+		var out = outputFile
+		if(out.equals(""))
+			out = "out.wh"
+			
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			for(p: xtextResource.allContents.toIterable.filter(Program))
+				buff.write(p.compile(0).toString)
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+		
+		
+		
 	}
 	
 	//ident all structures
@@ -55,6 +96,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«"\t"»«ENDFOR»«ENDIF»«ENDFOR»'''
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
+		
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.wh", p.compile(0))
 			}
@@ -91,10 +133,10 @@ class PrettyPrinterGenerator implements IGenerator {
 	def compile(Command c, int indent)
 '''«switch (c){
 	case c.nop!=null : indent(indent) + "nop"
-	case c.cmdIf!=null : c.cmdIf.compile(indent)
-	case c.cmdForEach!=null : c.cmdForEach.compile(indent)
+	case c.cmdIf!=null : c.cmdIf.compile(ibif)
+	case c.cmdForEach!=null : c.cmdForEach.compile(ibforeach)
 	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) 
-	case c.cmdWhile!=null : c.cmdWhile.compile(indent)
+	case c.cmdWhile!=null : c.cmdWhile.compile(ibwhile)
 	default : c.class.name
 }
 »'''
