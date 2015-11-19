@@ -39,13 +39,15 @@ class PrettyPrinterGenerator implements IGenerator {
 	int ibd = 1 //ident by default
 	
 	
-	def generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
+	def static void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
 	{
 		val fsa = new InMemoryFileSystemAccess()
-		val prog = ProgramImpl //TODO: mais WA DA FUCK
+		println(in);
+		
+		/*val prog = ProgramImpl //TODO: mais WA DA FUCK
 		for(p: prog.eResource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile(outputFile, p.compile(0))
-			}
+			}*/
 	}
 	
 	//ident all structures

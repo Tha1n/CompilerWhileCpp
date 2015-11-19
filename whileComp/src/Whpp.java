@@ -11,13 +11,14 @@ import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.codegen.ecore.Generator;
+import org.xtext.example.generator.PrettyPrinterGenerator;
 import org.xtext.example.generator.WhileCppGenerator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 
 public class Whpp {
 	
-	private static WhileCppGenerator generator;
+	private static PrettyPrinterGenerator generator;
 	//A map which contains the defined indentation
 	private static Map<String, Integer> indentMap;
 	//undefined: <=0 else > 0 
@@ -29,7 +30,7 @@ public class Whpp {
 
 	public static void main(String[] parameters) {
 		
-		generator = new WhileCppGenerator();
+		generator = new PrettyPrinterGenerator();
 		indentMap = new HashMap<String, Integer>();
 		pageWidth = -1;
 		outFile = "";
@@ -159,7 +160,6 @@ public class Whpp {
                     while((line = bufferedReader.readLine()) != null) {
                         content += line + "\n";
                     }
-                    System.out.print(content);
                     bufferedReader.close();
                     
             	}
@@ -181,7 +181,7 @@ public class Whpp {
 	
 	private static void callPrettyPrinter()
 	{		
-		//TODO: transform to Resource & IFileSystemAccess
+		generator.generate(inputProg, outFile, indentMap, pageWidth);
 	}
 
 }
