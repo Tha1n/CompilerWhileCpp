@@ -25,10 +25,12 @@ import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
 import java.util.Map
-import org.eclipse.xtext.generator.InMemoryFileSystemAccess
 import org.eclipse.emf.common.util.URI
 import org.xtext.example.WhileCppStandaloneSetup
 import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.emf.ecore.util.EcoreUtil
+import java.io.FileWriter
+import java.io.BufferedWriter
 
 /**
  * Generates code from your model files on save.
@@ -36,6 +38,7 @@ import org.eclipse.xtext.resource.XtextResourceSet
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class PrettyPrinterGenerator implements IGenerator {
+	
 
 	int ibd = 1
 	int ibif = 1
@@ -60,24 +63,31 @@ class PrettyPrinterGenerator implements IGenerator {
 	}
 	
 	
-	def void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
+	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
 	{
-		val fsa = new InMemoryFileSystemAccess()
-		
 		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
-  		val resourceSet = injector.getInstance(XtextResourceSet);
-		val prog = resourceSet.createResource(URI.createURI(in));
+		val resourceSet = injector.getInstance(XtextResourceSet);
+		val uri = URI.createURI(in);
+		val xtextResource = resourceSet.getResource(uri, true);
+		EcoreUtil.resolveAll(xtextResource);
 		
 		parseMap(indentation)
 		
 		var out = outputFile
 		if(out.equals(""))
 			out = "out.wh"
+			
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			for(p: xtextResource.allContents.toIterable.filter(Program))
+				buff.write(p.compile(0).toString)
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
 		
-		for(p: prog.allContents.toIterable.filter(Program)) {
-			println(p.compile(0))
-			fsa.generateFile(out, p.compile(0))
-		}
+		
 		
 	}
 	
