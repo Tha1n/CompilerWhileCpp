@@ -29,8 +29,6 @@
 
 #XText GitIgnore
 .metadata/*
-#Find on web
-bin
 .DS_Store
 target
 *.xtendbin
@@ -38,8 +36,9 @@ target
 *.java_trace
 
 #Ignore generated files
+whileComp*/bin/*
 */src-gen/*
-*/xtend-gen/*
+xtend-gen/*
 
 #Ignore Eclipse files
 *.classpath
