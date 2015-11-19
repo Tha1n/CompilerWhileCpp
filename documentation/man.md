@@ -14,9 +14,6 @@
   `-if`,  
     give the default indentation length for the __if__ structure
 
-  `-for`,  
-    give the default indentation length for the __for__ structure
-
   `-foreach`,  
     give the default indentation length for the __foreach__ structure
 

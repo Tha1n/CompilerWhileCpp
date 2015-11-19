@@ -13,7 +13,11 @@ import org.apache.commons.cli.ParseException;
 import org.eclipse.emf.codegen.ecore.Generator;
 import org.xtext.example.generator.PrettyPrinterGenerator;
 import org.xtext.example.generator.WhileCppGenerator;
+
+import com.google.inject.Provider;
+
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 
 public class Whpp {
@@ -43,8 +47,6 @@ public class Whpp {
         //if struct identation
         Option option_If = OptionBuilder.withArgName("if").hasArg().withDescription("").create("if");
         //if struct identation
-        Option option_For = OptionBuilder.withArgName("for").hasArg().withDescription("").create("for");
-        //if struct identation
         Option option_While = OptionBuilder.withArgName("while").hasArg().withDescription("").create("while");
         //if struct identation
         Option option_Foreach = OptionBuilder.withArgName("foreach").hasArg().withDescription("").create("foreach");
@@ -63,7 +65,6 @@ public class Whpp {
 
         options.addOption(option_All);
         options.addOption(option_If);
-        options.addOption(option_For);
         options.addOption(option_While);
         options.addOption(option_Foreach);
         options.addOption(option_Out);
@@ -90,14 +91,6 @@ public class Whpp {
                 if(indentIf < 0) indentIf = 0;                
             	System.out.println("Indent If: " + indentIf);
                 indentMap.put("If", indentIf);
-            }
-
-            if (commandLine.hasOption("for"))
-            {
-            	Integer indentFor = new Integer(commandLine.getOptionValue("for"));
-            	if(indentFor < 0) indentFor = 0;
-            	System.out.println("Indent For: " + indentFor);
-                indentMap.put("For", indentFor);
             }
 
             if (commandLine.hasOption("while"))
