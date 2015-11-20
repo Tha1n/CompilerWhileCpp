@@ -151,8 +151,8 @@ try {
 		
 		    while ((lineP != null) && (linePBis != null)) {
 		    	
-		    	assertNotEquals(lineP, linePBis)
-					
+		    	assertEquals(lineP, linePBis)
+
 			    lineP = brP.readLine();
 			    linePBis = brPBis.readLine();
 		    }
