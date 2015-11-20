@@ -125,6 +125,51 @@ try {
 	assertEquals(varCount, 4)	
 	}
 
+	/**
+	 * Fonction de test: whpp-1(f) = whpp-1(whpp(f))
+	 */
+	@Test
+	def void PretPrUglyPrint()
+	{
+		val inFile = "good0"
+		val outPFile = "PrePr0"
+		val outUFile = "UglPr0"
+		val outUBisFile = "UglBisPr0"
+		
+		for(var i = 1; i < 5; i++){
+			
+		//écriture
+		var map = new HashMap<String, Integer>()
+		map.put("All" ,2)
+		genUToTest.generate(ConcatFName(inFile,i), ConcatFName(outUFile,i))//UglyPrint des fichiers whpp-1(f)
+		
+		genToTest.generate(ConcatFName(inFile,i), ConcatFName(outPFile,i), map, 0)//PrettyPrint temporaire des fichiers whpp(f)
+		genUToTest.generate(ConcatFName(outPFile,i), ConcatFName(outUBisFile,i))//UglyPrint des pretty whpp-1(whpp(f))
+		
+		//lecture
+		val brU = new BufferedReader(new FileReader(ConcatFName(outUFile,i)));
+		val brUBis = new BufferedReader(new FileReader(ConcatFName(outUBisFile,i)));
+		try {
+		    var lineU = brU.readLine();
+		    var lineUBis = brUBis.readLine();
+		
+		    while ((lineU != null) && (lineUBis != null)) {
+		    	
+		    	assertEquals(lineU, lineUBis)
+
+			    lineU = brU.readLine();
+			    lineUBis = brUBis.readLine();
+		    }
+			} finally {
+			    brU.close();
+			    brUBis.close();
+			}
+		}
+	}
+
+	/**
+	 * Fonction de test: whpp(f) = whpp(whpp-1(f))
+	 */
 	@Test
 	def void UglPrPrettyPrint()
 	{
