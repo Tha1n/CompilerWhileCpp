@@ -75,7 +75,7 @@ class PrettyPrinterGenerator implements IGenerator {
 		
 		var out = outputFile
 		if(out.equals(""))
-			out = "sth.wh"
+			out = in + "pp"
 			
 		try{
   			val fstream = new FileWriter(out)

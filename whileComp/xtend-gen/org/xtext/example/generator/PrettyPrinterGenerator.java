@@ -99,7 +99,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     String out = outputFile;
     boolean _equals = out.equals("");
     if (_equals) {
-      out = "sth.wh";
+      out = (in + "pp");
     }
     try {
       final FileWriter fstream = new FileWriter(out);
