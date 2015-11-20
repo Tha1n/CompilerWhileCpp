@@ -5,15 +5,25 @@ package org.xtext.example.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import com.google.inject.Injector;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.util.Map;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.WhileCppStandaloneSetup;
 import org.xtext.example.whileCpp.Command;
 import org.xtext.example.whileCpp.CommandForEach;
 import org.xtext.example.whileCpp.CommandIf;
@@ -41,6 +51,79 @@ import org.xtext.example.whileCpp.Vars;
 @SuppressWarnings("all")
 public class PrettyPrinterGenerator implements IGenerator {
   private int ibd = 1;
+  
+  private int ibif = 1;
+  
+  private int ibforeach = 1;
+  
+  private int ibwhile = 1;
+  
+  public void parseMap(final Map<String, Integer> indent) {
+    Integer _get = indent.get("All");
+    boolean _notEquals = (!Objects.equal(_get, null));
+    if (_notEquals) {
+      Integer _get_1 = indent.get("All");
+      this.ibd = (_get_1).intValue();
+      this.ibif = this.ibd;
+      this.ibforeach = this.ibif;
+      this.ibwhile = this.ibif;
+    }
+    Integer _get_2 = indent.get("If");
+    boolean _notEquals_1 = (!Objects.equal(_get_2, null));
+    if (_notEquals_1) {
+      Integer _get_3 = indent.get("If");
+      this.ibif = (_get_3).intValue();
+    }
+    Integer _get_4 = indent.get("While");
+    boolean _notEquals_2 = (!Objects.equal(_get_4, null));
+    if (_notEquals_2) {
+      Integer _get_5 = indent.get("While");
+      this.ibwhile = (_get_5).intValue();
+    }
+    Integer _get_6 = indent.get("Foreach");
+    boolean _notEquals_3 = (!Objects.equal(_get_6, null));
+    if (_notEquals_3) {
+      Integer _get_7 = indent.get("Foreach");
+      this.ibforeach = (_get_7).intValue();
+    }
+  }
+  
+  public void generate(final String in, final String outputFile, final Map<String, Integer> indentation, final Integer width) {
+    WhileCppStandaloneSetup _whileCppStandaloneSetup = new WhileCppStandaloneSetup();
+    final Injector injector = _whileCppStandaloneSetup.createInjectorAndDoEMFRegistration();
+    final XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
+    final URI uri = URI.createURI(in);
+    final Resource xtextResource = resourceSet.getResource(uri, true);
+    EcoreUtil.resolveAll(xtextResource);
+    this.parseMap(indentation);
+    String out = outputFile;
+    boolean _equals = out.equals("");
+    if (_equals) {
+      out = "sth.wh";
+    }
+    try {
+      final FileWriter fstream = new FileWriter(out);
+      final BufferedWriter buff = new BufferedWriter(fstream);
+      TreeIterator<EObject> _allContents = xtextResource.getAllContents();
+      Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+      Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
+      for (final Program p : _filter) {
+        CharSequence _compile = this.compile(p, 0);
+        String _string = _compile.toString();
+        buff.write(_string);
+      }
+      buff.close();
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        String _message = e.getMessage();
+        String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+        InputOutput.<String>println(_plus);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
   
   public CharSequence indent(final int level) {
     StringConcatenation _builder = new StringConcatenation();
@@ -229,7 +312,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_1) {
         _matched=true;
         CommandIf _cmdIf_1 = c.getCmdIf();
-        _switchResult = this.compile(_cmdIf_1, indent);
+        _switchResult = this.compile(_cmdIf_1, this.ibif);
       }
     }
     if (!_matched) {
@@ -238,7 +321,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_2) {
         _matched=true;
         CommandForEach _cmdForEach_1 = c.getCmdForEach();
-        _switchResult = this.compile(_cmdForEach_1, indent);
+        _switchResult = this.compile(_cmdForEach_1, this.ibforeach);
       }
     }
     if (!_matched) {
@@ -268,7 +351,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_5) {
         _matched=true;
         CommandWhile _cmdWhile_1 = c.getCmdWhile();
-        _switchResult = this.compile(_cmdWhile_1, indent);
+        _switchResult = this.compile(_cmdWhile_1, this.ibwhile);
       }
     }
     if (!_matched) {

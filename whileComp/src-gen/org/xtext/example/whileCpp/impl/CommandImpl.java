@@ -25,7 +25,6 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandImpl#getNop <em>Nop</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandImpl#getVars <em>Vars</em>}</li>
@@ -34,6 +33,7 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandImpl#getCmdIf <em>Cmd If</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.CommandImpl#getCmdForEach <em>Cmd For Each</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

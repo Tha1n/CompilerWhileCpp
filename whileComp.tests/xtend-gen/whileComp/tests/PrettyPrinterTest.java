@@ -2,7 +2,14 @@ package whileComp.tests;
 
 import com.google.common.base.Objects;
 import com.google.inject.Inject;
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtend2.lib.StringConcatenation;
@@ -16,7 +23,8 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.xtext.example.WhileCppInjectorProvider;
-import org.xtext.example.generator.WhileCppGenerator;
+import org.xtext.example.generator.PrettyPrinterGenerator;
+import org.xtext.example.generator.UglyPrinterGenerator;
 import org.xtext.example.whileCpp.Function;
 import org.xtext.example.whileCpp.Program;
 
@@ -28,7 +36,10 @@ public class PrettyPrinterTest {
   private ParseHelper<Program> parser;
   
   @Inject
-  private WhileCppGenerator genToTest;
+  private PrettyPrinterGenerator genToTest;
+  
+  @Inject
+  private UglyPrinterGenerator genUToTest;
   
   @Test
   public void testNameOfAFunction() {
@@ -93,6 +104,110 @@ public class PrettyPrinterTest {
       String _string_2 = _get_2.toString();
       boolean _equals = Objects.equal(_string_1, _string_2);
       Assert.assertTrue(_equals);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void indentDefault() {
+    try {
+      String out = "test.wh";
+      try {
+        final FileWriter fstream = new FileWriter(out);
+        final BufferedWriter buff = new BufferedWriter(fstream);
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("function p:");
+        _builder.newLine();
+        _builder.append("read X");
+        _builder.newLine();
+        _builder.append("%");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("nop\t;");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("while X do ");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("n");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("op ;");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("Y := X");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("od;");
+        _builder.newLine();
+        _builder.append("%");
+        _builder.newLine();
+        _builder.append("write Y");
+        _builder.newLine();
+        buff.write(_builder.toString());
+        buff.close();
+      } catch (final Throwable _t) {
+        if (_t instanceof Exception) {
+          final Exception e = (Exception)_t;
+          String _message = e.getMessage();
+          String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+          InputOutput.<String>println(_plus);
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      map.put("All", Integer.valueOf(2));
+      this.genToTest.generate("test.wh", "out.wh", map, Integer.valueOf(0));
+      FileReader _fileReader = new FileReader("out.wh");
+      final BufferedReader br = new BufferedReader(_fileReader);
+      String everything = "";
+      try {
+        final StringBuilder sb = new StringBuilder();
+        String line = br.readLine();
+        while ((!Objects.equal(line, null))) {
+          {
+            sb.append(line);
+            String _lineSeparator = System.lineSeparator();
+            sb.append(_lineSeparator);
+            String _readLine = br.readLine();
+            line = _readLine;
+          }
+        }
+        String _string = sb.toString();
+        everything = _string;
+        InputOutput.<String>println(everything);
+      } finally {
+        br.close();
+      }
+      int varCount = 0;
+      final Pattern p = Pattern.compile("(\t)*(while)");
+      final Matcher m = p.matcher(everything);
+      while (m.find()) {
+        {
+          int i = 0;
+          String _group = m.group();
+          int _length = _group.length();
+          boolean _lessThan = (i < _length);
+          boolean _while = _lessThan;
+          while (_while) {
+            String _group_1 = m.group();
+            char _charAt = _group_1.charAt(i);
+            boolean _equals = (_charAt == 0x09);
+            if (_equals) {
+              varCount = (varCount + 1);
+            }
+            int _i = i;
+            i = (_i + 1);
+            String _group_2 = m.group();
+            int _length_1 = _group_2.length();
+            boolean _lessThan_1 = (i < _length_1);
+            _while = _lessThan_1;
+          }
+        }
+      }
+      Assert.assertEquals(varCount, 4);
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

@@ -38,7 +38,7 @@ ExprSimple: (nil = 'nil' | vari = VARIABLE | symb = SYMBOL ) |
 '(' (nomSymb = SYMBOL) (symbAtt = Expr) ')';
 ExprAnd: (exprOr = ExprOr) ((exprAnd = 'and') (exprAndAtt = ExprAnd))?;
 ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
-ExprNot: ((not = 'not'))? (exprEq = ExprEq);
+ExprNot: (not = 'not')? (exprEq = ExprEq);
 ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple);
 
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;

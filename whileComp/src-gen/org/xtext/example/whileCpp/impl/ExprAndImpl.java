@@ -21,12 +21,12 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprAndImpl#getExprOr <em>Expr Or</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprAndImpl#getExprAnd <em>Expr And</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprAndImpl#getExprAndAtt <em>Expr And Att</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

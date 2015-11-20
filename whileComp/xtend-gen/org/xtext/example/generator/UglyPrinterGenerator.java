@@ -261,7 +261,7 @@ public class UglyPrinterGenerator implements IGenerator {
         _builder.append(_compile_2, "");
       }
     }
-    _builder.append("fi");
+    _builder.append(" fi");
     return _builder;
   }
   

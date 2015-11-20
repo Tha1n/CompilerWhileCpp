@@ -52,7 +52,7 @@ class UglyPrinterGenerator implements IGenerator {
 	
 	def compile(CommandWhile c)'''«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile» do «c.cmds.compile» od'''
 	
-	def compile(CommandIf c)'''if «c.cond.compile» then «c.cmdsThen.compile»«IF c.cmdsElse!=null» else «c.cmdsElse.compile»«ENDIF»fi'''
+	def compile(CommandIf c)'''if «c.cond.compile» then «c.cmdsThen.compile»«IF c.cmdsElse!=null» else «c.cmdsElse.compile»«ENDIF» fi'''
 	
 	def compile(CommandForEach c)'''foreach «c.elem.compile» in «c.ensemb.compile» do «c.cmds.compile» od'''
 	
