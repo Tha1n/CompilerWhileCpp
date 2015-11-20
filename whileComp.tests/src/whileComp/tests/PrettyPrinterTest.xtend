@@ -33,6 +33,9 @@ class PrettyPrinterTest {
 	@Inject
 	UglyPrinterGenerator genUToTest
 	
+	def String ConcatFName(String FileName, int NumFile) {
+		return (FileName + NumFile.toString() + ".wh")
+	}
 
 	@Test
 	def void testNameOfAFunction() {
@@ -135,17 +138,15 @@ try {
 		//écriture
 		var map = new HashMap<String, Integer>()
 		map.put("All" ,2)
-		genToTest.generate(inFile + i.toString() + ".wh", outPFile + i.toString() + ".wh", map, 0)//PrettyPrint des fichiers
+		genToTest.generate(ConcatFName(inFile,i), ConcatFName(outPFile,i), map, 0)//PrettyPrint des fichiers
 		
-		genUToTest.generate(inFile + i.toString() + ".wh", outUFile + i.toString() + ".wh")//UglyPrint temporaire des fichiers
-		genToTest.generate(outUFile + i.toString() + ".wh", outPBisFile + i.toString() + ".wh", map, 0)//PrettyPrint des Ugly
+		genUToTest.generate(ConcatFName(inFile,i), ConcatFName(outUFile,i))//UglyPrint temporaire des fichiers
+		genToTest.generate(ConcatFName(outUFile,i), ConcatFName(outPBisFile,i), map, 0)//PrettyPrint des Ugly
 		
 		//lecture
-		val brP = new BufferedReader(new FileReader(outPFile + i.toString() + ".wh"));
-		val brPBis = new BufferedReader(new FileReader(outPBisFile + i.toString() + ".wh"));
-		var everything = "";
+		val brP = new BufferedReader(new FileReader(ConcatFName(outPFile,i)));
+		val brPBis = new BufferedReader(new FileReader(ConcatFName(outPBisFile,i)));
 		try {
-		    val sb = new StringBuilder();
 		    var lineP = brP.readLine();
 		    var linePBis = brPBis.readLine();
 		
@@ -160,7 +161,6 @@ try {
 			    brP.close();
 			    brPBis.close();
 			}
-		
 		}
 	}
 	/*
