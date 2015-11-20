@@ -143,7 +143,8 @@ public class Whpp {
 
 	private static void callPrettyPrinter()
 	{		
-		generator.generate(inputProg, outFile, indentMap, pageWidth);
+		if(inputProg != null && !inputProg.isEmpty())
+		    generator.generate(inputProg, outFile, indentMap, pageWidth);
 	}
 
 }
