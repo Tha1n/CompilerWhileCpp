@@ -27,7 +27,7 @@
     the output file which will contains the indented while program
 
   `-page`,  
-    the maximum width of a program
+    the maximum width of a program (Not implemented yet)
 
 ## Exit status
   If the `-o` option is not used, whpp print the pretty indented program.   If the `-o` option is used, whpp create a file defined by the option and print the indented program into this file.  
