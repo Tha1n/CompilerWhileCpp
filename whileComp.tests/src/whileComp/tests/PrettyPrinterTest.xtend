@@ -13,6 +13,14 @@ import org.xtext.example.whileCpp.Function
 import org.xtext.example.whileCpp.Program
 
 import static org.junit.Assert.*
+import org.xtext.example.generator.PrettyPrinterGenerator
+import org.xtext.example.generator.UglyPrinterGenerator
+import java.io.FileWriter
+import java.io.BufferedWriter
+import java.util.HashMap
+import java.io.BufferedReader
+import java.io.FileReader
+import java.util.regex.*
 
 @InjectWith(WhileCppInjectorProvider)
 @RunWith(XtextRunner)
@@ -21,7 +29,10 @@ class PrettyPrinterTest {
 	@Inject
 	ParseHelper<Program> parser
 	@Inject 
-	WhileCppGenerator genToTest
+	PrettyPrinterGenerator genToTest
+	@Inject
+	UglyPrinterGenerator genUToTest
+	
 
 	@Test
 	def void testNameOfAFunction() {
@@ -53,20 +64,71 @@ write Y''')
         
 	}
 	
+	//une commande élémentaire
+	@Test
+	def void indentDefault()
+	{
+		//écriture
+		var out = "test.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			buff.write('''function p:
+read X
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y
+''')
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)	
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	
+	//lecture
+	val br = new BufferedReader(new FileReader("out.wh"));
+	var everything = "";
+try {
+    val sb = new StringBuilder();
+    var line = br.readLine();
+
+    while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+    }
+    everything = sb.toString();
+    println(everything)
+} finally {
+	
+    br.close();
+}
+	var varCount = 0
+	val p = Pattern.compile("(\t)*(while)");
+	val m = p.matcher(everything);
+	while(m.find())
+		for(var i = 0; i < m.group.length; i+=1)
+			if(m.group.charAt(i) == 0x09) //Tab
+			 varCount=varCount+1
+			 
+	assertEquals(varCount, 4)	
+	}
+
 	/*
 	 * TODO:
-	 * 1. Une ligne = une commande
-	 * 2. Une en-tête de commande composée
-	 * 3. Une fin de commande composée
-	 * 4. Un %
-	 * 5. Une fonction, read, write
+
 	 * 
 	 * 6. Identation de 2 par défaut
 	 * 7. Pas d'identation devant read, write %
-	 * 8. Identation égale pour début et fin de commande
-	 * 
-	 * 9. ; sur la meme ligne que la commande
-	 * 
+
 	 * 10. espace devant/derriere := =?
 	 * 11. apres function, read, write, if, while, for, cons, hd, tl, :
 	 * 12. avant les ; do, then, etc.
