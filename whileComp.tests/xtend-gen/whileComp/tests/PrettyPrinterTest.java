@@ -41,6 +41,12 @@ public class PrettyPrinterTest {
   @Inject
   private UglyPrinterGenerator genUToTest;
   
+  public String ConcatFName(final String FileName, final int NumFile) {
+    String _string = Integer.valueOf(NumFile).toString();
+    String _plus = (FileName + _string);
+    return (_plus + ".wh");
+  }
+  
   @Test
   public void testNameOfAFunction() {
     try {
@@ -323,40 +329,22 @@ public class PrettyPrinterTest {
         {
           HashMap<String, Integer> map = new HashMap<String, Integer>();
           map.put("All", Integer.valueOf(2));
-          String _string = Integer.valueOf(i).toString();
-          String _plus = (inFile + _string);
-          String _plus_1 = (_plus + ".wh");
-          String _string_1 = Integer.valueOf(i).toString();
-          String _plus_2 = (outPFile + _string_1);
-          String _plus_3 = (_plus_2 + ".wh");
-          this.genToTest.generate(_plus_1, _plus_3, map, Integer.valueOf(0));
-          String _string_2 = Integer.valueOf(i).toString();
-          String _plus_4 = (inFile + _string_2);
-          String _plus_5 = (_plus_4 + ".wh");
-          String _string_3 = Integer.valueOf(i).toString();
-          String _plus_6 = (outUFile + _string_3);
-          String _plus_7 = (_plus_6 + ".wh");
-          this.genUToTest.generate(_plus_5, _plus_7);
-          String _string_4 = Integer.valueOf(i).toString();
-          String _plus_8 = (outUFile + _string_4);
-          String _plus_9 = (_plus_8 + ".wh");
-          String _string_5 = Integer.valueOf(i).toString();
-          String _plus_10 = (outPBisFile + _string_5);
-          String _plus_11 = (_plus_10 + ".wh");
-          this.genToTest.generate(_plus_9, _plus_11, map, Integer.valueOf(0));
-          String _string_6 = Integer.valueOf(i).toString();
-          String _plus_12 = (outPFile + _string_6);
-          String _plus_13 = (_plus_12 + ".wh");
-          FileReader _fileReader = new FileReader(_plus_13);
+          String _ConcatFName = this.ConcatFName(inFile, i);
+          String _ConcatFName_1 = this.ConcatFName(outPFile, i);
+          this.genToTest.generate(_ConcatFName, _ConcatFName_1, map, Integer.valueOf(0));
+          String _ConcatFName_2 = this.ConcatFName(inFile, i);
+          String _ConcatFName_3 = this.ConcatFName(outUFile, i);
+          this.genUToTest.generate(_ConcatFName_2, _ConcatFName_3);
+          String _ConcatFName_4 = this.ConcatFName(outUFile, i);
+          String _ConcatFName_5 = this.ConcatFName(outPBisFile, i);
+          this.genToTest.generate(_ConcatFName_4, _ConcatFName_5, map, Integer.valueOf(0));
+          String _ConcatFName_6 = this.ConcatFName(outPFile, i);
+          FileReader _fileReader = new FileReader(_ConcatFName_6);
           final BufferedReader brP = new BufferedReader(_fileReader);
-          String _string_7 = Integer.valueOf(i).toString();
-          String _plus_14 = (outPBisFile + _string_7);
-          String _plus_15 = (_plus_14 + ".wh");
-          FileReader _fileReader_1 = new FileReader(_plus_15);
+          String _ConcatFName_7 = this.ConcatFName(outPBisFile, i);
+          FileReader _fileReader_1 = new FileReader(_ConcatFName_7);
           final BufferedReader brPBis = new BufferedReader(_fileReader_1);
-          String everything = "";
           try {
-            final StringBuilder sb = new StringBuilder();
             String lineP = brP.readLine();
             String linePBis = brPBis.readLine();
             while (((!Objects.equal(lineP, null)) && (!Objects.equal(linePBis, null)))) {
