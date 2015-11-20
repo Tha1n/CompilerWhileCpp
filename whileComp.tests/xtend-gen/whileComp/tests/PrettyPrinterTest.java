@@ -318,6 +318,61 @@ public class PrettyPrinterTest {
     }
   }
   
+  /**
+   * Fonction de test: whpp-1(f) = whpp-1(whpp(f))
+   */
+  @Test
+  public void PretPrUglyPrint() {
+    try {
+      final String inFile = "good0";
+      final String outPFile = "PrePr0";
+      final String outUFile = "UglPr0";
+      final String outUBisFile = "UglBisPr0";
+      for (int i = 1; (i < 5); i++) {
+        {
+          HashMap<String, Integer> map = new HashMap<String, Integer>();
+          map.put("All", Integer.valueOf(2));
+          String _ConcatFName = this.ConcatFName(inFile, i);
+          String _ConcatFName_1 = this.ConcatFName(outUFile, i);
+          this.genUToTest.generate(_ConcatFName, _ConcatFName_1);
+          String _ConcatFName_2 = this.ConcatFName(inFile, i);
+          String _ConcatFName_3 = this.ConcatFName(outPFile, i);
+          this.genToTest.generate(_ConcatFName_2, _ConcatFName_3, map, Integer.valueOf(0));
+          String _ConcatFName_4 = this.ConcatFName(outPFile, i);
+          String _ConcatFName_5 = this.ConcatFName(outUBisFile, i);
+          this.genUToTest.generate(_ConcatFName_4, _ConcatFName_5);
+          String _ConcatFName_6 = this.ConcatFName(outUFile, i);
+          FileReader _fileReader = new FileReader(_ConcatFName_6);
+          final BufferedReader brU = new BufferedReader(_fileReader);
+          String _ConcatFName_7 = this.ConcatFName(outUBisFile, i);
+          FileReader _fileReader_1 = new FileReader(_ConcatFName_7);
+          final BufferedReader brUBis = new BufferedReader(_fileReader_1);
+          try {
+            String lineU = brU.readLine();
+            String lineUBis = brUBis.readLine();
+            while (((!Objects.equal(lineU, null)) && (!Objects.equal(lineUBis, null)))) {
+              {
+                Assert.assertEquals(lineU, lineUBis);
+                String _readLine = brU.readLine();
+                lineU = _readLine;
+                String _readLine_1 = brUBis.readLine();
+                lineUBis = _readLine_1;
+              }
+            }
+          } finally {
+            brU.close();
+            brUBis.close();
+          }
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Fonction de test: whpp(f) = whpp(whpp-1(f))
+   */
   @Test
   public void UglPrPrettyPrint() {
     try {
