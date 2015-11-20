@@ -2,7 +2,7 @@
   whpp - pretty print while programs
 
 # SYNOPSIS
-  java -jar __whpp__ `[OPTION]`...
+  java -jar __whpp.jar__ `[OPTION]`...
 
 # DESCRIPTION
   Transform a ugly indented while program into a beautiful indented while program.
