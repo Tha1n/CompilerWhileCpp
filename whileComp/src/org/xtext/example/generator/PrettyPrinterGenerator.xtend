@@ -93,7 +93,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	//ident all structures
 	def indent (int level)
-	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«"\t"»«ENDFOR»«ENDIF»«ENDFOR»'''
+	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«" "»«ENDFOR»«ENDIF»«ENDFOR»'''
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
@@ -133,10 +133,10 @@ class PrettyPrinterGenerator implements IGenerator {
 	def compile(Command c, int indent)
 '''«switch (c){
 	case c.nop!=null : indent(indent) + "nop"
-	case c.cmdIf!=null : c.cmdIf.compile(ibif)
-	case c.cmdForEach!=null : c.cmdForEach.compile(ibforeach)
+	case c.cmdIf!=null : c.cmdIf.compile(ibif + indent)
+	case c.cmdForEach!=null : c.cmdForEach.compile(ibforeach + indent)
 	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) 
-	case c.cmdWhile!=null : c.cmdWhile.compile(ibwhile)
+	case c.cmdWhile!=null : c.cmdWhile.compile(ibwhile + indent)
 	default : c.class.name
 }
 »'''
