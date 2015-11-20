@@ -21,8 +21,40 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
+import org.xtext.example.WhileCppStandaloneSetup
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.util.EcoreUtil
+import java.io.FileWriter
+import java.io.BufferedWriter
 
 class UglyPrinterGenerator implements IGenerator {
+
+	def public void generate(String in, String outputFile)
+	{
+		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
+		val resourceSet = injector.getInstance(XtextResourceSet);
+		val uri = URI.createURI(in);
+		val xtextResource = resourceSet.getResource(uri, true);
+		EcoreUtil.resolveAll(xtextResource);
+				
+		var out = outputFile
+		if(out.equals(""))
+			out = "sth.wh"
+			
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			for(p: xtextResource.allContents.toIterable.filter(Program))
+				buff.write(p.compile.toString)
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+		
+		
+		
+	}
 
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		for(p: resource.allContents.toIterable.filter(Program)) {
