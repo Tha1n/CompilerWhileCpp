@@ -75,7 +75,7 @@ class PrettyPrinterGenerator implements IGenerator {
 		
 		var out = outputFile
 		if(out.equals(""))
-			out = "sth.wh"
+			out = in + "pp"
 			
 		try{
   			val fstream = new FileWriter(out)
@@ -93,7 +93,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	//ident all structures
 	def indent (int level)
-	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«"\t"»«ENDFOR»«ENDIF»«ENDFOR»'''
+	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«" "»«ENDFOR»«ENDIF»«ENDFOR»'''
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		

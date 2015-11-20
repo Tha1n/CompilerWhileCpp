@@ -2,14 +2,23 @@ package org.xtext.example.generator;
 
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
+import com.google.inject.Injector;
+import java.io.BufferedWriter;
+import java.io.FileWriter;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.xtend2.lib.StringConcatenation;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
+import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.xbase.lib.Exceptions;
+import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.WhileCppStandaloneSetup;
 import org.xtext.example.whileCpp.Command;
 import org.xtext.example.whileCpp.CommandForEach;
 import org.xtext.example.whileCpp.CommandIf;
@@ -31,6 +40,42 @@ import org.xtext.example.whileCpp.Vars;
 
 @SuppressWarnings("all")
 public class UglyPrinterGenerator implements IGenerator {
+  public void generate(final String in, final String outputFile) {
+    WhileCppStandaloneSetup _whileCppStandaloneSetup = new WhileCppStandaloneSetup();
+    final Injector injector = _whileCppStandaloneSetup.createInjectorAndDoEMFRegistration();
+    final XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
+    final URI uri = URI.createURI(in);
+    final Resource xtextResource = resourceSet.getResource(uri, true);
+    EcoreUtil.resolveAll(xtextResource);
+    String out = outputFile;
+    boolean _equals = out.equals("");
+    if (_equals) {
+      out = "sth.wh";
+    }
+    try {
+      final FileWriter fstream = new FileWriter(out);
+      final BufferedWriter buff = new BufferedWriter(fstream);
+      TreeIterator<EObject> _allContents = xtextResource.getAllContents();
+      Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+      Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
+      for (final Program p : _filter) {
+        CharSequence _compile = this.compile(p);
+        String _string = _compile.toString();
+        buff.write(_string);
+      }
+      buff.close();
+    } catch (final Throwable _t) {
+      if (_t instanceof Exception) {
+        final Exception e = (Exception)_t;
+        String _message = e.getMessage();
+        String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+        InputOutput.<String>println(_plus);
+      } else {
+        throw Exceptions.sneakyThrow(_t);
+      }
+    }
+  }
+  
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
     TreeIterator<EObject> _allContents = resource.getAllContents();

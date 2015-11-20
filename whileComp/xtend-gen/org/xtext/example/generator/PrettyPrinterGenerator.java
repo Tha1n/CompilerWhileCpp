@@ -99,7 +99,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     String out = outputFile;
     boolean _equals = out.equals("");
     if (_equals) {
-      out = "sth.wh";
+      out = (in + "pp");
     }
     try {
       final FileWriter fstream = new FileWriter(out);
@@ -135,7 +135,7 @@ public class PrettyPrinterGenerator implements IGenerator {
             {
               IntegerRange _upTo_1 = new IntegerRange(1, this.ibd);
               for(final Integer j : _upTo_1) {
-                _builder.append("\t", "");
+                _builder.append(" ", "");
               }
             }
           }

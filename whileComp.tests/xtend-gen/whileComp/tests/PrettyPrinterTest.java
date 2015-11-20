@@ -41,6 +41,12 @@ public class PrettyPrinterTest {
   @Inject
   private UglyPrinterGenerator genUToTest;
   
+  public String ConcatFName(final String FileName, final int NumFile) {
+    String _string = Integer.valueOf(NumFile).toString();
+    String _plus = (FileName + _string);
+    return (_plus + ".wh");
+  }
+  
   @Test
   public void testNameOfAFunction() {
     try {
@@ -208,6 +214,209 @@ public class PrettyPrinterTest {
         }
       }
       Assert.assertEquals(varCount, 4);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testWhppCarre() {
+    try {
+      String out = "out.wh";
+      try {
+        final FileWriter fstream = new FileWriter(out);
+        final BufferedWriter buff = new BufferedWriter(fstream);
+        StringConcatenation _builder = new StringConcatenation();
+        _builder.append("function p:");
+        _builder.newLine();
+        _builder.append("read X");
+        _builder.newLine();
+        _builder.append("%");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("nop\t;");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("while X do ");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("n");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("op ;");
+        _builder.newLine();
+        _builder.append("\t\t");
+        _builder.append("Y := X");
+        _builder.newLine();
+        _builder.append("\t");
+        _builder.append("od;");
+        _builder.newLine();
+        _builder.append("%");
+        _builder.newLine();
+        _builder.append("write Y");
+        _builder.newLine();
+        buff.write(_builder.toString());
+        buff.close();
+      } catch (final Throwable _t) {
+        if (_t instanceof Exception) {
+          final Exception e = (Exception)_t;
+          String _message = e.getMessage();
+          String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+          InputOutput.<String>println(_plus);
+        } else {
+          throw Exceptions.sneakyThrow(_t);
+        }
+      }
+      HashMap<String, Integer> map = new HashMap<String, Integer>();
+      map.put("All", Integer.valueOf(2));
+      this.genToTest.generate("test.wh", "out.wh", map, Integer.valueOf(0));
+      this.genToTest.generate("out.wh", "out2.wh", map, Integer.valueOf(0));
+      FileReader _fileReader = new FileReader("out.wh");
+      final BufferedReader br = new BufferedReader(_fileReader);
+      String everything = "";
+      try {
+        final StringBuilder sb = new StringBuilder();
+        String line = br.readLine();
+        while ((!Objects.equal(line, null))) {
+          {
+            sb.append(line);
+            String _lineSeparator = System.lineSeparator();
+            sb.append(_lineSeparator);
+            String _readLine = br.readLine();
+            line = _readLine;
+          }
+        }
+        String _string = sb.toString();
+        everything = _string;
+        InputOutput.<String>println(everything);
+      } finally {
+        br.close();
+      }
+      FileReader _fileReader_1 = new FileReader("out2.wh");
+      final BufferedReader br2 = new BufferedReader(_fileReader_1);
+      String everything2 = "";
+      try {
+        final StringBuilder sb2 = new StringBuilder();
+        String line2 = br2.readLine();
+        while ((!Objects.equal(line2, null))) {
+          {
+            sb2.append(line2);
+            String _lineSeparator = System.lineSeparator();
+            sb2.append(_lineSeparator);
+            String _readLine = br2.readLine();
+            line2 = _readLine;
+          }
+        }
+        String _string_1 = sb2.toString();
+        everything2 = _string_1;
+      } finally {
+        br2.close();
+      }
+      Assert.assertEquals(everything, everything2);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Fonction de test: whpp-1(f) = whpp-1(whpp(f))
+   */
+  @Test
+  public void PretPrUglyPrint() {
+    try {
+      final String inFile = "good0";
+      final String outPFile = "PrePr0";
+      final String outUFile = "UglPr0";
+      final String outUBisFile = "UglBisPr0";
+      for (int i = 1; (i < 5); i++) {
+        {
+          HashMap<String, Integer> map = new HashMap<String, Integer>();
+          map.put("All", Integer.valueOf(2));
+          String _ConcatFName = this.ConcatFName(inFile, i);
+          String _ConcatFName_1 = this.ConcatFName(outUFile, i);
+          this.genUToTest.generate(_ConcatFName, _ConcatFName_1);
+          String _ConcatFName_2 = this.ConcatFName(inFile, i);
+          String _ConcatFName_3 = this.ConcatFName(outPFile, i);
+          this.genToTest.generate(_ConcatFName_2, _ConcatFName_3, map, Integer.valueOf(0));
+          String _ConcatFName_4 = this.ConcatFName(outPFile, i);
+          String _ConcatFName_5 = this.ConcatFName(outUBisFile, i);
+          this.genUToTest.generate(_ConcatFName_4, _ConcatFName_5);
+          String _ConcatFName_6 = this.ConcatFName(outUFile, i);
+          FileReader _fileReader = new FileReader(_ConcatFName_6);
+          final BufferedReader brU = new BufferedReader(_fileReader);
+          String _ConcatFName_7 = this.ConcatFName(outUBisFile, i);
+          FileReader _fileReader_1 = new FileReader(_ConcatFName_7);
+          final BufferedReader brUBis = new BufferedReader(_fileReader_1);
+          try {
+            String lineU = brU.readLine();
+            String lineUBis = brUBis.readLine();
+            while (((!Objects.equal(lineU, null)) && (!Objects.equal(lineUBis, null)))) {
+              {
+                Assert.assertEquals(lineU, lineUBis);
+                String _readLine = brU.readLine();
+                lineU = _readLine;
+                String _readLine_1 = brUBis.readLine();
+                lineUBis = _readLine_1;
+              }
+            }
+          } finally {
+            brU.close();
+            brUBis.close();
+          }
+        }
+      }
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  /**
+   * Fonction de test: whpp(f) = whpp(whpp-1(f))
+   */
+  @Test
+  public void UglPrPrettyPrint() {
+    try {
+      final String inFile = "good0";
+      final String outPFile = "PrePr0";
+      final String outPBisFile = "PreBisPr0";
+      final String outUFile = "UglPr0";
+      for (int i = 1; (i < 5); i++) {
+        {
+          HashMap<String, Integer> map = new HashMap<String, Integer>();
+          map.put("All", Integer.valueOf(2));
+          String _ConcatFName = this.ConcatFName(inFile, i);
+          String _ConcatFName_1 = this.ConcatFName(outPFile, i);
+          this.genToTest.generate(_ConcatFName, _ConcatFName_1, map, Integer.valueOf(0));
+          String _ConcatFName_2 = this.ConcatFName(inFile, i);
+          String _ConcatFName_3 = this.ConcatFName(outUFile, i);
+          this.genUToTest.generate(_ConcatFName_2, _ConcatFName_3);
+          String _ConcatFName_4 = this.ConcatFName(outUFile, i);
+          String _ConcatFName_5 = this.ConcatFName(outPBisFile, i);
+          this.genToTest.generate(_ConcatFName_4, _ConcatFName_5, map, Integer.valueOf(0));
+          String _ConcatFName_6 = this.ConcatFName(outPFile, i);
+          FileReader _fileReader = new FileReader(_ConcatFName_6);
+          final BufferedReader brP = new BufferedReader(_fileReader);
+          String _ConcatFName_7 = this.ConcatFName(outPBisFile, i);
+          FileReader _fileReader_1 = new FileReader(_ConcatFName_7);
+          final BufferedReader brPBis = new BufferedReader(_fileReader_1);
+          try {
+            String lineP = brP.readLine();
+            String linePBis = brPBis.readLine();
+            while (((!Objects.equal(lineP, null)) && (!Objects.equal(linePBis, null)))) {
+              {
+                Assert.assertEquals(lineP, linePBis);
+                String _readLine = brP.readLine();
+                lineP = _readLine;
+                String _readLine_1 = brPBis.readLine();
+                linePBis = _readLine_1;
+              }
+            }
+          } finally {
+            brP.close();
+            brPBis.close();
+          }
+        }
+      }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
     }

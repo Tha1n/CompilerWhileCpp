@@ -124,6 +124,70 @@ try {
 			 
 	assertEquals(varCount, 4)	
 	}
+	@Test
+	def void testWhppCarre() {
+		var out = "out.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+buff.write('''function p:
+read X
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y
+''')
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)
+	
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	genToTest.generate("out.wh", "out2.wh", map, 0)
+	
+	val br = new BufferedReader(new FileReader("out.wh"));
+	var everything = "";
+try {
+    val sb = new StringBuilder();
+    var line = br.readLine();
+
+    while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+    }
+    everything = sb.toString();
+    println(everything)
+} finally {
+	
+    br.close();
+}
+
+	val br2 = new BufferedReader(new FileReader("out2.wh"));
+	var everything2 = "";
+try {
+    val sb2 = new StringBuilder();
+    var line2 = br2.readLine();
+
+    while (line2 != null) {
+        sb2.append(line2);
+        sb2.append(System.lineSeparator());
+        line2 = br2.readLine();
+    }
+    everything2 = sb2.toString();
+} finally {
+	
+    br2.close();
+}
+	assertEquals(everything, everything2)
+}
 
 	/**
 	 * Fonction de test: whpp-1(f) = whpp-1(whpp(f))
@@ -208,6 +272,7 @@ try {
 			}
 		}
 	}
+
 	/*
 	 * TODO:
 
