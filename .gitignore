@@ -37,8 +37,8 @@ target
 
 #Ignore generated files
 whileComp*/bin/*
-*/src-gen/*
-xtend-gen/*
+whileCom*/src-gen/*
+whileCom*/xtend-gen/*
 
 #Ignore Eclipse files
 *.classpath
