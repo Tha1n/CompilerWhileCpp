@@ -1,0 +1,5 @@
+function f:read X%
+Y:=nil ;foreach X in Y do
+foreach Y in Z do foreach Z in A do if nil then nop fi od od; nop;
+Y := X;W :=U
+od%write Y

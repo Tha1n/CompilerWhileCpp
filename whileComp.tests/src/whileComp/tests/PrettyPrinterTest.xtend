@@ -185,6 +185,49 @@ try {
 }
 	assertEquals(everything, everything2)
 }
+
+	@Test
+	def void UglPrPrettyPrint()
+	{
+		val inFile = "good0"
+		val outPFile = "PrePr0"
+		val outPBisFile = "PreBisPr0"
+		val outUFile = "UglPr0"
+		
+		for(var i = 1; i < 5; i++){
+			
+		//écriture
+		var map = new HashMap<String, Integer>()
+		map.put("All" ,2)
+		genToTest.generate(inFile + i.toString() + ".wh", outPFile + i.toString() + ".wh", map, 0)//PrettyPrint des fichiers
+		
+		genUToTest.generate(inFile + i.toString() + ".wh", outUFile + i.toString() + ".wh")//UglyPrint temporaire des fichiers
+		genToTest.generate(outUFile + i.toString() + ".wh", outPBisFile + i.toString() + ".wh", map, 0)//PrettyPrint des Ugly
+		
+		//lecture
+		val brP = new BufferedReader(new FileReader(outPFile + i.toString() + ".wh"));
+		val brPBis = new BufferedReader(new FileReader(outPBisFile + i.toString() + ".wh"));
+		var everything = "";
+		try {
+		    val sb = new StringBuilder();
+		    var lineP = brP.readLine();
+		    var linePBis = brPBis.readLine();
+		
+		    while ((lineP != null) && (linePBis != null)) {
+		    	
+		    	assertEquals(lineP, linePBis)
+
+			    lineP = brP.readLine();
+			    linePBis = brPBis.readLine();
+		    }
+			} finally {
+			    brP.close();
+			    brPBis.close();
+			}
+		
+		}
+	}
+
 	/*
 	 * TODO:
 
