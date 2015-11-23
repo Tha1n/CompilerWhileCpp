@@ -18,7 +18,7 @@ Input: (varIn+=VARIABLE ',')*(varIn+=VARIABLE); //varIn = variables Entrée
 Output: (varOut+=VARIABLE ',')*(varOut+=VARIABLE); //varOut = variables Sorties
 
 Vars: (varGen += VARIABLE',')* (varGen += VARIABLE); //varGen = variables générales
-terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
+terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'->'|'-'|'+'|'&'|'.'|'/'|'_')*;
 
 //Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
 Commands: =>(commande += Command ';')*(commande += Command);
@@ -41,7 +41,7 @@ ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
 ExprNot: (not = 'not')? (exprEq = ExprEq);
 ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple);
 
-terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_')*;
+terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_'|'->'|'-'|'+'|'&'|'.'|'/')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
 
 

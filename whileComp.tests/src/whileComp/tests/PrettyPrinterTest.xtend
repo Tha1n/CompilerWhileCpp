@@ -71,64 +71,6 @@ write Y''')
         
 	}
 	
-	//une commande élémentaire
-	@Test
-	def void indentDefault()
-	{
-		//écriture
-		var out = "test.wh"
-		try{
-  			val fstream = new FileWriter(out)
-  			val buff = new BufferedWriter(fstream)
-  			buff.write('''function p:
-read X
-%
-	nop	;
-	while X do 
-		n
-		op ;
-		Y := X
-	od;
-%
-write Y
-''')
-  			buff.close()
-  		}catch (Exception e){
-  			println("Can't write " + out + " - Error: " + e.getMessage())
-  		}
-	var map = new HashMap<String, Integer>()
-	map.put("All" ,2)	
-	genToTest.generate("test.wh", "out.wh", map, 0)
-	
-	//lecture
-	val br = new BufferedReader(new FileReader("out.wh"));
-	var everything = "";
-try {
-    val sb = new StringBuilder();
-    var line = br.readLine();
-
-    while (line != null) {
-        sb.append(line);
-        sb.append(System.lineSeparator());
-        line = br.readLine();
-    }
-    everything = sb.toString();
-    println(everything)
-} finally {
-	
-    br.close();
-}
-	var varCount = 0
-	val p = Pattern.compile("(\t)*(while)");
-	val m = p.matcher(everything);
-	while(m.find())
-		for(var i = 0; i < m.group.length; i+=1)
-			if(m.group.charAt(i) == 0x09) //Tab
-			 varCount=varCount+1
-			 
-	assertEquals(varCount, 4)	
-	}
-	
 	
 	@Test
 	def void testWhppCarre() {
@@ -282,7 +224,7 @@ try {
 	
 	@Test
 	def void testL1() {
-		for(var i = 0; i < 1000; i=i+1)
+		for(var i = 0; i < 10; i=i+1)
 		{
 		var out = "out.wh"
 		try{
@@ -317,6 +259,55 @@ write Y
 	val difference = lEndTime - lStartTime;
 	println("L" + i + " : " + difference)
 	}
+	}
+	
+	
+	//une commande élémentaire
+	@Test
+	def void incorrectWh()
+	{
+		//écriture
+		var out = "test.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			buff.write('''function Pm:
+read x
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y
+''')
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	//lecture
+	val br = new BufferedReader(new FileReader("out.wh"));
+	var everything = "";
+try {
+    val sb = new StringBuilder();
+    var line = br.readLine();
+
+    while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+    }
+    everything = sb.toString();
+} finally {
+	
+    br.close();
+}
+	assertEquals(everything, "");
 	}
 	
 

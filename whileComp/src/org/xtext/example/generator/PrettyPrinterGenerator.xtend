@@ -41,9 +41,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 
 	int ibd = 1
-	int ibif = 0
-	int ibforeach = 0
-	int ibwhile = 0
+	int ibif = 1
+	int ibforeach = 1
+	int ibwhile = 1
 	
 	def void parseMap(Map<String, Integer> indent)
 	{
@@ -133,10 +133,10 @@ class PrettyPrinterGenerator implements IGenerator {
 	def compile(Command c, int indent)
 '''«switch (c){
 	case c.nop!=null : indent(indent) + "nop"
-	case c.cmdIf!=null : c.cmdIf.compile(ibif + indent)
-	case c.cmdForEach!=null : c.cmdForEach.compile(ibforeach + indent)
+	case c.cmdIf!=null : c.cmdIf.compile(indent)
+	case c.cmdForEach!=null : c.cmdForEach.compile(indent)
 	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) 
-	case c.cmdWhile!=null : c.cmdWhile.compile(ibwhile + indent)
+	case c.cmdWhile!=null : c.cmdWhile.compile(indent)
 	default : c.class.name
 }
 »'''
@@ -148,19 +148,19 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile(CommandWhile c, int indent)
 '''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile(0)» do
-«c.cmds.compile(indent+1)»
+«c.cmds.compile(indent+ibwhile)»
 «indent(indent)»od'''
 	
 	def compile(CommandIf c, int indent)
 '''«indent(indent)»if «c.cond.compile(0)» then 
-«c.cmdsThen.compile(indent+1)»«IF c.cmdsElse!=null»
+«c.cmdsThen.compile(indent+ibif)»«IF c.cmdsElse!=null»
 «indent(indent)»else
-«c.cmdsElse.compile(indent+1)»«ENDIF»
+«c.cmdsElse.compile(indent+ibif)»«ENDIF»
 «indent(indent)»fi'''
 	
 	def compile(CommandForEach c, int indent)
 '''«indent(indent)»foreach «c.elem.compile(0)» in «c.ensemb.compile(0)» do	
-«c.cmds.compile(indent+1)»
+«c.cmds.compile(indent+ibforeach)»
 «indent(indent)»od'''
 	
 	def compile(Vars v, int indent)
