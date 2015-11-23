@@ -21,6 +21,10 @@ import java.util.HashMap
 import java.io.BufferedReader
 import java.io.FileReader
 import java.util.regex.*
+import java.time.LocalDateTime
+import java.time.Period
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @InjectWith(WhileCppInjectorProvider)
 @RunWith(XtextRunner)
@@ -124,6 +128,8 @@ try {
 			 
 	assertEquals(varCount, 4)	
 	}
+	
+	
 	@Test
 	def void testWhppCarre() {
 		var out = "out.wh"
@@ -272,18 +278,46 @@ try {
 			}
 		}
 	}
+	
+	
+	@Test
+	def void testL1() {
+		for(var i = 0; i < 1000; i=i+1)
+		{
+		var out = "out.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			for(var j = 0; j < i+1; j+=1) {
+buff.write('''function p:
+read X
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y
 
-	/*
-	 * TODO:
+''')
 
-	 * 
-	 * 6. Identation de 2 par défaut
-	 * 7. Pas d'identation devant read, write %
+}
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)
+	
+	val lStartTime = new Date().getTime();
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	val lEndTime = new Date().getTime();
+	val difference = lEndTime - lStartTime;
+	println("L" + i + " : " + difference)
+	}
+	}
+	
 
-	 * 10. espace devant/derriere := =?
-	 * 11. apres function, read, write, if, while, for, cons, hd, tl, :
-	 * 12. avant les ; do, then, etc.
-	 * 13. entre les parametres.
-	 * 14. pas apres ( et avant )
-	 */
 }

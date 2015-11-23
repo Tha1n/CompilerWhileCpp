@@ -1,1 +1,11 @@
-function p: read X % 	Y:= nil ; while X do nop ; Y:=X; Y:=(X=?Z) od % write Y
+function p:
+read X
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y

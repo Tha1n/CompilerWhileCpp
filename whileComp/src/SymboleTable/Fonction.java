@@ -55,7 +55,4 @@ public class Fonction {
 	public void setM_adressCode(String m_adressCode) {
 		this.m_adressCode = m_adressCode;
 	}
-
-	
-	
 }

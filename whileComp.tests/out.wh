@@ -1,12 +1,9 @@
 function p:
 read X
 %
-		Y := nil ;
-				while X do
-						nop ;
-						Y := X ;
-						Y := (X)
-				od
+  nop ;
+  while X do
+  od
 %
 write Y
 

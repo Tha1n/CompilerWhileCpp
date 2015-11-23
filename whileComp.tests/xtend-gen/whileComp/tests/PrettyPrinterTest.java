@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.regex.Matcher;
@@ -419,6 +420,78 @@ public class PrettyPrinterTest {
       }
     } catch (Throwable _e) {
       throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testL1() {
+    for (int i = 0; (i < 1000); i = (i + 1)) {
+      {
+        String out = "out.wh";
+        try {
+          final FileWriter fstream = new FileWriter(out);
+          final BufferedWriter buff = new BufferedWriter(fstream);
+          {
+            int j = 0;
+            boolean _while = (j < (i + 1));
+            while (_while) {
+              StringConcatenation _builder = new StringConcatenation();
+              _builder.append("function p:");
+              _builder.newLine();
+              _builder.append("read X");
+              _builder.newLine();
+              _builder.append("%");
+              _builder.newLine();
+              _builder.append("\t");
+              _builder.append("nop\t;");
+              _builder.newLine();
+              _builder.append("\t");
+              _builder.append("while X do ");
+              _builder.newLine();
+              _builder.append("\t\t");
+              _builder.append("n");
+              _builder.newLine();
+              _builder.append("\t\t");
+              _builder.append("op ;");
+              _builder.newLine();
+              _builder.append("\t\t");
+              _builder.append("Y := X");
+              _builder.newLine();
+              _builder.append("\t");
+              _builder.append("od;");
+              _builder.newLine();
+              _builder.append("%");
+              _builder.newLine();
+              _builder.append("write Y");
+              _builder.newLine();
+              _builder.newLine();
+              buff.write(_builder.toString());
+              int _j = j;
+              j = (_j + 1);
+              _while = (j < (i + 1));
+            }
+          }
+          buff.close();
+        } catch (final Throwable _t) {
+          if (_t instanceof Exception) {
+            final Exception e = (Exception)_t;
+            String _message = e.getMessage();
+            String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+            InputOutput.<String>println(_plus);
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("All", Integer.valueOf(2));
+        Date _date = new Date();
+        final long lStartTime = _date.getTime();
+        this.genToTest.generate("test.wh", "out.wh", map, Integer.valueOf(0));
+        Date _date_1 = new Date();
+        final long lEndTime = _date_1.getTime();
+        final long difference = (lEndTime - lStartTime);
+        InputOutput.<String>println(((("L" + Integer.valueOf(i)) + " : ") + Long.valueOf(difference)));
+      }
     }
   }
 }
