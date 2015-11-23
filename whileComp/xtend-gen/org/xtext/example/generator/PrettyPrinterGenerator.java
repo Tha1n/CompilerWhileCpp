@@ -52,11 +52,11 @@ import org.xtext.example.whileCpp.Vars;
 public class PrettyPrinterGenerator implements IGenerator {
   private int ibd = 1;
   
-  private int ibif = 1;
+  private int ibif = 0;
   
-  private int ibforeach = 1;
+  private int ibforeach = 0;
   
-  private int ibwhile = 1;
+  private int ibwhile = 0;
   
   public void parseMap(final Map<String, Integer> indent) {
     Integer _get = indent.get("All");
@@ -64,9 +64,6 @@ public class PrettyPrinterGenerator implements IGenerator {
     if (_notEquals) {
       Integer _get_1 = indent.get("All");
       this.ibd = (_get_1).intValue();
-      this.ibif = this.ibd;
-      this.ibforeach = this.ibif;
-      this.ibwhile = this.ibif;
     }
     Integer _get_2 = indent.get("If");
     boolean _notEquals_1 = (!Objects.equal(_get_2, null));
@@ -312,7 +309,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_1) {
         _matched=true;
         CommandIf _cmdIf_1 = c.getCmdIf();
-        _switchResult = this.compile(_cmdIf_1, this.ibif);
+        _switchResult = this.compile(_cmdIf_1, (this.ibif + indent));
       }
     }
     if (!_matched) {
@@ -321,7 +318,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_2) {
         _matched=true;
         CommandForEach _cmdForEach_1 = c.getCmdForEach();
-        _switchResult = this.compile(_cmdForEach_1, this.ibforeach);
+        _switchResult = this.compile(_cmdForEach_1, (this.ibforeach + indent));
       }
     }
     if (!_matched) {
@@ -351,7 +348,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_5) {
         _matched=true;
         CommandWhile _cmdWhile_1 = c.getCmdWhile();
-        _switchResult = this.compile(_cmdWhile_1, this.ibwhile);
+        _switchResult = this.compile(_cmdWhile_1, (this.ibwhile + indent));
       }
     }
     if (!_matched) {

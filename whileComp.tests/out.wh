@@ -1,8 +1,11 @@
 function p:
 read X
 %
-		nop ;
+		Y := nil ;
 				while X do
+						nop ;
+						Y := X ;
+						Y := (X)
 				od
 %
 write Y

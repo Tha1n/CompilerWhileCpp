@@ -41,18 +41,18 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 
 	int ibd = 1
-	int ibif = 1
-	int ibforeach = 1
-	int ibwhile = 1
+	int ibif = 0
+	int ibforeach = 0
+	int ibwhile = 0
 	
 	def void parseMap(Map<String, Integer> indent)
 	{
 		if(indent.get("All") != null)
 		{
 			ibd = indent.get("All")
-			ibif = ibd
+			/*ibif = ibd
 			ibforeach = ibif
-			ibwhile = ibif
+			ibwhile = ibif*/
 		}
 		if(indent.get("If") != null)
 		  ibif = indent.get("If")
