@@ -25,7 +25,18 @@ public class Dictionary {
 	}
 	
 	public void put(String name, Fonction f){
-		if (!isPresent(name)) this.dictionary.put(name, f);
+		if (!isPresent(name)) {
+			this.dictionary.put(name, f);
+		}
+		else{
+			Fonction fbis = this.get(name);
+			if (fbis.getM_nbIn() == f.getM_nbIn() && 
+				fbis.getM_nbOut() == f.getM_nbOut() &&
+				fbis.getM_adressCode() == f.getM_adressCode()){
+				//error
+			}
+			else this.dictionary.put(name, f);
+		}
 	}
 	
 	public void remove (String name){
@@ -52,7 +63,7 @@ public class Dictionary {
 		while (it.hasNext()){
 			String name = it.next();
 			Fonction f = this.dictionary.get(name);
-			fonctions += " - " + name + " : \n"  + f.toString() + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n";
+			fonctions += " - " + name + f.toString() + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n";
 		}
 		return fonctions;
 	}
