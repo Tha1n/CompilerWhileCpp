@@ -3,6 +3,8 @@
  */
 package org.xtext.example.generator;
 
+import SymboleTable.Dictionary;
+import SymboleTable.Fonction;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
@@ -46,18 +48,27 @@ import org.xtext.example.whileCpp.Vars;
 /**
  * Generates code from your model files on save.
  * 
+ * 
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 @SuppressWarnings("all")
 public class PrettyPrinterGenerator implements IGenerator {
+  private Dictionary dico = new Dictionary();
+  
   private int ibd = 1;
   
-  private int ibif = 0;
+  private int ibif = 1;
   
-  private int ibforeach = 0;
+  private int ibforeach = 1;
   
-  private int ibwhile = 0;
+  private int ibwhile = 1;
   
+  /**
+   * pour variable :
+   * regarder si présente dans la fonction
+   * 	oui : deja déclarée mettre à jour
+   * 	non : ajouter à la liste des variables pour cette fonction
+   */
   public void parseMap(final Map<String, Integer> indent) {
     Integer _get = indent.get("All");
     boolean _notEquals = (!Objects.equal(_get, null));
@@ -184,7 +195,18 @@ public class PrettyPrinterGenerator implements IGenerator {
     CharSequence _compile = this.compile(_definition, indent);
     _builder.append(_compile, "");
     _builder.newLineIfNotEmpty();
-    _builder.newLine();
+    String _nom_1 = f.getNom();
+    Definition _definition_1 = f.getDefinition();
+    Input _inputs = _definition_1.getInputs();
+    EList<EObject> _eContents = _inputs.eContents();
+    int _size = _eContents.size();
+    Definition _definition_2 = f.getDefinition();
+    Output _outputs = _definition_2.getOutputs();
+    EList<EObject> _eContents_1 = _outputs.eContents();
+    int _size_1 = _eContents_1.size();
+    Fonction _fonction = new Fonction(_size, _size_1, "truc");
+    this.dico.put(_nom_1, _fonction);
+    _builder.newLineIfNotEmpty();
     return _builder;
   }
   
@@ -309,7 +331,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_1) {
         _matched=true;
         CommandIf _cmdIf_1 = c.getCmdIf();
-        _switchResult = this.compile(_cmdIf_1, (this.ibif + indent));
+        _switchResult = this.compile(_cmdIf_1, indent);
       }
     }
     if (!_matched) {
@@ -318,7 +340,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_2) {
         _matched=true;
         CommandForEach _cmdForEach_1 = c.getCmdForEach();
-        _switchResult = this.compile(_cmdForEach_1, (this.ibforeach + indent));
+        _switchResult = this.compile(_cmdForEach_1, indent);
       }
     }
     if (!_matched) {
@@ -348,7 +370,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_5) {
         _matched=true;
         CommandWhile _cmdWhile_1 = c.getCmdWhile();
-        _switchResult = this.compile(_cmdWhile_1, (this.ibwhile + indent));
+        _switchResult = this.compile(_cmdWhile_1, indent);
       }
     }
     if (!_matched) {
@@ -378,7 +400,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(" do");
     _builder.newLineIfNotEmpty();
     Commands _cmds = c.getCmds();
-    Object _compile_1 = this.compile(_cmds, (indent + 1));
+    Object _compile_1 = this.compile(_cmds, (indent + this.ibwhile));
     _builder.append(_compile_1, "");
     _builder.newLineIfNotEmpty();
     CharSequence _indent_1 = this.indent(indent);
@@ -398,7 +420,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(" then ");
     _builder.newLineIfNotEmpty();
     Commands _cmdsThen = c.getCmdsThen();
-    Object _compile_1 = this.compile(_cmdsThen, (indent + 1));
+    Object _compile_1 = this.compile(_cmdsThen, (indent + this.ibif));
     _builder.append(_compile_1, "");
     {
       Commands _cmdsElse = c.getCmdsElse();
@@ -410,7 +432,7 @@ public class PrettyPrinterGenerator implements IGenerator {
         _builder.append("else");
         _builder.newLineIfNotEmpty();
         Commands _cmdsElse_1 = c.getCmdsElse();
-        Object _compile_2 = this.compile(_cmdsElse_1, (indent + 1));
+        Object _compile_2 = this.compile(_cmdsElse_1, (indent + this.ibif));
         _builder.append(_compile_2, "");
       }
     }
@@ -436,7 +458,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(" do\t");
     _builder.newLineIfNotEmpty();
     Commands _cmds = c.getCmds();
-    Object _compile_2 = this.compile(_cmds, (indent + 1));
+    Object _compile_2 = this.compile(_cmds, (indent + this.ibforeach));
     _builder.append(_compile_2, "");
     _builder.newLineIfNotEmpty();
     CharSequence _indent_1 = this.indent(indent);

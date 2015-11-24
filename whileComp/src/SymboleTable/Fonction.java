@@ -55,7 +55,7 @@ public class Fonction {
 	public void setM_adressCode(String m_adressCode) {
 		this.m_adressCode = m_adressCode;
 	}
-
+	
 	public boolean isPresent(Variable x){
 		return this.m_varList.contains(x);
 	}

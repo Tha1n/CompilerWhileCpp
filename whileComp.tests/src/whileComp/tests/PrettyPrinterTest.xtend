@@ -21,6 +21,10 @@ import java.util.HashMap
 import java.io.BufferedReader
 import java.io.FileReader
 import java.util.regex.*
+import java.time.LocalDateTime
+import java.time.Period
+import java.text.SimpleDateFormat
+import java.util.Date
 
 @InjectWith(WhileCppInjectorProvider)
 @RunWith(XtextRunner)
@@ -67,63 +71,7 @@ write Y''')
         
 	}
 	
-	//une commande élémentaire
-	@Test
-	def void indentDefault()
-	{
-		//écriture
-		var out = "test.wh"
-		try{
-  			val fstream = new FileWriter(out)
-  			val buff = new BufferedWriter(fstream)
-  			buff.write('''function p:
-read X
-%
-	nop	;
-	while X do 
-		n
-		op ;
-		Y := X
-	od;
-%
-write Y
-''')
-  			buff.close()
-  		}catch (Exception e){
-  			println("Can't write " + out + " - Error: " + e.getMessage())
-  		}
-	var map = new HashMap<String, Integer>()
-	map.put("All" ,2)	
-	genToTest.generate("test.wh", "out.wh", map, 0)
 	
-	//lecture
-	val br = new BufferedReader(new FileReader("out.wh"));
-	var everything = "";
-try {
-    val sb = new StringBuilder();
-    var line = br.readLine();
-
-    while (line != null) {
-        sb.append(line);
-        sb.append(System.lineSeparator());
-        line = br.readLine();
-    }
-    everything = sb.toString();
-    println(everything)
-} finally {
-	
-    br.close();
-}
-	var varCount = 0
-	val p = Pattern.compile("(\t)*(while)");
-	val m = p.matcher(everything);
-	while(m.find())
-		for(var i = 0; i < m.group.length; i+=1)
-			if(m.group.charAt(i) == 0x09) //Tab
-			 varCount=varCount+1
-			 
-	assertEquals(varCount, 4)	
-	}
 	@Test
 	def void testWhppCarre() {
 		var out = "out.wh"
@@ -272,18 +220,95 @@ try {
 			}
 		}
 	}
+	
+	
+	@Test
+	def void testL1() {
+		for(var i = 0; i < 10; i=i+1)
+		{
+		var out = "out.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			for(var j = 0; j < i+1; j+=1) {
+buff.write('''function p:
+read X
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y
 
-	/*
-	 * TODO:
+''')
 
-	 * 
-	 * 6. Identation de 2 par défaut
-	 * 7. Pas d'identation devant read, write %
+}
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)
+	
+	val lStartTime = new Date().getTime();
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	val lEndTime = new Date().getTime();
+	val difference = lEndTime - lStartTime;
+	println("L" + i + " : " + difference)
+	}
+	}
+	
+	
+	//une commande élémentaire
+	@Test
+	def void incorrectWh()
+	{
+		//écriture
+		var out = "test.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			buff.write('''function Pm:
+read x
+%
+	nop	;
+	while X do 
+		n
+		op ;
+		Y := X
+	od;
+%
+write Y
+''')
+  			buff.close()
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	//lecture
+	val br = new BufferedReader(new FileReader("out.wh"));
+	var everything = "";
+try {
+    val sb = new StringBuilder();
+    var line = br.readLine();
 
-	 * 10. espace devant/derriere := =?
-	 * 11. apres function, read, write, if, while, for, cons, hd, tl, :
-	 * 12. avant les ; do, then, etc.
-	 * 13. entre les parametres.
-	 * 14. pas apres ( et avant )
-	 */
+    while (line != null) {
+        sb.append(line);
+        sb.append(System.lineSeparator());
+        line = br.readLine();
+    }
+    everything = sb.toString();
+} finally {
+	
+    br.close();
+}
+	assertEquals(everything, "");
+	}
+	
+
 }
