@@ -47,7 +47,8 @@ public class Dictionary {
 		
 		while (it.hasNext()){
 			String name = it.next();
-			fonctions += " - " + name + " : \n"  + this.dictionary.get(name).toString() + "\n";
+			Fonction f = this.dictionary.get(name);
+			fonctions += " - " + name + " : \n"  + f.toString() + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n";
 		}
 		return fonctions;
 	}

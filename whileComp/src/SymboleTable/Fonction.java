@@ -60,4 +60,8 @@ public class Fonction {
 		return this.m_varList.contains(x);
 	}
 	
+	public String toString(){
+		return "";
+	}
+	
 }

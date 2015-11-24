@@ -126,6 +126,7 @@ class PrettyPrinterGenerator implements IGenerator {
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.wh", p.compile(0))
 			}
+		print(dico.toString())
 	}
 
 	def compile (Program p, int indent)
