@@ -25,7 +25,7 @@ public class Dictionary {
 	}
 	
 	public void put(String name, Fonction f){
-		if (isPresent(name)) this.dictionary.put(name, f);
+		if (!isPresent(name)) this.dictionary.put(name, f);
 	}
 	
 	public void remove (String name){
