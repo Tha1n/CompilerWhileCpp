@@ -6,6 +6,10 @@ import java.util.Iterator;
 public class Dictionary {
 	//nom de la fonction, ses données
 	private HashMap <String, Fonction> dictionary;
+	
+	//la map fais le lien entre un nom de fonction et la Fonction elle meme
+	
+	//Fonction : nb entrées et sorties, adresse (nom en code cible), liste de variables
 
 	public Dictionary() {
 		super();

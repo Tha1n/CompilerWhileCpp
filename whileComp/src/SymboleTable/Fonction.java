@@ -2,6 +2,9 @@ package SymboleTable;
 
 import java.util.ArrayList;
 
+//Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
+//l'@ code cible, et une liste de variables
+
 public class Fonction {
 	private int m_nbIn;
 	private int m_nbOut;
