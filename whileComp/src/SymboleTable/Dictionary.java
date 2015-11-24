@@ -1,5 +1,6 @@
 package SymboleTable;
 import java.util.HashMap;
+import java.util.Iterator;
 
 
 public class Dictionary {
@@ -20,7 +21,7 @@ public class Dictionary {
 	}
 	
 	public void put(String name, Fonction f){
-		this.dictionary.put(name, f);
+		if (isPresent(name)) this.dictionary.put(name, f);
 	}
 	
 	public void remove (String name){
@@ -30,4 +31,25 @@ public class Dictionary {
 	public void replace(String name, Fonction newFunc){
 		this.dictionary.replace(name, newFunc);
 	}
+	
+	public Fonction get(String name){
+		return this.dictionary.get(name);
+	}
+	
+	public boolean isPresent (String name){
+		return (this.dictionary.get(name) != null);
+	}
+	
+	public String toString(){
+		String fonctions = "\n-------------------------------------\n"+
+							 "        Table des symboles           \n";
+		Iterator<String> it = this.dictionary.keySet().iterator(); 
+		
+		while (it.hasNext()){
+			String name = it.next();
+			fonctions += " - " + name + " : \n"  + this.dictionary.get(name).toString() + "\n";
+		}
+		return fonctions;
+	}
+	
 }

@@ -31,19 +31,45 @@ import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.emf.ecore.util.EcoreUtil
 import java.io.FileWriter
 import java.io.BufferedWriter
+import SymboleTable.Fonction
+import SymboleTable.Dictionary
 
 /**
  * Generates code from your model files on save.
  * 
+ *
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class PrettyPrinterGenerator implements IGenerator {
 	
-
+	Dictionary dico = new Dictionary();
 	int ibd = 1
 	int ibif = 0
 	int ibforeach = 0
 	int ibwhile = 0
+	
+	//gestion dico :
+	
+	
+	/*
+	 * pour fonction : 
+	 * regarder si présente 
+	 * 	oui : error 2 fonctions avec même signature
+	 * 	non : ajouter à la map
+	 */
+	 
+	 /*
+	 * pour variable : 
+	 * regarder si présente dans la fonction 
+	 * 	oui : deja déclarée mettre à jour
+	 * 	non : ajouter à la liste des variables pour cette fonction
+	 */
+	 
+	 
+	 
+	 
+	
+	
 	
 	def void parseMap(Map<String, Integer> indent)
 	{
@@ -107,10 +133,13 @@ class PrettyPrinterGenerator implements IGenerator {
 «f.compile(indent)»
 «indent(indent)»«ENDFOR»'''
 	
+	
+
+	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
 «f.definition.compile(indent)»
-
+«dico.put(f.nom, new Fonction(f.definition.inputs.eContents.size,f.definition.outputs.eContents.size,"truc"))»
 '''
 	
 	def compile (Definition d, int indent)
@@ -201,3 +230,4 @@ class PrettyPrinterGenerator implements IGenerator {
 	def compile (ExprEq ex, int indent)
 	'''«indent(indent)»«IF ex.expr!=null»(«ex.expr.compile(0)»)«ELSE»«ex.exprSim1.compile(0)» =? «ex.exprSim2.compile(0)»«ENDIF»'''
 }
+

@@ -56,6 +56,8 @@ public class Fonction {
 		this.m_adressCode = m_adressCode;
 	}
 
-	
+	public boolean isPresent(Variable x){
+		return this.m_varList.contains(x);
+	}
 	
 }
