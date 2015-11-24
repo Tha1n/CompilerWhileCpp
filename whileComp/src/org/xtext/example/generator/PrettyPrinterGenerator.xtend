@@ -131,7 +131,7 @@ class PrettyPrinterGenerator implements IGenerator {
 
 	def compile (Program p, int indent)
 '''«indent(indent)»«FOR f: p.fonctions»
-«f.compile(indent)»
+«f.compile(indent)»«dico.put(f.nom, new Fonction(f.definition.inputs.eContents.size,f.definition.outputs.eContents.size,"truc"))»
 «indent(indent)»«ENDFOR»'''
 	
 	
@@ -140,7 +140,6 @@ class PrettyPrinterGenerator implements IGenerator {
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
 «f.definition.compile(indent)»
-«dico.put(f.nom, new Fonction(f.definition.inputs.eContents.size,f.definition.outputs.eContents.size,"truc"))»
 '''
 	
 	def compile (Definition d, int indent)

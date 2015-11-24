@@ -1,6 +1,7 @@
 package SymboleTable;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 //Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
 //l'@ code cible, et une liste de variables
@@ -64,6 +65,8 @@ public class Fonction {
 	}
 	
 	public String toString(){
+		String variables = "";
+		Iterator<Variable> it = this.m_varList.iterator();
 		return "";
 	}
 	
