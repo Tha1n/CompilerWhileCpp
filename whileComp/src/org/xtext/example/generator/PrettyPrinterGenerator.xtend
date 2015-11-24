@@ -32,7 +32,8 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import java.io.FileWriter
 import java.io.BufferedWriter
 import SymboleTable.Fonction
-import SymboleTable.Dictionary
+import SymboleTable.Variable
+import SymboleTable.FunDictionary
 
 /**
  * Generates code from your model files on save.
@@ -42,7 +43,7 @@ import SymboleTable.Dictionary
  */
 class PrettyPrinterGenerator implements IGenerator {
 	
-	Dictionary dico = new Dictionary();
+	FunDictionary dico = new FunDictionary();
 	int ibd = 1
 	int ibif = 1
 	int ibforeach = 1
@@ -131,7 +132,7 @@ class PrettyPrinterGenerator implements IGenerator {
 
 	def compile (Program p, int indent)
 '''«indent(indent)»«FOR f: p.fonctions»
-«f.compile(indent)»«dico.put(f.nom, new Fonction(f.definition.inputs.eContents.size,f.definition.outputs.eContents.size,"truc"))»
+«f.compile(indent)»
 «indent(indent)»«ENDFOR»'''
 	
 	
@@ -139,33 +140,35 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«f.definition.compile(indent)»
+«var newF = new Fonction(f.definition.inputs.eContents.size,f.definition.outputs.eContents.size,"truc")»
+«dico.putFunction(f.nom, newF)»
+«f.definition.compile(indent, newF)»
 '''
 	
-	def compile (Definition d, int indent)
+	def compile (Definition d, int indent, Fonction f)
 	'''«indent(indent)»read «d.inputs.compile(0)»
 «indent(indent)»%
-«d.commandes.compile(indent+1)»
+«d.commandes.compile(indent+1, f)»
 «indent(indent)»%
 «indent(indent)»write «d.outputs.compile(0)»'''
 	
 	def compile (Input i, int indent)
 	'''«indent(indent)»«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (Commands c, int indent)
-	'''«FOR cm: c.commande»«cm.compile(indent)»«IF c.commande.indexOf(cm)!=c.commande.size-1» ;
+	def compile (Commands c, int indent, Fonction f)
+	'''«FOR cm: c.commande»«cm.compile(indent, f)»«IF c.commande.indexOf(cm)!=c.commande.size-1» ;
 «ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent)
 	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile(Command c, int indent)
+	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
 	case c.nop!=null : indent(indent) + "nop"
-	case c.cmdIf!=null : c.cmdIf.compile(indent)
-	case c.cmdForEach!=null : c.cmdForEach.compile(indent)
-	case c.vars!=null && c.exprs!=null : c.vars.compile(indent) + " := " + c.exprs.compile(0) 
-	case c.cmdWhile!=null : c.cmdWhile.compile(indent)
+	case c.cmdIf!=null : c.cmdIf.compile(indent, f)
+	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
+	case c.vars!=null && c.exprs!=null : c.vars.compile(indent, f) + " := " + c.exprs.compile(0) 
+	case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)
 	default : c.class.name
 }
 »'''
@@ -175,25 +178,26 @@ class PrettyPrinterGenerator implements IGenerator {
 
 
 	
-	def compile(CommandWhile c, int indent)
+	def compile(CommandWhile c, int indent, Fonction f)
 '''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile(0)» do
-«c.cmds.compile(indent+ibwhile)»
+«c.cmds.compile(indent+ibwhile, f)»
 «indent(indent)»od'''
 	
-	def compile(CommandIf c, int indent)
+	def compile(CommandIf c, int indent, Fonction f)
 '''«indent(indent)»if «c.cond.compile(0)» then 
-«c.cmdsThen.compile(indent+ibif)»«IF c.cmdsElse!=null»
+«c.cmdsThen.compile(indent+ibif, f)»«IF c.cmdsElse!=null»
 «indent(indent)»else
-«c.cmdsElse.compile(indent+ibif)»«ENDIF»
+«c.cmdsElse.compile(indent+ibif, f)»«ENDIF»
 «indent(indent)»fi'''
 	
-	def compile(CommandForEach c, int indent)
+	def compile(CommandForEach c, int indent, Fonction f)
 '''«indent(indent)»foreach «c.elem.compile(0)» in «c.ensemb.compile(0)» do	
-«c.cmds.compile(indent+ibforeach)»
+«c.cmds.compile(indent+ibforeach, f)»
 «indent(indent)»od'''
 	
-	def compile(Vars v, int indent)
-'''«indent(indent)»«FOR in : v.varGen»«in»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
+	//ajouter la variable dans sa fonction
+	def compile(Vars v, int indent, Fonction f)
+'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "truc")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Exprs e, int indent)
 '''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''

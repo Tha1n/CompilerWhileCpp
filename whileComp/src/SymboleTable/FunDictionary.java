@@ -3,7 +3,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 
 
-public class Dictionary {
+public class FunDictionary {
 	//nom de la fonction, ses données
 	private HashMap <String, Fonction> dictionary;
 	
@@ -11,7 +11,7 @@ public class Dictionary {
 	
 	//Fonction : nb entrées et sorties, adresse (nom en code cible), liste de variables
 
-	public Dictionary() {
+	public FunDictionary() {
 		super();
 		this.dictionary = new HashMap<String, Fonction>();
 	}
@@ -24,7 +24,7 @@ public class Dictionary {
 		this.dictionary = dictionary;
 	}
 	
-	public void put(String name, Fonction f){
+	public void putFunction(String name, Fonction f){
 		if (!isPresent(name)) {
 			this.dictionary.put(name, f);
 		}
@@ -55,6 +55,10 @@ public class Dictionary {
 		return (this.dictionary.get(name) != null);
 	}
 	
+	public boolean isPresent (Fonction f){
+		return this.dictionary.containsValue(f);
+	}
+	
 	public String toString(){
 		String fonctions = "\n-------------------------------------\n"+
 							 "        Table des symboles           \n";
@@ -63,9 +67,24 @@ public class Dictionary {
 		while (it.hasNext()){
 			String name = it.next();
 			Fonction f = this.dictionary.get(name);
-			fonctions += " - " + name + f.toString() + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n";
+			fonctions += " - " + name + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n" + f.toString() ;
 		}
+		fonctions += "\n-------------------------------------\n";
 		return fonctions;
+	}
+	
+	
+	public void putVariable(Variable x, Fonction f){
+		if(isPresent(f)){
+			if(!f.isPresent(x)){
+				f.add(x);
+			}
+			else{//error
+			}
+		}
+		else{
+			//error
+		}
 	}
 	
 }

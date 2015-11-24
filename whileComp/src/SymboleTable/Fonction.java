@@ -67,7 +67,12 @@ public class Fonction {
 	public String toString(){
 		String variables = "";
 		Iterator<Variable> it = this.m_varList.iterator();
-		return "";
+		while (it.hasNext()){
+			Variable x = it.next();
+			variables += "\t -> "+ x.getM_name() +"\n";
+		}
+		return variables;
+		//attention les variables sont inclues parfois en double..
 	}
 	
 }

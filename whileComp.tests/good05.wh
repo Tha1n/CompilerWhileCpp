@@ -1,0 +1,13 @@
+function mlml: read X %
+Y:=nil;
+
+while X do
+nop;
+if not (a) then nop; Y,V:=X,Z fi;
+nop;nop;
+Y:=X; W:=U; Truc:=Poulette od
+%
+write Y
+function p:
+read X % Y:=nil;
+while X do nop; nop;Y:=X od % write Y
