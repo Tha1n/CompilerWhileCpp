@@ -76,9 +76,9 @@ class PrettyPrinterGenerator implements IGenerator {
 		if(indent.get("All") != null)
 		{
 			ibd = indent.get("All")
-			/*ibif = ibd
+			ibif = ibd
 			ibforeach = ibif
-			ibwhile = ibif*/
+			ibwhile = ibif
 		}
 		if(indent.get("If") != null)
 		  ibif = indent.get("If")
@@ -113,7 +113,7 @@ class PrettyPrinterGenerator implements IGenerator {
   			println("Can't write " + out + " - Error: " + e.getMessage())
   		}
 		
-		
+		println(dico.toString)
 		
 	}
 	
