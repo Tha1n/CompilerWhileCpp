@@ -3,6 +3,16 @@
  */
 package org.xtext.example.validation
 
+import java.util.List
+import java.util.ArrayList
+import org.xtext.example.whileCpp.Program
+import org.eclipse.xtext.validation.Check
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.xtext.example.WhileCppStandaloneSetup
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.emf.common.util.URI
+import SymboleTable.Dictionary
+
 //import org.eclipse.xtext.validation.Check
 
 /**
@@ -11,6 +21,27 @@ package org.xtext.example.validation
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#validation
  */
 class WhileCppValidator extends AbstractWhileCppValidator {
+
+	def public List<Issue> validate(String in, Dictionary ts)
+	{
+		var result = new ArrayList<Issue>();
+		
+		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
+		val resourceSet = injector.getInstance(XtextResourceSet);
+		val uri = URI.createURI(in);
+		val xtextResource = resourceSet.getResource(uri, true);
+		EcoreUtil.resolveAll(xtextResource);
+		
+  		for(p: xtextResource.allContents.toIterable.filter(Program))
+			result.addAll(checkProgram(p, ts))
+  		
+  		return result;
+	}
+
+	@Check
+	def private List<Issue> checkProgram(Program p, Dictionary ts) {
+			
+	}
 
 //  public static val INVALID_NAME = 'invalidName'
 //
