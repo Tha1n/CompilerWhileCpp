@@ -34,6 +34,7 @@ import java.io.BufferedWriter
 import SymboleTable.Fonction
 import SymboleTable.Variable
 import SymboleTable.FunDictionary
+import java.util.Set
 
 /**
  * Generates code from your model files on save.
@@ -68,7 +69,10 @@ class PrettyPrinterGenerator implements IGenerator {
 	 
 	 
 	 
-	 
+	def public Set<String> getFunctions()
+	{
+		return dico.dictionary.keySet
+	} 
 	
 	
 	
