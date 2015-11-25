@@ -70,15 +70,15 @@ class UglyPrinterGenerator implements IGenerator {
 	
 	def compile (Input i)'''«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
-	def compile (Commands c)'''«FOR cm: c.commande»«cm.compile»«IF c.commande.indexOf(cm)!=c.commande.size-1»;«ENDIF»«ENDFOR»'''
+	def compile (Commands c)'''«FOR cm: c.commande»«cm.compile»«IF c.commande.indexOf(cm)!=c.commande.size-1»«ENDIF»«ENDFOR»'''
 		
 	def compile (Output o)'''«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c)'''«switch (c){
-	case c.nop!=null : "nop"
+	case c.nop!=null : "nop ;"
 	case c.cmdIf!=null : c.cmdIf.compile
 	case c.cmdForEach!=null : c.cmdForEach.compile
-	case c.vars!=null && c.exprs!=null : c.vars.compile + " := " + c.exprs.compile 
+	case c.vars!=null && c.exprs!=null : c.vars.compile + " := " + c.exprs.compile + " ;" 
 	case c.cmdWhile!=null : c.cmdWhile.compile
 	default : c.class.name}»'''
 	

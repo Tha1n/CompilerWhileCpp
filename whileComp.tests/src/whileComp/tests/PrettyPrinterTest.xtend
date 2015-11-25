@@ -51,15 +51,15 @@ class PrettyPrinterTest {
 	@Test 
 	def void testMyDslGen()
 	{
-		val prog1 = parser.parse("function p: read X % 	Y:=nil ; while X do nop ; Y := X od % write Y")
-		val prog2 = parser.parse('''function p:
+		val prog1 = parser.parse("function t: read X % 	Y:=nil ; while X do nop ; Y := X ; od % write Y")
+		val prog2 = parser.parse('''function t:
 read X
 %
-	Y:=nil ;
-	while X do 
-		nop ;
-		Y := X
-	od
+ Y := nil ;
+ while X do
+  nop ;
+  Y := X ;
+ od
 %
 write Y''')
         val fsaProg1 = new InMemoryFileSystemAccess()
@@ -67,6 +67,7 @@ write Y''')
         genToTest.doGenerate(prog1.eResource, fsaProg1)
         genToTest.doGenerate(prog2.eResource, fsaProg2)
         println(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        println(fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
         assertTrue(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString == fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
         
 	}
@@ -238,7 +239,7 @@ read X
 	while X do 
 		n
 		op ;
-		Y := X
+		Y := X ; 
 	od;
 %
 write Y

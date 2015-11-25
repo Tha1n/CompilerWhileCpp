@@ -75,7 +75,12 @@ class PrettyPrinterGenerator implements IGenerator {
 	def public Set<String> getFunctions()
 	{
 		return dico.dictionary.keySet
-	} 
+	}
+	
+	def public void resetDico()
+	{
+		dico = new FunDictionary();
+	}
 	
 	
 	def public Set<String> getVariables(String fn)
@@ -128,7 +133,7 @@ class PrettyPrinterGenerator implements IGenerator {
   		}
 		
 		println(dico.toString)
-		
+		resetDico
 	}
 	
 	//ident all structures
@@ -141,6 +146,7 @@ class PrettyPrinterGenerator implements IGenerator {
 			fsa.generateFile("PP.wh", p.compile(0))
 			}
 		print(dico.toString())
+		resetDico
 	}
 
 	def compile (Program p, int indent)
@@ -171,7 +177,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	'''«indent(indent)»«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile (Commands c, int indent, Fonction f)
-	'''«FOR cm: c.commande»«cm.compile(indent, f)»«IF c.commande.indexOf(cm)!=c.commande.size-1» ;
+	'''«FOR cm: c.commande»«cm.compile(indent, f)»«IF c.commande.indexOf(cm)!=c.commande.size-1»
 «ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent)
@@ -179,10 +185,10 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
-	case c.nop!=null : indent(indent) + "nop"
+	case c.nop!=null : indent(indent) + "nop ;"
 	case c.cmdIf!=null : c.cmdIf.compile(indent, f)
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
-	case c.vars!=null && c.exprs!=null : c.vars.compile(indent, f) + " := " + c.exprs.compile(0) 
+	case c.vars!=null && c.exprs!=null : c.vars.compile(indent, f) + " := " + c.exprs.compile(0) + " ;"
 	case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)
 	default : c.class.name
 }
