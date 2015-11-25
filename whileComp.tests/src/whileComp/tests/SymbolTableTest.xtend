@@ -166,16 +166,16 @@ read X
 	if X then
 		Z:=nil ;
 		if Z then
-			M:=nil
+			M:=nil ;
 		fi
-	fi;
+	fi
 	if X then
-		Z:=nil 
+		Z:=nil ;
 	fi
 %
 write Y
 
-''')//TODO: lol grammar wtf
+''')
         val fsaProg = new InMemoryFileSystemAccess()
         try
         {
@@ -186,6 +186,10 @@ write Y
         }
         val dicoFun = genToTest.getFunctions
         val dicoVar = genToTest.getVariables(dicoFun.get(0))
-        assertTrue(dicoVar.length == 5)
+        
+        assertTrue(dicoVar.contains("X"))
+        assertTrue(dicoVar.contains("Y"))
+        assertTrue(dicoVar.contains("Z"))
+        assertTrue(dicoVar.contains("M"))
 	}
 }
