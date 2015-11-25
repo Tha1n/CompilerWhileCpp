@@ -146,7 +146,8 @@ write Y''')
         catch(Exception e)
         {
         }
-        //TODO:
+        val dico = genToTest.getFunctions()
+        assertTrue(dico.isEmpty)
 	}
 	
 	@Test 

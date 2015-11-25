@@ -24,7 +24,7 @@ public class FunDictionary {
 		this.dictionary = dictionary;
 	}
 	
-	public void putFunction(String name, Fonction f){
+	public boolean putFunction(String name, Fonction f){
 		if (!isPresent(name)) {
 			this.dictionary.put(name, f);
 		}
@@ -33,10 +33,12 @@ public class FunDictionary {
 			if (fbis.getM_nbIn() == f.getM_nbIn() && 
 				fbis.getM_nbOut() == f.getM_nbOut() &&
 				fbis.getM_adressCode() == f.getM_adressCode()){
-				//error
+				this.dictionary.clear();
+				return false;
 			}
 			else this.dictionary.put(name, f);
 		}
+		return true;
 	}
 	
 	public void remove (String name){

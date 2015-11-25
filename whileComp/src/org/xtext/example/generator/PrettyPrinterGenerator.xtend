@@ -51,6 +51,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	int ibwhile = 1
 	
 	//gestion dico :
+	int portee = 0
 	
 	
 	/*
@@ -63,7 +64,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	 /*
 	 * pour variable : 
 	 * regarder si présente dans la fonction 
-	 * 	oui : deja déclarée mettre à jour
+	 * 	oui : regarder si meme portée : 
+	 * 		oui : deja déclarée mettre à jour
+	 * 		non : ajouter à la liste
 	 * 	non : ajouter à la liste des variables pour cette fonction
 	 */
 	 
@@ -145,8 +148,10 @@ class PrettyPrinterGenerator implements IGenerator {
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
 «var newF = new Fonction(f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"truc")»
-«dico.putFunction(f.nom, newF)»
+«IF dico.putFunction(f.nom, newF)»
 «f.definition.compile(indent, newF)»
+«ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
+«ENDIF»
 '''
 	
 	def compile (Definition d, int indent, Fonction f)
