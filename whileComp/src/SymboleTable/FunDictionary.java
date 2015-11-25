@@ -87,4 +87,19 @@ public class FunDictionary {
 		}
 	}
 	
+	//remove une variable quand on sort du bloc où la variable est déclarée
+	public void removeVariable(Variable x, Fonction f){
+		if(isPresent(f)){
+			if(f.isPresent(x)){
+				int index = f.getIndex(x);
+				f.remove(index);
+			}
+			else{//error
+			}
+		}
+		else{
+			//error
+		}
+	}
+	
 }

@@ -73,6 +73,20 @@ public class Fonction {
 		return false;
 	}
 	
+	//rend l'index de la variable x dan la liste de variables présentes dans f, -1 si x n'est pas présente
+	public int getIndex(Variable x){
+		int res =0;
+		Iterator<Variable> it = this.m_varList.iterator();
+		while(it.hasNext()){
+			Variable var = it.next();
+			if(x.getM_name().equals(var.getM_name()) && x.getM_dataAdress().equals(var.getM_dataAdress())){
+				return res;
+			}
+			res++;
+		}
+		return -1; //pas présente
+	}
+	
 	public String toString(){
 		String variables = "";
 		Iterator<Variable> it = this.m_varList.iterator();
