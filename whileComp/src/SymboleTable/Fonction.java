@@ -1,7 +1,9 @@
 package SymboleTable;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.Set;
 
 //Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
 //l'@ code cible, et une liste de variables
@@ -98,4 +100,12 @@ public class Fonction {
 		//attention les variables sont inclues parfois en double..
 	}
 	
+	public Set<String> getVariables() {
+		Set<String> retour = new HashSet<String>();
+		for(Variable val : m_varList)
+		{
+			retour.add(val.toString());
+		}
+		return retour;
+	}
 }

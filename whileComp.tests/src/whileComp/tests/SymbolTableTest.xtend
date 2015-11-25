@@ -75,7 +75,11 @@ write Y''')
         catch(Exception e)
         {
         }
-        //TODO:
+        val dicoFun = genToTest.getFunctions
+        val dicoVar = genToTest.getVariables(dicoFun.get(0))
+        assertTrue(dicoFun.contains("p"))
+        assertTrue(dicoVar.contains("X"))
+        assertTrue(dicoVar.contains("Y"))
 	}
 
 
@@ -111,7 +115,9 @@ write Y''')
         catch(Exception e)
         {
         }
-        //TODO:
+        
+        val dico = genToTest.getFunctions()
+        assertTrue(dico.length == 2)
 	}
 	
 	@Test 
@@ -178,6 +184,8 @@ write Y
         catch(Exception e)
         {
         }
-        //TODO:
+        val dicoFun = genToTest.getFunctions
+        val dicoVar = genToTest.getVariables(dicoFun.get(0))
+        assertTrue(dicoVar.length == 5)
 	}
 }

@@ -78,6 +78,12 @@ class PrettyPrinterGenerator implements IGenerator {
 	} 
 	
 	
+	def public Set<String> getVariables(String fn)
+	{
+		return dico.dictionary.get(fn).variables
+	} 
+	
+	
 	
 	def void parseMap(Map<String, Integer> indent)
 	{
