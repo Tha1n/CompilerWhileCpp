@@ -1,4 +1,4 @@
-function mlml: read X %
+function mlml: read X,Var2,Var3 %
 Y:=nil;
 
 while X do
@@ -7,7 +7,7 @@ if not (a) then nop; Y,V:=X,Z fi;
 nop;nop;
 Y:=X; W:=U; Truc:=Poulette od
 %
-write Y
+write Y,Var2
 function p:
 read X % Y:=nil;
 while X do nop; nop;Y:=X od % write Y

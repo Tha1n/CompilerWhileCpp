@@ -21,7 +21,7 @@ public class Fonction {
 	}
 
 	public void add(Variable var) {
-		m_varList.add(var);
+		if (!isPresent(var)) m_varList.add(var);
 	}
 	public void remove(int index) {
 		this.m_varList.remove(index);
@@ -60,8 +60,17 @@ public class Fonction {
 		this.m_adressCode = m_adressCode;
 	}
 	
+	
 	public boolean isPresent(Variable x){
-		return this.m_varList.contains(x);
+		Iterator<Variable> it = this.m_varList.iterator();
+		while(it.hasNext()){
+			Variable var = it.next();
+			if(var.getM_name().equals(x.getM_name()) && var.getM_dataAdress().equals(x.getM_dataAdress())){
+				return true;
+			}
+		}
+		
+		return false;
 	}
 	
 	public String toString(){

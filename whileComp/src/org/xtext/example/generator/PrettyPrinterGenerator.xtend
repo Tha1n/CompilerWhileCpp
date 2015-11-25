@@ -140,7 +140,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«var newF = new Fonction(f.definition.inputs.eContents.size,f.definition.outputs.eContents.size,"truc")»
+«var newF = new Fonction(f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"truc")»
 «dico.putFunction(f.nom, newF)»
 «f.definition.compile(indent, newF)»
 '''
@@ -173,8 +173,6 @@ class PrettyPrinterGenerator implements IGenerator {
 }
 »'''
 
-
-//TODO regler probleme du point virgule apreès les commandes --> la dernière Commande (de Commandes) n'a pas de ';'
 
 
 	
