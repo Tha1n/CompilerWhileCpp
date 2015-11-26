@@ -167,21 +167,21 @@ class PrettyPrinterGenerator implements IGenerator {
 '''
 	
 	def compile (Definition d, int indent, Fonction f)
-	'''«indent(indent)»read «d.inputs.compile(0)»
+	'''«indent(indent)»read «d.inputs.compile(0, f)»
 «indent(indent)»%
 «d.commandes.compile(indent+1, f)»
 «indent(indent)»%
-«indent(indent)»write «d.outputs.compile(0)»'''
+«indent(indent)»write «d.outputs.compile(0, f)»'''
 	
-	def compile (Input i, int indent)
-	'''«indent(indent)»«FOR in : i.varIn»«in»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
+	def compile (Input i, int indent, Fonction f)
+	'''«indent(indent)»«FOR in : i.varIn»«in»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile (Commands c, int indent, Fonction f)
 	'''«FOR cm: c.commande»«cm.compile(indent, f)»«IF c.commande.indexOf(cm)!=c.commande.size-1»
 «ENDIF»«ENDFOR»'''
 		
-	def compile (Output o, int indent)
-	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
+	def compile (Output o, int indent, Fonction f)
+	'''«indent(indent)»«FOR in : o.varOut»«in»«f.add(new Variable(in, "input"))»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
