@@ -3,14 +3,17 @@
  */
 package org.xtext.example.generator;
 
-import SymboleTable.Dictionary;
 import SymboleTable.Fonction;
+import SymboleTable.FunDictionary;
+import SymboleTable.Variable;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
@@ -24,6 +27,7 @@ import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
 import org.eclipse.xtext.xbase.lib.IntegerRange;
+import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.WhileCppStandaloneSetup;
 import org.xtext.example.whileCpp.Command;
@@ -53,7 +57,7 @@ import org.xtext.example.whileCpp.Vars;
  */
 @SuppressWarnings("all")
 public class PrettyPrinterGenerator implements IGenerator {
-  private Dictionary dico = new Dictionary();
+  private FunDictionary dico = new FunDictionary();
   
   private int ibd = 1;
   
@@ -63,18 +67,46 @@ public class PrettyPrinterGenerator implements IGenerator {
   
   private int ibwhile = 1;
   
+  private int portee = 0;
+  
   /**
    * pour variable :
    * regarder si présente dans la fonction
-   * 	oui : deja déclarée mettre à jour
+   * 	oui : regarder si meme portée :
+   * 		oui : deja déclarée mettre à jour
+   * 		non : ajouter à la liste
    * 	non : ajouter à la liste des variables pour cette fonction
    */
+  public List<String> getFunctionsNames() {
+    List<String> _listFuncName = this.dico.getListFuncName();
+    return IterableExtensions.<String>toList(_listFuncName);
+  }
+  
+  public List<Fonction> getFunctions() {
+    return this.dico.getFunctions();
+  }
+  
+  public void resetDico() {
+    FunDictionary _funDictionary = new FunDictionary();
+    this.dico = _funDictionary;
+  }
+  
+  public Set<String> getVariables(final int fn) {
+    List<Fonction> _functions = this.dico.getFunctions();
+    Fonction _get = _functions.get(fn);
+    List<String> _listVarName = _get.getListVarName();
+    return IterableExtensions.<String>toSet(_listVarName);
+  }
+  
   public void parseMap(final Map<String, Integer> indent) {
     Integer _get = indent.get("All");
     boolean _notEquals = (!Objects.equal(_get, null));
     if (_notEquals) {
       Integer _get_1 = indent.get("All");
       this.ibd = (_get_1).intValue();
+      this.ibif = this.ibd;
+      this.ibforeach = this.ibif;
+      this.ibwhile = this.ibif;
     }
     Integer _get_2 = indent.get("If");
     boolean _notEquals_1 = (!Objects.equal(_get_2, null));
@@ -97,6 +129,7 @@ public class PrettyPrinterGenerator implements IGenerator {
   }
   
   public void generate(final String in, final String outputFile, final Map<String, Integer> indentation, final Integer width) {
+    this.resetDico();
     WhileCppStandaloneSetup _whileCppStandaloneSetup = new WhileCppStandaloneSetup();
     final Injector injector = _whileCppStandaloneSetup.createInjectorAndDoEMFRegistration();
     final XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
@@ -131,6 +164,8 @@ public class PrettyPrinterGenerator implements IGenerator {
         throw Exceptions.sneakyThrow(_t);
       }
     }
+    String _string_1 = this.dico.toString();
+    InputOutput.<String>println(_string_1);
   }
   
   public CharSequence indent(final int level) {
@@ -155,6 +190,7 @@ public class PrettyPrinterGenerator implements IGenerator {
   
   @Override
   public void doGenerate(final Resource resource, final IFileSystemAccess fsa) {
+    this.resetDico();
     TreeIterator<EObject> _allContents = resource.getAllContents();
     Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
     Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
@@ -162,6 +198,8 @@ public class PrettyPrinterGenerator implements IGenerator {
       CharSequence _compile = this.compile(p, 0);
       fsa.generateFile("PP.wh", _compile);
     }
+    String _string = this.dico.toString();
+    InputOutput.<String>print(_string);
   }
   
   public CharSequence compile(final Program p, final int indent) {
@@ -191,32 +229,42 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(_nom, "");
     _builder.append(":");
     _builder.newLineIfNotEmpty();
-    Definition _definition = f.getDefinition();
-    CharSequence _compile = this.compile(_definition, indent);
-    _builder.append(_compile, "");
-    _builder.newLineIfNotEmpty();
     String _nom_1 = f.getNom();
+    Definition _definition = f.getDefinition();
+    Input _inputs = _definition.getInputs();
+    EList<String> _varIn = _inputs.getVarIn();
+    int _size = _varIn.size();
     Definition _definition_1 = f.getDefinition();
-    Input _inputs = _definition_1.getInputs();
-    EList<EObject> _eContents = _inputs.eContents();
-    int _size = _eContents.size();
-    Definition _definition_2 = f.getDefinition();
-    Output _outputs = _definition_2.getOutputs();
-    EList<EObject> _eContents_1 = _outputs.eContents();
-    int _size_1 = _eContents_1.size();
-    Fonction _fonction = new Fonction(_size, _size_1, "truc");
-    this.dico.put(_nom_1, _fonction);
+    Output _outputs = _definition_1.getOutputs();
+    EList<String> _varOut = _outputs.getVarOut();
+    int _size_1 = _varOut.size();
+    Fonction newF = new Fonction(_nom_1, _size, _size_1, "nomFonctionCible");
     _builder.newLineIfNotEmpty();
+    {
+      boolean _putFunction = this.dico.putFunction(newF);
+      if (_putFunction) {
+        Definition _definition_2 = f.getDefinition();
+        CharSequence _compile = this.compile(_definition_2, indent, newF);
+        _builder.append(_compile, "");
+        _builder.newLineIfNotEmpty();
+      } else {
+        _builder.append(" ERREUR: FONCTION ");
+        String _nom_2 = f.getNom();
+        _builder.append(_nom_2, "");
+        _builder.append(" DÉJÀ DÉCLARÉE");
+        _builder.newLineIfNotEmpty();
+      }
+    }
     return _builder;
   }
   
-  public CharSequence compile(final Definition d, final int indent) {
+  public CharSequence compile(final Definition d, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
     _builder.append("read ");
     Input _inputs = d.getInputs();
-    CharSequence _compile = this.compile(_inputs, 0);
+    CharSequence _compile = this.compile(_inputs, 0, f);
     _builder.append(_compile, "");
     _builder.newLineIfNotEmpty();
     CharSequence _indent_1 = this.indent(indent);
@@ -224,7 +272,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append("%");
     _builder.newLineIfNotEmpty();
     Commands _commandes = d.getCommandes();
-    CharSequence _compile_1 = this.compile(_commandes, (indent + 1));
+    CharSequence _compile_1 = this.compile(_commandes, (indent + 1), f);
     _builder.append(_compile_1, "");
     _builder.newLineIfNotEmpty();
     CharSequence _indent_2 = this.indent(indent);
@@ -235,12 +283,12 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(_indent_3, "");
     _builder.append("write ");
     Output _outputs = d.getOutputs();
-    CharSequence _compile_2 = this.compile(_outputs, 0);
+    CharSequence _compile_2 = this.compile(_outputs, 0, f);
     _builder.append(_compile_2, "");
     return _builder;
   }
   
-  public CharSequence compile(final Input i, final int indent) {
+  public CharSequence compile(final Input i, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
@@ -248,6 +296,8 @@ public class PrettyPrinterGenerator implements IGenerator {
       EList<String> _varIn = i.getVarIn();
       for(final String in : _varIn) {
         _builder.append(in, "");
+        Variable _variable = new Variable(in, "input");
+        f.add(_variable);
         {
           EList<String> _varIn_1 = i.getVarIn();
           int _indexOf = _varIn_1.indexOf(in);
@@ -264,12 +314,12 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Commands c, final int indent) {
+  public CharSequence compile(final Commands c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     {
       EList<Command> _commande = c.getCommande();
       for(final Command cm : _commande) {
-        CharSequence _compile = this.compile(cm, indent);
+        CharSequence _compile = this.compile(cm, indent, f);
         _builder.append(_compile, "");
         {
           EList<Command> _commande_1 = c.getCommande();
@@ -279,7 +329,6 @@ public class PrettyPrinterGenerator implements IGenerator {
           int _minus = (_size - 1);
           boolean _notEquals = (_indexOf != _minus);
           if (_notEquals) {
-            _builder.append(" ;");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -288,7 +337,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Output o, final int indent) {
+  public CharSequence compile(final Output o, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
@@ -312,7 +361,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Command c, final int indent) {
+  public CharSequence compile(final Command c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _switchResult = null;
     boolean _matched = false;
@@ -322,7 +371,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals) {
         _matched=true;
         CharSequence _indent = this.indent(indent);
-        _switchResult = (_indent + "nop");
+        _switchResult = (_indent + "nop ;");
       }
     }
     if (!_matched) {
@@ -331,7 +380,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_1) {
         _matched=true;
         CommandIf _cmdIf_1 = c.getCmdIf();
-        _switchResult = this.compile(_cmdIf_1, indent);
+        _switchResult = this.compile(_cmdIf_1, indent, f);
       }
     }
     if (!_matched) {
@@ -340,7 +389,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_2) {
         _matched=true;
         CommandForEach _cmdForEach_1 = c.getCmdForEach();
-        _switchResult = this.compile(_cmdForEach_1, indent);
+        _switchResult = this.compile(_cmdForEach_1, indent, f);
       }
     }
     if (!_matched) {
@@ -357,11 +406,12 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_and) {
         _matched=true;
         Vars _vars_1 = c.getVars();
-        CharSequence _compile = this.compile(_vars_1, indent);
+        CharSequence _compile = this.compile(_vars_1, indent, f);
         String _plus = (_compile + " := ");
         Exprs _exprs_1 = c.getExprs();
         CharSequence _compile_1 = this.compile(_exprs_1, 0);
-        _switchResult = (_plus + _compile_1);
+        String _plus_1 = (_plus + _compile_1);
+        _switchResult = (_plus_1 + " ;");
       }
     }
     if (!_matched) {
@@ -370,7 +420,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_5) {
         _matched=true;
         CommandWhile _cmdWhile_1 = c.getCmdWhile();
-        _switchResult = this.compile(_cmdWhile_1, indent);
+        _switchResult = this.compile(_cmdWhile_1, indent, f);
       }
     }
     if (!_matched) {
@@ -381,7 +431,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final CommandWhile c, final int indent) {
+  public CharSequence compile(final CommandWhile c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
@@ -400,7 +450,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(" do");
     _builder.newLineIfNotEmpty();
     Commands _cmds = c.getCmds();
-    Object _compile_1 = this.compile(_cmds, (indent + this.ibwhile));
+    Object _compile_1 = this.compile(_cmds, (indent + this.ibwhile), f);
     _builder.append(_compile_1, "");
     _builder.newLineIfNotEmpty();
     CharSequence _indent_1 = this.indent(indent);
@@ -409,7 +459,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final CommandIf c, final int indent) {
+  public CharSequence compile(final CommandIf c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
@@ -420,7 +470,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(" then ");
     _builder.newLineIfNotEmpty();
     Commands _cmdsThen = c.getCmdsThen();
-    Object _compile_1 = this.compile(_cmdsThen, (indent + this.ibif));
+    Object _compile_1 = this.compile(_cmdsThen, (indent + this.ibif), f);
     _builder.append(_compile_1, "");
     {
       Commands _cmdsElse = c.getCmdsElse();
@@ -432,7 +482,7 @@ public class PrettyPrinterGenerator implements IGenerator {
         _builder.append("else");
         _builder.newLineIfNotEmpty();
         Commands _cmdsElse_1 = c.getCmdsElse();
-        Object _compile_2 = this.compile(_cmdsElse_1, (indent + this.ibif));
+        Object _compile_2 = this.compile(_cmdsElse_1, (indent + this.ibif), f);
         _builder.append(_compile_2, "");
       }
     }
@@ -443,7 +493,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final CommandForEach c, final int indent) {
+  public CharSequence compile(final CommandForEach c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
@@ -458,7 +508,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     _builder.append(" do\t");
     _builder.newLineIfNotEmpty();
     Commands _cmds = c.getCmds();
-    Object _compile_2 = this.compile(_cmds, (indent + this.ibforeach));
+    Object _compile_2 = this.compile(_cmds, (indent + this.ibforeach), f);
     _builder.append(_compile_2, "");
     _builder.newLineIfNotEmpty();
     CharSequence _indent_1 = this.indent(indent);
@@ -467,7 +517,7 @@ public class PrettyPrinterGenerator implements IGenerator {
     return _builder;
   }
   
-  public CharSequence compile(final Vars v, final int indent) {
+  public CharSequence compile(final Vars v, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
     CharSequence _indent = this.indent(indent);
     _builder.append(_indent, "");
@@ -475,6 +525,9 @@ public class PrettyPrinterGenerator implements IGenerator {
       EList<String> _varGen = v.getVarGen();
       for(final String in : _varGen) {
         _builder.append(in, "");
+        String _string = in.toString();
+        Variable vari = new Variable(_string, "intern");
+        this.dico.putVariable(vari, f);
         {
           EList<String> _varGen_1 = v.getVarGen();
           int _indexOf = _varGen_1.indexOf(in);

@@ -1,11 +1,14 @@
 package SymboleTable;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
+import java.util.Set;
 
 
 public class FunDictionary {
 	//nom de la fonction, ses données
-	private HashMap <String, Fonction> dictionary;
+	private List<Fonction> dictionary;
 	
 	//la map fais le lien entre un nom de fonction et la Fonction elle meme
 	
@@ -13,68 +16,56 @@ public class FunDictionary {
 
 	public FunDictionary() {
 		super();
-		this.dictionary = new HashMap<String, Fonction>();
+		this.dictionary = new ArrayList<Fonction>();
+	}
+	
+	public List<Fonction> getFunctions() {
+		return this.dictionary;
 	}
 
-	public HashMap<String, Fonction> getDictionary() {
-		return dictionary;
-	}
-
-	public void setDictionary(HashMap<String, Fonction> dictionary) {
+	public void setDictionary(List<Fonction> dictionary) {
 		this.dictionary = dictionary;
 	}
 	
-	public boolean putFunction(String name, Fonction f){
-		if (!isPresent(name)) {
-			this.dictionary.put(name, f);
+	public boolean putFunction(Fonction f){
+		if (!isPresent(f)) {
+			this.dictionary.add(f);
+			return true;
 		}
-		else{
-			Fonction fbis = this.get(name);
-			if (fbis.getM_nbIn() == f.getM_nbIn() && 
-				fbis.getM_nbOut() == f.getM_nbOut() &&
-				fbis.getM_adressCode() == f.getM_adressCode()){
-				this.dictionary.clear();
-				return false;
-			}
-			else this.dictionary.put(name, f);
-		}
-		return true;
+		this.dictionary.clear();
+		return false;
+		
 	}
 	
-	public void remove (String name){
-		this.dictionary.remove(name);
-	}
 	
-	public void replace(String name, Fonction newFunc){
-		this.dictionary.replace(name, newFunc);
-	}
-	
-	public Fonction get(String name){
-		return this.dictionary.get(name);
-	}
-	
-	public boolean isPresent (String name){
-		return (this.dictionary.get(name) != null);
-	}
 	
 	public boolean isPresent (Fonction f){
-		return this.dictionary.containsValue(f);
+		for(Fonction f1: this.dictionary){
+			if(f1.egal(f)) return true;
+		}
+		return false;
 	}
+	
 	
 	public String toString(){
 		String fonctions = "\n-------------------------------------\n"+
 							 "        Table des symboles           \n";
-		Iterator<String> it = this.dictionary.keySet().iterator(); 
-		
-		while (it.hasNext()){
-			String name = it.next();
-			Fonction f = this.dictionary.get(name);
-			fonctions += " - " + name + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n" + f.toString() ;
+		for(Fonction f : this.dictionary){
+			fonctions += " - " + f.getM_name() + " : " + f.getM_nbIn() + " inputs --> " + f.getM_nbOut() +" outputs\n" + f.toString() ;
 		}
+		
 		fonctions += "\n-------------------------------------\n";
 		return fonctions;
 	}
 	
+	
+	public List<String> getListFuncName (){
+		List<String> res = new ArrayList<String>();
+		for(Fonction f:this.dictionary){
+			res.add(f.getM_name());
+		}
+		return res;
+	}
 	
 	public void putVariable(Variable x, Fonction f){
 		if(isPresent(f)){

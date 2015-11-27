@@ -3,25 +3,48 @@ package SymboleTable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 //Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
 //l'@ code cible, et une liste de variables
 
 public class Fonction {
+	private String m_name;
+
 	private int m_nbIn;
 	private int m_nbOut;
 	private String m_adressCode;
 	private ArrayList<Variable> m_varList;
 	
-	public Fonction(int nbIn, int nbOut, String adressCode) {
+	//adresse donnée à la variable
+	private String VAR_INTERN = "intern";
+	private String VAR_INPUT = "input";
+	
+	public Fonction(String name, int nbIn, int nbOut, String adressCode) {
 		super();
+		this.m_name = name;
 		this.m_nbIn = nbIn;
 		this.m_nbOut = nbOut;
 		this.m_adressCode = adressCode;
 		this.m_varList = new ArrayList<Variable>();
 	}
 
+	public String getM_name() {
+		return m_name;
+	}
+	
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public List<String> getListVarName(){
+		List<String> res = new ArrayList<String>();
+		for(Variable v:this.m_varList){
+			res.add(v.getM_name());
+		}
+		return res;
+	}
+	
 	public void add(Variable var) {
 		if (!isPresent(var)) m_varList.add(var);
 	}
@@ -70,6 +93,9 @@ public class Fonction {
 			if(var.getM_name().equals(x.getM_name()) && var.getM_dataAdress().equals(x.getM_dataAdress())){
 				return true;
 			}
+			if(var.getM_name().equals(x.getM_name()) && var.getM_dataAdress().equals(VAR_INPUT)){
+				return true;
+			}
 		}
 		
 		return false;
@@ -89,6 +115,10 @@ public class Fonction {
 		return -1; //pas présente
 	}
 	
+	public boolean egal(Fonction f){
+		return (this.m_nbIn == f.getM_nbIn() && this.m_nbOut == f.getM_nbOut() && this.m_name.equals(f.getM_name()));
+	}
+	
 	public String toString(){
 		String variables = "";
 		Iterator<Variable> it = this.m_varList.iterator();
@@ -104,7 +134,7 @@ public class Fonction {
 		Set<String> retour = new HashSet<String>();
 		for(Variable val : m_varList)
 		{
-			retour.add(val.toString());
+			retour.add(val.getM_name());
 		}
 		return retour;
 	}

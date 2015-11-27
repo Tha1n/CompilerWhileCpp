@@ -3,7 +3,35 @@
  */
 package org.xtext.example.validation;
 
+import SymboleTable.FunDictionary;
+import com.google.common.base.Objects;
+import com.google.common.collect.Iterables;
+import com.google.inject.Injector;
+import java.util.ArrayList;
+import java.util.List;
+import org.eclipse.emf.common.util.EList;
+import org.eclipse.emf.common.util.TreeIterator;
+import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.xtext.resource.XtextResourceSet;
+import org.eclipse.xtext.validation.Check;
+import org.eclipse.xtext.xbase.lib.Conversions;
+import org.eclipse.xtext.xbase.lib.IteratorExtensions;
+import org.xtext.example.WhileCppStandaloneSetup;
 import org.xtext.example.validation.AbstractWhileCppValidator;
+import org.xtext.example.validation.Issue;
+import org.xtext.example.whileCpp.Command;
+import org.xtext.example.whileCpp.Commands;
+import org.xtext.example.whileCpp.Definition;
+import org.xtext.example.whileCpp.Expr;
+import org.xtext.example.whileCpp.Exprs;
+import org.xtext.example.whileCpp.Function;
+import org.xtext.example.whileCpp.Input;
+import org.xtext.example.whileCpp.Output;
+import org.xtext.example.whileCpp.Program;
+import org.xtext.example.whileCpp.Vars;
 
 /**
  * This class contains custom validation rules.
@@ -12,4 +40,115 @@ import org.xtext.example.validation.AbstractWhileCppValidator;
  */
 @SuppressWarnings("all")
 public class WhileCppValidator extends AbstractWhileCppValidator {
+  public List<Issue> validate(final String in, final FunDictionary ts) {
+    ArrayList<Issue> result = new ArrayList<Issue>();
+    WhileCppStandaloneSetup _whileCppStandaloneSetup = new WhileCppStandaloneSetup();
+    final Injector injector = _whileCppStandaloneSetup.createInjectorAndDoEMFRegistration();
+    final XtextResourceSet resourceSet = injector.<XtextResourceSet>getInstance(XtextResourceSet.class);
+    final URI uri = URI.createURI(in);
+    final Resource xtextResource = resourceSet.getResource(uri, true);
+    EcoreUtil.resolveAll(xtextResource);
+    TreeIterator<EObject> _allContents = xtextResource.getAllContents();
+    Iterable<EObject> _iterable = IteratorExtensions.<EObject>toIterable(_allContents);
+    Iterable<Program> _filter = Iterables.<Program>filter(_iterable, Program.class);
+    for (final Program p : _filter) {
+      List<Issue> _checkProgram = this.checkProgram(p, ts);
+      result.addAll(_checkProgram);
+    }
+    return result;
+  }
+  
+  private List<Issue> checkProgram(final Program p, final FunDictionary ts) {
+    ArrayList<Issue> result = new ArrayList<Issue>();
+    EList<Function> _fonctions = p.getFonctions();
+    for (final Function f : _fonctions) {
+      List<Issue> _checkFunction = this.checkFunction(f, ts);
+      result.addAll(_checkFunction);
+    }
+    return result;
+  }
+  
+  private List<Issue> checkFunction(final Function f, final FunDictionary ts) {
+    ArrayList<Issue> result = new ArrayList<Issue>();
+    Definition _definition = f.getDefinition();
+    List<Issue> _checkDefinition = this.checkDefinition(_definition, ts);
+    result.addAll(_checkDefinition);
+    return result;
+  }
+  
+  private List<Issue> checkDefinition(final Definition df, final FunDictionary ts) {
+    ArrayList<Issue> result = new ArrayList<Issue>();
+    Input _inputs = df.getInputs();
+    List<Issue> _checkInput = this.checkInput(_inputs, ts);
+    result.addAll(_checkInput);
+    Commands _commandes = df.getCommandes();
+    List<Issue> _checkCommands = this.checkCommands(_commandes, ts);
+    result.addAll(_checkCommands);
+    Output _outputs = df.getOutputs();
+    List<Issue> _checkOutput = this.checkOutput(_outputs, ts);
+    result.addAll(_checkOutput);
+    return result;
+  }
+  
+  private List<Issue> checkInput(final Input in, final FunDictionary ts) {
+    return new ArrayList<Issue>();
+  }
+  
+  private List<Issue> checkCommands(final Commands cs, final FunDictionary ts) {
+    ArrayList<Issue> result = new ArrayList<Issue>();
+    EList<Command> _commande = cs.getCommande();
+    for (final Command cmd : _commande) {
+      boolean _matched = false;
+      if (!_matched) {
+        Vars _vars = cmd.getVars();
+        boolean _notEquals = (!Objects.equal(_vars, null));
+        if (_notEquals) {
+          _matched=true;
+          Vars _vars_1 = cmd.getVars();
+          Exprs _exprs = cmd.getExprs();
+          List<Issue> _checkVarsAndExprs = this.checkVarsAndExprs(_vars_1, _exprs, ts);
+          result.addAll(_checkVarsAndExprs);
+        }
+      }
+    }
+    return result;
+  }
+  
+  @Check
+  private List<Issue> checkVarsAndExprs(final Vars vs, final Exprs exs, final FunDictionary ts) {
+    ArrayList<Issue> result = new ArrayList<Issue>();
+    boolean _and = false;
+    EList<String> _varGen = vs.getVarGen();
+    int _length = ((Object[])Conversions.unwrapArray(_varGen, Object.class)).length;
+    EList<Expr> _expGen = exs.getExpGen();
+    int _length_1 = ((Object[])Conversions.unwrapArray(_expGen, Object.class)).length;
+    boolean _notEquals = (_length != _length_1);
+    if (!_notEquals) {
+      _and = false;
+    } else {
+      EList<Expr> _expGen_1 = exs.getExpGen();
+      int _length_2 = ((Object[])Conversions.unwrapArray(_expGen_1, Object.class)).length;
+      boolean _notEquals_1 = (_length_2 != 1);
+      _and = _notEquals_1;
+    }
+    if (_and) {
+      Issue tmp = new Issue();
+      this.error("Invalid number of expression for the affectation", exs, null);
+      tmp.m_message = "Invalid number of expression for the affectation";
+    }
+    return result;
+  }
+  
+  private List<Issue> checkOutput(final Output out, final FunDictionary ts) {
+    return new ArrayList<Issue>();
+  }
+  
+  @Check
+  public void checkFunctionProtectedName(final Function f) {
+    String _nom = f.getNom();
+    boolean _contains = _nom.contains("a");
+    if (_contains) {
+      this.error("While functions must have a name", f, null);
+    }
+  }
 }

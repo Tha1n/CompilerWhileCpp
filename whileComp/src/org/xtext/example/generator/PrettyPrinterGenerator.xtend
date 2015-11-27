@@ -35,6 +35,7 @@ import SymboleTable.Fonction
 import SymboleTable.Variable
 import SymboleTable.FunDictionary
 import java.util.Set
+import java.util.List
 
 /**
  * Generates code from your model files on save.
@@ -72,9 +73,14 @@ class PrettyPrinterGenerator implements IGenerator {
 	 
 	 
 	 
-	def public Set<String> getFunctions()
+	def public List<String> getFunctionsNames()
 	{
-		return dico.dictionary.keySet
+		return dico.listFuncName.toList
+	}
+	
+	def public List<Fonction> getFunctions()
+	{
+		return dico.functions
 	}
 	
 	def public void resetDico()
@@ -83,9 +89,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	}
 	
 	
-	def public Set<String> getVariables(String fn)
+	def public Set<String> getVariables(int fn)
 	{
-		return dico.dictionary.get(fn).variables
+		return dico.functions.get(fn).listVarName.toSet
 	} 
 	
 	
@@ -110,6 +116,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
 	{
+		resetDico
 		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val resourceSet = injector.getInstance(XtextResourceSet);
 		val uri = URI.createURI(in);
@@ -133,7 +140,6 @@ class PrettyPrinterGenerator implements IGenerator {
   		}
 		
 		println(dico.toString)
-		resetDico
 	}
 	
 	//ident all structures
@@ -142,11 +148,11 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
+        resetDico
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.wh", p.compile(0))
 			}
 		print(dico.toString())
-		resetDico
 	}
 
 	def compile (Program p, int indent)
@@ -159,8 +165,8 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«var newF = new Fonction(f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"truc")»
-«IF dico.putFunction(f.nom, newF)»
+«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
+«IF dico.putFunction(newF)»
 «f.definition.compile(indent, newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»
@@ -181,7 +187,7 @@ class PrettyPrinterGenerator implements IGenerator {
 «ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent, Fonction f)
-	'''«indent(indent)»«FOR in : o.varOut»«in»«f.add(new Variable(in, "input"))»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
+	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
@@ -216,7 +222,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, int indent, Fonction f)
-'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "truc")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
+'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Exprs e, int indent)
 '''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''

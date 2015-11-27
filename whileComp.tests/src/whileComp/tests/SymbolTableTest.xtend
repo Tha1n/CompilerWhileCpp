@@ -48,7 +48,7 @@ write Y''')
         {
         }
         
-        val dico = genToTest.getFunctions()
+        val dico = genToTest.functionsNames
         assertTrue(dico.isEmpty)
         
 	}
@@ -75,8 +75,8 @@ write Y''')
         catch(Exception e)
         {
         }
-        val dicoFun = genToTest.getFunctions
-        val dicoVar = genToTest.getVariables(dicoFun.get(0))
+        val dicoFun = genToTest.functionsNames
+        val dicoVar = genToTest.getVariables(0)
         assertTrue(dicoFun.contains("p"))
         assertTrue(dicoVar.contains("X"))
         assertTrue(dicoVar.contains("Y"))
@@ -116,7 +116,7 @@ write Y''')
         {
         }
         
-        val dico = genToTest.getFunctions()
+        val dico = genToTest.functionsNames
         assertTrue(dico.length == 2)
 	}
 	
@@ -152,7 +152,7 @@ write Y''')
         catch(Exception e)
         {
         }
-        val dico = genToTest.getFunctions()
+        val dico = genToTest.functionsNames
         assertTrue(dico.isEmpty)
 	}
 	
@@ -184,8 +184,7 @@ write Y
         catch(Exception e)
         {
         }
-        val dicoFun = genToTest.getFunctions
-        val dicoVar = genToTest.getVariables(dicoFun.get(0))
+        val dicoVar = genToTest.getVariables(0)
         
         assertTrue(dicoVar.contains("X"))
         assertTrue(dicoVar.contains("Y"))
