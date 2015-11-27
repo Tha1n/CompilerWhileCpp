@@ -35,6 +35,7 @@ import SymboleTable.Fonction
 import SymboleTable.Variable
 import SymboleTable.FunDictionary
 import java.util.Set
+import java.util.List
 
 /**
  * Generates code from your model files on save.
@@ -72,7 +73,12 @@ class PrettyPrinterGenerator implements IGenerator {
 	 
 	 
 	 
-	def public Set<String> getFunctions()
+	def public Set<String> getFunctionsNames()
+	{
+		return dico.listFuncName.toSet
+	}
+	
+	def public List<Fonction> getFunctions()
 	{
 		return dico.functions
 	}
@@ -83,9 +89,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	}
 	
 	
-	def public Set<String> getVariables(String fn)
+	def public Set<String> getVariables(Fonction fn)
 	{
-		return dico.dictionary.get(fn).variables
+		return fn.listVarName.toSet
 	} 
 	
 	
@@ -159,8 +165,8 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«var newF = new Fonction(f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
-«IF dico.putFunction(f.nom, newF)»
+«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
+«IF dico.putFunction(newF)»
 «f.definition.compile(indent, newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»

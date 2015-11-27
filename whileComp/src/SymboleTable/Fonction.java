@@ -3,12 +3,15 @@ package SymboleTable;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Set;
 
 //Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
 //l'@ code cible, et une liste de variables
 
 public class Fonction {
+	private String m_name;
+
 	private int m_nbIn;
 	private int m_nbOut;
 	private String m_adressCode;
@@ -18,7 +21,7 @@ public class Fonction {
 	private String VAR_INTERN = "intern";
 	private String VAR_INPUT = "input";
 	
-	public Fonction(int nbIn, int nbOut, String adressCode) {
+	public Fonction(String name, int nbIn, int nbOut, String adressCode) {
 		super();
 		this.m_nbIn = nbIn;
 		this.m_nbOut = nbOut;
@@ -26,6 +29,21 @@ public class Fonction {
 		this.m_varList = new ArrayList<Variable>();
 	}
 
+	public String getM_name() {
+		return m_name;
+	}
+	
+	public void setM_name(String m_name) {
+		this.m_name = m_name;
+	}
+	public List<String> getListVarName(){
+		List<String> res = new ArrayList<String>();
+		for(Variable v:this.m_varList){
+			res.add(v.getM_name());
+		}
+		return res;
+	}
+	
 	public void add(Variable var) {
 		if (!isPresent(var)) m_varList.add(var);
 	}
@@ -97,9 +115,7 @@ public class Fonction {
 	}
 	
 	public boolean egal(Fonction f){
-		System.out.println("f1 :" + this.getM_nbIn() + " , "+this.getM_nbOut());
-		System.out.println("f2 :" + f.getM_nbIn() + " , "+f.getM_nbOut());
-		return (this.m_nbIn == f.getM_nbIn() && this.m_nbOut == f.getM_nbOut());
+		return (this.m_nbIn == f.getM_nbIn() && this.m_nbOut == f.getM_nbOut() && this.m_name.equals(f.getM_name()));
 	}
 	
 	public String toString(){
