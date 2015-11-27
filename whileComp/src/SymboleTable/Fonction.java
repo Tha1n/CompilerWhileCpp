@@ -14,6 +14,10 @@ public class Fonction {
 	private String m_adressCode;
 	private ArrayList<Variable> m_varList;
 	
+	//adresse donnée à la variable
+	private String VAR_INTERN = "intern";
+	private String VAR_INPUT = "input";
+	
 	public Fonction(int nbIn, int nbOut, String adressCode) {
 		super();
 		this.m_nbIn = nbIn;
@@ -68,6 +72,9 @@ public class Fonction {
 		while(it.hasNext()){
 			Variable var = it.next();
 			if(var.getM_name().equals(x.getM_name()) && var.getM_dataAdress().equals(x.getM_dataAdress())){
+				return true;
+			}
+			if(var.getM_name().equals(x.getM_name()) && var.getM_dataAdress().equals(VAR_INPUT)){
 				return true;
 			}
 		}

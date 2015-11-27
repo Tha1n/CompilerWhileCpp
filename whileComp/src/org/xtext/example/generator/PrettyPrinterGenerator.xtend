@@ -159,7 +159,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def compile (Function f, int indent)
 '''«indent(indent)»function «f.nom»:
-«var newF = new Fonction(f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"truc")»
+«var newF = new Fonction(f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
 «IF dico.putFunction(f.nom, newF)»
 «f.definition.compile(indent, newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
@@ -181,7 +181,7 @@ class PrettyPrinterGenerator implements IGenerator {
 «ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent, Fonction f)
-	'''«indent(indent)»«FOR in : o.varOut»«in»«f.add(new Variable(in, "input"))»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
+	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
@@ -216,7 +216,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, int indent, Fonction f)
-'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "truc")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
+'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Exprs e, int indent)
 '''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''
