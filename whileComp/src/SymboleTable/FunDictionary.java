@@ -1,6 +1,7 @@
 package SymboleTable;
 import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Set;
 
 
 public class FunDictionary {
@@ -14,6 +15,10 @@ public class FunDictionary {
 	public FunDictionary() {
 		super();
 		this.dictionary = new HashMap<String, Fonction>();
+	}
+	
+	public Set<String> getFunctions() {
+		return this.dictionary.keySet();
 	}
 
 	public HashMap<String, Fonction> getDictionary() {

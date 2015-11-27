@@ -75,7 +75,7 @@ write Y''')
         catch(Exception e)
         {
         }
-        val dicoFun = genToTest.getFunctions
+        val dicoFun = genToTest.getFunctions()
         val dicoVar = genToTest.getVariables(dicoFun.get(0))
         assertTrue(dicoFun.contains("p"))
         assertTrue(dicoVar.contains("X"))

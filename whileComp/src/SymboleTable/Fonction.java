@@ -111,7 +111,7 @@ public class Fonction {
 		Set<String> retour = new HashSet<String>();
 		for(Variable val : m_varList)
 		{
-			retour.add(val.toString());
+			retour.add(val.getM_name());
 		}
 		return retour;
 	}
