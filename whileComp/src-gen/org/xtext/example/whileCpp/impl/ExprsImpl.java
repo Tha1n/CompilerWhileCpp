@@ -26,10 +26,10 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprsImpl#getExpGen <em>Exp Gen</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

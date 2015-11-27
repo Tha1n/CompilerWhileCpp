@@ -11,11 +11,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.xtext.example.whileCpp.Expr#getExprSimp <em>Expr Simp</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.Expr#getExprAnd <em>Expr And</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.xtext.example.whileCpp.WhileCppPackage#getExpr()
  * @model

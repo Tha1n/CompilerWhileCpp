@@ -236,56 +236,35 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 
 	public class CommandsElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Commands");
-		private final Group cGroup = (Group)rule.eContents().get(1);
-		private final Group cGroup_0 = (Group)cGroup.eContents().get(0);
-		private final Group cGroup_0_0 = (Group)cGroup_0.eContents().get(0);
-		private final Assignment cCommandeAssignment_0_0_0 = (Assignment)cGroup_0_0.eContents().get(0);
-		private final RuleCall cCommandeCommandParserRuleCall_0_0_0_0 = (RuleCall)cCommandeAssignment_0_0_0.eContents().get(0);
-		private final Keyword cSemicolonKeyword_0_0_1 = (Keyword)cGroup_0_0.eContents().get(1);
-		private final Assignment cCommandeAssignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cCommandeCommandParserRuleCall_1_0 = (RuleCall)cCommandeAssignment_1.eContents().get(0);
+		private final Assignment cCommandeAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cCommandeCommandParserRuleCall_0 = (RuleCall)cCommandeAssignment.eContents().get(0);
 		
 		////Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
 		//Commands:
-		//	=> (commande+=Command ";")* commande+=Command;
+		//	commande+=Command+;
 		@Override public ParserRule getRule() { return rule; }
 
-		//=> (commande+=Command ";")* commande+=Command
-		public Group getGroup() { return cGroup; }
-
-		//=> (commande+=Command ";")*
-		public Group getGroup_0() { return cGroup_0; }
-
-		//commande+=Command ";"
-		public Group getGroup_0_0() { return cGroup_0_0; }
-
-		//commande+=Command
-		public Assignment getCommandeAssignment_0_0_0() { return cCommandeAssignment_0_0_0; }
+		//commande+=Command+
+		public Assignment getCommandeAssignment() { return cCommandeAssignment; }
 
 		//Command
-		public RuleCall getCommandeCommandParserRuleCall_0_0_0_0() { return cCommandeCommandParserRuleCall_0_0_0_0; }
-
-		//";"
-		public Keyword getSemicolonKeyword_0_0_1() { return cSemicolonKeyword_0_0_1; }
-
-		//commande+=Command
-		public Assignment getCommandeAssignment_1() { return cCommandeAssignment_1; }
-
-		//Command
-		public RuleCall getCommandeCommandParserRuleCall_1_0() { return cCommandeCommandParserRuleCall_1_0; }
+		public RuleCall getCommandeCommandParserRuleCall_0() { return cCommandeCommandParserRuleCall_0; }
 	}
 
 	public class CommandElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Command");
 		private final Alternatives cAlternatives = (Alternatives)rule.eContents().get(1);
-		private final Assignment cNopAssignment_0 = (Assignment)cAlternatives.eContents().get(0);
-		private final Keyword cNopNopKeyword_0_0 = (Keyword)cNopAssignment_0.eContents().get(0);
+		private final Group cGroup_0 = (Group)cAlternatives.eContents().get(0);
+		private final Assignment cNopAssignment_0_0 = (Assignment)cGroup_0.eContents().get(0);
+		private final Keyword cNopNopKeyword_0_0_0 = (Keyword)cNopAssignment_0_0.eContents().get(0);
+		private final Keyword cSemicolonKeyword_0_1 = (Keyword)cGroup_0.eContents().get(1);
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Assignment cVarsAssignment_1_0 = (Assignment)cGroup_1.eContents().get(0);
 		private final RuleCall cVarsVarsParserRuleCall_1_0_0 = (RuleCall)cVarsAssignment_1_0.eContents().get(0);
 		private final Keyword cColonEqualsSignKeyword_1_1 = (Keyword)cGroup_1.eContents().get(1);
 		private final Assignment cExprsAssignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cExprsExprsParserRuleCall_1_2_0 = (RuleCall)cExprsAssignment_1_2.eContents().get(0);
+		private final Keyword cSemicolonKeyword_1_3 = (Keyword)cGroup_1.eContents().get(3);
 		private final Assignment cCmdWhileAssignment_2 = (Assignment)cAlternatives.eContents().get(2);
 		private final RuleCall cCmdWhileCommandWhileParserRuleCall_2_0 = (RuleCall)cCmdWhileAssignment_2.eContents().get(0);
 		private final Assignment cCmdIfAssignment_3 = (Assignment)cAlternatives.eContents().get(3);
@@ -296,19 +275,25 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		////Permet de reconnaitre des chaines de la forme c1;c2
 		////Les differentes commandes
 		//Command:
-		//	nop="nop" | vars=Vars ":=" exprs=Exprs | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach;
+		//	nop="nop" ";" | vars=Vars ":=" exprs=Exprs ";" | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach;
 		@Override public ParserRule getRule() { return rule; }
 
-		//nop="nop" | vars=Vars ":=" exprs=Exprs | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach
+		//nop="nop" ";" | vars=Vars ":=" exprs=Exprs ";" | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach
 		public Alternatives getAlternatives() { return cAlternatives; }
 
+		//nop="nop" ";"
+		public Group getGroup_0() { return cGroup_0; }
+
 		//nop="nop"
-		public Assignment getNopAssignment_0() { return cNopAssignment_0; }
+		public Assignment getNopAssignment_0_0() { return cNopAssignment_0_0; }
 
 		//"nop"
-		public Keyword getNopNopKeyword_0_0() { return cNopNopKeyword_0_0; }
+		public Keyword getNopNopKeyword_0_0_0() { return cNopNopKeyword_0_0_0; }
 
-		//vars=Vars ":=" exprs=Exprs
+		//";"
+		public Keyword getSemicolonKeyword_0_1() { return cSemicolonKeyword_0_1; }
+
+		//vars=Vars ":=" exprs=Exprs ";"
 		public Group getGroup_1() { return cGroup_1; }
 
 		//vars=Vars
@@ -325,6 +310,9 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 
 		//Exprs
 		public RuleCall getExprsExprsParserRuleCall_1_2_0() { return cExprsExprsParserRuleCall_1_2_0; }
+
+		//";"
+		public Keyword getSemicolonKeyword_1_3() { return cSemicolonKeyword_1_3; }
 
 		//cmdWhile=CommandWhile
 		public Assignment getCmdWhileAssignment_2() { return cCmdWhileAssignment_2; }
@@ -1073,14 +1061,14 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal VARIABLE:
-	//	"A".."Z" ("A".."Z" | "a".."z" | "0".."9" | "_")*;
+	//	"A".."Z" ("A".."Z" | "a".."z" | "0".."9" | "->" | "-" | "+" | "&" | "." | "/" | "_")*;
 	public TerminalRule getVARIABLERule() {
 		return tVARIABLE;
 	} 
 
 	////Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
 	//Commands:
-	//	=> (commande+=Command ";")* commande+=Command;
+	//	commande+=Command+;
 	public CommandsElements getCommandsAccess() {
 		return pCommands;
 	}
@@ -1092,7 +1080,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	////Permet de reconnaitre des chaines de la forme c1;c2
 	////Les differentes commandes
 	//Command:
-	//	nop="nop" | vars=Vars ":=" exprs=Exprs | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach;
+	//	nop="nop" ";" | vars=Vars ":=" exprs=Exprs ";" | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach;
 	public CommandElements getCommandAccess() {
 		return pCommand;
 	}
@@ -1205,7 +1193,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//terminal SYMBOL:
-	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9" | "_")*;
+	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9" | "_" | "->" | "-" | "+" | "&" | "." | "/")*;
 	public TerminalRule getSYMBOLRule() {
 		return tSYMBOL;
 	} 

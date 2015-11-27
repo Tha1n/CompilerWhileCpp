@@ -3,17 +3,23 @@
  */
 package org.xtext.example.validation
 
-import java.util.List
-import java.util.ArrayList
-import org.xtext.example.whileCpp.Program
-import org.eclipse.xtext.validation.Check
-import org.eclipse.emf.ecore.util.EcoreUtil
-import org.xtext.example.WhileCppStandaloneSetup
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.emf.common.util.URI
 import SymboleTable.FunDictionary
-import org.eclipse.xtext.validation.Issue
-import java.util.Dictionary
+import java.util.ArrayList
+import java.util.List
+import org.eclipse.emf.common.util.URI
+import org.eclipse.emf.ecore.util.EcoreUtil
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.eclipse.xtext.validation.Check
+import org.xtext.example.WhileCppStandaloneSetup
+import org.xtext.example.whileCpp.Commands
+import org.xtext.example.whileCpp.Function
+import org.xtext.example.whileCpp.Program
+import org.xtext.example.whileCpp.Definition
+import org.xtext.example.whileCpp.Input
+import org.xtext.example.whileCpp.Output
+import org.xtext.example.whileCpp.Command
+import org.xtext.example.whileCpp.Vars
+import org.xtext.example.whileCpp.Exprs
 
 //import org.eclipse.xtext.validation.Check
 
@@ -24,7 +30,7 @@ import java.util.Dictionary
  */
 class WhileCppValidator extends AbstractWhileCppValidator {
 
-	def public List<Issue> validate(String in, Dictionary ts)
+	def public List<Issue> validate(String in, FunDictionary ts)
 	{
 		var result = new ArrayList<Issue>();
 		
@@ -40,9 +46,102 @@ class WhileCppValidator extends AbstractWhileCppValidator {
   		return result;
 	}
 
+	def private List<Issue> checkProgram(Program p, FunDictionary ts) {
+		var result = new ArrayList<Issue>()
+		
+		for(Function f: p.fonctions)
+			result.addAll(checkFunction(f, ts))
+		
+		return result
+	}
+	
+	def private List<Issue> checkFunction(Function f, FunDictionary ts) {
+		var result = new ArrayList<Issue>()
+		
+		//Imbricate checking for function components
+		result.addAll(checkDefinition(f.definition, ts))
+		
+		return result
+	}
+	
+	def private List<Issue> checkDefinition(Definition df, FunDictionary ts) {
+		var result = new ArrayList<Issue>()
+		
+		//Imbricate checking for function components
+		result.addAll(checkInput(df.inputs, ts))
+		result.addAll(checkCommands(df.commandes, ts))
+		result.addAll(checkOutput(df.outputs, ts))
+		
+		return result
+	}
+	
+	def private List<Issue> checkInput(Input in, FunDictionary ts) {
+		//TODO
+		return new ArrayList<Issue>()
+	}
+	
+	def private List<Issue> checkCommands(Commands cs, FunDictionary ts) {
+		//TODO
+		var result = new ArrayList<Issue>()
+		
+		for(Command cmd : cs.commande) {
+			switch(cmd){
+				case (cmd.vars != null) : result.addAll(checkVarsAndExprs(cmd.vars, cmd.exprs, ts))
+				
+			}	
+		}
+		
+		return result
+	}
+	
 	@Check
-	def private List<Issue> checkProgram(Program p, Dictionary ts) {
+	def private List<Issue> checkVarsAndExprs(Vars vs, Exprs exs, FunDictionary ts) {
+		var result = new ArrayList<Issue>()
+		
+		/* Liste des erreurs pour les affectation
+		 * 1- Nombre d'expression différentes du nb de variable affectés
+		 * 2- Si nb d'exprs différentes, pas plus d'1 seule expression
+		 * 3- Vérification dans la table des symboles si la variable n'existe pas déjà
+		 * 
+		 * Liste de warning (?)
+		 * 1- Affectation d'une variable avec la même variable (X := X) 
+		 */
+		
+		//TODO
+		if ((vs.varGen.length != exs.expGen.length) && (exs.expGen.length != 1)) {
+			var tmp = new Issue()
+			error("Invalid number of expression for the affectation", exs, null)
+			tmp.m_message = "Invalid number of expression for the affectation"
+		}
 			
+			
+		return result
+	}
+	
+	def private List<Issue> checkOutput(Output out, FunDictionary ts) {
+		//TODO
+		return new ArrayList<Issue>()
+	}
+	
+	@Check
+	def void checkFunctionProtectedName(Function f) {
+		if (f.nom.contains('a'))
+			error('While functions must have a name', f, null)
+			
+		//TODO
+		//return new Issue()
+	}
+	
+	/*
+	@Check	
+	def checkVarStartsWithCapital(Variable v) {
+		if (!Character.isUpperCase(v.name.charAt(0))) {
+			
+			warning('Variable name must start with a capital', 
+					MyDslPackage.Literals.GREETING__NAME,
+					INVALID_NAME)
+		
+		}*/
 	}
 
 //  public static val INVALID_NAME = 'invalidName'
@@ -55,4 +154,4 @@ class WhileCppValidator extends AbstractWhileCppValidator {
 //					INVALID_NAME)
 //		}
 //	}
-}
+
