@@ -74,7 +74,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	 
 	def public Set<String> getFunctions()
 	{
-		return dico.dictionary.keySet
+		return dico.functions
 	}
 	
 	def public void resetDico()
@@ -110,6 +110,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
 	{
+		resetDico
 		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val resourceSet = injector.getInstance(XtextResourceSet);
 		val uri = URI.createURI(in);
@@ -133,7 +134,6 @@ class PrettyPrinterGenerator implements IGenerator {
   		}
 		
 		println(dico.toString)
-		resetDico
 	}
 	
 	//ident all structures
@@ -142,11 +142,11 @@ class PrettyPrinterGenerator implements IGenerator {
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
+        resetDico
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.wh", p.compile(0))
 			}
 		print(dico.toString())
-		resetDico
 	}
 
 	def compile (Program p, int indent)
