@@ -96,6 +96,10 @@ public class Fonction {
 		return -1; //pas présente
 	}
 	
+	public boolean egal(Fonction f){
+		return this.m_nbIn == f.getM_nbIn() && this.m_nbOut == f.getM_nbOut();
+	}
+	
 	public String toString(){
 		String variables = "";
 		Iterator<Variable> it = this.m_varList.iterator();

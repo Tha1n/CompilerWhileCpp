@@ -25,7 +25,7 @@ public class FunDictionary {
 	}
 	
 	public boolean putFunction(String name, Fonction f){
-		if (!isPresent(name)) {
+		if (!isPresent(name, f)) {
 			this.dictionary.put(name, f);
 		}
 		else{
@@ -53,13 +53,15 @@ public class FunDictionary {
 		return this.dictionary.get(name);
 	}
 	
-	public boolean isPresent (String name){
-		return (this.dictionary.get(name) != null);
+	public boolean isPresent (String name, Fonction f){
+		Fonction fbis = this.dictionary.get(name);
+		
+		return fbis != null && fbis.egal(f);
 	}
-	
 	public boolean isPresent (Fonction f){
 		return this.dictionary.containsValue(f);
 	}
+	
 	
 	public String toString(){
 		String fonctions = "\n-------------------------------------\n"+
