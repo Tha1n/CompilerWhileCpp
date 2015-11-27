@@ -97,7 +97,9 @@ public class Fonction {
 	}
 	
 	public boolean egal(Fonction f){
-		return this.m_nbIn == f.getM_nbIn() && this.m_nbOut == f.getM_nbOut();
+		System.out.println("f1 :" + this.getM_nbIn() + " , "+this.getM_nbOut());
+		System.out.println("f2 :" + f.getM_nbIn() + " , "+f.getM_nbOut());
+		return (this.m_nbIn == f.getM_nbIn() && this.m_nbOut == f.getM_nbOut());
 	}
 	
 	public String toString(){

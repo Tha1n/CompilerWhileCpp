@@ -11,7 +11,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import org.xtext.example.WhileCppStandaloneSetup
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.emf.common.util.URI
-import SymboleTable.Dictionary
+import SymboleTable.FunDictionary
+import org.eclipse.xtext.validation.Issue
+import java.util.Dictionary
 
 //import org.eclipse.xtext.validation.Check
 

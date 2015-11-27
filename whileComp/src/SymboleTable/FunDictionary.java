@@ -32,18 +32,10 @@ public class FunDictionary {
 	public boolean putFunction(String name, Fonction f){
 		if (!isPresent(name, f)) {
 			this.dictionary.put(name, f);
+			return true;
 		}
-		else{
-			Fonction fbis = this.get(name);
-			if (fbis.getM_nbIn() == f.getM_nbIn() && 
-				fbis.getM_nbOut() == f.getM_nbOut() &&
-				fbis.getM_adressCode() == f.getM_adressCode()){
-				this.dictionary.clear();
-				return false;
-			}
-			else this.dictionary.put(name, f);
-		}
-		return true;
+		return false;
+		
 	}
 	
 	public void remove (String name){
@@ -60,8 +52,7 @@ public class FunDictionary {
 	
 	public boolean isPresent (String name, Fonction f){
 		Fonction fbis = this.dictionary.get(name);
-		
-		return fbis != null && fbis.egal(f);
+		return (fbis != null && fbis.egal(f));
 	}
 	public boolean isPresent (Fonction f){
 		return this.dictionary.containsValue(f);
