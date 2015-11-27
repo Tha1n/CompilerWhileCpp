@@ -32,6 +32,7 @@ public class FunDictionary {
 			this.dictionary.add(f);
 			return true;
 		}
+		this.dictionary.clear();
 		return false;
 		
 	}

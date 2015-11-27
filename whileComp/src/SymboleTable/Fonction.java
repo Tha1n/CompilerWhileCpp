@@ -23,6 +23,7 @@ public class Fonction {
 	
 	public Fonction(String name, int nbIn, int nbOut, String adressCode) {
 		super();
+		this.m_name = name;
 		this.m_nbIn = nbIn;
 		this.m_nbOut = nbOut;
 		this.m_adressCode = adressCode;

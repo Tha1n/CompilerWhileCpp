@@ -73,9 +73,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	 
 	 
 	 
-	def public Set<String> getFunctionsNames()
+	def public List<String> getFunctionsNames()
 	{
-		return dico.listFuncName.toSet
+		return dico.listFuncName.toList
 	}
 	
 	def public List<Fonction> getFunctions()
@@ -89,9 +89,9 @@ class PrettyPrinterGenerator implements IGenerator {
 	}
 	
 	
-	def public Set<String> getVariables(Fonction fn)
+	def public Set<String> getVariables(int fn)
 	{
-		return fn.listVarName.toSet
+		return dico.functions.get(fn).listVarName.toSet
 	} 
 	
 	
