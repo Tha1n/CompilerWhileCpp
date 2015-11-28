@@ -21,10 +21,10 @@ Vars: (varGen += VARIABLE',')* (varGen += VARIABLE); //varGen = variables géné
 terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'->'|'-'|'+'|'&'|'.'|'/'|'_')*;
 
 //Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
-Commands: (commande += Command)+;
+Commands: =>(commande += Command ';')*(commande += Command);
 //Permet de reconnaitre des chaines de la forme c1;c2
 //Les differentes commandes
-Command: ( nop ='nop' ';' | vars = Vars ':=' (exprs=Exprs) ';' | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
+Command: ( nop ='nop' | vars = Vars ':=' (exprs=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
 CommandWhile: (w='while'|'for') expr = Expr 'do' cmds = Commands 'od';
 CommandIf: 'if' cond = Expr 'then' cmdsThen = Commands ('else' (cmdsElse = Commands) )? 'fi';
 CommandForEach: 'foreach' elem = Expr 'in' ensemb = Expr 'do' cmds = Commands 'od';

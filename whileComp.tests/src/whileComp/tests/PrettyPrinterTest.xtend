@@ -239,8 +239,8 @@ read X
 	while X do 
 		n
 		op ;
-		Y := X ; 
-	od;
+		Y := X
+	od ;
 %
 write Y
 

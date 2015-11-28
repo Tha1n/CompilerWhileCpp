@@ -63,7 +63,7 @@ read X
 	Y:=nil ;
 	while X do 
 		nop ;
-		Y := X ;
+		Y := X
 	od
 %
 write Y''')
@@ -92,7 +92,7 @@ read X
 	Y:=nil ;
 	while X do 
 		nop ;
-		Y := X ;
+		Y := X
 	od
 %
 write Y
@@ -103,7 +103,7 @@ read X, P
 	Y:=nil ;
 	while X do 
 		nop ;
-		Y := X ;
+		Y := X
 	od
 %
 write Y''')
@@ -129,7 +129,7 @@ read X
 	Y:=nil ;
 	while X do 
 		nop ;
-		Y := X ;
+		Y := X
 	od
 %
 write Y
@@ -140,7 +140,7 @@ read X
 	Y:=nil ;
 	while X do 
 		nop ;
-		Y := X ;
+		Y := X
 	od
 %
 write Y''')
@@ -166,11 +166,11 @@ read X
 	if X then
 		Z:=nil ;
 		if Z then
-			M:=nil ;
+			M:=nil
 		fi
-	fi
+	fi ;
 	if X then
-		Z:=nil ;
+		Z:=nil
 	fi
 %
 write Y
