@@ -25,6 +25,7 @@ import java.time.LocalDateTime
 import java.time.Period
 import java.text.SimpleDateFormat
 import java.util.Date
+import java.util.ArrayList
 
 @InjectWith(WhileCppInjectorProvider)
 @RunWith(XtextRunner)
@@ -225,13 +226,23 @@ try {
 	
 	@Test
 	def void testL1() {
-		for(var i = 0; i < 10; i=i+1)
+		var elt = new ArrayList<Integer>();
+		elt.add(10000);
+		elt.add(100000);
+		elt.add(1000000);
+		elt.add(2000000);
+		elt.add(3000000);
+		elt.add(4000000);
+		elt.add(5000000);
+		elt.add(6000000);
+		
+		for(var i = 0; i < elt.size(); i=i+1)
 		{
 		var out = "out.wh"
 		try{
   			val fstream = new FileWriter(out)
   			val buff = new BufferedWriter(fstream)
-  			for(var j = 0; j < i+1; j+=1) {
+  			for(var j = 0; j < elt.get(i); j+=1) {
 buff.write('''function p:
 read X
 %
@@ -248,6 +259,7 @@ write Y
 
 }
   			buff.close()
+  			fstream.close();
   		}catch (Exception e){
   			println("Can't write " + out + " - Error: " + e.getMessage())
   		}
@@ -258,7 +270,63 @@ write Y
 	genToTest.generate("test.wh", "out.wh", map, 0)
 	val lEndTime = new Date().getTime();
 	val difference = lEndTime - lStartTime;
-	println("L" + i + " : " + difference)
+	println(elt.get(i) + " : " + difference)
+	}
+	}
+	
+	@Test
+	def void testarglen() {
+		var elt = new ArrayList<Integer>();
+		elt.add(10000);
+		elt.add(100000);
+		elt.add(1000000);
+		elt.add(2000000);
+		elt.add(3000000);
+		elt.add(4000000);
+		elt.add(5000000);
+		elt.add(6000000);
+		
+		for(var i = 0; i < elt.size(); i=i+1)
+		{
+		var out = "out.wh"
+		try{
+  			val fstream = new FileWriter(out)
+  			val buff = new BufferedWriter(fstream)
+  			buff.write('''function p:
+read ''')
+  			for(var j = 0; j < elt.get(i); j+=1) {
+				buff.write('X'+i+',')
+				
+			}
+				buff.write('''
+				%
+					nop	;
+					while X do 
+						n
+						op ;
+						Y := X
+					od ;
+				%
+				write ''')
+			
+  			for(var j = 0; j < elt.get(i); j+=1) {
+				buff.write('Y'+i+',')
+				
+			}
+			buff.write("\n\n")
+  			buff.close()
+  			fstream.close();
+  		}catch (Exception e){
+  			println("Can't write " + out + " - Error: " + e.getMessage())
+  		}
+	var map = new HashMap<String, Integer>()
+	map.put("All" ,2)
+	
+	val lStartTime = new Date().getTime();
+	genToTest.generate("test.wh", "out.wh", map, 0)
+	val lEndTime = new Date().getTime();
+	val difference = lEndTime - lStartTime;
+	println(elt.get(i) + " : " + difference)
 	}
 	}
 	
