@@ -33,7 +33,7 @@ Exprs: =>(expGen += Expr',')* (expGen += Expr);
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
 Expr: =>(exprSimp = ExprSimple) | (exprAnd = ExprAnd);
 ExprSimple: (nil = 'nil' | vari = VARIABLE | symb = SYMBOL ) |
-'(' (exprCons = 'cons') (exprConsAtt = Expr) ')' | '(' (exprList = 'list') (exprListAtt = Expr) ')' |
+'(' (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAtt2 = Expr) ')' | '(' (exprList = 'list') (exprListAtt1 = Expr) (exprListAtt2 = Expr)')' |
 '(' (exprHead = 'hd') (exprHeadAtt = Expr) ')' | '(' (exprTail = 'tl') (exprTailAtt = Expr) ')' |
 '(' (nomSymb = SYMBOL) (symbAtt = Expr) ')';
 ExprAnd: (exprOr = ExprOr) ((exprAnd = 'and') (exprAndAtt = ExprAnd))?;

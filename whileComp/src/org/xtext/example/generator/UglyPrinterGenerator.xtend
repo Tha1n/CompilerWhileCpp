@@ -99,8 +99,8 @@ class UglyPrinterGenerator implements IGenerator {
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null : "(cons " + ex.exprConsAtt.compile + ")"
-	 	case ex.exprList!=null : "(list "+ ex.exprListAtt.compile + ")"
+	 	case ex.exprCons!=null : "(cons " + ex.exprConsAtt1.compile + ex.exprConsAtt2.compile + ")"
+	 	case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile + ex.exprListAtt2.compile + ")"
 	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile + ")"
 	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile +")"
 	 	case ex.nomSymb!=null : "(" + ex.nomSymb + ex.symbAtt.compile + ")"}»'''
