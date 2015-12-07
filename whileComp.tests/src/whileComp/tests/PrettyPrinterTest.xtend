@@ -333,11 +333,11 @@ read ''')
 	def String GenerateWhile(Integer NbWhile) {
 		var result = "";
 		
-		for(var i = 0, i < NbWhile; i = i +1) {
+		for(var i = 0; i < NbWhile; i = i +1) {
 			result += "while X do\n";
 		}
 		result += "nop";
-		for(var i = 0, i < NbWhile; i += 1) {
+		for(var i = 0; i < NbWhile; i += 1) {
 			result += "\n od";
 		}
 		return result;
@@ -346,9 +346,14 @@ read ''')
 	@Test
 	def void testProfondeur() {
 		var elt = new ArrayList<Integer>();
-		elt.add(100);
-		elt.add(1000);
 		elt.add(10000);
+		elt.add(100000);
+		elt.add(1000000);
+		elt.add(2000000);
+		elt.add(3000000);
+		elt.add(4000000);
+		elt.add(5000000);
+		elt.add(6000000);
 		
 		for(var i = 0; i < elt.size(); i=i+1)
 		{
