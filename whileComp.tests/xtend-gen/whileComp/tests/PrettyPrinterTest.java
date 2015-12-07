@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
@@ -322,8 +323,17 @@ public class PrettyPrinterTest {
   }
   
   @Test
-  public void testL1() {
-    for (int i = 0; (i < 10); i = (i + 1)) {
+  public void testLongueur() {
+    ArrayList<Integer> elt = new ArrayList<Integer>();
+    elt.add(Integer.valueOf(10000));
+    elt.add(Integer.valueOf(100000));
+    elt.add(Integer.valueOf(1000000));
+    elt.add(Integer.valueOf(2000000));
+    elt.add(Integer.valueOf(3000000));
+    elt.add(Integer.valueOf(4000000));
+    elt.add(Integer.valueOf(5000000));
+    elt.add(Integer.valueOf(6000000));
+    for (int i = 0; (i < elt.size()); i = (i + 1)) {
       {
         String out = "out.wh";
         try {
@@ -331,7 +341,9 @@ public class PrettyPrinterTest {
           final BufferedWriter buff = new BufferedWriter(fstream);
           {
             int j = 0;
-            boolean _while = (j < (i + 1));
+            Integer _get = elt.get(i);
+            boolean _lessThan = (j < (_get).intValue());
+            boolean _while = _lessThan;
             while (_while) {
               StringConcatenation _builder = new StringConcatenation();
               _builder.append("function p:");
@@ -353,10 +365,10 @@ public class PrettyPrinterTest {
               _builder.append("op ;");
               _builder.newLine();
               _builder.append("\t\t");
-              _builder.append("Y := X ; ");
+              _builder.append("Y := X");
               _builder.newLine();
               _builder.append("\t");
-              _builder.append("od;");
+              _builder.append("od ;");
               _builder.newLine();
               _builder.append("%");
               _builder.newLine();
@@ -366,10 +378,13 @@ public class PrettyPrinterTest {
               buff.write(_builder.toString());
               int _j = j;
               j = (_j + 1);
-              _while = (j < (i + 1));
+              Integer _get_1 = elt.get(i);
+              boolean _lessThan_1 = (j < (_get_1).intValue());
+              _while = _lessThan_1;
             }
           }
           buff.close();
+          fstream.close();
         } catch (final Throwable _t) {
           if (_t instanceof Exception) {
             final Exception e = (Exception)_t;
@@ -388,7 +403,211 @@ public class PrettyPrinterTest {
         Date _date_1 = new Date();
         final long lEndTime = _date_1.getTime();
         final long difference = (lEndTime - lStartTime);
-        InputOutput.<String>println(((("L" + Integer.valueOf(i)) + " : ") + Long.valueOf(difference)));
+        Integer _get = elt.get(i);
+        String _plus_1 = (_get + " : ");
+        String _plus_2 = (_plus_1 + Long.valueOf(difference));
+        InputOutput.<String>println(_plus_2);
+      }
+    }
+  }
+  
+  @Test
+  public void testLargeur() {
+    ArrayList<Integer> elt = new ArrayList<Integer>();
+    elt.add(Integer.valueOf(10000));
+    elt.add(Integer.valueOf(100000));
+    elt.add(Integer.valueOf(1000000));
+    elt.add(Integer.valueOf(2000000));
+    elt.add(Integer.valueOf(3000000));
+    elt.add(Integer.valueOf(4000000));
+    elt.add(Integer.valueOf(5000000));
+    elt.add(Integer.valueOf(6000000));
+    for (int i = 0; (i < elt.size()); i = (i + 1)) {
+      {
+        String out = "out.wh";
+        try {
+          final FileWriter fstream = new FileWriter(out);
+          final BufferedWriter buff = new BufferedWriter(fstream);
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("function p:");
+          _builder.newLine();
+          _builder.append("read ");
+          buff.write(_builder.toString());
+          {
+            int j = 0;
+            Integer _get = elt.get(i);
+            boolean _lessThan = (j < (_get).intValue());
+            boolean _while = _lessThan;
+            while (_while) {
+              buff.write((("X" + Integer.valueOf(i)) + ","));
+              int _j = j;
+              j = (_j + 1);
+              Integer _get_1 = elt.get(i);
+              boolean _lessThan_1 = (j < (_get_1).intValue());
+              _while = _lessThan_1;
+            }
+          }
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("%");
+          _builder_1.newLine();
+          _builder_1.append("\t");
+          _builder_1.append("nop\t;");
+          _builder_1.newLine();
+          _builder_1.append("\t");
+          _builder_1.append("while X do ");
+          _builder_1.newLine();
+          _builder_1.append("\t\t");
+          _builder_1.append("n");
+          _builder_1.newLine();
+          _builder_1.append("\t\t");
+          _builder_1.append("op ;");
+          _builder_1.newLine();
+          _builder_1.append("\t\t");
+          _builder_1.append("Y := X");
+          _builder_1.newLine();
+          _builder_1.append("\t");
+          _builder_1.append("od ;");
+          _builder_1.newLine();
+          _builder_1.append("%");
+          _builder_1.newLine();
+          _builder_1.append("write ");
+          buff.write(_builder_1.toString());
+          {
+            int j = 0;
+            Integer _get = elt.get(i);
+            boolean _lessThan = (j < (_get).intValue());
+            boolean _while = _lessThan;
+            while (_while) {
+              buff.write((("Y" + Integer.valueOf(i)) + ","));
+              int _j = j;
+              j = (_j + 1);
+              Integer _get_1 = elt.get(i);
+              boolean _lessThan_1 = (j < (_get_1).intValue());
+              _while = _lessThan_1;
+            }
+          }
+          buff.write("\n\n");
+          buff.close();
+          fstream.close();
+        } catch (final Throwable _t) {
+          if (_t instanceof Exception) {
+            final Exception e = (Exception)_t;
+            String _message = e.getMessage();
+            String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+            InputOutput.<String>println(_plus);
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("All", Integer.valueOf(2));
+        Date _date = new Date();
+        final long lStartTime = _date.getTime();
+        this.genToTest.generate("test.wh", "out.wh", map, Integer.valueOf(0));
+        Date _date_1 = new Date();
+        final long lEndTime = _date_1.getTime();
+        final long difference = (lEndTime - lStartTime);
+        Integer _get = elt.get(i);
+        String _plus_1 = (_get + " : ");
+        String _plus_2 = (_plus_1 + Long.valueOf(difference));
+        InputOutput.<String>println(_plus_2);
+      }
+    }
+  }
+  
+  public String GenerateWhile(final Integer NbWhile) {
+    throw new Error("Unresolved compilation problems:"
+      + "\nmissing \';\' at \')\'"
+      + "\nmissing \';\' at \')\'"
+      + "\nType mismatch: cannot convert from int to boolean"
+      + "\nType mismatch: cannot convert from int to boolean"
+      + "\nThis expression is not allowed in this context, since it doesn\'t cause any side effects."
+      + "\nThis expression is not allowed in this context, since it doesn\'t cause any side effects.");
+  }
+  
+  @Test
+  public void testProfondeur() {
+    ArrayList<Integer> elt = new ArrayList<Integer>();
+    elt.add(Integer.valueOf(100));
+    elt.add(Integer.valueOf(1000));
+    elt.add(Integer.valueOf(10000));
+    for (int i = 0; (i < elt.size()); i = (i + 1)) {
+      {
+        String out = "out.wh";
+        try {
+          final FileWriter fstream = new FileWriter(out);
+          final BufferedWriter buff = new BufferedWriter(fstream);
+          StringConcatenation _builder = new StringConcatenation();
+          _builder.append("function p:");
+          _builder.newLine();
+          _builder.append("\t");
+          _builder.append("read ");
+          buff.write(_builder.toString());
+          {
+            int j = 0;
+            Integer _get = elt.get(i);
+            boolean _lessThan = (j < (_get).intValue());
+            boolean _while = _lessThan;
+            while (_while) {
+              buff.write((("X" + Integer.valueOf(i)) + ","));
+              int _j = j;
+              j = (_j + 1);
+              Integer _get_1 = elt.get(i);
+              boolean _lessThan_1 = (j < (_get_1).intValue());
+              _while = _lessThan_1;
+            }
+          }
+          StringConcatenation _builder_1 = new StringConcatenation();
+          _builder_1.append("%");
+          buff.write(_builder_1.toString());
+          Integer _get = elt.get(i);
+          String _GenerateWhile = this.GenerateWhile(_get);
+          buff.write(_GenerateWhile);
+          StringConcatenation _builder_2 = new StringConcatenation();
+          _builder_2.append("%");
+          _builder_2.newLine();
+          _builder_2.append("\t\t\t\t\t");
+          _builder_2.append("write ");
+          buff.write(_builder_2.toString());
+          {
+            int j = 0;
+            Integer _get_1 = elt.get(i);
+            boolean _lessThan = (j < (_get_1).intValue());
+            boolean _while = _lessThan;
+            while (_while) {
+              buff.write((("Y" + Integer.valueOf(i)) + ","));
+              int _j = j;
+              j = (_j + 1);
+              Integer _get_2 = elt.get(i);
+              boolean _lessThan_1 = (j < (_get_2).intValue());
+              _while = _lessThan_1;
+            }
+          }
+          buff.write("\n\n");
+          buff.close();
+          fstream.close();
+        } catch (final Throwable _t) {
+          if (_t instanceof Exception) {
+            final Exception e = (Exception)_t;
+            String _message = e.getMessage();
+            String _plus = ((("Can\'t write " + out) + " - Error: ") + _message);
+            InputOutput.<String>println(_plus);
+          } else {
+            throw Exceptions.sneakyThrow(_t);
+          }
+        }
+        HashMap<String, Integer> map = new HashMap<String, Integer>();
+        map.put("All", Integer.valueOf(2));
+        Date _date = new Date();
+        final long lStartTime = _date.getTime();
+        this.genToTest.generate("test.wh", "out.wh", map, Integer.valueOf(0));
+        Date _date_1 = new Date();
+        final long lEndTime = _date_1.getTime();
+        final long difference = (lEndTime - lStartTime);
+        Integer _get_1 = elt.get(i);
+        String _plus_1 = (_get_1 + " : ");
+        String _plus_2 = (_plus_1 + Long.valueOf(difference));
+        InputOutput.<String>println(_plus_2);
       }
     }
   }
