@@ -225,7 +225,7 @@ try {
 	
 	
 	@Test
-	def void testL1() {
+	def void testLongueur() {
 		var elt = new ArrayList<Integer>();
 		elt.add(10000);
 		elt.add(100000);
@@ -275,7 +275,7 @@ write Y
 	}
 	
 	@Test
-	def void testarglen() {
+	def void testLargeur() {
 		var elt = new ArrayList<Integer>();
 		elt.add(10000);
 		elt.add(100000);
@@ -328,6 +328,66 @@ read ''')
 	val difference = lEndTime - lStartTime;
 	println(elt.get(i) + " : " + difference)
 	}
+	}
+	
+	def String GenerateWhile(Integer NbWhile) {
+		var result = "";
+		
+		for(var i = 0, i < NbWhile; i = i +1) {
+			result += "while X do\n";
+		}
+		result += "nop";
+		for(var i = 0, i < NbWhile; i += 1) {
+			result += "\n od";
+		}
+		return result;
+	}
+	
+	@Test
+	def void testProfondeur() {
+		var elt = new ArrayList<Integer>();
+		elt.add(100);
+		elt.add(1000);
+		elt.add(10000);
+		
+		for(var i = 0; i < elt.size(); i=i+1)
+		{
+			var out = "out.wh"
+			try{
+	  			val fstream = new FileWriter(out)
+	  			val buff = new BufferedWriter(fstream)
+	  			buff.write('''function p:
+	read ''')
+	  			for(var j = 0; j < elt.get(i); j+=1) {
+					buff.write('X'+i+',')
+					
+				}
+					buff.write('''
+					%''');
+					
+					buff.write(GenerateWhile(elt.get(i)));
+					buff.write('''%
+					write ''');
+				
+	  			for(var j = 0; j < elt.get(i); j+=1) {
+					buff.write('Y'+i+',')
+				}
+				
+				buff.write("\n\n")
+	  			buff.close()
+	  			fstream.close();
+	  		}catch (Exception e){
+	  			println("Can't write " + out + " - Error: " + e.getMessage())
+	  		}
+		var map = new HashMap<String, Integer>()
+		map.put("All" ,2)
+		
+		val lStartTime = new Date().getTime();
+		genToTest.generate("test.wh", "out.wh", map, 0)
+		val lEndTime = new Date().getTime();
+		val difference = lEndTime - lStartTime;
+		println(elt.get(i) + " : " + difference)
+		}
 	}
 	
 	
