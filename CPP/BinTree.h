@@ -8,6 +8,7 @@ class BinTree
 public:
     //TODO operator=
         BinTree();
+        BinTree (const BinTree & bt);
         BinTree(std::string node);
         ~BinTree();
 
@@ -16,6 +17,10 @@ public:
         static BinTree* hd(BinTree* tree);
         static BinTree* tl(BinTree* tree);
         static bool toBool(BinTree* tree);
+
+        //surcharge opérateurs
+        BinTree operator =(BinTree const & other);
+        BinTree operator ==(BinTree const & other);
 
 private:
     std::string _node;
