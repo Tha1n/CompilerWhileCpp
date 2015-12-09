@@ -73,6 +73,97 @@ write Y''')
         
 	}
 	
+		@Test 
+	def void testCons()
+	{
+		val prog1 = parser.parse('''function t:
+read X
+%
+ Y:= (cons   nil   
+ (cons (cons  
+  nil nil)  
+   nil))
+%
+write Y''')
+		val prog2 = parser.parse('''function t:
+read X
+%
+ Y:=(cons nil (cons (cons nil nil) nil))
+%
+write Y''')
+        val fsaProg1 = new InMemoryFileSystemAccess()
+        val fsaProg2 = new InMemoryFileSystemAccess()
+        genToTest.doGenerate(prog1.eResource, fsaProg1)
+        genToTest.doGenerate(prog2.eResource, fsaProg2)
+        println(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        println(fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        assertTrue(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString == fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        
+	}
+	
+	@Test
+	def void testList()
+	{
+		val prog1 = parser.parse('''function t:
+read X
+%
+ Y:=(list a
+  (list b
+   c))
+%
+write Y''')
+		val prog2 = parser.parse('''function t:
+read X
+%
+ Y:=(list a (list b c))
+%
+write Y''')
+        val fsaProg1 = new InMemoryFileSystemAccess()
+        val fsaProg2 = new InMemoryFileSystemAccess()
+        genToTest.doGenerate(prog1.eResource, fsaProg1)
+        genToTest.doGenerate(prog2.eResource, fsaProg2)
+        println(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        println(fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        assertTrue(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString == fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        
+	}
+	
+		@Test
+	def void testHeadTail()
+	{
+		val prog1 = parser.parse('''function t:
+read X
+%
+ Y:=(hd 
+  (cons 
+  a 
+  b)
+  );
+  Z:=(tl
+   (list
+    (list
+     a
+      b)
+       c 
+       ))
+%
+write Y''')
+		val prog2 = parser.parse('''function t:
+read X
+%
+ Y:=(hd (cons a b));
+ Z:=(tl (list (list a b) c ))
+%
+write Y''')
+        val fsaProg1 = new InMemoryFileSystemAccess()
+        val fsaProg2 = new InMemoryFileSystemAccess()
+        genToTest.doGenerate(prog1.eResource, fsaProg1)
+        genToTest.doGenerate(prog2.eResource, fsaProg2)
+        println(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        println(fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        assertTrue(fsaProg1.allFiles.get("DEFAULT_OUTPUTPP.wh").toString == fsaProg2.allFiles.get("DEFAULT_OUTPUTPP.wh").toString)
+        
+	}
 	
 	@Test
 	def void testWhppCarre() {
