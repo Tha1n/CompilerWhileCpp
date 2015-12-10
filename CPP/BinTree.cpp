@@ -7,11 +7,11 @@ BinTree::BinTree()
     _right = NIL;
 }
 
-BinTree (const BinTree & bt)
+BinTree::BinTree (const BinTree & bt)
 {
-  this._node = bt._node;
-  this._left = bt._left;
-  this._right = bt._right;
+  this->_node = bt._node;
+  this->_left = bt._left;
+  this->_right = bt._right;
 }
 
 BinTree::BinTree(std::string node)
@@ -36,10 +36,7 @@ BinTree* BinTree::hd(BinTree* tree)
     if(isNIL(tree))
       return tree;
     else
-    {
-        this._left = tree;
-        return tree;
-    }
+        return tree->_left;
 }
 
 BinTree* BinTree::tl(BinTree* tree)
@@ -47,10 +44,15 @@ BinTree* BinTree::tl(BinTree* tree)
     if(isNIL(tree))
       return tree;
     else
-    {
-        this._right = tree;
-        return tree;
-    }
+        return tree->_right;
+}
+
+BinTree* BinTree::cons(BinTree* left, BinTree* right)
+{
+    BinTree* rtTree = new BinTree();
+    rtTree->_left = left;
+    rtTree->_right = right;
+    return rtTree;
 }
 
 bool BinTree::toBool(BinTree* tree)
@@ -60,24 +62,37 @@ bool BinTree::toBool(BinTree* tree)
     return true;
 }
 
-BinTree operator =(BinTree const & other)
+BinTree BinTree::operator =(BinTree const & other)
 {
-  //TODO
     if (this != &other)
     {
-      this._node = other._node;
-      this._left = other._left;
-      this._right = other._right;
+      this->_node = other._node;
+      this->_left = other._left;
+      this->_right = other._right;
     }
 
     return *this;
 }
 
-BinTree operator ==(BinTree const & a, BinTree const & b)
+bool BinTree::operator ==(BinTree const & other)
 {
   //Teste si a.m_heure == b.m_heure etc.
-   if (a._node == b._node && a._left == b._left && a._right == b._right)
+   if (this->_node == other._node && this->_left == other._left && this->_right == other._right)
        return true;
    else
        return false;
+}
+
+std::string BinTree::toString() const
+{
+    if(isNIL(this))
+        return "NIL";
+    else
+        return "[" + _node + "," + _left->toString() + "," + _right->toString() + "]";
+}
+
+std::ostream& operator <<(std::ostream& os, const BinTree& bT)
+{
+    os << bT.toString();
+    return os;
 }

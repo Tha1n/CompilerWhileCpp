@@ -2,11 +2,11 @@
 #define BINTREE_H
 
 #include <string>
+#include <iostream>
 
 class BinTree
 {
 public:
-    //TODO operator=
         BinTree();
         BinTree (const BinTree & bt);
         BinTree(std::string node);
@@ -16,13 +16,18 @@ public:
         static bool isNIL(const BinTree* tree);
         static BinTree* hd(BinTree* tree);
         static BinTree* tl(BinTree* tree);
+        static BinTree* cons(BinTree* left, BinTree* right);
         static bool toBool(BinTree* tree);
 
         //surcharge opérateurs
         BinTree operator =(BinTree const & other);
-        BinTree operator ==(BinTree const & other);
+        bool operator ==(BinTree const & other);
+
+        friend std::ostream& operator<<(std::ostream & out, const BinTree& bT);
 
 private:
+    std::string toString() const ;
+
     std::string _node;
     BinTree *_left;
     BinTree *_right;
