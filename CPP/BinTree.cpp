@@ -55,7 +55,7 @@ BinTree* BinTree::cons(BinTree* left, BinTree* right)
     return rtTree;
 }
 
-bool BinTree::toBool(BinTree* tree)
+bool BinTree::isTrue(BinTree* tree)
 {
     if(isNIL(tree))
       return false;
