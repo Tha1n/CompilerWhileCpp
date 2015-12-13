@@ -438,13 +438,10 @@ read ''')
 	def void testProfondeur() {
 		var elt = new ArrayList<Integer>();
 		elt.add(10000);
-		elt.add(100000);
-		elt.add(1000000);
-		elt.add(2000000);
-		elt.add(3000000);
-		elt.add(4000000);
-		elt.add(5000000);
-		elt.add(6000000);
+		elt.add(20000);
+		elt.add(30000);
+		elt.add(40000);
+		elt.add(50000);
 		
 		for(var i = 0; i < elt.size(); i=i+1)
 		{

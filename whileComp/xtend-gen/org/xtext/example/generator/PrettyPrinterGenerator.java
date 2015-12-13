@@ -329,6 +329,7 @@ public class PrettyPrinterGenerator implements IGenerator {
           int _minus = (_size - 1);
           boolean _notEquals = (_indexOf != _minus);
           if (_notEquals) {
+            _builder.append(" ;");
             _builder.newLineIfNotEmpty();
           }
         }
@@ -371,7 +372,7 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals) {
         _matched=true;
         CharSequence _indent = this.indent(indent);
-        _switchResult = (_indent + "nop ;");
+        _switchResult = (_indent + "nop");
       }
     }
     if (!_matched) {
@@ -410,8 +411,7 @@ public class PrettyPrinterGenerator implements IGenerator {
         String _plus = (_compile + " := ");
         Exprs _exprs_1 = c.getExprs();
         CharSequence _compile_1 = this.compile(_exprs_1, 0);
-        String _plus_1 = (_plus + _compile_1);
-        _switchResult = (_plus_1 + " ;");
+        _switchResult = (_plus + _compile_1);
       }
     }
     if (!_matched) {
@@ -629,10 +629,14 @@ public class PrettyPrinterGenerator implements IGenerator {
       boolean _notEquals_3 = (!Objects.equal(_exprCons, null));
       if (_notEquals_3) {
         _matched=true;
-        Expr _exprConsAtt = ex.getExprConsAtt();
-        Object _compile = this.compile(_exprConsAtt, 0);
+        Expr _exprConsAtt1 = ex.getExprConsAtt1();
+        Object _compile = this.compile(_exprConsAtt1, 0);
         String _plus = ("(cons " + _compile);
-        _switchResult = (_plus + ")");
+        String _plus_1 = (_plus + " ");
+        Expr _exprConsAtt2 = ex.getExprConsAtt2();
+        Object _compile_1 = this.compile(_exprConsAtt2, 0);
+        String _plus_2 = (_plus_1 + _compile_1);
+        _switchResult = (_plus_2 + ")");
       }
     }
     if (!_matched) {
@@ -640,10 +644,14 @@ public class PrettyPrinterGenerator implements IGenerator {
       boolean _notEquals_4 = (!Objects.equal(_exprList, null));
       if (_notEquals_4) {
         _matched=true;
-        Expr _exprListAtt = ex.getExprListAtt();
-        Object _compile_1 = this.compile(_exprListAtt, 0);
-        String _plus_1 = ("(list " + _compile_1);
-        _switchResult = (_plus_1 + ")");
+        Expr _exprListAtt1 = ex.getExprListAtt1();
+        Object _compile_2 = this.compile(_exprListAtt1, 0);
+        String _plus_3 = ("(list " + _compile_2);
+        String _plus_4 = (_plus_3 + " ");
+        Expr _exprListAtt2 = ex.getExprListAtt2();
+        Object _compile_3 = this.compile(_exprListAtt2, 0);
+        String _plus_5 = (_plus_4 + _compile_3);
+        _switchResult = (_plus_5 + ")");
       }
     }
     if (!_matched) {
@@ -652,9 +660,9 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_5) {
         _matched=true;
         Expr _exprHeadAtt = ex.getExprHeadAtt();
-        Object _compile_2 = this.compile(_exprHeadAtt, 0);
-        String _plus_2 = ("(hd " + _compile_2);
-        _switchResult = (_plus_2 + ")");
+        Object _compile_4 = this.compile(_exprHeadAtt, 0);
+        String _plus_6 = ("(hd " + _compile_4);
+        _switchResult = (_plus_6 + ")");
       }
     }
     if (!_matched) {
@@ -663,9 +671,9 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_6) {
         _matched=true;
         Expr _exprTailAtt = ex.getExprTailAtt();
-        Object _compile_3 = this.compile(_exprTailAtt, 0);
-        String _plus_3 = ("(tl " + _compile_3);
-        _switchResult = (_plus_3 + ")");
+        Object _compile_5 = this.compile(_exprTailAtt, 0);
+        String _plus_7 = ("(tl " + _compile_5);
+        _switchResult = (_plus_7 + ")");
       }
     }
     if (!_matched) {
@@ -674,11 +682,11 @@ public class PrettyPrinterGenerator implements IGenerator {
       if (_notEquals_7) {
         _matched=true;
         String _nomSymb_1 = ex.getNomSymb();
-        String _plus_4 = ("(" + _nomSymb_1);
+        String _plus_8 = ("(" + _nomSymb_1);
         Expr _symbAtt = ex.getSymbAtt();
-        Object _compile_4 = this.compile(_symbAtt, 0);
-        String _plus_5 = (_plus_4 + _compile_4);
-        _switchResult = (_plus_5 + ")");
+        Object _compile_6 = this.compile(_symbAtt, 0);
+        String _plus_9 = (_plus_8 + _compile_6);
+        _switchResult = (_plus_9 + ")");
       }
     }
     _builder.append(_switchResult, "");

@@ -155,7 +155,7 @@ public class WhileCppSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     commande+=Command+
+	 *     (commande+=Command* commande+=Command)
 	 */
 	protected void sequence_Commands(EObject context, Commands semanticObject) {
 		genericSequencer.createSequence(context, semanticObject);
@@ -226,8 +226,8 @@ public class WhileCppSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         nil='nil' | 
 	 *         vari=VARIABLE | 
 	 *         symb=SYMBOL | 
-	 *         (exprCons='cons' exprConsAtt=Expr) | 
-	 *         (exprList='list' exprListAtt=Expr) | 
+	 *         (exprCons='cons' exprConsAtt1=Expr exprConsAtt2=Expr) | 
+	 *         (exprList='list' exprListAtt1=Expr exprListAtt2=Expr) | 
 	 *         (exprHead='hd' exprHeadAtt=Expr) | 
 	 *         (exprTail='tl' exprTailAtt=Expr) | 
 	 *         (nomSymb=SYMBOL symbAtt=Expr)

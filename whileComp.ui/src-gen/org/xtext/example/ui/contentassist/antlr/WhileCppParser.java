@@ -51,7 +51,9 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOutputAccess().getGroup_0(), "rule__Output__Group_0__0");
 					put(grammarAccess.getVarsAccess().getGroup(), "rule__Vars__Group__0");
 					put(grammarAccess.getVarsAccess().getGroup_0(), "rule__Vars__Group_0__0");
-					put(grammarAccess.getCommandAccess().getGroup_0(), "rule__Command__Group_0__0");
+					put(grammarAccess.getCommandsAccess().getGroup(), "rule__Commands__Group__0");
+					put(grammarAccess.getCommandsAccess().getGroup_0(), "rule__Commands__Group_0__0");
+					put(grammarAccess.getCommandsAccess().getGroup_0_0(), "rule__Commands__Group_0_0__0");
 					put(grammarAccess.getCommandAccess().getGroup_1(), "rule__Command__Group_1__0");
 					put(grammarAccess.getCommandWhileAccess().getGroup(), "rule__CommandWhile__Group__0");
 					put(grammarAccess.getCommandIfAccess().getGroup(), "rule__CommandIf__Group__0");
@@ -85,8 +87,9 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getOutputAccess().getVarOutAssignment_1(), "rule__Output__VarOutAssignment_1");
 					put(grammarAccess.getVarsAccess().getVarGenAssignment_0_0(), "rule__Vars__VarGenAssignment_0_0");
 					put(grammarAccess.getVarsAccess().getVarGenAssignment_1(), "rule__Vars__VarGenAssignment_1");
-					put(grammarAccess.getCommandsAccess().getCommandeAssignment(), "rule__Commands__CommandeAssignment");
-					put(grammarAccess.getCommandAccess().getNopAssignment_0_0(), "rule__Command__NopAssignment_0_0");
+					put(grammarAccess.getCommandsAccess().getCommandeAssignment_0_0_0(), "rule__Commands__CommandeAssignment_0_0_0");
+					put(grammarAccess.getCommandsAccess().getCommandeAssignment_1(), "rule__Commands__CommandeAssignment_1");
+					put(grammarAccess.getCommandAccess().getNopAssignment_0(), "rule__Command__NopAssignment_0");
 					put(grammarAccess.getCommandAccess().getVarsAssignment_1_0(), "rule__Command__VarsAssignment_1_0");
 					put(grammarAccess.getCommandAccess().getExprsAssignment_1_2(), "rule__Command__ExprsAssignment_1_2");
 					put(grammarAccess.getCommandAccess().getCmdWhileAssignment_2(), "rule__Command__CmdWhileAssignment_2");
@@ -109,9 +112,11 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprSimpleAccess().getVariAssignment_0_1(), "rule__ExprSimple__VariAssignment_0_1");
 					put(grammarAccess.getExprSimpleAccess().getSymbAssignment_0_2(), "rule__ExprSimple__SymbAssignment_0_2");
 					put(grammarAccess.getExprSimpleAccess().getExprConsAssignment_1_1(), "rule__ExprSimple__ExprConsAssignment_1_1");
-					put(grammarAccess.getExprSimpleAccess().getExprConsAttAssignment_1_2(), "rule__ExprSimple__ExprConsAttAssignment_1_2");
+					put(grammarAccess.getExprSimpleAccess().getExprConsAtt1Assignment_1_2(), "rule__ExprSimple__ExprConsAtt1Assignment_1_2");
+					put(grammarAccess.getExprSimpleAccess().getExprConsAtt2Assignment_1_3(), "rule__ExprSimple__ExprConsAtt2Assignment_1_3");
 					put(grammarAccess.getExprSimpleAccess().getExprListAssignment_2_1(), "rule__ExprSimple__ExprListAssignment_2_1");
-					put(grammarAccess.getExprSimpleAccess().getExprListAttAssignment_2_2(), "rule__ExprSimple__ExprListAttAssignment_2_2");
+					put(grammarAccess.getExprSimpleAccess().getExprListAtt1Assignment_2_2(), "rule__ExprSimple__ExprListAtt1Assignment_2_2");
+					put(grammarAccess.getExprSimpleAccess().getExprListAtt2Assignment_2_3(), "rule__ExprSimple__ExprListAtt2Assignment_2_3");
 					put(grammarAccess.getExprSimpleAccess().getExprHeadAssignment_3_1(), "rule__ExprSimple__ExprHeadAssignment_3_1");
 					put(grammarAccess.getExprSimpleAccess().getExprHeadAttAssignment_3_2(), "rule__ExprSimple__ExprHeadAttAssignment_3_2");
 					put(grammarAccess.getExprSimpleAccess().getExprTailAssignment_4_1(), "rule__ExprSimple__ExprTailAssignment_4_1");

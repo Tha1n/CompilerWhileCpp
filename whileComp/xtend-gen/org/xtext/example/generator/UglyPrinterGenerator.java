@@ -433,10 +433,13 @@ public class UglyPrinterGenerator implements IGenerator {
       boolean _notEquals_3 = (!Objects.equal(_exprCons, null));
       if (_notEquals_3) {
         _matched=true;
-        Expr _exprConsAtt = ex.getExprConsAtt();
-        Object _compile = this.compile(_exprConsAtt);
+        Expr _exprConsAtt1 = ex.getExprConsAtt1();
+        Object _compile = this.compile(_exprConsAtt1);
         String _plus = ("(cons " + _compile);
-        _switchResult = (_plus + ")");
+        Expr _exprConsAtt2 = ex.getExprConsAtt2();
+        Object _compile_1 = this.compile(_exprConsAtt2);
+        String _plus_1 = (_plus + _compile_1);
+        _switchResult = (_plus_1 + ")");
       }
     }
     if (!_matched) {
@@ -444,10 +447,13 @@ public class UglyPrinterGenerator implements IGenerator {
       boolean _notEquals_4 = (!Objects.equal(_exprList, null));
       if (_notEquals_4) {
         _matched=true;
-        Expr _exprListAtt = ex.getExprListAtt();
-        Object _compile_1 = this.compile(_exprListAtt);
-        String _plus_1 = ("(list " + _compile_1);
-        _switchResult = (_plus_1 + ")");
+        Expr _exprListAtt1 = ex.getExprListAtt1();
+        Object _compile_2 = this.compile(_exprListAtt1);
+        String _plus_2 = ("(list " + _compile_2);
+        Expr _exprListAtt2 = ex.getExprListAtt2();
+        Object _compile_3 = this.compile(_exprListAtt2);
+        String _plus_3 = (_plus_2 + _compile_3);
+        _switchResult = (_plus_3 + ")");
       }
     }
     if (!_matched) {
@@ -456,9 +462,9 @@ public class UglyPrinterGenerator implements IGenerator {
       if (_notEquals_5) {
         _matched=true;
         Expr _exprHeadAtt = ex.getExprHeadAtt();
-        Object _compile_2 = this.compile(_exprHeadAtt);
-        String _plus_2 = ("(hd " + _compile_2);
-        _switchResult = (_plus_2 + ")");
+        Object _compile_4 = this.compile(_exprHeadAtt);
+        String _plus_4 = ("(hd " + _compile_4);
+        _switchResult = (_plus_4 + ")");
       }
     }
     if (!_matched) {
@@ -467,9 +473,9 @@ public class UglyPrinterGenerator implements IGenerator {
       if (_notEquals_6) {
         _matched=true;
         Expr _exprTailAtt = ex.getExprTailAtt();
-        Object _compile_3 = this.compile(_exprTailAtt);
-        String _plus_3 = ("(tl " + _compile_3);
-        _switchResult = (_plus_3 + ")");
+        Object _compile_5 = this.compile(_exprTailAtt);
+        String _plus_5 = ("(tl " + _compile_5);
+        _switchResult = (_plus_5 + ")");
       }
     }
     if (!_matched) {
@@ -478,11 +484,11 @@ public class UglyPrinterGenerator implements IGenerator {
       if (_notEquals_7) {
         _matched=true;
         String _nomSymb_1 = ex.getNomSymb();
-        String _plus_4 = ("(" + _nomSymb_1);
+        String _plus_6 = ("(" + _nomSymb_1);
         Expr _symbAtt = ex.getSymbAtt();
-        Object _compile_4 = this.compile(_symbAtt);
-        String _plus_5 = (_plus_4 + _compile_4);
-        _switchResult = (_plus_5 + ")");
+        Object _compile_6 = this.compile(_symbAtt);
+        String _plus_7 = (_plus_6 + _compile_6);
+        _switchResult = (_plus_7 + ")");
       }
     }
     _builder.append(_switchResult, "");

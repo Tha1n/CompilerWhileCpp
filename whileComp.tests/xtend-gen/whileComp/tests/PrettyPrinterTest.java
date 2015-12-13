@@ -120,6 +120,231 @@ public class PrettyPrinterTest {
   }
   
   @Test
+  public void testCons() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("function t:");
+      _builder.newLine();
+      _builder.append("read X");
+      _builder.newLine();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append(" ");
+      _builder.append("Y:= (cons   nil   ");
+      _builder.newLine();
+      _builder.append(" ");
+      _builder.append("(cons (cons  ");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("nil nil)  ");
+      _builder.newLine();
+      _builder.append("   ");
+      _builder.append("nil))");
+      _builder.newLine();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append("write Y");
+      final Program prog1 = this.parser.parse(_builder);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("function t:");
+      _builder_1.newLine();
+      _builder_1.append("read X");
+      _builder_1.newLine();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append(" ");
+      _builder_1.append("Y:=(cons nil (cons (cons nil nil) nil))");
+      _builder_1.newLine();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append("write Y");
+      final Program prog2 = this.parser.parse(_builder_1);
+      final InMemoryFileSystemAccess fsaProg1 = new InMemoryFileSystemAccess();
+      final InMemoryFileSystemAccess fsaProg2 = new InMemoryFileSystemAccess();
+      Resource _eResource = prog1.eResource();
+      this.genToTest.doGenerate(_eResource, fsaProg1);
+      Resource _eResource_1 = prog2.eResource();
+      this.genToTest.doGenerate(_eResource_1, fsaProg2);
+      Map<String, Object> _allFiles = fsaProg1.getAllFiles();
+      Object _get = _allFiles.get("DEFAULT_OUTPUTPP.wh");
+      String _string = _get.toString();
+      InputOutput.<String>println(_string);
+      Map<String, Object> _allFiles_1 = fsaProg2.getAllFiles();
+      Object _get_1 = _allFiles_1.get("DEFAULT_OUTPUTPP.wh");
+      String _string_1 = _get_1.toString();
+      InputOutput.<String>println(_string_1);
+      Map<String, Object> _allFiles_2 = fsaProg1.getAllFiles();
+      Object _get_2 = _allFiles_2.get("DEFAULT_OUTPUTPP.wh");
+      String _string_2 = _get_2.toString();
+      Map<String, Object> _allFiles_3 = fsaProg2.getAllFiles();
+      Object _get_3 = _allFiles_3.get("DEFAULT_OUTPUTPP.wh");
+      String _string_3 = _get_3.toString();
+      boolean _equals = Objects.equal(_string_2, _string_3);
+      Assert.assertTrue(_equals);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testList() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("function t:");
+      _builder.newLine();
+      _builder.append("read X");
+      _builder.newLine();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append(" ");
+      _builder.append("Y:=(list a");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("(list b");
+      _builder.newLine();
+      _builder.append("   ");
+      _builder.append("c))");
+      _builder.newLine();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append("write Y");
+      final Program prog1 = this.parser.parse(_builder);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("function t:");
+      _builder_1.newLine();
+      _builder_1.append("read X");
+      _builder_1.newLine();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append(" ");
+      _builder_1.append("Y:=(list a (list b c))");
+      _builder_1.newLine();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append("write Y");
+      final Program prog2 = this.parser.parse(_builder_1);
+      final InMemoryFileSystemAccess fsaProg1 = new InMemoryFileSystemAccess();
+      final InMemoryFileSystemAccess fsaProg2 = new InMemoryFileSystemAccess();
+      Resource _eResource = prog1.eResource();
+      this.genToTest.doGenerate(_eResource, fsaProg1);
+      Resource _eResource_1 = prog2.eResource();
+      this.genToTest.doGenerate(_eResource_1, fsaProg2);
+      Map<String, Object> _allFiles = fsaProg1.getAllFiles();
+      Object _get = _allFiles.get("DEFAULT_OUTPUTPP.wh");
+      String _string = _get.toString();
+      InputOutput.<String>println(_string);
+      Map<String, Object> _allFiles_1 = fsaProg2.getAllFiles();
+      Object _get_1 = _allFiles_1.get("DEFAULT_OUTPUTPP.wh");
+      String _string_1 = _get_1.toString();
+      InputOutput.<String>println(_string_1);
+      Map<String, Object> _allFiles_2 = fsaProg1.getAllFiles();
+      Object _get_2 = _allFiles_2.get("DEFAULT_OUTPUTPP.wh");
+      String _string_2 = _get_2.toString();
+      Map<String, Object> _allFiles_3 = fsaProg2.getAllFiles();
+      Object _get_3 = _allFiles_3.get("DEFAULT_OUTPUTPP.wh");
+      String _string_3 = _get_3.toString();
+      boolean _equals = Objects.equal(_string_2, _string_3);
+      Assert.assertTrue(_equals);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
+  public void testHeadTail() {
+    try {
+      StringConcatenation _builder = new StringConcatenation();
+      _builder.append("function t:");
+      _builder.newLine();
+      _builder.append("read X");
+      _builder.newLine();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append(" ");
+      _builder.append("Y:=(hd ");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("(cons ");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("a ");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("b)");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append(");");
+      _builder.newLine();
+      _builder.append("  ");
+      _builder.append("Z:=(tl");
+      _builder.newLine();
+      _builder.append("   ");
+      _builder.append("(list");
+      _builder.newLine();
+      _builder.append("    ");
+      _builder.append("(list");
+      _builder.newLine();
+      _builder.append("     ");
+      _builder.append("a");
+      _builder.newLine();
+      _builder.append("      ");
+      _builder.append("b)");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("c ");
+      _builder.newLine();
+      _builder.append("       ");
+      _builder.append("))");
+      _builder.newLine();
+      _builder.append("%");
+      _builder.newLine();
+      _builder.append("write Y");
+      final Program prog1 = this.parser.parse(_builder);
+      StringConcatenation _builder_1 = new StringConcatenation();
+      _builder_1.append("function t:");
+      _builder_1.newLine();
+      _builder_1.append("read X");
+      _builder_1.newLine();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append(" ");
+      _builder_1.append("Y:=(hd (cons a b));");
+      _builder_1.newLine();
+      _builder_1.append(" ");
+      _builder_1.append("Z:=(tl (list (list a b) c ))");
+      _builder_1.newLine();
+      _builder_1.append("%");
+      _builder_1.newLine();
+      _builder_1.append("write Y");
+      final Program prog2 = this.parser.parse(_builder_1);
+      final InMemoryFileSystemAccess fsaProg1 = new InMemoryFileSystemAccess();
+      final InMemoryFileSystemAccess fsaProg2 = new InMemoryFileSystemAccess();
+      Resource _eResource = prog1.eResource();
+      this.genToTest.doGenerate(_eResource, fsaProg1);
+      Resource _eResource_1 = prog2.eResource();
+      this.genToTest.doGenerate(_eResource_1, fsaProg2);
+      Map<String, Object> _allFiles = fsaProg1.getAllFiles();
+      Object _get = _allFiles.get("DEFAULT_OUTPUTPP.wh");
+      String _string = _get.toString();
+      InputOutput.<String>println(_string);
+      Map<String, Object> _allFiles_1 = fsaProg2.getAllFiles();
+      Object _get_1 = _allFiles_1.get("DEFAULT_OUTPUTPP.wh");
+      String _string_1 = _get_1.toString();
+      InputOutput.<String>println(_string_1);
+      Map<String, Object> _allFiles_2 = fsaProg1.getAllFiles();
+      Object _get_2 = _allFiles_2.get("DEFAULT_OUTPUTPP.wh");
+      String _string_2 = _get_2.toString();
+      Map<String, Object> _allFiles_3 = fsaProg2.getAllFiles();
+      Object _get_3 = _allFiles_3.get("DEFAULT_OUTPUTPP.wh");
+      String _string_3 = _get_3.toString();
+      boolean _equals = Objects.equal(_string_2, _string_3);
+      Assert.assertTrue(_equals);
+    } catch (Throwable _e) {
+      throw Exceptions.sneakyThrow(_e);
+    }
+  }
+  
+  @Test
   public void testWhppCarre() {
     try {
       String out = "out.wh";
@@ -516,21 +741,35 @@ public class PrettyPrinterTest {
   }
   
   public String GenerateWhile(final Integer NbWhile) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nmissing \';\' at \')\'"
-      + "\nmissing \';\' at \')\'"
-      + "\nType mismatch: cannot convert from int to boolean"
-      + "\nType mismatch: cannot convert from int to boolean"
-      + "\nThis expression is not allowed in this context, since it doesn\'t cause any side effects."
-      + "\nThis expression is not allowed in this context, since it doesn\'t cause any side effects.");
+    String result = "";
+    for (int i = 0; (i < (NbWhile).intValue()); i = (i + 1)) {
+      String _result = result;
+      result = (_result + "while X do\n");
+    }
+    String _result = result;
+    result = (_result + "nop");
+    {
+      int i = 0;
+      boolean _while = (i < (NbWhile).intValue());
+      while (_while) {
+        String _result_1 = result;
+        result = (_result_1 + "\n od");
+        int _i = i;
+        i = (_i + 1);
+        _while = (i < (NbWhile).intValue());
+      }
+    }
+    return result;
   }
   
   @Test
   public void testProfondeur() {
     ArrayList<Integer> elt = new ArrayList<Integer>();
-    elt.add(Integer.valueOf(100));
-    elt.add(Integer.valueOf(1000));
     elt.add(Integer.valueOf(10000));
+    elt.add(Integer.valueOf(20000));
+    elt.add(Integer.valueOf(30000));
+    elt.add(Integer.valueOf(40000));
+    elt.add(Integer.valueOf(50000));
     for (int i = 0; (i < elt.size()); i = (i + 1)) {
       {
         String out = "out.wh";
