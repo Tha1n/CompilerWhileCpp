@@ -1,7 +1,5 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
-import java.util.HashMap;
-import java.util.Map;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -10,15 +8,9 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
-import org.xtext.example.generator.PrettyPrinterGenerator;
 
 public class Whc {
 	
-	private static PrettyPrinterGenerator generator;
-	//A map which contains the defined indentation
-	private static Map<String, Integer> indentMap;
-	//undefined: <=0 else > 0 
-	private static Integer pageWidth;
 	//"":stdout else the output file
 	private static String outFile;
 	//input program to String
@@ -26,6 +18,7 @@ public class Whc {
 
 	public static void main(String[] parameters) {
 
+		System.out.println("Main");
 		outFile = "";
 		inputProg = "";
 
@@ -35,7 +28,7 @@ public class Whc {
 		//input file
 		Option option_In = OptionBuilder.withDescription("").create(Resources.OPT_IN);
 		//help
-		Option option_Help = OptionBuilder.withArgName(Resources.OPT_HELP).hasArg().withDescription("").create(Resources.OPT_HELP);
+		Option option_Help = OptionBuilder.withArgName(Resources.OPT_HELP).create(Resources.OPT_HELP);
 
 		//Add options
 		Options options = new Options();
@@ -63,7 +56,7 @@ public class Whc {
 			if (commandLine.hasOption("help"))
 			{
 				try {
-					FileReader fileReader = new FileReader("../documentation/man.md");
+					FileReader fileReader = new FileReader("../documentation/WHILETOCPP.md");
 
 					BufferedReader bufferedReader = new BufferedReader(fileReader);
 					String line;
