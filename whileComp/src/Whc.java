@@ -1,5 +1,6 @@
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.util.List;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -8,9 +9,20 @@ import org.apache.commons.cli.Option;
 import org.apache.commons.cli.OptionBuilder;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.xtext.example.generator.CppGenerator;
+import org.xtext.example.generator.ThreeAddGenerator;
+
+import SymboleTable.FunDictionary;
+import SymboleTable.Quadruplet;
 
 public class Whc {
 	
+	//Table des codes 3A
+	private static FunDictionary tab3A;	
+	//Generator While -> 3 Adresses
+	private static ThreeAddGenerator gen3A;
+	//Generator 3A -> C++
+	private static CppGenerator genCpp;
 	//"":stdout else the output file
 	private static String outFile;
 	//input program to String
@@ -82,7 +94,8 @@ public class Whc {
 	}
 
 	private static void callCppCompiler() {
-		//TODO
+		if(inputProg != null && !inputProg.isEmpty())
+		    gen3A.generate(inputProg, tab3A);
 	}
 
 }
