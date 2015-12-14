@@ -1,5 +1,5 @@
-function p:
-read X
+function Pm:
+read x
 %
 	nop	;
 	while X do 

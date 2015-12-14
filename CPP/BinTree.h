@@ -17,7 +17,7 @@ public:
         static BinTree* hd(BinTree* tree);
         static BinTree* tl(BinTree* tree);
         static BinTree* cons(BinTree* left, BinTree* right);
-        static bool toBool(BinTree* tree);
+        static bool isTrue(BinTree* tree);
 
         //surcharge opérateurs
         BinTree operator =(BinTree const & other);

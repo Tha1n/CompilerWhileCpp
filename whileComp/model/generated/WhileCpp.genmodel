@@ -66,9 +66,11 @@
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/vari"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/symb"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprCons"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprConsAtt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprConsAtt1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprConsAtt2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprList"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprListAtt"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprListAtt1"/>
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprListAtt2"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprHead"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ExprSimple/exprHeadAtt"/>
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//ExprSimple/exprTail"/>

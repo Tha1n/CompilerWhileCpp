@@ -8,6 +8,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.xtext.example.generator.PrettyPrinterGenerator;
+import org.xtext.example.generator.ThreeAddGenerator;
 import org.xtext.example.generator.UglyPrinterGenerator;
 
 /**
@@ -23,9 +24,13 @@ public class WhileCppGenerator implements IGenerator {
   @Inject
   private UglyPrinterGenerator UglyGen;
   
+  @Inject
+  private ThreeAddGenerator ThreeAddGen;
+  
   @Override
   public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
     this.PrettyGen.doGenerate(input, fsa);
     this.UglyGen.doGenerate(input, fsa);
+    this.ThreeAddGen.doGenerate(input, fsa);
   }
 }

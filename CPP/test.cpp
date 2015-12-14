@@ -22,10 +22,10 @@ int main()
  if(BinTree::isNIL(BinTree::hd(t)))
       printf("hd(NIL) = NIL\n");
 
- if(!BinTree::toBool(t))
+ if(!BinTree::isTrue(t))
      printf("NIL = false\n");
 
- if(BinTree::toBool(test))
+ if(BinTree::isTrue(test))
       printf("!NIL = true\n");
 
   return 0;

@@ -692,7 +692,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprSimple_ExprConsAtt()
+  public EReference getExprSimple_ExprConsAtt1()
   {
     return (EReference)exprSimpleEClass.getEStructuralFeatures().get(4);
   }
@@ -702,9 +702,19 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
+  public EReference getExprSimple_ExprConsAtt2()
+  {
+    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(5);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EAttribute getExprSimple_ExprList()
   {
-    return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(5);
+    return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(6);
   }
 
   /**
@@ -712,9 +722,9 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprSimple_ExprListAtt()
+  public EReference getExprSimple_ExprListAtt1()
   {
-    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(6);
+    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(7);
   }
 
   /**
@@ -722,17 +732,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExprSimple_ExprHead()
-  {
-    return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(7);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getExprSimple_ExprHeadAtt()
+  public EReference getExprSimple_ExprListAtt2()
   {
     return (EReference)exprSimpleEClass.getEStructuralFeatures().get(8);
   }
@@ -742,7 +742,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExprSimple_ExprTail()
+  public EAttribute getExprSimple_ExprHead()
   {
     return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(9);
   }
@@ -752,7 +752,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprSimple_ExprTailAtt()
+  public EReference getExprSimple_ExprHeadAtt()
   {
     return (EReference)exprSimpleEClass.getEStructuralFeatures().get(10);
   }
@@ -762,7 +762,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EAttribute getExprSimple_NomSymb()
+  public EAttribute getExprSimple_ExprTail()
   {
     return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(11);
   }
@@ -772,9 +772,29 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getExprSimple_SymbAtt()
+  public EReference getExprSimple_ExprTailAtt()
   {
     return (EReference)exprSimpleEClass.getEStructuralFeatures().get(12);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EAttribute getExprSimple_NomSymb()
+  {
+    return (EAttribute)exprSimpleEClass.getEStructuralFeatures().get(13);
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public EReference getExprSimple_SymbAtt()
+  {
+    return (EReference)exprSimpleEClass.getEStructuralFeatures().get(14);
   }
 
   /**
@@ -1016,9 +1036,11 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__VARI);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__SYMB);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__EXPR_CONS);
-    createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_CONS_ATT);
+    createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_CONS_ATT1);
+    createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_CONS_ATT2);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__EXPR_LIST);
-    createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_LIST_ATT);
+    createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_LIST_ATT1);
+    createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_LIST_ATT2);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__EXPR_HEAD);
     createEReference(exprSimpleEClass, EXPR_SIMPLE__EXPR_HEAD_ATT);
     createEAttribute(exprSimpleEClass, EXPR_SIMPLE__EXPR_TAIL);
@@ -1136,9 +1158,11 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
     initEAttribute(getExprSimple_Vari(), ecorePackage.getEString(), "vari", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_Symb(), ecorePackage.getEString(), "symb", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_ExprCons(), ecorePackage.getEString(), "exprCons", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprSimple_ExprConsAtt(), this.getExpr(), null, "exprConsAtt", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprSimple_ExprConsAtt1(), this.getExpr(), null, "exprConsAtt1", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprSimple_ExprConsAtt2(), this.getExpr(), null, "exprConsAtt2", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_ExprList(), ecorePackage.getEString(), "exprList", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getExprSimple_ExprListAtt(), this.getExpr(), null, "exprListAtt", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprSimple_ExprListAtt1(), this.getExpr(), null, "exprListAtt1", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getExprSimple_ExprListAtt2(), this.getExpr(), null, "exprListAtt2", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_ExprHead(), ecorePackage.getEString(), "exprHead", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEReference(getExprSimple_ExprHeadAtt(), this.getExpr(), null, "exprHeadAtt", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
     initEAttribute(getExprSimple_ExprTail(), ecorePackage.getEString(), "exprTail", null, 0, 1, ExprSimple.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
