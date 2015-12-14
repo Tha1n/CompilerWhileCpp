@@ -16,6 +16,7 @@ public class Fonction {
 	private int m_nbOut;
 	private String m_adressCode;
 	private ArrayList<Variable> m_varList;
+	private ArrayList<Quadruplet> m_quadList;
 	
 	//adresse donnée à la variable
 	private String VAR_INTERN = "intern";
@@ -28,6 +29,7 @@ public class Fonction {
 		this.m_nbOut = nbOut;
 		this.m_adressCode = adressCode;
 		this.m_varList = new ArrayList<Variable>();
+		this.m_quadList = new ArrayList<Quadruplet>();
 	}
 
 	public String getM_name() {
@@ -137,5 +139,16 @@ public class Fonction {
 			retour.add(val.getM_name());
 		}
 		return retour;
+	}
+
+	public ArrayList<Quadruplet> getM_quadList() {
+		return m_quadList;
+	}
+
+	public void setM_quadList(ArrayList<Quadruplet> m_quadList) {
+		this.m_quadList = m_quadList;
+	}
+	public void add(Quadruplet q) {
+		m_quadList.add(q);
 	}
 }

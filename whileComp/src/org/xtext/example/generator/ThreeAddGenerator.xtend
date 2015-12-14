@@ -36,6 +36,7 @@ import SymboleTable.Variable
 import SymboleTable.FunDictionary
 import java.util.Set
 import java.util.List
+import SymboleTable.Quadruplet
 
 /**
  * Generates code from your model files on save.
@@ -50,7 +51,6 @@ class ThreeAddGenerator implements IGenerator {
 	int ibif = 1
 	int ibforeach = 1
 	int ibwhile = 1
-	 
 	 
 	def public List<String> getFunctionsNames()
 	{
@@ -73,7 +73,13 @@ class ThreeAddGenerator implements IGenerator {
 		return dico.functions.get(fn).listVarName.toSet
 	} 
 	
-	
+	def public void print3a(){
+		for(Fonction f : dico.functions){
+			for(Quadruplet q : f.m_quadList){
+				println(q.toString());
+			}
+		}
+	}
 	
 	def void parseMap(Map<String, Integer> indent)
 	{
@@ -137,14 +143,14 @@ class ThreeAddGenerator implements IGenerator {
 	def compile (Program p, int indent)
 '''«indent(indent)»«FOR f: p.fonctions»
 «f.compile(indent)»
-«indent(indent)»«ENDFOR»'''
+«indent(indent)»«ENDFOR»
+«print3a()»'''
 	
 	
 
 	
 	def compile (Function f, int indent)
-'''<function, «f.nom», _, _>
-«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
+'''«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
 «IF dico.putFunction(newF)»
 «f.definition.compile(indent, newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
@@ -152,25 +158,22 @@ class ThreeAddGenerator implements IGenerator {
 '''
 	
 	def compile (Definition d, int indent, Fonction f)
-	'''«indent(indent)»read «d.inputs.compile(0, f)»
-<%,_,_,_>
+	'''«indent(indent)»«d.inputs.compile(0, f)»
 «d.commandes.compile(indent+1, f)»
-<%,_,_,_>
-«indent(indent)»write «d.outputs.compile(0, f)»'''
+«indent(indent)»«d.outputs.compile(0, f)»'''
 	
 	def compile (Input i, int indent, Fonction f)
-	'''«indent(indent)»«FOR in : i.varIn»«in»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
+	'''«indent(indent)»«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 	
 	def compile (Commands c, int indent, Fonction f)
-	'''«FOR cm: c.commande»«cm.compile(indent, f)»«IF c.commande.indexOf(cm)!=c.commande.size-1» ;
-«ENDIF»«ENDFOR»'''
+	'''«FOR cm: c.commande»«cm.compile(indent, f)»«ENDFOR»'''
 		
 	def compile (Output o, int indent, Fonction f)
-	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
+	'''«indent(indent)»«FOR in : o.varOut»«ENDFOR»'''
 	
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
-	case c.nop!=null : "<nop,_,_,_>"
+	case c.nop!=null : dico.getFunctions().get(0).add(new Quadruplet("nop","_","_","_"))
 	case c.cmdIf!=null : c.cmdIf.compile(indent, f)
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
 	case c.vars!=null && c.exprs!=null : c.vars.compile(indent, f) + " := " + c.exprs.compile(0)
@@ -183,28 +186,27 @@ class ThreeAddGenerator implements IGenerator {
 
 	
 	def compile(CommandWhile c, int indent, Fonction f)
-'''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile(0)» do
-«c.cmds.compile(indent+ibwhile, f)»
+'''«indent(indent)»«c.expr.compile(0)»«c.cmds.compile(indent+ibwhile, f)»
 «indent(indent)»od'''
 	
 	def compile(CommandIf c, int indent, Fonction f)
-'''«indent(indent)»if «c.cond.compile(0)» then 
-«c.cmdsThen.compile(indent+ibif, f)»«IF c.cmdsElse!=null»
-«indent(indent)»else
-«c.cmdsElse.compile(indent+ibif, f)»«ENDIF»
-«indent(indent)»fi'''
+'''«indent(indent)»«c.cond.compile(0)» 
+«c.cmdsThen.compile(indent+ibif, f)»
+«indent(indent)»
+«c.cmdsElse.compile(indent+ibif, f)»
+«indent(indent)»'''
 	
 	def compile(CommandForEach c, int indent, Fonction f)
-'''«indent(indent)»foreach «c.elem.compile(0)» in «c.ensemb.compile(0)» do	
+'''«indent(indent)»«c.elem.compile(0)»«c.ensemb.compile(0)»	
 «c.cmds.compile(indent+ibforeach, f)»
-«indent(indent)»od'''
+«indent(indent)»'''
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, int indent, Fonction f)
-'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
+'''«indent(indent)»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«ENDFOR»'''
 	
 	def compile(Exprs e, int indent)
-'''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''
+'''«FOR in : e.expGen»«in.compile(indent)»«ENDFOR»'''
 	
 	def compile (Expr ex, int indent)
 '''«switch(ex){
@@ -218,7 +220,7 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null : "(cons " + ex.exprConsAtt1.compile(0) + " " +  ex.exprConsAtt2.compile(0) + ")"
+	 	case ex.exprCons!=null : ex.exprConsAtt1.compile(0) + " " +  ex.exprConsAtt2.compile(0) + ")"
 	 	case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
 	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile(0) + ")"
 	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile(0) +")"
@@ -233,9 +235,9 @@ class ThreeAddGenerator implements IGenerator {
 	'''«ex.exprNot.compile(indent)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(0)»«ENDIF»'''
 	
 	def compile (ExprNot ex, int indent)
-	'''«indent(indent)»«IF ex.not!=null»not «ENDIF»«ex.exprEq.compile(0)»'''
+	'''«indent(indent)»«IF ex.not!=null»«ENDIF»«ex.exprEq.compile(0)»'''
 	
 	def compile (ExprEq ex, int indent)
-	'''«indent(indent)»«IF ex.expr!=null»(«ex.expr.compile(0)»)«ELSE»«ex.exprSim1.compile(0)» =? «ex.exprSim2.compile(0)»«ENDIF»'''
+	'''«indent(indent)»«IF ex.expr!=null»(«ex.expr.compile(0)»)«ELSE»«ex.exprSim1.compile(0)»«ex.exprSim2.compile(0)»«ENDIF»'''
 }
 
