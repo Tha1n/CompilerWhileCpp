@@ -26,6 +26,6 @@ public class Quadruplet {
 
 
 	public String toString(){
-		return "<" + quad.get(0) + ", " + quad.get(1) + ", " + quad.get(2) + ", " + quad.get(3) + ">";
+		return "<" + quad.get(0) + "," + quad.get(1) + "," + quad.get(2) + "," + quad.get(3) + ">";
 	}
 }

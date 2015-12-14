@@ -68,7 +68,7 @@ public class Whc {
 			if (commandLine.hasOption("help"))
 			{
 				try {
-					FileReader fileReader = new FileReader("../documentation/WHILETOCPP.md");
+					FileReader fileReader = new FileReader("../documentation/manwhc.md");
 
 					BufferedReader bufferedReader = new BufferedReader(fileReader);
 					String line;
