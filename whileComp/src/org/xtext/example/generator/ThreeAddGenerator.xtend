@@ -72,13 +72,16 @@ class ThreeAddGenerator implements IGenerator {
 	{
 		return dico.functions.get(fn).listVarName.toSet
 	} 
+
 	
-	def public void print3a(){
+	def public String print3a(){
+		var res = ""
 		for(Fonction f : dico.functions){
 			for(Quadruplet q : f.m_quadList){
-				println(q.toString());
+				res +=(q.toString()+"\n");
 			}
 		}
+		return res
 	}
 	
 	def void parseMap(Map<String, Integer> indent)
@@ -118,13 +121,12 @@ class ThreeAddGenerator implements IGenerator {
   			val fstream = new FileWriter(out)
   			val buff = new BufferedWriter(fstream)
   			for(p: xtextResource.allContents.toIterable.filter(Program))
-				buff.write(p.compile(0).toString)
+				buff.write(print3a())
   			buff.close()
   		}catch (Exception e){
   			println("Can't write " + out + " - Error: " + e.getMessage())
   		}
 		
-		println(dico.toString)
 	}
 	
 	//ident all structures
