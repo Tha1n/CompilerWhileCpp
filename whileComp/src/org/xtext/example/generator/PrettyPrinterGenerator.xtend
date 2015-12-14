@@ -241,7 +241,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
 	 	case ex.exprCons!=null : "(cons " + ex.exprCons.exprConsAtt1.compile(0) + " " + consListRec(ex.exprCons.exprConsAttList.consList.toList) + ")"
-	 	case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
+	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
 	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile(0) + ")"
 	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile(0) +")"
 	 	case ex.nomSymb!=null : "(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
