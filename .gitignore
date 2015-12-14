@@ -42,6 +42,15 @@ whileCom*/xtend-gen/*
 
 #Ignore Eclipse files
 *.classpath
+
+#Miscellaneous
+whileComp.tests/out.wh
+whileComp.tests/test.wh
+whileComp.tests/xtend-gen/whileComp/tests/*
+whileComp.tests/*.wh
+stresstests.ods
+bin/*.wh
+
 *.project
 *build.properties
 *.launch
