@@ -163,7 +163,7 @@ class ThreeAddGenerator implements IGenerator {
 	'''«indent(indent)»«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 	
 	def compile (Commands c, int indent, Fonction f)
-	'''«FOR cm: c.commande»«cm.compile(indent, f)»«ENDFOR»'''
+	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(indent, f)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
 		
 	def compile (Output o, int indent, Fonction f)
 	'''«indent(indent)»«FOR in : o.varOut»«ENDFOR»'''
@@ -171,9 +171,9 @@ class ThreeAddGenerator implements IGenerator {
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
 	case c.nop!=null : dico.getFunctions().get(0).add(new Quadruplet("nop","_","_","_"))
-	case c.cmdIf!=null : c.cmdIf.compile(indent, f)
+	case c.cmdIf!=null : dico.getFunctions().get(0).add(new Quadruplet("If",c.cmdIf.cmdsThen.compile(indent, f).toString,c.cmdIf.cmdsElse.compile(indent,f).toString,c.cmdIf.cond.compile(indent).toString))
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
-	case c.vars!=null && c.exprs!=null : c.vars.compile(indent, f) + " := " + c.exprs.compile(0)
+	case c.vars!=null && c.exprs!=null : "< := , " + c.vars.compile(indent, f) + ", " + c.exprs.compile(0) + ",_>"
 	case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)
 	default : c.class.name
 }
@@ -184,7 +184,7 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile(CommandWhile c, int indent, Fonction f)
 '''«indent(indent)»«c.expr.compile(0)»«c.cmds.compile(indent+ibwhile, f)»
-«indent(indent)»od'''
+«indent(indent)»'''
 	
 	def compile(CommandIf c, int indent, Fonction f)
 '''«indent(indent)»«c.cond.compile(0)» 
@@ -200,7 +200,7 @@ class ThreeAddGenerator implements IGenerator {
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, int indent, Fonction f)
-'''«indent(indent)»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«ENDFOR»'''
+'''«indent(indent)»«IF v.eContents.empty»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«vari.getM_name»«ENDFOR»«ELSE»_«ENDIF»'''
 	
 	def compile(Exprs e, int indent)
 '''«FOR in : e.expGen»«in.compile(indent)»«ENDFOR»'''
@@ -217,18 +217,18 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null :  "(cons " + ex.exprCons.exprConsAtt1.compile(0) + " " + consListRec(ex.exprCons.exprConsAttList.consList.toList) + ")"
+	 	case ex.exprCons!=null :  "<cons ," + ex.exprCons.exprConsAtt1.compile(0) + " " + consListRec(ex.exprCons.exprConsAttList.consList.toList) + ">"
 	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
-	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile(0) + ")"
-	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile(0) +")"
-	 	case ex.nomSymb!=null : "(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
+	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(0) + ">"
+	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(0) +">"
+	 	case ex.nomSymb!=null : ""//"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
 	
 	def consListRec(List<Expr> l)'''
 	 «IF l.size == 1»«l.head.compile(0)
 	 »«ELSE»«
-	 		"(cons " + l.head.compile(0) + " " + consListRec((l.tail.toList)) + ")"»«
+	 		"<cons " + l.head.compile(0) + " " + consListRec((l.tail.toList)) + ">"»«
 	 ENDIF»'''
 	
 	def compile (ExprAnd ex, int indent)
