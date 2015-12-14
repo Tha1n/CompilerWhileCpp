@@ -319,13 +319,12 @@ try {
 	def void testLongueur() {
 		var elt = new ArrayList<Integer>();
 		elt.add(10000);
-		elt.add(100000);
-		elt.add(1000000);
-		elt.add(2000000);
-		elt.add(3000000);
-		elt.add(4000000);
-		elt.add(5000000);
-		elt.add(6000000);
+		elt.add(20000);
+		elt.add(30000);
+		elt.add(40000);
+		elt.add(50000);
+		val streamReport = new FileWriter("Longueur")
+  		val buffReport = new BufferedWriter(streamReport)
 		
 		for(var i = 0; i < elt.size(); i=i+1)
 		{
@@ -334,23 +333,22 @@ try {
   			val fstream = new FileWriter(out)
   			val buff = new BufferedWriter(fstream)
   			for(var j = 0; j < elt.get(i); j+=1) {
-buff.write('''function p:
+buff.write('''function p'''+ j +''':
 read X
 %
 	nop	;
 	while X do 
-		n
-		op ;
+		nop
+		 ;
 		Y := X
-	od ;
+	od 
 %
 write Y
-
 ''')
 
 }
   			buff.close()
-  			fstream.close();
+  			fstream.close()
   		}catch (Exception e){
   			println("Can't write " + out + " - Error: " + e.getMessage())
   		}
@@ -358,24 +356,25 @@ write Y
 	map.put("All" ,2)
 	
 	val lStartTime = new Date().getTime();
-	genToTest.generate("test.wh", "out.wh", map, 0)
+	genToTest.generate("out.wh", "test.wh", map, 0)
 	val lEndTime = new Date().getTime();
 	val difference = lEndTime - lStartTime;
-	println(elt.get(i) + " : " + difference)
+	buffReport.write(elt.get(i) + " : " + difference)
 	}
+	buffReport.close()
+	streamReport.close()
 	}
 	
 	@Test
 	def void testLargeur() {
 		var elt = new ArrayList<Integer>();
 		elt.add(10000);
-		elt.add(100000);
-		elt.add(1000000);
-		elt.add(2000000);
-		elt.add(3000000);
-		elt.add(4000000);
-		elt.add(5000000);
-		elt.add(6000000);
+		elt.add(20000);
+		elt.add(30000);
+		elt.add(40000);
+		elt.add(50000);
+		val streamReport = new FileWriter("Largeur")
+  		val buffReport = new BufferedWriter(streamReport)
 		
 		for(var i = 0; i < elt.size(); i=i+1)
 		{
@@ -383,25 +382,24 @@ write Y
 		try{
   			val fstream = new FileWriter(out)
   			val buff = new BufferedWriter(fstream)
-  			buff.write('''function p:
+  			buff.write('''function p'''+i+''':
 read ''')
   			for(var j = 0; j < elt.get(i); j+=1) {
-				buff.write('X'+i+',')
+				buff.write('X'+j+',')
 				
 			}
 				buff.write('''
 				%
 					nop	;
 					while X do 
-						n
-						op ;
+						nop ;
 						Y := X
-					od ;
+					od
 				%
 				write ''')
 			
   			for(var j = 0; j < elt.get(i); j+=1) {
-				buff.write('Y'+i+',')
+				buff.write('Y'+j+',')
 				
 			}
 			buff.write("\n\n")
@@ -414,11 +412,13 @@ read ''')
 	map.put("All" ,2)
 	
 	val lStartTime = new Date().getTime();
-	genToTest.generate("test.wh", "out.wh", map, 0)
+	genToTest.generate("out.wh", "test.wh", map, 0)
 	val lEndTime = new Date().getTime();
 	val difference = lEndTime - lStartTime;
-	println(elt.get(i) + " : " + difference)
+	buffReport.write(elt.get(i) + " : " + difference)
 	}
+	buffReport.close()
+	streamReport.close()
 	}
 	
 	def String GenerateWhile(Integer NbWhile) {
@@ -427,7 +427,7 @@ read ''')
 		for(var i = 0; i < NbWhile; i = i +1) {
 			result += "while X do\n";
 		}
-		result += "nop";
+		result += "nop\n";
 		for(var i = 0; i < NbWhile; i += 1) {
 			result += "\n od";
 		}
@@ -437,11 +437,10 @@ read ''')
 	@Test
 	def void testProfondeur() {
 		var elt = new ArrayList<Integer>();
-		elt.add(10000);
-		elt.add(20000);
-		elt.add(30000);
-		elt.add(40000);
-		elt.add(50000);
+		elt.add(10);
+		elt.add(20);
+		val streamReport = new FileWriter("Profondeur")
+  		val buffReport = new BufferedWriter(streamReport)
 		
 		for(var i = 0; i < elt.size(); i=i+1)
 		{
@@ -449,22 +448,14 @@ read ''')
 			try{
 	  			val fstream = new FileWriter(out)
 	  			val buff = new BufferedWriter(fstream)
-	  			buff.write('''function p:
-	read ''')
-	  			for(var j = 0; j < elt.get(i); j+=1) {
-					buff.write('X'+i+',')
-					
-				}
-					buff.write('''
-					%''');
+	  			buff.write('''function p'''+i+''':
+	read X
+	%
+	''')
 					
 					buff.write(GenerateWhile(elt.get(i)));
 					buff.write('''%
-					write ''');
-				
-	  			for(var j = 0; j < elt.get(i); j+=1) {
-					buff.write('Y'+i+',')
-				}
+					write Y''');
 				
 				buff.write("\n\n")
 	  			buff.close()
@@ -476,11 +467,14 @@ read ''')
 		map.put("All" ,2)
 		
 		val lStartTime = new Date().getTime();
-		genToTest.generate("test.wh", "out.wh", map, 0)
+		genToTest.generate("out.wh", "test.wh", map, 0)
 		val lEndTime = new Date().getTime();
 		val difference = lEndTime - lStartTime;
-		println(elt.get(i) + " : " + difference)
+		buffReport.write(elt.get(i) + " : " + difference)
 		}
+		
+	buffReport.close()
+	streamReport.close()
 	}
 	
 	
