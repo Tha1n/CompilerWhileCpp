@@ -102,8 +102,9 @@ class ThreeAddGenerator implements IGenerator {
 	}
 	
 	
-	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
+	def public void generate(String in, FunDictionary tab3A)
 	{
+		//TODO
 		resetDico
 		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val resourceSet = injector.getInstance(XtextResourceSet);
@@ -111,20 +112,14 @@ class ThreeAddGenerator implements IGenerator {
 		val xtextResource = resourceSet.getResource(uri, true);
 		EcoreUtil.resolveAll(xtextResource);
 		
-		parseMap(indentation)
-		
-		var out = outputFile
-		if(out.equals(""))
-			out = in + "pp"
-			
 		try{
-  			val fstream = new FileWriter(out)
+  			/* val fstream = new FileWriter(out)
   			val buff = new BufferedWriter(fstream)
   			for(p: xtextResource.allContents.toIterable.filter(Program))
 				buff.write(print3a())
-  			buff.close()
+  			buff.close() */
   		}catch (Exception e){
-  			println("Can't write " + out + " - Error: " + e.getMessage())
+  			//println("Can't write " + out + " - Error: " + e.getMessage())
   		}
 		
 	}
