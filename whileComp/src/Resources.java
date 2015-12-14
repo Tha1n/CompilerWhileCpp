@@ -1,5 +1,6 @@
 
 public final class Resources {
+	//Ressources Pretty Printer
 	public static final String MAP_ALL = "All";
 	public static final String MAP_IF = "If";
 	public static final String MAP_FOR = "For";
@@ -14,4 +15,7 @@ public final class Resources {
 	public static final String OPT_OUT = "o";
 	public static final String OPT_IN = "i";
 	public static final String OPT_PAGE = "page";
+	
+	//Ressources spécifiques Compiler
+	public static final String OPT_HELP = "help";
 }
