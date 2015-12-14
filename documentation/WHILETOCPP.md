@@ -86,10 +86,10 @@ X = (hd Y) | < hd, X, Y, \_ >
 X = (tl Y) | < tl, X, Y,\_ >
 X = Y ?= Z | < ?=, X, Y, Z >
 X := Y | < :=, X, Y, \_  >
-if cond then codeThen else codeElse | < if codeThen codeElse, cond, \_, \_ >
-while cond then code od | < while code, cond, \_, \_ >
-for cond then code od | < for code, cond, \_, \_ >
-foreach elem in ensemb do cmds od | < foreach, elem, ensemb, cmds >
+if cond then codeThen else codeElse | if cond goTo then\n else: codeElse; goTo fi\n then: codeThen; fi
+while cond then code od | while: if cond goTo then\n else: goTo fi\n then: code; goTo while; fi
+for cond then code od | for: if cond goTo then\n else: goTo fi\n then: code; goTo for; fi
+foreach elem in ensemb do cmds od | foreach: if e:Var goTo then\n else: goTo fi\n then: code; goTo foreach; fi
 
 Une variable créée par le compilateur aura la notation %vXX avec XX le numéro de variable.
 
@@ -165,6 +165,35 @@ write Z
 <nop, _, _, _>
 ```
 
+### Exemple 4
+
+```python
+function foo:
+read X,Y
+%
+while X do
+  if Y then
+    Y:=(hd Y)
+  fi
+od
+%
+write Z
+```
+
+```python
+while: if X goTo then
+else: goTo fi
+then:
+if Y goTo then2
+else2:
+goTo fi2
+then2:
+<hd,%v1,Y,_>
+<:=,Y,%v1,_>
+fi2:
+goTo while
+fi:
+```
 
 ## Exemples 3@->CPP
 
@@ -245,5 +274,32 @@ List<BinTree> foo(List<BinTree> args)
     List<BinTree> retour;
     retour.add(Z);
     return retour;
+}
+```
+
+### Exemple 4
+
+```python
+while: if X goTo then
+else: goTo fi
+then:
+if Y goTo then2
+else2:
+goTo fi2
+then2:
+<hd,%v1,Y,_>
+<:=,Y,%v1,_>
+fi2:
+goTo while
+fi:
+```
+
+```cpp
+while(BinTree::isTrue(X))
+{
+  if(BinTree::isTrue(Y))
+  {
+    Y=BinTree::hd(Y);
+  }
 }
 ```
