@@ -33,13 +33,18 @@ Exprs: =>(expGen += Expr',')* (expGen += Expr);
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
 Expr: =>(exprSimp = ExprSimple) | (exprAnd = ExprAnd);
 ExprSimple: (nil = 'nil' | vari = VARIABLE | symb = SYMBOL ) |
-'(' (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAtt2 = Expr) ')' | '(' (exprList = 'list') (exprListAtt1 = Expr) (exprListAtt2 = Expr)')' |
+'(' exprCons = Cons ')' | '(' (exprList = List)')' |
 '(' (exprHead = 'hd') (exprHeadAtt = Expr) ')' | '(' (exprTail = 'tl') (exprTailAtt = Expr) ')' |
 '(' (nomSymb = SYMBOL) (symbAtt = Expr) ')';
 ExprAnd: (exprOr = ExprOr) ((exprAnd = 'and') (exprAndAtt = ExprAnd))?;
 ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
 ExprNot: (not = 'not')? (exprEq = ExprEq);
 ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple);
+
+Cons: (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAttList = ConsAttList);
+ConsAttList: consList += Expr+;
+
+List: (exprList = 'list') (exprListAtt1 = Expr) (exprListAtt2 = Expr);
 
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_'|'->'|'-'|'+'|'&'|'.'|'/')*;
 //Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _

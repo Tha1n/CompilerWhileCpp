@@ -36,6 +36,7 @@ import SymboleTable.Variable
 import SymboleTable.FunDictionary
 import java.util.Set
 import java.util.List
+import org.eclipse.emf.common.util.EList
 
 /**
  * Generates code from your model files on save.
@@ -239,13 +240,20 @@ class PrettyPrinterGenerator implements IGenerator {
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null : "(cons " + ex.exprConsAtt1.compile(0) + " " +  ex.exprConsAtt2.compile(0) + ")"
+	 	case ex.exprCons!=null : "(cons " + ex.exprCons.exprConsAtt1.compile(0) + " " + consListRec(ex.exprCons.exprConsAttList.consList.toList) + ")"
 	 	case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
 	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile(0) + ")"
 	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile(0) +")"
 	 	case ex.nomSymb!=null : "(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
+	  	
+	 def consListRec(List<Expr> l)'''
+	 «IF l.size == 1»«l.head.compile(0)
+	 »«ELSE»«
+	 		"(cons " + l.head.compile(0) + " " + consListRec((l.tail.toList)) + ")"»«
+	 ENDIF»'''
+	 
 	
 	def compile (ExprAnd ex, int indent)
 	'''«ex.exprOr.compile(indent)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(0)»«ENDIF»'''
