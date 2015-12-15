@@ -9,6 +9,7 @@ import java.util.Set;
 public class FunDictionary {
 	//nom de la fonction, ses données
 	private List<Fonction> dictionary;
+	private ArrayList<Quadruplet> m_quadList;
 	
 	//la map fais le lien entre un nom de fonction et la Fonction elle meme
 	
@@ -93,6 +94,10 @@ public class FunDictionary {
 		else{
 			//error
 		}
+	}
+
+	public void addQuad(Quadruplet q) {
+		m_quadList.add(q);
 	}
 	
 }
