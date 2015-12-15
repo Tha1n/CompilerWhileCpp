@@ -84,7 +84,7 @@ X = (cons Y Z) | < cons, X, Y Z, _ >
 X = (cons A B C D) | < cons, X, A B C D, _ >
 X = (hd Y) | < hd, X, Y, \_ >
 X = (tl Y) | < tl, X, Y,\_ >
-X = Y ?= Z | < ?=, X, Y, Z >
+X = Y =? Z | < =?, X, Y, Z >
 X := Y | < :=, X, Y, \_  >
 if cond then codeThen else codeElse | if cond goTo then\n else: codeElse; goTo fi\n then: codeThen; fi
 while cond then code od | while: if cond goTo then\n else: goTo fi\n then: code; goTo while; fi
