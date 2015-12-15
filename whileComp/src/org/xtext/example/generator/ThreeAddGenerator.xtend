@@ -47,10 +47,6 @@ import SymboleTable.Quadruplet
 class ThreeAddGenerator implements IGenerator {
 	
 	FunDictionary dico = new FunDictionary();
-	int ibd = 1
-	int ibif = 1
-	int ibforeach = 1
-	int ibwhile = 1
 	 
 	def public List<String> getFunctionsNames()
 	{
@@ -82,25 +78,7 @@ class ThreeAddGenerator implements IGenerator {
 			}
 		}
 		return res
-	}
-	
-	def void parseMap(Map<String, Integer> indent)
-	{
-		if(indent.get("All") != null)
-		{
-			ibd = indent.get("All")
-			ibif = ibd
-			ibforeach = ibif
-			ibwhile = ibif
-		}
-		if(indent.get("If") != null)
-		  ibif = indent.get("If")
-		if(indent.get("While") != null)
-		  ibwhile = indent.get("While")
-		if(indent.get("Foreach") != null)
-		  ibforeach = indent.get("Foreach")
-	}
-	
+	}	
 	
 	def public void generate(String in, FunDictionary tab3A)
 	{
@@ -124,123 +102,105 @@ class ThreeAddGenerator implements IGenerator {
 		
 	}
 	
-	//ident all structures
-	def indent (int level)
-	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«" "»«ENDFOR»«ENDIF»«ENDFOR»'''
-	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
         resetDico
 		for(p: resource.allContents.toIterable.filter(Program)) {
-			fsa.generateFile("PP.3a", p.compile(0))
+			fsa.generateFile("PP.3a", p.compile())
 			}
 		print(dico.toString())
 	}
 
-	def compile (Program p, int indent)
-'''«indent(indent)»«FOR f: p.fonctions»
-«f.compile(indent)»
-«indent(indent)»«ENDFOR»
+	def compile (Program p)
+'''«FOR f: p.fonctions»
+«f.compile()»
+«ENDFOR»
 «print3a()»'''
 	
-	
-
-	
-	def compile (Function f, int indent)
+	def compile (Function f)
+	//Ajout de la fonction dans la liste puis ajout de son code 3A
 '''«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
 «IF dico.putFunction(newF)»
-«f.definition.compile(indent, newF)»
+«f.definition.compile(newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»
 '''
 	
-	def compile (Definition d, int indent, Fonction f)
-	'''«indent(indent)»«d.inputs.compile(0, f)»
-«d.commandes.compile(indent+1, f)»
-«indent(indent)»«d.outputs.compile(0, f)»'''
+	def compile (Definition d, Fonction f)
+	'''«d.inputs.compile(f)»
+«d.commandes.compile(f)»
+«d.outputs.compile(f)»''' //TODO Code 3A Read & write
 	
-	def compile (Input i, int indent, Fonction f)
-	'''«indent(indent)»«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
+	def compile (Input i, Fonction f)
+	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 	
-	def compile (Commands c, int indent, Fonction f)
-	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(indent, f)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
+	def compile (Commands c, Fonction f)
+	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
 		
-	def compile (Output o, int indent, Fonction f)
-	'''«indent(indent)»«FOR in : o.varOut»«ENDFOR»'''
+	def compile (Output o, Fonction f)
+	'''«FOR in : o.varOut»«ENDFOR»'''
 	
-	def compile(Command c, int indent, Fonction f)
+	def compile(Command c, Fonction f)
 '''«switch (c){
-	case c.nop!=null : f.addQuad(new Quadruplet("nop","_","_","_"))
-	case c.cmdIf!=null : f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(indent, f).toString,c.cmdIf.cmdsElse.compile(indent,f).toString,c.cmdIf.cond.compile(indent).toString))
-	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
-	case c.vars!=null && c.exprs!=null : "< := , " + c.vars.compile(indent, f) + ", " + c.exprs.compile(0) + ",_>"
-	case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)
+	case c.nop!=null : f.addQuad(new Quadruplet("nop", "_", "_", "_"))
+	case c.cmdIf!=null : f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
+	case c.cmdForEach!=null : c.cmdForEach.compile(f)
+	case c.vars!=null && c.exprs!=null : f.addQuad(new Quadruplet(":=", c.vars.compile(f).toString(), c.exprs.compile(f).toString(), "_"))
+	case c.cmdWhile!=null : c.cmdWhile.compile(f)
 	default : c.class.name
 }
 »'''
 
-
-
+	def compile(CommandWhile c, Fonction f)
+'''«c.expr.compile(f)»«c.cmds.compile(f)»
+'''
 	
-	def compile(CommandWhile c, int indent, Fonction f)
-'''«indent(indent)»«c.expr.compile(0)»«c.cmds.compile(indent+ibwhile, f)»
-«indent(indent)»'''
+	def compile(CommandIf c, Fonction f)
+'''«c.cond.compile(f)» 
+«c.cmdsThen.compile(f)»
+«c.cmdsElse.compile(f)»'''
 	
-	def compile(CommandIf c, int indent, Fonction f)
-'''«indent(indent)»«c.cond.compile(0)» 
-«c.cmdsThen.compile(indent+ibif, f)»
-«indent(indent)»
-«c.cmdsElse.compile(indent+ibif, f)»
-«indent(indent)»'''
-	
-	def compile(CommandForEach c, int indent, Fonction f)
-'''«indent(indent)»«c.elem.compile(0)»«c.ensemb.compile(0)»	
-«c.cmds.compile(indent+ibforeach, f)»
-«indent(indent)»'''
+	def compile(CommandForEach c, Fonction f)
+'''«c.elem.compile(f)»«c.ensemb.compile(f)»	
+«c.cmds.compile(f)»'''
 	
 	//ajouter la variable dans sa fonction
-	def compile(Vars v, int indent, Fonction f)
-'''«indent(indent)»«IF v.eContents.empty»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«vari.getM_name»«ENDFOR»«ELSE»_«ENDIF»'''
+	def compile(Vars v, Fonction f)
+	//TODO Késako Variable intern ????? (Alex)
+'''«IF v.eContents.empty»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«vari.getM_name»«ENDFOR»«ELSE»_«ENDIF»'''
 	
-	def compile(Exprs e, int indent)
-'''«FOR in : e.expGen»«in.compile(indent)»«ENDFOR»'''
+	def compile(Exprs e, Fonction f)
+'''«FOR in : e.expGen»«in.compile(f)»«ENDFOR»'''
 	
-	def compile (Expr ex, int indent)
+	def compile (Expr ex, Fonction f)
 '''«switch(ex){
-			case ex.exprSimp!=null : ex.exprSimp.compile(indent)
-			case ex.exprAnd!=null : ex.exprAnd.compile(indent)
+			case ex.exprSimp!=null : ex.exprSimp.compile(f)
+			case ex.exprAnd!=null : ex.exprAnd.compile(f)
 	    }
 	 »'''
 	
-	def compile (ExprSimple ex, int indent)
-	 '''«indent(indent)»«switch(ex){
+	def compile (ExprSimple ex, Fonction f)
+	 '''«switch(ex){
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null :  dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(0).toString ,ex.exprCons.exprConsAttList.consList.toString() ," ")) 	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
-	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(0) + ">"
-	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(0) +">"
+	 	case ex.exprCons!=null :  dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(f).toString ,ex.exprCons.exprConsAttList.consList.toString() ," "))
+	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(f) + ">"
+	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(f) +">"
 	 	case ex.nomSymb!=null : ""//"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
+		
+	def compile (ExprAnd ex, Fonction f)
+	'''«ex.exprOr.compile(f)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f)»«ENDIF»'''
 	
+	def compile (ExprOr ex, Fonction f)
+	'''«ex.exprNot.compile(f)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(f)»«ENDIF»'''
 	
-	def consListRec(List<Expr> l)'''
-	 «IF l.size == 1»«l.head.compile(0)
-	 »«ELSE»«
-	 		"<cons " + l.head.compile(0) + " " + consListRec((l.tail.toList)) + ">"»«
-	 ENDIF»'''
+	def compile (ExprNot ex, Fonction f)
+	'''«IF ex.not!=null»«ENDIF»«ex.exprEq.compile(f)»'''
 	
-	def compile (ExprAnd ex, int indent)
-	'''«ex.exprOr.compile(indent)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(0)»«ENDIF»'''
-	
-	def compile (ExprOr ex, int indent)
-	'''«ex.exprNot.compile(indent)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(0)»«ENDIF»'''
-	
-	def compile (ExprNot ex, int indent)
-	'''«indent(indent)»«IF ex.not!=null»«ENDIF»«ex.exprEq.compile(0)»'''
-	
-	def compile (ExprEq ex, int indent)
-	'''«indent(indent)»«IF ex.expr!=null»(«ex.expr.compile(0)»)«ELSE»«ex.exprSim1.compile(0)»«ex.exprSim2.compile(0)»«ENDIF»'''
+	def compile (ExprEq ex, Fonction f)
+	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
 }
 

@@ -35,6 +35,4 @@ public class Variable {
 	public void setM_dataAdress(String m_dataAdress) {
 		this.m_dataAdress = m_dataAdress;
 	}
-	
-	
 }
