@@ -117,12 +117,11 @@ class ThreeAddGenerator implements IGenerator {
 «ENDFOR»
 «print3a()»'''
 	
-	
-
-	
 	def compile (Function f)
+	//Ajout de la fonction dans la liste puis ajout de son code 3A
 '''«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
 «IF dico.putFunction(newF)»
+«dico.addQuad(new Quadruplet("_", f.nom, "_", "_"))»
 «f.definition.compile(newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»
@@ -131,7 +130,7 @@ class ThreeAddGenerator implements IGenerator {
 	def compile (Definition d, Fonction f)
 	'''«d.inputs.compile(f)»
 «d.commandes.compile(f)»
-«d.outputs.compile(f)»'''
+«d.outputs.compile(f)»''' //TODO Code 3A Read & write
 	
 	def compile (Input i, Fonction f)
 	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
@@ -144,29 +143,26 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile(Command c, Fonction f)
 '''«switch (c){
-	case c.nop!=null : f.addQuad(new Quadruplet("nop","_","_","_"))
-	case c.cmdIf!=null : f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile().toString))
+	case c.nop!=null : f.addQuad(new Quadruplet("nop", "_", "_", "_"))
+	case c.cmdIf!=null : f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
 	case c.cmdForEach!=null : c.cmdForEach.compile(f)
-	case c.vars!=null && c.exprs!=null : "< := , " + c.vars.compile(f) + ", " + c.exprs.compile() + ",_>"
+	case c.vars!=null && c.exprs!=null : f.addQuad(new Quadruplet(":=", c.vars.compile(f).toString(), c.exprs.compile(f).toString(), "_"))
 	case c.cmdWhile!=null : c.cmdWhile.compile(f)
 	default : c.class.name
 }
 »'''
 
-
-
-	
 	def compile(CommandWhile c, Fonction f)
-'''«c.expr.compile()»«c.cmds.compile(f)»
+'''«c.expr.compile(f)»«c.cmds.compile(f)»
 '''
 	
 	def compile(CommandIf c, Fonction f)
-'''«c.cond.compile()» 
+'''«c.cond.compile(f)» 
 «c.cmdsThen.compile(f)»
 «c.cmdsElse.compile(f)»'''
 	
 	def compile(CommandForEach c, Fonction f)
-'''«c.elem.compile()»«c.ensemb.compile()»	
+'''«c.elem.compile(f)»«c.ensemb.compile(f)»	
 «c.cmds.compile(f)»'''
 	
 	//ajouter la variable dans sa fonction
@@ -174,45 +170,38 @@ class ThreeAddGenerator implements IGenerator {
 	//TODO Késako Variable intern ????? (Alex)
 '''«IF v.eContents.empty»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«vari.getM_name»«ENDFOR»«ELSE»_«ENDIF»'''
 	
-	def compile(Exprs e)
-'''«FOR in : e.expGen»«in.compile()»«ENDFOR»'''
+	def compile(Exprs e, Fonction f)
+'''«FOR in : e.expGen»«in.compile(f)»«ENDFOR»'''
 	
-	def compile (Expr ex)
+	def compile (Expr ex, Fonction f)
 '''«switch(ex){
-			case ex.exprSimp!=null : ex.exprSimp.compile()
-			case ex.exprAnd!=null : ex.exprAnd.compile()
+			case ex.exprSimp!=null : ex.exprSimp.compile(f)
+			case ex.exprAnd!=null : ex.exprAnd.compile(f)
 	    }
 	 »'''
 	
-	def compile (ExprSimple ex)
+	def compile (ExprSimple ex, Fonction f)
 	 '''«switch(ex){
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null :  dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile().toString ,ex.exprCons.exprConsAttList.consList.toString() ," ")) 	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
-	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile() + ">"
-	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile() +">"
+	 	case ex.exprCons!=null :  dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(f).toString ,ex.exprCons.exprConsAttList.consList.toString() ," "))
+	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(f) + ">"
+	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(f) +">"
 	 	case ex.nomSymb!=null : ""//"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
+		
+	def compile (ExprAnd ex, Fonction f)
+	'''«ex.exprOr.compile(f)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f)»«ENDIF»'''
 	
+	def compile (ExprOr ex, Fonction f)
+	'''«ex.exprNot.compile(f)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(f)»«ENDIF»'''
 	
-	def consListRec(List<Expr> l)'''
-	 «IF l.size == 1»«l.head.compile()
-	 »«ELSE»«
-	 		"<cons " + l.head.compile() + " " + consListRec((l.tail.toList)) + ">"»«
-	 ENDIF»'''
+	def compile (ExprNot ex, Fonction f)
+	'''«IF ex.not!=null»«ENDIF»«ex.exprEq.compile(f)»'''
 	
-	def compile (ExprAnd ex)
-	'''«ex.exprOr.compile()»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile()»«ENDIF»'''
-	
-	def compile (ExprOr ex)
-	'''«ex.exprNot.compile()»«IF ex.exprOr!=null»«ex.exprOrAtt.compile()»«ENDIF»'''
-	
-	def compile (ExprNot ex)
-	'''«IF ex.not!=null»«ENDIF»«ex.exprEq.compile()»'''
-	
-	def compile (ExprEq ex)
-	'''«IF ex.expr!=null»(«ex.expr.compile()»)«ELSE»«ex.exprSim1.compile()»«ex.exprSim2.compile()»«ENDIF»'''
+	def compile (ExprEq ex, Fonction f)
+	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
 }
 
