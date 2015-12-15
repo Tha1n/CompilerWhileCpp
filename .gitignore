@@ -46,8 +46,12 @@ whileCom*/xtend-gen/*
 #Miscellaneous
 whileComp.tests/out.wh
 whileComp.tests/test.wh
-whileComp.tests/xtend-gen/whileComp/tests/*
+whileComp.tests/xtend-gen/*
 whileComp.tests/*.wh
+whileComp.ui/src-gen/*
+whileComp/model/*
+whileComp/src-gen/*
+whileComp/xtend-gen/*
 stresstests.ods
 bin/*.wh
 
