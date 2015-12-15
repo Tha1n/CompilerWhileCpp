@@ -121,7 +121,6 @@ class ThreeAddGenerator implements IGenerator {
 	//Ajout de la fonction dans la liste puis ajout de son code 3A
 '''«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
 «IF dico.putFunction(newF)»
-«dico.addQuad(new Quadruplet("_", f.nom, "_", "_"))»
 «f.definition.compile(newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»
