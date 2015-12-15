@@ -170,8 +170,8 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile(Command c, int indent, Fonction f)
 '''«switch (c){
-	case c.nop!=null : dico.getFunctions().get(0).add(new Quadruplet("nop","_","_","_"))
-	case c.cmdIf!=null : dico.getFunctions().get(0).add(new Quadruplet("If",c.cmdIf.cmdsThen.compile(indent, f).toString,c.cmdIf.cmdsElse.compile(indent,f).toString,c.cmdIf.cond.compile(indent).toString))
+	case c.nop!=null : f.addQuad(new Quadruplet("nop","_","_","_"))
+	case c.cmdIf!=null : f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(indent, f).toString,c.cmdIf.cmdsElse.compile(indent,f).toString,c.cmdIf.cond.compile(indent).toString))
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
 	case c.vars!=null && c.exprs!=null : "< := , " + c.vars.compile(indent, f) + ", " + c.exprs.compile(0) + ",_>"
 	case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)
@@ -217,13 +217,13 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null :  "<cons ," + ex.exprCons.exprConsAtt1.compile(0) + " " + consListRec(ex.exprCons.exprConsAttList.consList.toList) + ">"
-	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
+	 	case ex.exprCons!=null :  dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(0).toString ,ex.exprCons.exprConsAttList.consList.toString() ," ")) 	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
 	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(0) + ">"
 	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(0) +">"
 	 	case ex.nomSymb!=null : ""//"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
+	
 	
 	def consListRec(List<Expr> l)'''
 	 «IF l.size == 1»«l.head.compile(0)

@@ -148,7 +148,7 @@ public class Fonction {
 	public void setM_quadList(ArrayList<Quadruplet> m_quadList) {
 		this.m_quadList = m_quadList;
 	}
-	public void add(Quadruplet q) {
+	public void addQuad(Quadruplet q) {
 		m_quadList.add(q);
 	}
 }
