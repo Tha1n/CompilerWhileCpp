@@ -16,7 +16,10 @@ public class Fonction {
 	private int m_nbOut;
 	private String m_adressCode;
 	private ArrayList<Variable> m_varList;
+	
+	//Code 3@
 	private ArrayList<Quadruplet> m_quadList;
+	private ArrayList<String> m_gen_var_list;
 	
 	//adresse donnée à la variable
 	private String VAR_INTERN = "intern";
