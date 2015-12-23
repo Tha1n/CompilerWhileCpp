@@ -70,7 +70,6 @@ public class CodeOp {
 		case 0:
 			opToString =  "Nop";
 			break;
-
 		default:
 			opToString = "Undefined";
 			break;

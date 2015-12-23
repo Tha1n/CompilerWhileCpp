@@ -35,6 +35,7 @@ import java.util.Set
 import java.util.List
 import SymboleTable.Quadruplet
 import SymboleTable.CodeOp
+import java.util.HashMap
 
 /**
  * Generates code from your model files on save.
@@ -45,6 +46,7 @@ import SymboleTable.CodeOp
 class ThreeAddGenerator implements IGenerator {
 	
 	FunDictionary dico = new FunDictionary();
+	private HashMap<String, String> funNameTranslation;
 	 
 	def public List<String> getFunctionsNames()
 	{
@@ -86,6 +88,7 @@ class ThreeAddGenerator implements IGenerator {
 		val resourceSet = injector.getInstance(XtextResourceSet);
 		val uri = URI.createURI(in);
 		val xtextResource = resourceSet.getResource(uri, true);
+		this.funNameTranslation = new HashMap<String, String>();
 		EcoreUtil.resolveAll(xtextResource);
 		
 		try{
@@ -119,6 +122,7 @@ class ThreeAddGenerator implements IGenerator {
 	//Ajout de la fonction dans la liste puis ajout de son code 3A
 '''«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
 «IF dico.putFunction(newF)»
+«this.funNameTranslation.put(f.nom, "f"+this.funNameTranslation.size)»
 «f.definition.compile(newF)»
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»
@@ -127,7 +131,7 @@ class ThreeAddGenerator implements IGenerator {
 	def compile (Definition d, Fonction f)
 	'''«d.inputs.compile(f)»
 «d.commandes.compile(f)»
-«d.outputs.compile(f)»''' //TODO Code 3A Read & write
+«d.outputs.compile(f)»'''
 	
 	def compile (Input i, Fonction f)
 	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
@@ -141,10 +145,13 @@ class ThreeAddGenerator implements IGenerator {
 	def compile(Command c, Fonction f)
 '''«switch (c){
 	case c.nop!=null : f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_NOP), "_", "_", "_"))
-	case c.cmdIf!=null : 1+1//f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
+	case c.cmdIf!=null : {
+	}//f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
 	case c.cmdForEach!=null : c.cmdForEach.compile(f)
 	case c.vars!=null && c.exprs!=null : 1+1//f.addQuad(new Quadruplet(":=", c.vars.compile(f).toString(), c.exprs.compile(f).toString(), "_"))
-	case c.cmdWhile!=null : c.cmdWhile.compile(f)
+	case c.cmdWhile!=null : {
+		c.cmdWhile.compile(f)
+	} 
 	default : c.class.name
 }
 »'''
