@@ -36,6 +36,8 @@ import java.util.List
 import SymboleTable.Quadruplet
 import SymboleTable.CodeOp
 import java.util.HashMap
+import java.util.ArrayList
+import SymboleTable.Label
 
 /**
  * Generates code from your model files on save.
@@ -46,7 +48,10 @@ import java.util.HashMap
 class ThreeAddGenerator implements IGenerator {
 	
 	FunDictionary dico = new FunDictionary();
+	
+	private ArrayList<Variable> m_globalVarList;
 	private HashMap<String, String> funNameTranslation;
+	private ArrayList<Label> m_labelList;
 	 
 	def public List<String> getFunctionsNames()
 	{
@@ -89,6 +94,8 @@ class ThreeAddGenerator implements IGenerator {
 		val uri = URI.createURI(in);
 		val xtextResource = resourceSet.getResource(uri, true);
 		this.funNameTranslation = new HashMap<String, String>();
+		this.m_globalVarList = new ArrayList<Variable>();
+		this.m_labelList = new ArrayList<Label>();
 		EcoreUtil.resolveAll(xtextResource);
 		
 		try{
@@ -103,9 +110,17 @@ class ThreeAddGenerator implements IGenerator {
 		
 	}
 	
+	def public Label generateLabel() {
+		return new Label("l_" + this.m_labelList.size());
+	}
+	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
         resetDico
+        
+		this.funNameTranslation = new HashMap<String, String>();
+		this.m_globalVarList = new ArrayList<Variable>();
+		this.m_labelList = new ArrayList<Label>();
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.3a", p.compile())
 			}
@@ -171,8 +186,15 @@ class ThreeAddGenerator implements IGenerator {
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, Fonction f)
-	//TODO Késako Variable intern ????? (Alex)
-'''«IF v.eContents.empty»«FOR in : v.varGen»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«vari.getM_name»«ENDFOR»«ELSE»_«ENDIF»'''
+'''«IF v.eContents.empty»
+		«FOR in : v.varGen»
+			«var vari = new Variable (in.toString, "intern")»
+			«dico.putVariable(vari, f)»
+			sss«vari.getM_name»
+		«ENDFOR»
+	«ELSE»_
+	«ENDIF»
+'''
 	
 	def compile(Exprs e, Fonction f)
 '''«FOR in : e.expGen»«in.compile(f)»«ENDFOR»'''
