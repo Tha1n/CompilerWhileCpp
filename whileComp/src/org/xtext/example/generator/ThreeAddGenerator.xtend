@@ -24,19 +24,17 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
-import java.util.Map
 import org.eclipse.emf.common.util.URI
 import org.xtext.example.WhileCppStandaloneSetup
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.eclipse.emf.ecore.util.EcoreUtil
-import java.io.FileWriter
-import java.io.BufferedWriter
 import SymboleTable.Fonction
 import SymboleTable.Variable
 import SymboleTable.FunDictionary
 import java.util.Set
 import java.util.List
 import SymboleTable.Quadruplet
+import SymboleTable.CodeOp
 
 /**
  * Generates code from your model files on save.
@@ -142,10 +140,10 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile(Command c, Fonction f)
 '''«switch (c){
-	case c.nop!=null : f.addQuad(new Quadruplet("nop", "_", "_", "_"))
-	case c.cmdIf!=null : f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
+	case c.nop!=null : f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_NOP), "_", "_", "_"))
+	case c.cmdIf!=null : 1+1//f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
 	case c.cmdForEach!=null : c.cmdForEach.compile(f)
-	case c.vars!=null && c.exprs!=null : f.addQuad(new Quadruplet(":=", c.vars.compile(f).toString(), c.exprs.compile(f).toString(), "_"))
+	case c.vars!=null && c.exprs!=null : 1+1//f.addQuad(new Quadruplet(":=", c.vars.compile(f).toString(), c.exprs.compile(f).toString(), "_"))
 	case c.cmdWhile!=null : c.cmdWhile.compile(f)
 	default : c.class.name
 }
@@ -184,7 +182,7 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null :  dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(f).toString ,ex.exprCons.exprConsAttList.consList.toString() ," "))
+	 	case ex.exprCons!=null : 1+1// dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(f).toString ,ex.exprCons.exprConsAttList.consList.toString() ," "))
 	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(f) + ">"
 	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(f) +">"
 	 	case ex.nomSymb!=null : ""//"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
