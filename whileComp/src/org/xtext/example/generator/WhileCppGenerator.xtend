@@ -22,6 +22,6 @@ class WhileCppGenerator implements IGenerator {
   override void doGenerate(Resource input, IFileSystemAccess fsa) {
     PrettyGen.doGenerate(input, fsa)
     //UglyGen.doGenerate(input, fsa)
-    //ThreeAddGen.doGenerate(input, fsa)
+    ThreeAddGen.doGenerate(input, fsa)
 	}
 }

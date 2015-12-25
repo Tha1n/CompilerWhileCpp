@@ -15,4 +15,9 @@ public class Label {
 	public void add(Quadruplet instruction) {
 		this.code.add(instruction);
 	}
+	
+	public String getName()
+	{
+		return this.name;
+	}
 }

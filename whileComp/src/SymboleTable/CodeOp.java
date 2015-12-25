@@ -2,6 +2,11 @@ package SymboleTable;
 
 public class CodeOp {
 	public final static int OP_NOP = 0;
+	public final static int OP_IF = 1;
+	public final static int OP_AFF = 2;
+	public final static int OP_WHILE = 3;
+	public final static int OP_FOREACH = 4;
+
 
 	private int op;
 	private String optLabel1;
@@ -69,6 +74,18 @@ public class CodeOp {
 		switch (this.op) {
 		case 0:
 			opToString =  "Nop";
+			break;
+		case 1:
+			opToString =  "IF";
+			break;
+		case 2:
+			opToString =  ":=";
+			break;
+		case 3:
+			opToString =  "while";
+			break;
+		case 4:
+			opToString =  "foreach";
 			break;
 		default:
 			opToString = "Undefined";

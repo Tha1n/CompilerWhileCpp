@@ -38,6 +38,8 @@ import SymboleTable.CodeOp
 import java.util.HashMap
 import java.util.ArrayList
 import SymboleTable.Label
+import java.io.FileWriter
+import java.io.BufferedWriter
 
 /**
  * Generates code from your model files on save.
@@ -99,19 +101,21 @@ class ThreeAddGenerator implements IGenerator {
 		EcoreUtil.resolveAll(xtextResource);
 		
 		try{
-  			/* val fstream = new FileWriter(out)
+  			val fstream = new FileWriter("PP.3a")
   			val buff = new BufferedWriter(fstream)
   			for(p: xtextResource.allContents.toIterable.filter(Program))
 				buff.write(print3a())
-  			buff.close() */
+  			buff.close()
   		}catch (Exception e){
-  			//println("Can't write " + out + " - Error: " + e.getMessage())
+  			println("Can't write PP.3a - Error: " + e.getMessage())
   		}
 		
 	}
 	
 	def public Label generateLabel() {
-		return new Label("l_" + this.m_labelList.size());
+		val result = new Label("l_" + this.m_labelList.size());
+		this.m_labelList.add(result);
+		return result;
 	}
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
@@ -123,15 +127,14 @@ class ThreeAddGenerator implements IGenerator {
 		this.m_labelList = new ArrayList<Label>();
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.3a", p.compile())
-			}
-		print(dico.toString())
+		}
 	}
 
 	def compile (Program p)
 '''«FOR f: p.fonctions»
 «f.compile()»
-«ENDFOR»
-«print3a()»'''
+«ENDFOR»'''
+//«print3a()»'''
 	
 	def compile (Function f)
 	//Ajout de la fonction dans la liste puis ajout de son code 3A
@@ -142,59 +145,145 @@ class ThreeAddGenerator implements IGenerator {
 «ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
 «ENDIF»
 '''
-	
+
 	def compile (Definition d, Fonction f)
 	'''«d.inputs.compile(f)»
-«d.commandes.compile(f)»
+«d.commandes.compile(f, null)»
 «d.outputs.compile(f)»'''
 	
 	def compile (Input i, Fonction f)
 	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
-	
-	def compile (Commands c, Fonction f)
-	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
-		
+			
 	def compile (Output o, Fonction f)
 	'''«FOR in : o.varOut»«ENDFOR»'''
 	
-	def compile(Command c, Fonction f)
+	
+	def compile (Commands c, Fonction f, Label l)
+	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f, l)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
+	
+	
+	def compile(Command c, Fonction f, Label l)
 '''«switch (c){
-	case c.nop!=null : f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_NOP), "_", "_", "_"))
-	case c.cmdIf!=null : {
-	}//f.addQuad(new Quadruplet("If",c.cmdIf.cmdsThen.compile(f).toString,c.cmdIf.cmdsElse.compile(f).toString,c.cmdIf.cond.compile(f).toString))
-	case c.cmdForEach!=null : c.cmdForEach.compile(f)
-	case c.vars!=null && c.exprs!=null : 1+1//f.addQuad(new Quadruplet(":=", c.vars.compile(f).toString(), c.exprs.compile(f).toString(), "_"))
-	case c.cmdWhile!=null : {
-		c.cmdWhile.compile(f)
+	case c.nop!=null : {
+		val nop = new Quadruplet(new CodeOp(CodeOp.OP_NOP), "_", "_", "_")
+		if(l==null)
+		{
+			f.addQuad(nop)
+			print("[DBG]f += <NOP>\n")
+		}
+		else
+		{
+			l.add(nop)
+			print("[DBG]" + l.name + " += <NOP>\n")
+		}		 
+	}
+	case c.cmdIf!=null : 
+	{
+		//TODO: add cond into quadruplet
+		//1. Generate if Label
+		val ifLabel = generateLabel
+		//2. Generate else Label
+		val elseLabel = generateLabel
+		
+		val ifQuad = new Quadruplet(new CodeOp(CodeOp.OP_IF, ifLabel.name, elseLabel.name), "_", "_", "_");
+		
+		if(l==null)
+		{
+			f.addQuad(ifQuad)
+			print("[DBG]f += <IF " + ifLabel.name + " " + elseLabel.name + ">\n")
+		}
+		else
+		{
+			l.add(ifQuad)
+			print("[DBG]" + l.name + " += <IF " + ifLabel.name + " " + elseLabel.name + ">\n")
+		}
+		
+		c.cmdIf.cmdsThen.compile(f, ifLabel)
+		c.cmdIf.cmdsElse.compile(f, elseLabel)
+	}
+	case c.vars!=null && c.exprs!=null : 
+	{
+		//TODO: donner une variable contenant toute l'expression
+		val affect = new Quadruplet(new CodeOp(CodeOp.OP_AFF), c.vars.compile(f).toString(), "_", "_")
+		if(l==null)
+		{
+			f.addQuad(affect)
+			print("[DBG]f += <:=>\n")
+		}
+		else
+		{
+			l.add(affect)
+			print("[DBG]" + l.name + " += <:=>\n")
+		}
+	}
+	case c.cmdWhile!=null : 
+	{
+		val whileLabel = generateLabel
+		
+		//TODO: variable contenant expr
+		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_WHILE, whileLabel.name), "_", "_", "_");
+		
+		if(l==null)
+		{
+			f.addQuad(whileQuad)
+			print("[DBG]f += <WHILE " + whileLabel.name + ">\n")
+		}
+		else
+		{
+			l.add(whileQuad)
+			print("[DBG]" + l.name + " += <WHILE " + whileLabel.name + ">\n")
+		}
+		c.cmdWhile.cmds.compile(f, whileLabel)
+	} 
+	case c.cmdForEach!=null : 
+	{
+		val foreachLabel = generateLabel
+		
+		//TODO: variable contenant expr
+		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_FOREACH, foreachLabel.name), "_", "_", "_");
+		
+		if(l==null)
+		{
+			f.addQuad(whileQuad)
+			print("[DBG]f += <FOREACH " + foreachLabel.name + ">\n")
+		}
+		else
+		{
+			l.add(whileQuad)
+			print("[DBG]" + l.name + " += <FOREACH " + foreachLabel.name + ">\n")
+		}
+		c.cmdForEach.cmds.compile(f, foreachLabel)
 	} 
 	default : c.class.name
 }
 »'''
+	
+	//ajouter la variable dans sa fonction
+	//TODO: variable avec un nom cpp compatible
+	def compile(Vars v, Fonction f)
+'''«IF v.eContents.empty»
+		«FOR in : v.varGen»
+			«var vari = new Variable (in.toString, "intern")»
+			«dico.putVariable(vari, f)»
+			«vari.getM_name»
+		«ENDFOR»
+	«ELSE»_
+	«ENDIF»
+'''
+	/** /
 
 	def compile(CommandWhile c, Fonction f)
 '''«c.expr.compile(f)»«c.cmds.compile(f)»
 '''
 	
 	def compile(CommandIf c, Fonction f)
-'''«c.cond.compile(f)» 
-«c.cmdsThen.compile(f)»
+'''if «c.cond.compile(f)» then
+«c.cmdsThen.compile(f)» else
 «c.cmdsElse.compile(f)»'''
 	
 	def compile(CommandForEach c, Fonction f)
 '''«c.elem.compile(f)»«c.ensemb.compile(f)»	
 «c.cmds.compile(f)»'''
-	
-	//ajouter la variable dans sa fonction
-	def compile(Vars v, Fonction f)
-'''«IF v.eContents.empty»
-		«FOR in : v.varGen»
-			«var vari = new Variable (in.toString, "intern")»
-			«dico.putVariable(vari, f)»
-			sss«vari.getM_name»
-		«ENDFOR»
-	«ELSE»_
-	«ENDIF»
-'''
 	
 	def compile(Exprs e, Fonction f)
 '''«FOR in : e.expGen»«in.compile(f)»«ENDFOR»'''
@@ -229,5 +318,6 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile (ExprEq ex, Fonction f)
 	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
+	/**/
 }
 
