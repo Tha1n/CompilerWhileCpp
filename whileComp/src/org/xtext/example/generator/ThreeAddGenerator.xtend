@@ -54,6 +54,8 @@ class ThreeAddGenerator implements IGenerator {
 	private ArrayList<Variable> m_globalVarList;
 	private HashMap<String, String> funNameTranslation;
 	private ArrayList<Label> m_labelList;
+	private HashMap<String, Quadruplet> varNameTranslation;
+	private int numVar;
 	 
 	def public List<String> getFunctionsNames()
 	{
@@ -89,13 +91,14 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def public void generate(String in, FunDictionary tab3A)
 	{
-		//TODO
 		resetDico
 		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val resourceSet = injector.getInstance(XtextResourceSet);
 		val uri = URI.createURI(in);
 		val xtextResource = resourceSet.getResource(uri, true);
 		this.funNameTranslation = new HashMap<String, String>();
+		this.varNameTranslation = new HashMap<String, Quadruplet>();
+		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
 		EcoreUtil.resolveAll(xtextResource);
@@ -118,11 +121,18 @@ class ThreeAddGenerator implements IGenerator {
 		return result;
 	}
 	
+	def public String generateVar() {
+		this.numVar += 1
+		"v_" + this.numVar
+	}
+	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
 		
         resetDico
         
 		this.funNameTranslation = new HashMap<String, String>();
+		this.varNameTranslation = new HashMap<String, Quadruplet>();
+		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
 		for(p: resource.allContents.toIterable.filter(Program)) {
@@ -179,23 +189,23 @@ class ThreeAddGenerator implements IGenerator {
 	}
 	case c.cmdIf!=null : 
 	{
-		//TODO: add cond into quadruplet
+		val cond = c.cmdIf.cond.compile(f).toString
 		//1. Generate if Label
 		val ifLabel = generateLabel
 		//2. Generate else Label
 		val elseLabel = generateLabel
 		
-		val ifQuad = new Quadruplet(new CodeOp(CodeOp.OP_IF, ifLabel.name, elseLabel.name), "_", "_", "_");
+		val ifQuad = new Quadruplet(new CodeOp(CodeOp.OP_IF, ifLabel.name, elseLabel.name), "_", cond, "_");
 		
 		if(l==null)
 		{
 			f.addQuad(ifQuad)
-			print("[DBG]f += <IF " + ifLabel.name + " " + elseLabel.name + ">\n")
+			print("[DBG]f += <IF " + ifLabel.name + " " + elseLabel.name + ", _, " + cond + ", _>\n")
 		}
 		else
 		{
 			l.add(ifQuad)
-			print("[DBG]" + l.name + " += <IF " + ifLabel.name + " " + elseLabel.name + ">\n")
+			print("[DBG]" + l.name + " += <IF " + ifLabel.name + " " + elseLabel.name + ", _, " + cond + ", _>\n")
 		}
 		
 		c.cmdIf.cmdsThen.compile(f, ifLabel)
@@ -203,60 +213,125 @@ class ThreeAddGenerator implements IGenerator {
 	}
 	case c.vars!=null && c.exprs!=null : 
 	{
-		//TODO: donner une variable contenant toute l'expression
-		val affect = new Quadruplet(new CodeOp(CodeOp.OP_AFF), c.vars.compile(f).toString(), "_", "_")
+		val res = c.exprs.compile(f).toString
+		val variable = c.vars.compile(f).toString()
+		val affect = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, res, "_")
 		if(l==null)
 		{
 			f.addQuad(affect)
-			print("[DBG]f += <:=>\n")
+			print("[DBG]f += <:=, " + variable.trim + "," + res + ", _>\n")
 		}
 		else
 		{
 			l.add(affect)
-			print("[DBG]" + l.name + " += <:=>\n")
+			print("[DBG]" + l.name + " += <:=, " + variable.trim + "," + res + ", _>\n")
 		}
 	}
 	case c.cmdWhile!=null : 
 	{
 		val whileLabel = generateLabel
 		
-		//TODO: variable contenant expr
-		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_WHILE, whileLabel.name), "_", "_", "_");
+		val expString = c.cmdWhile.expr.compile(f).toString
+		
+		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_WHILE, whileLabel.name), "_", expString, "_");
 		
 		if(l==null)
 		{
 			f.addQuad(whileQuad)
-			print("[DBG]f += <WHILE " + whileLabel.name + ">\n")
+			print("[DBG]f += <WHILE " + whileLabel.name + ", _, " + expString + ",_>\n")
 		}
 		else
 		{
 			l.add(whileQuad)
-			print("[DBG]" + l.name + " += <WHILE " + whileLabel.name + ">\n")
+			print("[DBG]" + l.name + " += <WHILE " + whileLabel.name + ", _, " + expString + ",_>\n")
 		}
 		c.cmdWhile.cmds.compile(f, whileLabel)
 	} 
 	case c.cmdForEach!=null : 
 	{
 		val foreachLabel = generateLabel
-		
-		//TODO: variable contenant expr
-		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_FOREACH, foreachLabel.name), "_", "_", "_");
+		val elem = c.cmdForEach.elem.compile(f).toString
+		val ensemble = c.cmdForEach.ensemb.compile(f).toString
+		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_FOREACH, foreachLabel.name), "_", elem, ensemble);
 		
 		if(l==null)
 		{
 			f.addQuad(whileQuad)
-			print("[DBG]f += <FOREACH " + foreachLabel.name + ">\n")
+			print("[DBG]f += <FOREACH " + foreachLabel.name + ", _," + elem + ", " + ensemble + ">\n")
 		}
 		else
 		{
 			l.add(whileQuad)
-			print("[DBG]" + l.name + " += <FOREACH " + foreachLabel.name + ">\n")
+			print("[DBG]" + l.name + " += <FOREACH " + foreachLabel.name + ", _," + elem + ", " + ensemble + ">\n")
 		}
 		c.cmdForEach.cmds.compile(f, foreachLabel)
 	} 
 	default : c.class.name
 }
 »'''
+
+	def compile (Expr ex, Fonction f)
+	'''«switch(ex){
+			case ex.exprSimp!=null : ex.exprSimp.compile(f)
+			case ex.exprAnd!=null : ex.exprAnd.compile(f)
+	    }
+	 »'''
+	
+	def compile (ExprSimple ex, Fonction f)
+	 '''«switch(ex){
+	 	case ex.nil!=null : {
+	 		val variable = generateVar
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, "nil", "_")
+	 		this.varNameTranslation.put(variable, quadruplet)
+	 		print("[DBG]" + variable + " := nil\n")
+	 		variable
+	 	}
+	 	case ex.vari!=null : {
+	 		val variable = generateVar
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.vari, "_")
+	 		this.varNameTranslation.put(variable, quadruplet)
+	 		print("[DBG]" + variable + " := " + ex.vari + "\n")
+	 		variable
+	 	}
+	 	case ex.symb!=null : {
+	 		print("symb")
+	 		val variable = generateVar
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.symb, "_")
+	 		this.varNameTranslation.put(variable, quadruplet)
+	 		print("[DBG]" + variable + " := " + ex.symb + "\n")
+	 		variable
+	 	}
+	 	case ex.exprCons!=null : {
+	 		print("cons")
+	 		val variable = generateVar
+	 		//TODO: Don't work (pas de compile(f) pour la liste)
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f).toString, ex.exprCons.exprConsAttList.consList.toString())
+	 		this.varNameTranslation.put(variable, quadruplet)
+	 		print("[DBG] CONS... but don't work yet\n")
+	 		variable
+	 	}
+	 	case ex.exprHead!=null : {
+	 		val variable = generateVar
+	 		val res = ex.exprHeadAtt.compile(f).toString
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_HD), variable, res, "_")
+	 		this.varNameTranslation.put(variable, quadruplet)
+	 		print("[DBG]" + variable + " := (hd " + res + ")\n")
+	 		variable
+	 	}
+	 	case ex.exprTail!=null : {
+	 		val variable = generateVar
+	 		val res = ex.exprTailAtt.compile(f).toString
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_TL), variable, res, "_")
+	 		this.varNameTranslation.put(variable, quadruplet)
+	 		print("[DBG]" + variable + " := (tl " + res + ")\n")
+	 		variable
+	 	}
+	 	case ex.nomSymb!=null : {
+	 		print("[DBG]TODO\n")
+	 		""
+	 	}//TODO: (c'est quoi ?) :"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
+	 }
+	 »'''
 	
 	//ajouter la variable dans sa fonction
 	//TODO: variable avec un nom cpp compatible
@@ -270,42 +345,9 @@ class ThreeAddGenerator implements IGenerator {
 	«ELSE»_
 	«ENDIF»
 '''
-	/** /
 
-	def compile(CommandWhile c, Fonction f)
-'''«c.expr.compile(f)»«c.cmds.compile(f)»
-'''
-	
-	def compile(CommandIf c, Fonction f)
-'''if «c.cond.compile(f)» then
-«c.cmdsThen.compile(f)» else
-«c.cmdsElse.compile(f)»'''
-	
-	def compile(CommandForEach c, Fonction f)
-'''«c.elem.compile(f)»«c.ensemb.compile(f)»	
-«c.cmds.compile(f)»'''
-	
 	def compile(Exprs e, Fonction f)
 '''«FOR in : e.expGen»«in.compile(f)»«ENDFOR»'''
-	
-	def compile (Expr ex, Fonction f)
-'''«switch(ex){
-			case ex.exprSimp!=null : ex.exprSimp.compile(f)
-			case ex.exprAnd!=null : ex.exprAnd.compile(f)
-	    }
-	 »'''
-	
-	def compile (ExprSimple ex, Fonction f)
-	 '''«switch(ex){
-	 	case ex.nil!=null : "nil"
-	 	case ex.vari!=null : ex.vari
-	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null : 1+1// dico.getFunctions.get(0).addQuad(new Quadruplet("cons", ex.exprCons.exprConsAtt1.compile(f).toString ,ex.exprCons.exprConsAttList.consList.toString() ," "))
-	 	case ex.exprHead!=null : "<hd ,"+ ex.exprHeadAtt.compile(f) + ">"
-	 	case ex.exprTail!=null : "<tl ," + ex.exprTailAtt.compile(f) +">"
-	 	case ex.nomSymb!=null : ""//"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
-	 }
-	 »'''
 		
 	def compile (ExprAnd ex, Fonction f)
 	'''«ex.exprOr.compile(f)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f)»«ENDIF»'''
@@ -318,6 +360,5 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile (ExprEq ex, Fonction f)
 	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
-	/**/
 }
 

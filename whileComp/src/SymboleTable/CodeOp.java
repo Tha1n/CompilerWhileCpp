@@ -6,6 +6,9 @@ public class CodeOp {
 	public final static int OP_AFF = 2;
 	public final static int OP_WHILE = 3;
 	public final static int OP_FOREACH = 4;
+	public final static int OP_CONS = 5;
+	public final static int OP_HD = 6;
+	public final static int OP_TL = 7;
 
 
 	private int op;
@@ -86,6 +89,15 @@ public class CodeOp {
 			break;
 		case 4:
 			opToString =  "foreach";
+			break;
+		case 5:
+			opToString =  "cons";
+			break;
+		case 6:
+			opToString =  "hd";
+			break;
+		case 7:
+			opToString =  "tl";
 			break;
 		default:
 			opToString = "Undefined";
