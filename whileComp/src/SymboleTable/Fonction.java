@@ -1,6 +1,7 @@
 package SymboleTable;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -18,6 +19,7 @@ public class Fonction {
 	private ArrayList<Variable> m_varList;
 	
 	//Code 3@
+	private HashMap<String, String> m_readVarList;
 	private ArrayList<Quadruplet> m_quadList;
 	private ArrayList<String> m_gen_var_list;
 	
@@ -33,6 +35,7 @@ public class Fonction {
 		this.m_adressCode = adressCode;
 		this.m_varList = new ArrayList<Variable>();
 		this.m_quadList = new ArrayList<Quadruplet>();
+		this.m_readVarList = new HashMap<String, String>();
 	}
 
 	public String getM_name() {
@@ -154,5 +157,18 @@ public class Fonction {
 	
 	public void addQuad(Quadruplet q) {
 		m_quadList.add(q);
+	}
+	
+	//Méthodes pour les Read Var
+	public boolean isReadVar(String var) {
+		return m_readVarList.containsKey(var);
+	}
+	
+	public void addReadVar(String whileVar, String cppVar) {
+		m_readVarList.put(whileVar, cppVar);
+	}
+	
+	public String getReadVar(String whileVar) {
+		return m_readVarList.get(whileVar);
 	}
 }
