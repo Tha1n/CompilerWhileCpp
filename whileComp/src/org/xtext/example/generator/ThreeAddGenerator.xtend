@@ -330,10 +330,6 @@ class ThreeAddGenerator implements IGenerator {
 	 		print("[DBG]" + variable + " := (tl " + res + ")\n")
 	 		variable
 	 	}
-	 	case ex.nomSymb!=null : {
-	 		print("[DBG]TODO\n")
-	 		""
-	 	}//TODO: (c'est quoi ?) :"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
 	
