@@ -298,7 +298,6 @@ class ThreeAddGenerator implements IGenerator {
 	 		variable
 	 	}
 	 	case ex.symb!=null : {
-	 		print("symb")
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.symb, "_")
 	 		this.varNameTranslation.put(variable, quadruplet)
