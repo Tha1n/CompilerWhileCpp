@@ -166,7 +166,7 @@ class ThreeAddGenerator implements IGenerator {
 	'''«FOR in : i.varIn»«f.addReadVar(in.toString, generateVar)»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 			
 	def compile (Output o, Fonction f)
-	'''«FOR out : o.varOut»«f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_WRITE), out.toString, "_", "_"))»«ENDFOR»'''
+	'''«FOR out : o.varOut»«f.addWriteVar(out)»«ENDFOR»'''
 	
 	def compile (Commands c, Fonction f, Label l)
 	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f, l)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
