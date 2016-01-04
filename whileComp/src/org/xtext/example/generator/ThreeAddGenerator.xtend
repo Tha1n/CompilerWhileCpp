@@ -112,7 +112,6 @@ class ThreeAddGenerator implements IGenerator {
   		}catch (Exception e){
   			println("Can't write PP.3a - Error: " + e.getMessage())
   		}
-		
 	}
 	
 	def public Label generateLabel() {
@@ -138,6 +137,10 @@ class ThreeAddGenerator implements IGenerator {
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.3a", p.compile())
 		}
+		
+		//TODO move to whc
+		val cppGenerator = new CppGenerator();
+		cppGenerator.generateCPP(dico, funNameTranslation, m_labelList)
 	}
 
 	def compile (Program p)
@@ -185,7 +188,7 @@ class ThreeAddGenerator implements IGenerator {
 		{
 			l.add(nop)
 			print("[DBG]" + l.name + " += <NOP>\n")
-		}		 
+		}
 	}
 	case c.cmdIf!=null : 
 	{

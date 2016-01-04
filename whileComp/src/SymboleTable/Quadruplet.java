@@ -13,6 +13,26 @@ public class Quadruplet {
 		this.arg1 = a1;
 		this.arg2 = a2;
 	}
+	
+	public CodeOp getOp()
+	{
+		return operator;
+	}
+	
+	public String getArg1()
+	{
+		return arg1;
+	}
+	
+	public String getArg2()
+	{
+		return arg2;
+	}
+	
+	public String getResult()
+	{
+		return result;
+	}
 
 
 	public String toString(){
