@@ -334,10 +334,11 @@ class ThreeAddGenerator implements IGenerator {
 	 »'''
 	
 	//ajouter la variable dans sa fonction
-	//TODO: variable avec un nom cpp compatible
 	def compile(Vars v, Fonction f)
+	//Ajout dans varNameTranslation du couple <varNomWhile, <OP_READ, varNomCPP, _, _ >>
 '''«IF v.eContents.empty»
 		«FOR in : v.varGen»
+			«varNameTranslation.put(in.toString(), new Quadruplet(new CodeOp(CodeOp.OP_READ), generateVar, "_", "_"))»
 			«var vari = new Variable (in.toString, "intern")»
 			«dico.putVariable(vari, f)»
 			«vari.getM_name»
@@ -361,4 +362,3 @@ class ThreeAddGenerator implements IGenerator {
 	def compile (ExprEq ex, Fonction f)
 	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
 }
-
