@@ -17,11 +17,6 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getVari <em>Vari</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getSymb <em>Symb</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprCons <em>Expr Cons</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprConsAtt1 <em>Expr Cons Att1</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprConsAtt2 <em>Expr Cons Att2</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprList <em>Expr List</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprListAtt1 <em>Expr List Att1</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprListAtt2 <em>Expr List Att2</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprHead <em>Expr Head</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprHeadAtt <em>Expr Head Att</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.ExprSimple#getExprTail <em>Expr Tail</em>}</li>
@@ -115,160 +110,30 @@ public interface ExprSimple extends EObject
   void setSymb(String value);
 
   /**
-   * Returns the value of the '<em><b>Expr Cons</b></em>' attribute.
+   * Returns the value of the '<em><b>Expr Cons</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Expr Cons</em>' attribute isn't clear,
+   * If the meaning of the '<em>Expr Cons</em>' containment reference isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr Cons</em>' attribute.
-   * @see #setExprCons(String)
+   * @return the value of the '<em>Expr Cons</em>' containment reference.
+   * @see #setExprCons(Cons)
    * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_ExprCons()
-   * @model
+   * @model containment="true"
    * @generated
    */
-  String getExprCons();
+  Cons getExprCons();
 
   /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprCons <em>Expr Cons</em>}' attribute.
+   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprCons <em>Expr Cons</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr Cons</em>' attribute.
+   * @param value the new value of the '<em>Expr Cons</em>' containment reference.
    * @see #getExprCons()
    * @generated
    */
-  void setExprCons(String value);
-
-  /**
-   * Returns the value of the '<em><b>Expr Cons Att1</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expr Cons Att1</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr Cons Att1</em>' containment reference.
-   * @see #setExprConsAtt1(Expr)
-   * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_ExprConsAtt1()
-   * @model containment="true"
-   * @generated
-   */
-  Expr getExprConsAtt1();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprConsAtt1 <em>Expr Cons Att1</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr Cons Att1</em>' containment reference.
-   * @see #getExprConsAtt1()
-   * @generated
-   */
-  void setExprConsAtt1(Expr value);
-
-  /**
-   * Returns the value of the '<em><b>Expr Cons Att2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expr Cons Att2</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr Cons Att2</em>' containment reference.
-   * @see #setExprConsAtt2(Expr)
-   * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_ExprConsAtt2()
-   * @model containment="true"
-   * @generated
-   */
-  Expr getExprConsAtt2();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprConsAtt2 <em>Expr Cons Att2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr Cons Att2</em>' containment reference.
-   * @see #getExprConsAtt2()
-   * @generated
-   */
-  void setExprConsAtt2(Expr value);
-
-  /**
-   * Returns the value of the '<em><b>Expr List</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expr List</em>' attribute isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr List</em>' attribute.
-   * @see #setExprList(String)
-   * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_ExprList()
-   * @model
-   * @generated
-   */
-  String getExprList();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprList <em>Expr List</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr List</em>' attribute.
-   * @see #getExprList()
-   * @generated
-   */
-  void setExprList(String value);
-
-  /**
-   * Returns the value of the '<em><b>Expr List Att1</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expr List Att1</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr List Att1</em>' containment reference.
-   * @see #setExprListAtt1(Expr)
-   * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_ExprListAtt1()
-   * @model containment="true"
-   * @generated
-   */
-  Expr getExprListAtt1();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprListAtt1 <em>Expr List Att1</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr List Att1</em>' containment reference.
-   * @see #getExprListAtt1()
-   * @generated
-   */
-  void setExprListAtt1(Expr value);
-
-  /**
-   * Returns the value of the '<em><b>Expr List Att2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <p>
-   * If the meaning of the '<em>Expr List Att2</em>' containment reference isn't clear,
-   * there really should be more of a description here...
-   * </p>
-   * <!-- end-user-doc -->
-   * @return the value of the '<em>Expr List Att2</em>' containment reference.
-   * @see #setExprListAtt2(Expr)
-   * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_ExprListAtt2()
-   * @model containment="true"
-   * @generated
-   */
-  Expr getExprListAtt2();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getExprListAtt2 <em>Expr List Att2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Expr List Att2</em>' containment reference.
-   * @see #getExprListAtt2()
-   * @generated
-   */
-  void setExprListAtt2(Expr value);
+  void setExprCons(Cons value);
 
   /**
    * Returns the value of the '<em><b>Expr Head</b></em>' attribute.

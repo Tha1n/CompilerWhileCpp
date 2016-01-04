@@ -112,6 +112,7 @@ class ThreeAddGenerator implements IGenerator {
   		}catch (Exception e){
   			println("Can't write PP.3a - Error: " + e.getMessage())
   		}
+		
 	}
 	
 	def public Label generateLabel() {
@@ -165,11 +166,11 @@ class ThreeAddGenerator implements IGenerator {
 «d.outputs.compile(f)»'''
 	
 	def compile (Input i, Fonction f)
-	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
+	//Gestion des variables While contenus dans le Read translate en var CPP
+	'''«FOR in : i.varIn»«f.addReadVar(in.toString, generateVar)»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 			
 	def compile (Output o, Fonction f)
-	'''«FOR in : o.varOut»«ENDFOR»'''
-	
+	'''«FOR out : o.varOut»«f.addWriteVar(out)»«ENDFOR»'''
 	
 	def compile (Commands c, Fonction f, Label l)
 	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f, l)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
@@ -188,7 +189,7 @@ class ThreeAddGenerator implements IGenerator {
 		{
 			l.add(nop)
 			print("[DBG]" + l.name + " += <NOP>\n")
-		}
+		}		 
 	}
 	case c.cmdIf!=null : 
 	{
@@ -337,8 +338,8 @@ class ThreeAddGenerator implements IGenerator {
 	 »'''
 	
 	//ajouter la variable dans sa fonction
-	//TODO: variable avec un nom cpp compatible
 	def compile(Vars v, Fonction f)
+	//TODO
 '''«IF v.eContents.empty»
 		«FOR in : v.varGen»
 			«var vari = new Variable (in.toString, "intern")»
@@ -364,4 +365,3 @@ class ThreeAddGenerator implements IGenerator {
 	def compile (ExprEq ex, Fonction f)
 	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
 }
-

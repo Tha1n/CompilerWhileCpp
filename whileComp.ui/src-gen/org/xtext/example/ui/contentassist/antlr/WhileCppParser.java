@@ -67,7 +67,6 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprSimpleAccess().getGroup_2(), "rule__ExprSimple__Group_2__0");
 					put(grammarAccess.getExprSimpleAccess().getGroup_3(), "rule__ExprSimple__Group_3__0");
 					put(grammarAccess.getExprSimpleAccess().getGroup_4(), "rule__ExprSimple__Group_4__0");
-					put(grammarAccess.getExprSimpleAccess().getGroup_5(), "rule__ExprSimple__Group_5__0");
 					put(grammarAccess.getExprAndAccess().getGroup(), "rule__ExprAnd__Group__0");
 					put(grammarAccess.getExprAndAccess().getGroup_1(), "rule__ExprAnd__Group_1__0");
 					put(grammarAccess.getExprOrAccess().getGroup(), "rule__ExprOr__Group__0");
@@ -75,6 +74,7 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprNotAccess().getGroup(), "rule__ExprNot__Group__0");
 					put(grammarAccess.getExprEqAccess().getGroup_0(), "rule__ExprEq__Group_0__0");
 					put(grammarAccess.getExprEqAccess().getGroup_1(), "rule__ExprEq__Group_1__0");
+					put(grammarAccess.getConsAccess().getGroup(), "rule__Cons__Group__0");
 					put(grammarAccess.getProgramAccess().getFonctionsAssignment(), "rule__Program__FonctionsAssignment");
 					put(grammarAccess.getFunctionAccess().getNomAssignment_1(), "rule__Function__NomAssignment_1");
 					put(grammarAccess.getFunctionAccess().getDefinitionAssignment_3(), "rule__Function__DefinitionAssignment_3");
@@ -112,17 +112,12 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprSimpleAccess().getVariAssignment_0_1(), "rule__ExprSimple__VariAssignment_0_1");
 					put(grammarAccess.getExprSimpleAccess().getSymbAssignment_0_2(), "rule__ExprSimple__SymbAssignment_0_2");
 					put(grammarAccess.getExprSimpleAccess().getExprConsAssignment_1_1(), "rule__ExprSimple__ExprConsAssignment_1_1");
-					put(grammarAccess.getExprSimpleAccess().getExprConsAtt1Assignment_1_2(), "rule__ExprSimple__ExprConsAtt1Assignment_1_2");
-					put(grammarAccess.getExprSimpleAccess().getExprConsAtt2Assignment_1_3(), "rule__ExprSimple__ExprConsAtt2Assignment_1_3");
-					put(grammarAccess.getExprSimpleAccess().getExprListAssignment_2_1(), "rule__ExprSimple__ExprListAssignment_2_1");
-					put(grammarAccess.getExprSimpleAccess().getExprListAtt1Assignment_2_2(), "rule__ExprSimple__ExprListAtt1Assignment_2_2");
-					put(grammarAccess.getExprSimpleAccess().getExprListAtt2Assignment_2_3(), "rule__ExprSimple__ExprListAtt2Assignment_2_3");
-					put(grammarAccess.getExprSimpleAccess().getExprHeadAssignment_3_1(), "rule__ExprSimple__ExprHeadAssignment_3_1");
-					put(grammarAccess.getExprSimpleAccess().getExprHeadAttAssignment_3_2(), "rule__ExprSimple__ExprHeadAttAssignment_3_2");
-					put(grammarAccess.getExprSimpleAccess().getExprTailAssignment_4_1(), "rule__ExprSimple__ExprTailAssignment_4_1");
-					put(grammarAccess.getExprSimpleAccess().getExprTailAttAssignment_4_2(), "rule__ExprSimple__ExprTailAttAssignment_4_2");
-					put(grammarAccess.getExprSimpleAccess().getNomSymbAssignment_5_1(), "rule__ExprSimple__NomSymbAssignment_5_1");
-					put(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_5_2(), "rule__ExprSimple__SymbAttAssignment_5_2");
+					put(grammarAccess.getExprSimpleAccess().getExprHeadAssignment_2_1(), "rule__ExprSimple__ExprHeadAssignment_2_1");
+					put(grammarAccess.getExprSimpleAccess().getExprHeadAttAssignment_2_2(), "rule__ExprSimple__ExprHeadAttAssignment_2_2");
+					put(grammarAccess.getExprSimpleAccess().getExprTailAssignment_3_1(), "rule__ExprSimple__ExprTailAssignment_3_1");
+					put(grammarAccess.getExprSimpleAccess().getExprTailAttAssignment_3_2(), "rule__ExprSimple__ExprTailAttAssignment_3_2");
+					put(grammarAccess.getExprSimpleAccess().getNomSymbAssignment_4_1(), "rule__ExprSimple__NomSymbAssignment_4_1");
+					put(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2(), "rule__ExprSimple__SymbAttAssignment_4_2");
 					put(grammarAccess.getExprAndAccess().getExprOrAssignment_0(), "rule__ExprAnd__ExprOrAssignment_0");
 					put(grammarAccess.getExprAndAccess().getExprAndAssignment_1_0(), "rule__ExprAnd__ExprAndAssignment_1_0");
 					put(grammarAccess.getExprAndAccess().getExprAndAttAssignment_1_1(), "rule__ExprAnd__ExprAndAttAssignment_1_1");
@@ -134,6 +129,10 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprEqAccess().getExprAssignment_0_1(), "rule__ExprEq__ExprAssignment_0_1");
 					put(grammarAccess.getExprEqAccess().getExprSim1Assignment_1_0(), "rule__ExprEq__ExprSim1Assignment_1_0");
 					put(grammarAccess.getExprEqAccess().getExprSim2Assignment_1_2(), "rule__ExprEq__ExprSim2Assignment_1_2");
+					put(grammarAccess.getConsAccess().getExprConsAssignment_0(), "rule__Cons__ExprConsAssignment_0");
+					put(grammarAccess.getConsAccess().getExprConsAtt1Assignment_1(), "rule__Cons__ExprConsAtt1Assignment_1");
+					put(grammarAccess.getConsAccess().getExprConsAttListAssignment_2(), "rule__Cons__ExprConsAttListAssignment_2");
+					put(grammarAccess.getConsAttListAccess().getConsListAssignment(), "rule__ConsAttList__ConsListAssignment");
 				}
 			};
 		}

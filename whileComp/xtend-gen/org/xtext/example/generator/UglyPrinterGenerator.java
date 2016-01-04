@@ -401,98 +401,17 @@ public class UglyPrinterGenerator implements IGenerator {
   }
   
   public CharSequence compile(final ExprSimple ex) {
-    StringConcatenation _builder = new StringConcatenation();
-    String _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      String _nil = ex.getNil();
-      boolean _notEquals = (!Objects.equal(_nil, null));
-      if (_notEquals) {
-        _matched=true;
-        _switchResult = "nil";
-      }
-    }
-    if (!_matched) {
-      String _vari = ex.getVari();
-      boolean _notEquals_1 = (!Objects.equal(_vari, null));
-      if (_notEquals_1) {
-        _matched=true;
-        _switchResult = ex.getVari();
-      }
-    }
-    if (!_matched) {
-      String _symb = ex.getSymb();
-      boolean _notEquals_2 = (!Objects.equal(_symb, null));
-      if (_notEquals_2) {
-        _matched=true;
-        _switchResult = ex.getSymb();
-      }
-    }
-    if (!_matched) {
-      String _exprCons = ex.getExprCons();
-      boolean _notEquals_3 = (!Objects.equal(_exprCons, null));
-      if (_notEquals_3) {
-        _matched=true;
-        Expr _exprConsAtt1 = ex.getExprConsAtt1();
-        Object _compile = this.compile(_exprConsAtt1);
-        String _plus = ("(cons " + _compile);
-        Expr _exprConsAtt2 = ex.getExprConsAtt2();
-        Object _compile_1 = this.compile(_exprConsAtt2);
-        String _plus_1 = (_plus + _compile_1);
-        _switchResult = (_plus_1 + ")");
-      }
-    }
-    if (!_matched) {
-      String _exprList = ex.getExprList();
-      boolean _notEquals_4 = (!Objects.equal(_exprList, null));
-      if (_notEquals_4) {
-        _matched=true;
-        Expr _exprListAtt1 = ex.getExprListAtt1();
-        Object _compile_2 = this.compile(_exprListAtt1);
-        String _plus_2 = ("(list " + _compile_2);
-        Expr _exprListAtt2 = ex.getExprListAtt2();
-        Object _compile_3 = this.compile(_exprListAtt2);
-        String _plus_3 = (_plus_2 + _compile_3);
-        _switchResult = (_plus_3 + ")");
-      }
-    }
-    if (!_matched) {
-      String _exprHead = ex.getExprHead();
-      boolean _notEquals_5 = (!Objects.equal(_exprHead, null));
-      if (_notEquals_5) {
-        _matched=true;
-        Expr _exprHeadAtt = ex.getExprHeadAtt();
-        Object _compile_4 = this.compile(_exprHeadAtt);
-        String _plus_4 = ("(hd " + _compile_4);
-        _switchResult = (_plus_4 + ")");
-      }
-    }
-    if (!_matched) {
-      String _exprTail = ex.getExprTail();
-      boolean _notEquals_6 = (!Objects.equal(_exprTail, null));
-      if (_notEquals_6) {
-        _matched=true;
-        Expr _exprTailAtt = ex.getExprTailAtt();
-        Object _compile_5 = this.compile(_exprTailAtt);
-        String _plus_5 = ("(tl " + _compile_5);
-        _switchResult = (_plus_5 + ")");
-      }
-    }
-    if (!_matched) {
-      String _nomSymb = ex.getNomSymb();
-      boolean _notEquals_7 = (!Objects.equal(_nomSymb, null));
-      if (_notEquals_7) {
-        _matched=true;
-        String _nomSymb_1 = ex.getNomSymb();
-        String _plus_6 = ("(" + _nomSymb_1);
-        Expr _symbAtt = ex.getSymbAtt();
-        Object _compile_6 = this.compile(_symbAtt);
-        String _plus_7 = (_plus_6 + _compile_6);
-        _switchResult = (_plus_7 + ")");
-      }
-    }
-    _builder.append(_switchResult, "");
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method exprConsAtt1 is undefined for the type UglyPrinterGenerator"
+      + "\nThe method exprConsAtt2 is undefined for the type UglyPrinterGenerator"
+      + "\nThe method exprList is undefined for the type UglyPrinterGenerator"
+      + "\nThe method exprListAtt1 is undefined for the type UglyPrinterGenerator"
+      + "\nThe method exprListAtt2 is undefined for the type UglyPrinterGenerator"
+      + "\ncompile cannot be resolved"
+      + "\ncompile cannot be resolved"
+      + "\n!= cannot be resolved"
+      + "\ncompile cannot be resolved"
+      + "\ncompile cannot be resolved");
   }
   
   public CharSequence compile(final ExprAnd ex) {

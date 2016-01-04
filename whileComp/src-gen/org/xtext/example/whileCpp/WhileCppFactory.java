@@ -185,6 +185,24 @@ public interface WhileCppFactory extends EFactory
   ExprEq createExprEq();
 
   /**
+   * Returns a new object of class '<em>Cons</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cons</em>'.
+   * @generated
+   */
+  Cons createCons();
+
+  /**
+   * Returns a new object of class '<em>Cons Att List</em>'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return a new object of class '<em>Cons Att List</em>'.
+   * @generated
+   */
+  ConsAttList createConsAttList();
+
+  /**
    * Returns the package supported by this factory.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
