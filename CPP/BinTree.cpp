@@ -2,7 +2,7 @@
 
 BinTree::BinTree()
 {
-    _node = "";
+    _node = nullptr;
     _left = NIL;
     _right = NIL;
 }
@@ -16,7 +16,7 @@ BinTree::BinTree (const BinTree & bt)
 
 BinTree::BinTree(std::string node)
 {
-    _node = node;
+    _node = new std::string(node);
     _left = NIL;
     _right = NIL;
 }
@@ -29,6 +29,16 @@ BinTree::~BinTree()
 bool BinTree::isNIL(const BinTree* tree)
 {
     return tree == NIL;
+}
+
+bool BinTree::isSymb(const BinTree* tree)
+{
+    return !isNIL(tree) && tree->_node != nullptr;
+}
+
+bool BinTree::isVar(const BinTree* tree)
+{
+    return !isNIL(tree) && !isSymb(tree);
 }
 
 BinTree* BinTree::hd(BinTree* tree)
@@ -87,8 +97,10 @@ std::string BinTree::toString() const
 {
     if(isNIL(this))
         return "NIL";
+    else if(isSymb(this))
+        return "[" + *_node + "," + _left->toString() + "," + _right->toString() + "]";
     else
-        return "[" + _node + "," + _left->toString() + "," + _right->toString() + "]";
+        return "[" + _left->toString() + "," + _right->toString() + "]";
 }
 
 std::ostream& operator <<(std::ostream& os, const BinTree& bT)
