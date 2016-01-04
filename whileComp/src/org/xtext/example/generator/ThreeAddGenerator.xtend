@@ -162,11 +162,11 @@ class ThreeAddGenerator implements IGenerator {
 «d.outputs.compile(f)»'''
 	
 	def compile (Input i, Fonction f)
-	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
+	//Gestion des variables While contenus dans le Read translate en var CPP
+	'''«FOR in : i.varIn»«f.addReadVar(in.toString, generateVar)»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 			
 	def compile (Output o, Fonction f)
-	'''«FOR in : o.varOut»«ENDFOR»'''
-	
+	'''«FOR out : o.varOut»«f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_WRITE), out.toString, "_", "_"))»«ENDFOR»'''
 	
 	def compile (Commands c, Fonction f, Label l)
 	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f, l)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
@@ -335,10 +335,9 @@ class ThreeAddGenerator implements IGenerator {
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, Fonction f)
-	//Ajout dans varNameTranslation du couple <varNomWhile, <OP_READ, varNomCPP, _, _ >>
+	//TODO
 '''«IF v.eContents.empty»
 		«FOR in : v.varGen»
-			«varNameTranslation.put(in.toString(), new Quadruplet(new CodeOp(CodeOp.OP_READ), generateVar, "_", "_"))»
 			«var vari = new Variable (in.toString, "intern")»
 			«dico.putVariable(vari, f)»
 			«vari.getM_name»
