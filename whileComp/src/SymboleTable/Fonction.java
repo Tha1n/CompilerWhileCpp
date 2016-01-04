@@ -20,6 +20,7 @@ public class Fonction {
 	
 	//Code 3@
 	private HashMap<String, String> m_readVarList;
+	private ArrayList<String> m_writeVarList;
 	private ArrayList<Quadruplet> m_quadList;
 	private ArrayList<String> m_gen_var_list;
 	
@@ -36,6 +37,7 @@ public class Fonction {
 		this.m_varList = new ArrayList<Variable>();
 		this.m_quadList = new ArrayList<Quadruplet>();
 		this.m_readVarList = new HashMap<String, String>();
+		this.m_writeVarList = new ArrayList<String>();
 	}
 
 	public String getM_name() {
@@ -170,5 +172,14 @@ public class Fonction {
 	
 	public String getReadVar(String whileVar) {
 		return m_readVarList.get(whileVar);
+	}
+	
+	//Méthodes pour les Write Var
+	public void addWriteVar(String whileVar) {
+		m_writeVarList.add(whileVar);
+	}
+	
+	public String getWriteVar(int index) {
+		return m_writeVarList.get(index);
 	}
 }
