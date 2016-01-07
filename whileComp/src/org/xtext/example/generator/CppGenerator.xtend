@@ -34,13 +34,16 @@ class CppGenerator {
 				_previousFunctions.add(funName)
 				cpp = cpp + '''List<BinTree> ''' + funNameTranslation.get(funName) + '''(List<BinTree> args)
 {
-	//TODO 1. get read
-	
-	//TODO 2. compile instructions
+	//Read
+	''' + 
+	writeReadVar(func.readVarList)
+	+ '''
+	//Instructions
 	''' + compileInstructions(func.m_quadList) +
 	'''
 	
-	//TODO 3. write output
+	//TODO% write
+	''' + writeWriteVar(func.writeVarList) + '''
 }
 
 '''
@@ -51,16 +54,76 @@ class CppGenerator {
 		print(cpp)
 	}
 	
+	def public String writeReadVar(HashMap<String, String> readVar)
+	{
+		var result = "BinTree "
+		var cpt = 0
+		
+    	var iterator = readVar.entrySet.iterator
+		
+		while(iterator.hasNext)
+		{
+			val pair = iterator.next
+			result = result + pair.value + " = args.at(" + cpt + ")"
+			cpt += 1
+			if(iterator.hasNext)
+				result += ", "
+			else
+				result += ";\n"
+		}
+	
+		result
+	}
+	
+	
+	def public String writeWriteVar(ArrayList<String> writeVar)
+	{
+		var result = '''List<BinTree> retour;
+		'''
+		
+    	var iterator = writeVar.iterator
+		
+		while(iterator.hasNext)
+		{
+			val variable = iterator.next
+			result += "retour.add(" + variable + ");\n"
+		}
+		
+		result += "return retour;\n"
+		
+		result
+	}
+	
+	def public String writeEntryArg(HashMap<String, String> readVar)
+	{
+		var result = '''if(argc < ''' + readVar.size + ''')
+		std::cout << "Not enough arg\n";
+	List<BinTree> entry;
+		'''
+		
+		for(var i = 0; i < readVar.size; i+=1)
+		{
+			result += "	entry.append(BinTree(argv[" + i + "]));\n"
+		}
+	
+		result
+	}
+	
 	def public String addMain(String cpp, FunDictionary funcs, HashMap<String, String> funNameTranslation) {
 		
 		var result = cpp 
+		var entryFunc = funcs.functions.last
 		result += '''
 		
-		int main() {
-			//TODO get arguments
-				''' + 
-			funNameTranslation.get(funcs.functions.last.m_name)
-			+ '''(//TODO arg);
+		int main(int argc, char *argv[]) {
+			''' + writeEntryArg(entryFunc.readVarList)
+			+ '''
+			
+			List<BinTree> result = ''' + 
+			funNameTranslation.get(entryFunc.m_name)
+			+ '''(List<BinTree> entry);
+	for(auto bT : result)
+		std::cout << bT << std::endl;
 	return 0;
 }
 		'''

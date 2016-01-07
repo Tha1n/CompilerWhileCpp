@@ -182,4 +182,14 @@ public class Fonction {
 	public String getWriteVar(int index) {
 		return m_writeVarList.get(index);
 	}
+	
+	public HashMap<String, String> getReadVarList()
+	{
+		return m_readVarList;
+	}
+	
+	public ArrayList<String> getWriteVarList()
+	{
+		return m_writeVarList;
+	}
 }
