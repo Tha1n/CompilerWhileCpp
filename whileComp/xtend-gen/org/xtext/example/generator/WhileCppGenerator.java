@@ -30,7 +30,6 @@ public class WhileCppGenerator implements IGenerator {
   @Override
   public void doGenerate(final Resource input, final IFileSystemAccess fsa) {
     this.PrettyGen.doGenerate(input, fsa);
-    this.UglyGen.doGenerate(input, fsa);
     this.ThreeAddGen.doGenerate(input, fsa);
   }
 }

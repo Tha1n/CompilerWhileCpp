@@ -165,6 +165,16 @@ public class WhileCppAdapterFactory extends AdapterFactoryImpl
         return createExprEqAdapter();
       }
       @Override
+      public Adapter caseCons(Cons object)
+      {
+        return createConsAdapter();
+      }
+      @Override
+      public Adapter caseConsAttList(ConsAttList object)
+      {
+        return createConsAttListAdapter();
+      }
+      @Override
       public Adapter defaultCase(EObject object)
       {
         return createEObjectAdapter();
@@ -452,6 +462,36 @@ public class WhileCppAdapterFactory extends AdapterFactoryImpl
    * @generated
    */
   public Adapter createExprEqAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.whileCpp.Cons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.whileCpp.Cons
+   * @generated
+   */
+  public Adapter createConsAdapter()
+  {
+    return null;
+  }
+
+  /**
+   * Creates a new adapter for an object of class '{@link org.xtext.example.whileCpp.ConsAttList <em>Cons Att List</em>}'.
+   * <!-- begin-user-doc -->
+   * This default implementation returns null so that we can easily ignore cases;
+   * it's useful to ignore a case when inheritance will catch all the cases anyway.
+   * <!-- end-user-doc -->
+   * @return the new adapter.
+   * @see org.xtext.example.whileCpp.ConsAttList
+   * @generated
+   */
+  public Adapter createConsAttListAdapter()
   {
     return null;
   }

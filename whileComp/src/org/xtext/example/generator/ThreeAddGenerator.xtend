@@ -40,7 +40,6 @@ import java.util.ArrayList
 import SymboleTable.Label
 import java.io.FileWriter
 import java.io.BufferedWriter
-import java.util.Stack
 
 /**
  * Generates code from your model files on save.
@@ -139,6 +138,10 @@ class ThreeAddGenerator implements IGenerator {
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.3a", p.compile())
 		}
+		
+		//TODO move to whc
+		val cppGenerator = new CppGenerator();
+		cppGenerator.generateCPP(dico, funNameTranslation, m_labelList)
 	}
 
 	def compile (Program p)
@@ -163,11 +166,11 @@ class ThreeAddGenerator implements IGenerator {
 «d.outputs.compile(f)»'''
 	
 	def compile (Input i, Fonction f)
-	'''«FOR in : i.varIn»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
+	//Gestion des variables While contenus dans le Read translate en var CPP
+	'''«FOR in : i.varIn»«f.addReadVar(in.toString, generateVar)»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 			
 	def compile (Output o, Fonction f)
-	'''«FOR in : o.varOut»«ENDFOR»'''
-	
+	'''«FOR out : o.varOut»«f.addWriteVar(out)»«ENDFOR»'''
 	
 	def compile (Commands c, Fonction f, Label l)
 	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f, l)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
@@ -190,7 +193,7 @@ class ThreeAddGenerator implements IGenerator {
 	}
 	case c.cmdIf!=null : 
 	{
-		val cond = c.cmdIf.cond.compile(f).toString
+		val cond = c.cmdIf.cond.compile(f, l).toString
 		//1. Generate if Label
 		val ifLabel = generateLabel
 		//2. Generate else Label
@@ -215,8 +218,8 @@ class ThreeAddGenerator implements IGenerator {
 	case c.vars!=null && c.exprs!=null : 
 	{
 		val pile = new ArrayList();
-		val res = c.exprs.compile(f).toString
-		val variable = c.vars.compile(f).toString()
+		val res = c.exprs.compile(f, l).toString
+		val variable = c.vars.compile(f, l).toString()
 		if(l==null)
 		{
 			for(exp : c.exprs.expGen)
@@ -246,6 +249,7 @@ class ThreeAddGenerator implements IGenerator {
 		}
 		else
 		{
+
 			//l.add(affect)
 			//print("[DBG]" + l.name + " += <:=, " + variable.trim + "," + res + ", _>\n")
 		}
@@ -254,7 +258,7 @@ class ThreeAddGenerator implements IGenerator {
 	{
 		val whileLabel = generateLabel
 		
-		val expString = c.cmdWhile.expr.compile(f).toString
+		val expString = c.cmdWhile.expr.compile(f, l).toString
 		
 		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_WHILE, whileLabel.name), "_", expString, "_");
 		
@@ -273,8 +277,8 @@ class ThreeAddGenerator implements IGenerator {
 	case c.cmdForEach!=null : 
 	{
 		val foreachLabel = generateLabel
-		val elem = c.cmdForEach.elem.compile(f).toString
-		val ensemble = c.cmdForEach.ensemb.compile(f).toString
+		val elem = c.cmdForEach.elem.compile(f, l).toString
+		val ensemble = c.cmdForEach.ensemb.compile(f, l).toString
 		val whileQuad = new Quadruplet(new CodeOp(CodeOp.OP_FOREACH, foreachLabel.name), "_", elem, ensemble);
 		
 		if(l==null)
@@ -293,72 +297,122 @@ class ThreeAddGenerator implements IGenerator {
 }
 »'''
 
-	def compile (Expr ex, Fonction f)
+	def compile (Expr ex, Fonction f, Label l)
 	'''«switch(ex){
-			case ex.exprSimp!=null : ex.exprSimp.compile(f)
-			case ex.exprAnd!=null : ex.exprAnd.compile(f)
+			case ex.exprSimp!=null : ex.exprSimp.compile(f, l)
+			case ex.exprAnd!=null : ex.exprAnd.compile(f, l)
 	    }
 	 »'''
 	
-	def compile (ExprSimple ex, Fonction f)
+	def compile (ExprSimple ex, Fonction f, Label l)
 	 '''«switch(ex){
 	 	case ex.nil!=null : {
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, "nil", "_")
 	 		this.varNameTranslation.put(variable, quadruplet)
-	 		print("[DBG]" + variable + " := nil\n")
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := nil\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]" + l.name + " += " + variable + " := nil\n")
+	 		}
 	 		variable
 	 	}
 	 	case ex.vari!=null : {
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.vari, "_")
 	 		this.varNameTranslation.put(ex.vari, quadruplet)
-	 		print("[DBG]" + variable + " := " + ex.vari + "\n")
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := " + ex.vari + "\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]" + l.name + " += " + variable + " := " + ex.vari + "\n")
+	 		}
 	 		variable
 	 	}
 	 	case ex.symb!=null : {
-	 		print("symb")
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.symb, "_")
 	 		this.varNameTranslation.put(variable, quadruplet)
-	 		print("[DBG]" + variable + " := " + ex.symb + "\n")
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := " + ex.symb + "\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]" + l.name + " += " + variable + " := " + ex.symb + "\n")
+	 		}
 	 		variable
 	 	}
 	 	case ex.exprCons!=null : {
 	 		print("cons")
 	 		val variable = generateVar
 	 		//TODO: Don't work (pas de compile(f) pour la liste)
-	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f).toString, ex.exprCons.exprConsAttList.consList.toString())
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, ex.exprCons.exprConsAttList.consList.toString())
 	 		this.varNameTranslation.put(variable, quadruplet)
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG] CONS... but don't work yet\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG] CONS... but don't work yet\n")
+	 		}
 	 		print("[DBG] CONS... but don't work yet\n")
 	 		variable
 	 	}
 	 	case ex.exprHead!=null : {
 	 		val variable = generateVar
-	 		val res = ex.exprHeadAtt.compile(f).toString
+	 		val res = ex.exprHeadAtt.compile(f, l).toString
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_HD), variable, res, "_")
 	 		this.varNameTranslation.put(variable, quadruplet)
-	 		print("[DBG]" + variable + " := (hd " + res + ")\n")
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := (hd " + res + ")\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]" + l.name + " += " + variable + " := (hd " + res + ")\n")
+	 		}
 	 		variable
 	 	}
 	 	case ex.exprTail!=null : {
 	 		val variable = generateVar
-	 		val res = ex.exprTailAtt.compile(f).toString
+	 		val res = ex.exprTailAtt.compile(f, l).toString
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_TL), variable, res, "_")
 	 		this.varNameTranslation.put(variable, quadruplet)
-	 		print("[DBG]" + variable + " := (tl " + res + ")\n")
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := (tl " + res + ")\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]" + l.name + " += " + variable + " := (tl " + res + ")\n")
+	 		}
 	 		variable
 	 	}
-	 	case ex.nomSymb!=null : {
-	 		print("[DBG]TODO\n")
-	 		""
-	 	}//TODO: (c'est quoi ?) :"(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
 	 »'''
 	
 	//ajouter la variable dans sa fonction
-	//TODO: variable avec un nom cpp compatible
-	def compile(Vars v, Fonction f)
+	def compile(Vars v, Fonction f, Label l)
+	//TODO
 '''«IF v.eContents.empty»
 		«FOR in : v.varGen»
 			«var vari = new Variable (in.toString, "intern")»
@@ -369,19 +423,18 @@ class ThreeAddGenerator implements IGenerator {
 	«ENDIF»
 '''
 
-	def compile(Exprs e, Fonction f)
-'''«FOR in : e.expGen»«in.compile(f)»«ENDFOR»'''
+	def compile(Exprs e, Fonction f, Label l)
+'''«FOR in : e.expGen»«in.compile(f, l)»«ENDFOR»'''
 		
-	def compile (ExprAnd ex, Fonction f)
-	'''«ex.exprOr.compile(f)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f)»«ENDIF»'''
+	def compile (ExprAnd ex, Fonction f, Label l)
+	'''«ex.exprOr.compile(f, l)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f, l)»«ENDIF»'''
 	
-	def compile (ExprOr ex, Fonction f)
-	'''«ex.exprNot.compile(f)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(f)»«ENDIF»'''
+	def compile (ExprOr ex, Fonction f, Label l)
+	'''«ex.exprNot.compile(f, l)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(f, l)»«ENDIF»'''
 	
-	def compile (ExprNot ex, Fonction f)
-	'''«IF ex.not!=null»«ENDIF»«ex.exprEq.compile(f)»'''
+	def compile (ExprNot ex, Fonction f, Label l)
+	'''«IF ex.not!=null»«ENDIF»«ex.exprEq.compile(f, l)»'''
 	
-	def compile (ExprEq ex, Fonction f)
-	'''«IF ex.expr!=null»(«ex.expr.compile(f)»)«ELSE»«ex.exprSim1.compile(f)»«ex.exprSim2.compile(f)»«ENDIF»'''
+	def compile (ExprEq ex, Fonction f, Label l)
+	'''«IF ex.expr!=null»(«ex.expr.compile(f, l)»)«ELSE»«ex.exprSim1.compile(f, l)»«ex.exprSim2.compile(f, l)»«ENDIF»'''
 }
-

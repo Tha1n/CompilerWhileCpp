@@ -35,6 +35,8 @@ import org.xtext.example.whileCpp.CommandForEach;
 import org.xtext.example.whileCpp.CommandIf;
 import org.xtext.example.whileCpp.CommandWhile;
 import org.xtext.example.whileCpp.Commands;
+import org.xtext.example.whileCpp.Cons;
+import org.xtext.example.whileCpp.ConsAttList;
 import org.xtext.example.whileCpp.Definition;
 import org.xtext.example.whileCpp.Expr;
 import org.xtext.example.whileCpp.ExprAnd;
@@ -625,71 +627,85 @@ public class PrettyPrinterGenerator implements IGenerator {
       }
     }
     if (!_matched) {
-      String _exprCons = ex.getExprCons();
+      Cons _exprCons = ex.getExprCons();
       boolean _notEquals_3 = (!Objects.equal(_exprCons, null));
       if (_notEquals_3) {
         _matched=true;
-        Expr _exprConsAtt1 = ex.getExprConsAtt1();
+        Cons _exprCons_1 = ex.getExprCons();
+        Expr _exprConsAtt1 = _exprCons_1.getExprConsAtt1();
         Object _compile = this.compile(_exprConsAtt1, 0);
         String _plus = ("(cons " + _compile);
         String _plus_1 = (_plus + " ");
-        Expr _exprConsAtt2 = ex.getExprConsAtt2();
-        Object _compile_1 = this.compile(_exprConsAtt2, 0);
-        String _plus_2 = (_plus_1 + _compile_1);
+        Cons _exprCons_2 = ex.getExprCons();
+        ConsAttList _exprConsAttList = _exprCons_2.getExprConsAttList();
+        EList<Expr> _consList = _exprConsAttList.getConsList();
+        List<Expr> _list = IterableExtensions.<Expr>toList(_consList);
+        CharSequence _consListRec = this.consListRec(_list);
+        String _plus_2 = (_plus_1 + _consListRec);
         _switchResult = (_plus_2 + ")");
       }
     }
     if (!_matched) {
-      String _exprList = ex.getExprList();
-      boolean _notEquals_4 = (!Objects.equal(_exprList, null));
+      String _exprHead = ex.getExprHead();
+      boolean _notEquals_4 = (!Objects.equal(_exprHead, null));
       if (_notEquals_4) {
         _matched=true;
-        Expr _exprListAtt1 = ex.getExprListAtt1();
-        Object _compile_2 = this.compile(_exprListAtt1, 0);
-        String _plus_3 = ("(list " + _compile_2);
-        String _plus_4 = (_plus_3 + " ");
-        Expr _exprListAtt2 = ex.getExprListAtt2();
-        Object _compile_3 = this.compile(_exprListAtt2, 0);
-        String _plus_5 = (_plus_4 + _compile_3);
-        _switchResult = (_plus_5 + ")");
-      }
-    }
-    if (!_matched) {
-      String _exprHead = ex.getExprHead();
-      boolean _notEquals_5 = (!Objects.equal(_exprHead, null));
-      if (_notEquals_5) {
-        _matched=true;
         Expr _exprHeadAtt = ex.getExprHeadAtt();
-        Object _compile_4 = this.compile(_exprHeadAtt, 0);
-        String _plus_6 = ("(hd " + _compile_4);
-        _switchResult = (_plus_6 + ")");
+        Object _compile_1 = this.compile(_exprHeadAtt, 0);
+        String _plus_3 = ("(hd " + _compile_1);
+        _switchResult = (_plus_3 + ")");
       }
     }
     if (!_matched) {
       String _exprTail = ex.getExprTail();
-      boolean _notEquals_6 = (!Objects.equal(_exprTail, null));
-      if (_notEquals_6) {
+      boolean _notEquals_5 = (!Objects.equal(_exprTail, null));
+      if (_notEquals_5) {
         _matched=true;
         Expr _exprTailAtt = ex.getExprTailAtt();
-        Object _compile_5 = this.compile(_exprTailAtt, 0);
-        String _plus_7 = ("(tl " + _compile_5);
-        _switchResult = (_plus_7 + ")");
+        Object _compile_2 = this.compile(_exprTailAtt, 0);
+        String _plus_4 = ("(tl " + _compile_2);
+        _switchResult = (_plus_4 + ")");
       }
     }
     if (!_matched) {
       String _nomSymb = ex.getNomSymb();
-      boolean _notEquals_7 = (!Objects.equal(_nomSymb, null));
-      if (_notEquals_7) {
+      boolean _notEquals_6 = (!Objects.equal(_nomSymb, null));
+      if (_notEquals_6) {
         _matched=true;
         String _nomSymb_1 = ex.getNomSymb();
-        String _plus_8 = ("(" + _nomSymb_1);
+        String _plus_5 = ("(" + _nomSymb_1);
         Expr _symbAtt = ex.getSymbAtt();
-        Object _compile_6 = this.compile(_symbAtt, 0);
-        String _plus_9 = (_plus_8 + _compile_6);
-        _switchResult = (_plus_9 + ")");
+        Object _compile_3 = this.compile(_symbAtt, 0);
+        String _plus_6 = (_plus_5 + _compile_3);
+        _switchResult = (_plus_6 + ")");
       }
     }
     _builder.append(_switchResult, "");
+    return _builder;
+  }
+  
+  public CharSequence consListRec(final List<Expr> l) {
+    StringConcatenation _builder = new StringConcatenation();
+    {
+      int _size = l.size();
+      boolean _equals = (_size == 1);
+      if (_equals) {
+        Expr _head = IterableExtensions.<Expr>head(l);
+        Object _compile = this.compile(_head, 0);
+        _builder.append(_compile, "");
+      } else {
+        Expr _head_1 = IterableExtensions.<Expr>head(l);
+        Object _compile_1 = this.compile(_head_1, 0);
+        String _plus = ("(cons " + _compile_1);
+        String _plus_1 = (_plus + " ");
+        Iterable<Expr> _tail = IterableExtensions.<Expr>tail(l);
+        List<Expr> _list = IterableExtensions.<Expr>toList(_tail);
+        Object _consListRec = this.consListRec(_list);
+        String _plus_2 = (_plus_1 + _consListRec);
+        String _plus_3 = (_plus_2 + ")");
+        _builder.append(_plus_3, "");
+      }
+    }
     return _builder;
   }
   

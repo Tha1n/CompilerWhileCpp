@@ -28,5 +28,14 @@ int main()
  if(BinTree::isTrue(test))
       printf("!NIL = true\n");
 
+
+ BinTree consTree = *BinTree::cons(BinTree::cons(BinTree::NIL, BinTree::NIL), BinTree::cons(BinTree::NIL, BinTree::NIL));
+ std::cout << consTree << std::endl;
+
+ for(auto t: consTree)//TODO 
+ {
+     std::cout << t << std::endl;
+ }
+
   return 0;
 }

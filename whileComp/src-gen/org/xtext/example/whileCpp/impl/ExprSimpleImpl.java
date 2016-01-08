@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.xtext.example.whileCpp.Cons;
 import org.xtext.example.whileCpp.Expr;
 import org.xtext.example.whileCpp.ExprSimple;
 import org.xtext.example.whileCpp.WhileCppPackage;
@@ -27,11 +28,6 @@ import org.xtext.example.whileCpp.WhileCppPackage;
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getVari <em>Vari</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getSymb <em>Symb</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprCons <em>Expr Cons</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprConsAtt1 <em>Expr Cons Att1</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprConsAtt2 <em>Expr Cons Att2</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprList <em>Expr List</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprListAtt1 <em>Expr List Att1</em>}</li>
- *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprListAtt2 <em>Expr List Att2</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprHead <em>Expr Head</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprHeadAtt <em>Expr Head Att</em>}</li>
  *   <li>{@link org.xtext.example.whileCpp.impl.ExprSimpleImpl#getExprTail <em>Expr Tail</em>}</li>
@@ -105,84 +101,14 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   protected String symb = SYMB_EDEFAULT;
 
   /**
-   * The default value of the '{@link #getExprCons() <em>Expr Cons</em>}' attribute.
+   * The cached value of the '{@link #getExprCons() <em>Expr Cons</em>}' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getExprCons()
    * @generated
    * @ordered
    */
-  protected static final String EXPR_CONS_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getExprCons() <em>Expr Cons</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprCons()
-   * @generated
-   * @ordered
-   */
-  protected String exprCons = EXPR_CONS_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getExprConsAtt1() <em>Expr Cons Att1</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprConsAtt1()
-   * @generated
-   * @ordered
-   */
-  protected Expr exprConsAtt1;
-
-  /**
-   * The cached value of the '{@link #getExprConsAtt2() <em>Expr Cons Att2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprConsAtt2()
-   * @generated
-   * @ordered
-   */
-  protected Expr exprConsAtt2;
-
-  /**
-   * The default value of the '{@link #getExprList() <em>Expr List</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprList()
-   * @generated
-   * @ordered
-   */
-  protected static final String EXPR_LIST_EDEFAULT = null;
-
-  /**
-   * The cached value of the '{@link #getExprList() <em>Expr List</em>}' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprList()
-   * @generated
-   * @ordered
-   */
-  protected String exprList = EXPR_LIST_EDEFAULT;
-
-  /**
-   * The cached value of the '{@link #getExprListAtt1() <em>Expr List Att1</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprListAtt1()
-   * @generated
-   * @ordered
-   */
-  protected Expr exprListAtt1;
-
-  /**
-   * The cached value of the '{@link #getExprListAtt2() <em>Expr List Att2</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getExprListAtt2()
-   * @generated
-   * @ordered
-   */
-  protected Expr exprListAtt2;
+  protected Cons exprCons;
 
   /**
    * The default value of the '{@link #getExprHead() <em>Expr Head</em>}' attribute.
@@ -369,7 +295,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getExprCons()
+  public Cons getExprCons()
   {
     return exprCons;
   }
@@ -379,36 +305,13 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExprCons(String newExprCons)
+  public NotificationChain basicSetExprCons(Cons newExprCons, NotificationChain msgs)
   {
-    String oldExprCons = exprCons;
+    Cons oldExprCons = exprCons;
     exprCons = newExprCons;
     if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS, oldExprCons, exprCons));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Expr getExprConsAtt1()
-  {
-    return exprConsAtt1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExprConsAtt1(Expr newExprConsAtt1, NotificationChain msgs)
-  {
-    Expr oldExprConsAtt1 = exprConsAtt1;
-    exprConsAtt1 = newExprConsAtt1;
-    if (eNotificationRequired())
     {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1, oldExprConsAtt1, newExprConsAtt1);
+      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS, oldExprCons, newExprCons);
       if (msgs == null) msgs = notification; else msgs.add(notification);
     }
     return msgs;
@@ -419,187 +322,20 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setExprConsAtt1(Expr newExprConsAtt1)
+  public void setExprCons(Cons newExprCons)
   {
-    if (newExprConsAtt1 != exprConsAtt1)
+    if (newExprCons != exprCons)
     {
       NotificationChain msgs = null;
-      if (exprConsAtt1 != null)
-        msgs = ((InternalEObject)exprConsAtt1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1, null, msgs);
-      if (newExprConsAtt1 != null)
-        msgs = ((InternalEObject)newExprConsAtt1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1, null, msgs);
-      msgs = basicSetExprConsAtt1(newExprConsAtt1, msgs);
+      if (exprCons != null)
+        msgs = ((InternalEObject)exprCons).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_CONS, null, msgs);
+      if (newExprCons != null)
+        msgs = ((InternalEObject)newExprCons).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_CONS, null, msgs);
+      msgs = basicSetExprCons(newExprCons, msgs);
       if (msgs != null) msgs.dispatch();
     }
     else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1, newExprConsAtt1, newExprConsAtt1));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Expr getExprConsAtt2()
-  {
-    return exprConsAtt2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExprConsAtt2(Expr newExprConsAtt2, NotificationChain msgs)
-  {
-    Expr oldExprConsAtt2 = exprConsAtt2;
-    exprConsAtt2 = newExprConsAtt2;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2, oldExprConsAtt2, newExprConsAtt2);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExprConsAtt2(Expr newExprConsAtt2)
-  {
-    if (newExprConsAtt2 != exprConsAtt2)
-    {
-      NotificationChain msgs = null;
-      if (exprConsAtt2 != null)
-        msgs = ((InternalEObject)exprConsAtt2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2, null, msgs);
-      if (newExprConsAtt2 != null)
-        msgs = ((InternalEObject)newExprConsAtt2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2, null, msgs);
-      msgs = basicSetExprConsAtt2(newExprConsAtt2, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2, newExprConsAtt2, newExprConsAtt2));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public String getExprList()
-  {
-    return exprList;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExprList(String newExprList)
-  {
-    String oldExprList = exprList;
-    exprList = newExprList;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_LIST, oldExprList, exprList));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Expr getExprListAtt1()
-  {
-    return exprListAtt1;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExprListAtt1(Expr newExprListAtt1, NotificationChain msgs)
-  {
-    Expr oldExprListAtt1 = exprListAtt1;
-    exprListAtt1 = newExprListAtt1;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1, oldExprListAtt1, newExprListAtt1);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExprListAtt1(Expr newExprListAtt1)
-  {
-    if (newExprListAtt1 != exprListAtt1)
-    {
-      NotificationChain msgs = null;
-      if (exprListAtt1 != null)
-        msgs = ((InternalEObject)exprListAtt1).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1, null, msgs);
-      if (newExprListAtt1 != null)
-        msgs = ((InternalEObject)newExprListAtt1).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1, null, msgs);
-      msgs = basicSetExprListAtt1(newExprListAtt1, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1, newExprListAtt1, newExprListAtt1));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public Expr getExprListAtt2()
-  {
-    return exprListAtt2;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetExprListAtt2(Expr newExprListAtt2, NotificationChain msgs)
-  {
-    Expr oldExprListAtt2 = exprListAtt2;
-    exprListAtt2 = newExprListAtt2;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2, oldExprListAtt2, newExprListAtt2);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setExprListAtt2(Expr newExprListAtt2)
-  {
-    if (newExprListAtt2 != exprListAtt2)
-    {
-      NotificationChain msgs = null;
-      if (exprListAtt2 != null)
-        msgs = ((InternalEObject)exprListAtt2).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2, null, msgs);
-      if (newExprListAtt2 != null)
-        msgs = ((InternalEObject)newExprListAtt2).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2, null, msgs);
-      msgs = basicSetExprListAtt2(newExprListAtt2, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2, newExprListAtt2, newExprListAtt2));
+      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__EXPR_CONS, newExprCons, newExprCons));
   }
 
   /**
@@ -825,14 +561,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   {
     switch (featureID)
     {
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1:
-        return basicSetExprConsAtt1(null, msgs);
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2:
-        return basicSetExprConsAtt2(null, msgs);
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1:
-        return basicSetExprListAtt1(null, msgs);
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2:
-        return basicSetExprListAtt2(null, msgs);
+      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS:
+        return basicSetExprCons(null, msgs);
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD_ATT:
         return basicSetExprHeadAtt(null, msgs);
       case WhileCppPackage.EXPR_SIMPLE__EXPR_TAIL_ATT:
@@ -861,16 +591,6 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         return getSymb();
       case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS:
         return getExprCons();
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1:
-        return getExprConsAtt1();
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2:
-        return getExprConsAtt2();
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST:
-        return getExprList();
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1:
-        return getExprListAtt1();
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2:
-        return getExprListAtt2();
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD:
         return getExprHead();
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD_ATT:
@@ -907,22 +627,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         setSymb((String)newValue);
         return;
       case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS:
-        setExprCons((String)newValue);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1:
-        setExprConsAtt1((Expr)newValue);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2:
-        setExprConsAtt2((Expr)newValue);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST:
-        setExprList((String)newValue);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1:
-        setExprListAtt1((Expr)newValue);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2:
-        setExprListAtt2((Expr)newValue);
+        setExprCons((Cons)newValue);
         return;
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD:
         setExprHead((String)newValue);
@@ -966,22 +671,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         setSymb(SYMB_EDEFAULT);
         return;
       case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS:
-        setExprCons(EXPR_CONS_EDEFAULT);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1:
-        setExprConsAtt1((Expr)null);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2:
-        setExprConsAtt2((Expr)null);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST:
-        setExprList(EXPR_LIST_EDEFAULT);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1:
-        setExprListAtt1((Expr)null);
-        return;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2:
-        setExprListAtt2((Expr)null);
+        setExprCons((Cons)null);
         return;
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD:
         setExprHead(EXPR_HEAD_EDEFAULT);
@@ -1022,17 +712,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
       case WhileCppPackage.EXPR_SIMPLE__SYMB:
         return SYMB_EDEFAULT == null ? symb != null : !SYMB_EDEFAULT.equals(symb);
       case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS:
-        return EXPR_CONS_EDEFAULT == null ? exprCons != null : !EXPR_CONS_EDEFAULT.equals(exprCons);
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT1:
-        return exprConsAtt1 != null;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_CONS_ATT2:
-        return exprConsAtt2 != null;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST:
-        return EXPR_LIST_EDEFAULT == null ? exprList != null : !EXPR_LIST_EDEFAULT.equals(exprList);
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT1:
-        return exprListAtt1 != null;
-      case WhileCppPackage.EXPR_SIMPLE__EXPR_LIST_ATT2:
-        return exprListAtt2 != null;
+        return exprCons != null;
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD:
         return EXPR_HEAD_EDEFAULT == null ? exprHead != null : !EXPR_HEAD_EDEFAULT.equals(exprHead);
       case WhileCppPackage.EXPR_SIMPLE__EXPR_HEAD_ATT:
@@ -1066,10 +746,6 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
     result.append(vari);
     result.append(", symb: ");
     result.append(symb);
-    result.append(", exprCons: ");
-    result.append(exprCons);
-    result.append(", exprList: ");
-    result.append(exprList);
     result.append(", exprHead: ");
     result.append(exprHead);
     result.append(", exprTail: ");

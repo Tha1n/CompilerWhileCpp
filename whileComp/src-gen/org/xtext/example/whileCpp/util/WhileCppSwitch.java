@@ -198,6 +198,20 @@ public class WhileCppSwitch<T> extends Switch<T>
         if (result == null) result = defaultCase(theEObject);
         return result;
       }
+      case WhileCppPackage.CONS:
+      {
+        Cons cons = (Cons)theEObject;
+        T result = caseCons(cons);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
+      case WhileCppPackage.CONS_ATT_LIST:
+      {
+        ConsAttList consAttList = (ConsAttList)theEObject;
+        T result = caseConsAttList(consAttList);
+        if (result == null) result = defaultCase(theEObject);
+        return result;
+      }
       default: return defaultCase(theEObject);
     }
   }
@@ -486,6 +500,38 @@ public class WhileCppSwitch<T> extends Switch<T>
    * @generated
    */
   public T caseExprEq(ExprEq object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cons</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cons</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseCons(Cons object)
+  {
+    return null;
+  }
+
+  /**
+   * Returns the result of interpreting the object as an instance of '<em>Cons Att List</em>'.
+   * <!-- begin-user-doc -->
+   * This implementation returns null;
+   * returning a non-null result will terminate the switch.
+   * <!-- end-user-doc -->
+   * @param object the target of the switch.
+   * @return the result of interpreting the object as an instance of '<em>Cons Att List</em>'.
+   * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+   * @generated
+   */
+  public T caseConsAttList(ConsAttList object)
   {
     return null;
   }

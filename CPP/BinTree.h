@@ -14,6 +14,8 @@ public:
 
         constexpr static BinTree* NIL = nullptr;
         static bool isNIL(const BinTree* tree);
+        static bool isSymb(const BinTree* tree);
+        static bool isVar(const BinTree* tree);
         static BinTree* hd(BinTree* tree);
         static BinTree* tl(BinTree* tree);
         static BinTree* cons(BinTree* left, BinTree* right);
@@ -28,7 +30,7 @@ public:
 private:
     std::string toString() const ;
 
-    std::string _node;
+    std::string *_node;
     BinTree *_left;
     BinTree *_right;
 };

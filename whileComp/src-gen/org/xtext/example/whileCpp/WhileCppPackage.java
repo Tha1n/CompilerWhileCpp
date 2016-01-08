@@ -593,7 +593,7 @@ public interface WhileCppPackage extends EPackage
   int EXPR_SIMPLE__SYMB = 2;
 
   /**
-   * The feature id for the '<em><b>Expr Cons</b></em>' attribute.
+   * The feature id for the '<em><b>Expr Cons</b></em>' containment reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -602,58 +602,13 @@ public interface WhileCppPackage extends EPackage
   int EXPR_SIMPLE__EXPR_CONS = 3;
 
   /**
-   * The feature id for the '<em><b>Expr Cons Att1</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__EXPR_CONS_ATT1 = 4;
-
-  /**
-   * The feature id for the '<em><b>Expr Cons Att2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__EXPR_CONS_ATT2 = 5;
-
-  /**
-   * The feature id for the '<em><b>Expr List</b></em>' attribute.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__EXPR_LIST = 6;
-
-  /**
-   * The feature id for the '<em><b>Expr List Att1</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__EXPR_LIST_ATT1 = 7;
-
-  /**
-   * The feature id for the '<em><b>Expr List Att2</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int EXPR_SIMPLE__EXPR_LIST_ATT2 = 8;
-
-  /**
    * The feature id for the '<em><b>Expr Head</b></em>' attribute.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EXPR_HEAD = 9;
+  int EXPR_SIMPLE__EXPR_HEAD = 4;
 
   /**
    * The feature id for the '<em><b>Expr Head Att</b></em>' containment reference.
@@ -662,7 +617,7 @@ public interface WhileCppPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EXPR_HEAD_ATT = 10;
+  int EXPR_SIMPLE__EXPR_HEAD_ATT = 5;
 
   /**
    * The feature id for the '<em><b>Expr Tail</b></em>' attribute.
@@ -671,7 +626,7 @@ public interface WhileCppPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EXPR_TAIL = 11;
+  int EXPR_SIMPLE__EXPR_TAIL = 6;
 
   /**
    * The feature id for the '<em><b>Expr Tail Att</b></em>' containment reference.
@@ -680,7 +635,7 @@ public interface WhileCppPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__EXPR_TAIL_ATT = 12;
+  int EXPR_SIMPLE__EXPR_TAIL_ATT = 7;
 
   /**
    * The feature id for the '<em><b>Nom Symb</b></em>' attribute.
@@ -689,7 +644,7 @@ public interface WhileCppPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__NOM_SYMB = 13;
+  int EXPR_SIMPLE__NOM_SYMB = 8;
 
   /**
    * The feature id for the '<em><b>Symb Att</b></em>' containment reference.
@@ -698,7 +653,7 @@ public interface WhileCppPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE__SYMB_ATT = 14;
+  int EXPR_SIMPLE__SYMB_ATT = 9;
 
   /**
    * The number of structural features of the '<em>Expr Simple</em>' class.
@@ -707,7 +662,7 @@ public interface WhileCppPackage extends EPackage
    * @generated
    * @ordered
    */
-  int EXPR_SIMPLE_FEATURE_COUNT = 15;
+  int EXPR_SIMPLE_FEATURE_COUNT = 10;
 
   /**
    * The meta object id for the '{@link org.xtext.example.whileCpp.impl.ExprAndImpl <em>Expr And</em>}' class.
@@ -883,6 +838,80 @@ public interface WhileCppPackage extends EPackage
    * @ordered
    */
   int EXPR_EQ_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.whileCpp.impl.ConsImpl <em>Cons</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.whileCpp.impl.ConsImpl
+   * @see org.xtext.example.whileCpp.impl.WhileCppPackageImpl#getCons()
+   * @generated
+   */
+  int CONS = 18;
+
+  /**
+   * The feature id for the '<em><b>Expr Cons</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS__EXPR_CONS = 0;
+
+  /**
+   * The feature id for the '<em><b>Expr Cons Att1</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS__EXPR_CONS_ATT1 = 1;
+
+  /**
+   * The feature id for the '<em><b>Expr Cons Att List</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS__EXPR_CONS_ATT_LIST = 2;
+
+  /**
+   * The number of structural features of the '<em>Cons</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS_FEATURE_COUNT = 3;
+
+  /**
+   * The meta object id for the '{@link org.xtext.example.whileCpp.impl.ConsAttListImpl <em>Cons Att List</em>}' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see org.xtext.example.whileCpp.impl.ConsAttListImpl
+   * @see org.xtext.example.whileCpp.impl.WhileCppPackageImpl#getConsAttList()
+   * @generated
+   */
+  int CONS_ATT_LIST = 19;
+
+  /**
+   * The feature id for the '<em><b>Cons List</b></em>' containment reference list.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS_ATT_LIST__CONS_LIST = 0;
+
+  /**
+   * The number of structural features of the '<em>Cons Att List</em>' class.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int CONS_ATT_LIST_FEATURE_COUNT = 1;
 
 
   /**
@@ -1367,70 +1396,15 @@ public interface WhileCppPackage extends EPackage
   EAttribute getExprSimple_Symb();
 
   /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.whileCpp.ExprSimple#getExprCons <em>Expr Cons</em>}'.
+   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.ExprSimple#getExprCons <em>Expr Cons</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Expr Cons</em>'.
+   * @return the meta object for the containment reference '<em>Expr Cons</em>'.
    * @see org.xtext.example.whileCpp.ExprSimple#getExprCons()
    * @see #getExprSimple()
    * @generated
    */
-  EAttribute getExprSimple_ExprCons();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.ExprSimple#getExprConsAtt1 <em>Expr Cons Att1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr Cons Att1</em>'.
-   * @see org.xtext.example.whileCpp.ExprSimple#getExprConsAtt1()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_ExprConsAtt1();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.ExprSimple#getExprConsAtt2 <em>Expr Cons Att2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr Cons Att2</em>'.
-   * @see org.xtext.example.whileCpp.ExprSimple#getExprConsAtt2()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_ExprConsAtt2();
-
-  /**
-   * Returns the meta object for the attribute '{@link org.xtext.example.whileCpp.ExprSimple#getExprList <em>Expr List</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the attribute '<em>Expr List</em>'.
-   * @see org.xtext.example.whileCpp.ExprSimple#getExprList()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EAttribute getExprSimple_ExprList();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.ExprSimple#getExprListAtt1 <em>Expr List Att1</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr List Att1</em>'.
-   * @see org.xtext.example.whileCpp.ExprSimple#getExprListAtt1()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_ExprListAtt1();
-
-  /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.ExprSimple#getExprListAtt2 <em>Expr List Att2</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Expr List Att2</em>'.
-   * @see org.xtext.example.whileCpp.ExprSimple#getExprListAtt2()
-   * @see #getExprSimple()
-   * @generated
-   */
-  EReference getExprSimple_ExprListAtt2();
+  EReference getExprSimple_ExprCons();
 
   /**
    * Returns the meta object for the attribute '{@link org.xtext.example.whileCpp.ExprSimple#getExprHead <em>Expr Head</em>}'.
@@ -1658,6 +1632,70 @@ public interface WhileCppPackage extends EPackage
    * @generated
    */
   EReference getExprEq_ExprSim2();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.whileCpp.Cons <em>Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Cons</em>'.
+   * @see org.xtext.example.whileCpp.Cons
+   * @generated
+   */
+  EClass getCons();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.xtext.example.whileCpp.Cons#getExprCons <em>Expr Cons</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Expr Cons</em>'.
+   * @see org.xtext.example.whileCpp.Cons#getExprCons()
+   * @see #getCons()
+   * @generated
+   */
+  EAttribute getCons_ExprCons();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.Cons#getExprConsAtt1 <em>Expr Cons Att1</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Cons Att1</em>'.
+   * @see org.xtext.example.whileCpp.Cons#getExprConsAtt1()
+   * @see #getCons()
+   * @generated
+   */
+  EReference getCons_ExprConsAtt1();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.Cons#getExprConsAttList <em>Expr Cons Att List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Expr Cons Att List</em>'.
+   * @see org.xtext.example.whileCpp.Cons#getExprConsAttList()
+   * @see #getCons()
+   * @generated
+   */
+  EReference getCons_ExprConsAttList();
+
+  /**
+   * Returns the meta object for class '{@link org.xtext.example.whileCpp.ConsAttList <em>Cons Att List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for class '<em>Cons Att List</em>'.
+   * @see org.xtext.example.whileCpp.ConsAttList
+   * @generated
+   */
+  EClass getConsAttList();
+
+  /**
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.whileCpp.ConsAttList#getConsList <em>Cons List</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference list '<em>Cons List</em>'.
+   * @see org.xtext.example.whileCpp.ConsAttList#getConsList()
+   * @see #getConsAttList()
+   * @generated
+   */
+  EReference getConsAttList_ConsList();
 
   /**
    * Returns the factory that creates the instances of the model.
@@ -2071,52 +2109,12 @@ public interface WhileCppPackage extends EPackage
     EAttribute EXPR_SIMPLE__SYMB = eINSTANCE.getExprSimple_Symb();
 
     /**
-     * The meta object literal for the '<em><b>Expr Cons</b></em>' attribute feature.
+     * The meta object literal for the '<em><b>Expr Cons</b></em>' containment reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
-    EAttribute EXPR_SIMPLE__EXPR_CONS = eINSTANCE.getExprSimple_ExprCons();
-
-    /**
-     * The meta object literal for the '<em><b>Expr Cons Att1</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__EXPR_CONS_ATT1 = eINSTANCE.getExprSimple_ExprConsAtt1();
-
-    /**
-     * The meta object literal for the '<em><b>Expr Cons Att2</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__EXPR_CONS_ATT2 = eINSTANCE.getExprSimple_ExprConsAtt2();
-
-    /**
-     * The meta object literal for the '<em><b>Expr List</b></em>' attribute feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EAttribute EXPR_SIMPLE__EXPR_LIST = eINSTANCE.getExprSimple_ExprList();
-
-    /**
-     * The meta object literal for the '<em><b>Expr List Att1</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__EXPR_LIST_ATT1 = eINSTANCE.getExprSimple_ExprListAtt1();
-
-    /**
-     * The meta object literal for the '<em><b>Expr List Att2</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference EXPR_SIMPLE__EXPR_LIST_ATT2 = eINSTANCE.getExprSimple_ExprListAtt2();
+    EReference EXPR_SIMPLE__EXPR_CONS = eINSTANCE.getExprSimple_ExprCons();
 
     /**
      * The meta object literal for the '<em><b>Expr Head</b></em>' attribute feature.
@@ -2293,6 +2291,58 @@ public interface WhileCppPackage extends EPackage
      * @generated
      */
     EReference EXPR_EQ__EXPR_SIM2 = eINSTANCE.getExprEq_ExprSim2();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.whileCpp.impl.ConsImpl <em>Cons</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.whileCpp.impl.ConsImpl
+     * @see org.xtext.example.whileCpp.impl.WhileCppPackageImpl#getCons()
+     * @generated
+     */
+    EClass CONS = eINSTANCE.getCons();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Cons</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute CONS__EXPR_CONS = eINSTANCE.getCons_ExprCons();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Cons Att1</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONS__EXPR_CONS_ATT1 = eINSTANCE.getCons_ExprConsAtt1();
+
+    /**
+     * The meta object literal for the '<em><b>Expr Cons Att List</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONS__EXPR_CONS_ATT_LIST = eINSTANCE.getCons_ExprConsAttList();
+
+    /**
+     * The meta object literal for the '{@link org.xtext.example.whileCpp.impl.ConsAttListImpl <em>Cons Att List</em>}' class.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @see org.xtext.example.whileCpp.impl.ConsAttListImpl
+     * @see org.xtext.example.whileCpp.impl.WhileCppPackageImpl#getConsAttList()
+     * @generated
+     */
+    EClass CONS_ATT_LIST = eINSTANCE.getConsAttList();
+
+    /**
+     * The meta object literal for the '<em><b>Cons List</b></em>' containment reference list feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference CONS_ATT_LIST__CONS_LIST = eINSTANCE.getConsAttList_ConsList();
 
   }
 

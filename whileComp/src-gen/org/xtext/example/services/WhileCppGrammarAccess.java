@@ -591,52 +591,39 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup_1 = (Group)cAlternatives.eContents().get(1);
 		private final Keyword cLeftParenthesisKeyword_1_0 = (Keyword)cGroup_1.eContents().get(0);
 		private final Assignment cExprConsAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
-		private final Keyword cExprConsConsKeyword_1_1_0 = (Keyword)cExprConsAssignment_1_1.eContents().get(0);
-		private final Assignment cExprConsAtt1Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
-		private final RuleCall cExprConsAtt1ExprParserRuleCall_1_2_0 = (RuleCall)cExprConsAtt1Assignment_1_2.eContents().get(0);
-		private final Assignment cExprConsAtt2Assignment_1_3 = (Assignment)cGroup_1.eContents().get(3);
-		private final RuleCall cExprConsAtt2ExprParserRuleCall_1_3_0 = (RuleCall)cExprConsAtt2Assignment_1_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_1_4 = (Keyword)cGroup_1.eContents().get(4);
+		private final RuleCall cExprConsConsParserRuleCall_1_1_0 = (RuleCall)cExprConsAssignment_1_1.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_1_2 = (Keyword)cGroup_1.eContents().get(2);
 		private final Group cGroup_2 = (Group)cAlternatives.eContents().get(2);
 		private final Keyword cLeftParenthesisKeyword_2_0 = (Keyword)cGroup_2.eContents().get(0);
-		private final Assignment cExprListAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
-		private final Keyword cExprListListKeyword_2_1_0 = (Keyword)cExprListAssignment_2_1.eContents().get(0);
-		private final Assignment cExprListAtt1Assignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
-		private final RuleCall cExprListAtt1ExprParserRuleCall_2_2_0 = (RuleCall)cExprListAtt1Assignment_2_2.eContents().get(0);
-		private final Assignment cExprListAtt2Assignment_2_3 = (Assignment)cGroup_2.eContents().get(3);
-		private final RuleCall cExprListAtt2ExprParserRuleCall_2_3_0 = (RuleCall)cExprListAtt2Assignment_2_3.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_2_4 = (Keyword)cGroup_2.eContents().get(4);
+		private final Assignment cExprHeadAssignment_2_1 = (Assignment)cGroup_2.eContents().get(1);
+		private final Keyword cExprHeadHdKeyword_2_1_0 = (Keyword)cExprHeadAssignment_2_1.eContents().get(0);
+		private final Assignment cExprHeadAttAssignment_2_2 = (Assignment)cGroup_2.eContents().get(2);
+		private final RuleCall cExprHeadAttExprParserRuleCall_2_2_0 = (RuleCall)cExprHeadAttAssignment_2_2.eContents().get(0);
+		private final Keyword cRightParenthesisKeyword_2_3 = (Keyword)cGroup_2.eContents().get(3);
 		private final Group cGroup_3 = (Group)cAlternatives.eContents().get(3);
 		private final Keyword cLeftParenthesisKeyword_3_0 = (Keyword)cGroup_3.eContents().get(0);
-		private final Assignment cExprHeadAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
-		private final Keyword cExprHeadHdKeyword_3_1_0 = (Keyword)cExprHeadAssignment_3_1.eContents().get(0);
-		private final Assignment cExprHeadAttAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
-		private final RuleCall cExprHeadAttExprParserRuleCall_3_2_0 = (RuleCall)cExprHeadAttAssignment_3_2.eContents().get(0);
+		private final Assignment cExprTailAssignment_3_1 = (Assignment)cGroup_3.eContents().get(1);
+		private final Keyword cExprTailTlKeyword_3_1_0 = (Keyword)cExprTailAssignment_3_1.eContents().get(0);
+		private final Assignment cExprTailAttAssignment_3_2 = (Assignment)cGroup_3.eContents().get(2);
+		private final RuleCall cExprTailAttExprParserRuleCall_3_2_0 = (RuleCall)cExprTailAttAssignment_3_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_3_3 = (Keyword)cGroup_3.eContents().get(3);
 		private final Group cGroup_4 = (Group)cAlternatives.eContents().get(4);
 		private final Keyword cLeftParenthesisKeyword_4_0 = (Keyword)cGroup_4.eContents().get(0);
-		private final Assignment cExprTailAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
-		private final Keyword cExprTailTlKeyword_4_1_0 = (Keyword)cExprTailAssignment_4_1.eContents().get(0);
-		private final Assignment cExprTailAttAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
-		private final RuleCall cExprTailAttExprParserRuleCall_4_2_0 = (RuleCall)cExprTailAttAssignment_4_2.eContents().get(0);
+		private final Assignment cNomSymbAssignment_4_1 = (Assignment)cGroup_4.eContents().get(1);
+		private final RuleCall cNomSymbSYMBOLTerminalRuleCall_4_1_0 = (RuleCall)cNomSymbAssignment_4_1.eContents().get(0);
+		private final Assignment cSymbAttAssignment_4_2 = (Assignment)cGroup_4.eContents().get(2);
+		private final RuleCall cSymbAttExprParserRuleCall_4_2_0 = (RuleCall)cSymbAttAssignment_4_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
-		private final Group cGroup_5 = (Group)cAlternatives.eContents().get(5);
-		private final Keyword cLeftParenthesisKeyword_5_0 = (Keyword)cGroup_5.eContents().get(0);
-		private final Assignment cNomSymbAssignment_5_1 = (Assignment)cGroup_5.eContents().get(1);
-		private final RuleCall cNomSymbSYMBOLTerminalRuleCall_5_1_0 = (RuleCall)cNomSymbAssignment_5_1.eContents().get(0);
-		private final Assignment cSymbAttAssignment_5_2 = (Assignment)cGroup_5.eContents().get(2);
-		private final RuleCall cSymbAttExprParserRuleCall_5_2_0 = (RuleCall)cSymbAttAssignment_5_2.eContents().get(0);
-		private final Keyword cRightParenthesisKeyword_5_3 = (Keyword)cGroup_5.eContents().get(3);
 		
 		//ExprSimple:
-		//	(nil="nil" | vari=VARIABLE | symb=SYMBOL) | "(" exprCons="cons" exprConsAtt1=Expr exprConsAtt2=Expr ")" | "("
-		//	exprList="list" exprListAtt1=Expr exprListAtt2=Expr ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl"
-		//	exprTailAtt=Expr ")" | "(" nomSymb=SYMBOL symbAtt=Expr ")";
+		//	(nil="nil" | vari=VARIABLE | symb=SYMBOL) // '(' (exprList = List)')' |
+		//	| "(" exprCons=Cons ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl" exprTailAtt=Expr ")" | "("
+		//	nomSymb=SYMBOL symbAtt=Expr ")";
 		@Override public ParserRule getRule() { return rule; }
 
-		//(nil="nil" | vari=VARIABLE | symb=SYMBOL) | "(" exprCons="cons" exprConsAtt1=Expr exprConsAtt2=Expr ")" | "("
-		//exprList="list" exprListAtt1=Expr exprListAtt2=Expr ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl"
-		//exprTailAtt=Expr ")" | "(" nomSymb=SYMBOL symbAtt=Expr ")"
+		//(nil="nil" | vari=VARIABLE | symb=SYMBOL) // '(' (exprList = List)')' |
+		//| "(" exprCons=Cons ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl" exprTailAtt=Expr ")" | "("
+		//nomSymb=SYMBOL symbAtt=Expr ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//nil="nil" | vari=VARIABLE | symb=SYMBOL
@@ -660,122 +647,83 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		//SYMBOL
 		public RuleCall getSymbSYMBOLTerminalRuleCall_0_2_0() { return cSymbSYMBOLTerminalRuleCall_0_2_0; }
 
-		//"(" exprCons="cons" exprConsAtt1=Expr exprConsAtt2=Expr ")"
+		//"(" exprCons=Cons ")"
 		public Group getGroup_1() { return cGroup_1; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_1_0() { return cLeftParenthesisKeyword_1_0; }
 
-		//exprCons="cons"
+		//exprCons=Cons
 		public Assignment getExprConsAssignment_1_1() { return cExprConsAssignment_1_1; }
 
-		//"cons"
-		public Keyword getExprConsConsKeyword_1_1_0() { return cExprConsConsKeyword_1_1_0; }
-
-		//exprConsAtt1=Expr
-		public Assignment getExprConsAtt1Assignment_1_2() { return cExprConsAtt1Assignment_1_2; }
-
-		//Expr
-		public RuleCall getExprConsAtt1ExprParserRuleCall_1_2_0() { return cExprConsAtt1ExprParserRuleCall_1_2_0; }
-
-		//exprConsAtt2=Expr
-		public Assignment getExprConsAtt2Assignment_1_3() { return cExprConsAtt2Assignment_1_3; }
-
-		//Expr
-		public RuleCall getExprConsAtt2ExprParserRuleCall_1_3_0() { return cExprConsAtt2ExprParserRuleCall_1_3_0; }
+		//Cons
+		public RuleCall getExprConsConsParserRuleCall_1_1_0() { return cExprConsConsParserRuleCall_1_1_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_1_4() { return cRightParenthesisKeyword_1_4; }
+		public Keyword getRightParenthesisKeyword_1_2() { return cRightParenthesisKeyword_1_2; }
 
-		//"(" exprList="list" exprListAtt1=Expr exprListAtt2=Expr ")"
+		//"(" exprHead="hd" exprHeadAtt=Expr ")"
 		public Group getGroup_2() { return cGroup_2; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_2_0() { return cLeftParenthesisKeyword_2_0; }
 
-		//exprList="list"
-		public Assignment getExprListAssignment_2_1() { return cExprListAssignment_2_1; }
+		//exprHead="hd"
+		public Assignment getExprHeadAssignment_2_1() { return cExprHeadAssignment_2_1; }
 
-		//"list"
-		public Keyword getExprListListKeyword_2_1_0() { return cExprListListKeyword_2_1_0; }
+		//"hd"
+		public Keyword getExprHeadHdKeyword_2_1_0() { return cExprHeadHdKeyword_2_1_0; }
 
-		//exprListAtt1=Expr
-		public Assignment getExprListAtt1Assignment_2_2() { return cExprListAtt1Assignment_2_2; }
-
-		//Expr
-		public RuleCall getExprListAtt1ExprParserRuleCall_2_2_0() { return cExprListAtt1ExprParserRuleCall_2_2_0; }
-
-		//exprListAtt2=Expr
-		public Assignment getExprListAtt2Assignment_2_3() { return cExprListAtt2Assignment_2_3; }
+		//exprHeadAtt=Expr
+		public Assignment getExprHeadAttAssignment_2_2() { return cExprHeadAttAssignment_2_2; }
 
 		//Expr
-		public RuleCall getExprListAtt2ExprParserRuleCall_2_3_0() { return cExprListAtt2ExprParserRuleCall_2_3_0; }
+		public RuleCall getExprHeadAttExprParserRuleCall_2_2_0() { return cExprHeadAttExprParserRuleCall_2_2_0; }
 
 		//")"
-		public Keyword getRightParenthesisKeyword_2_4() { return cRightParenthesisKeyword_2_4; }
+		public Keyword getRightParenthesisKeyword_2_3() { return cRightParenthesisKeyword_2_3; }
 
-		//"(" exprHead="hd" exprHeadAtt=Expr ")"
+		//"(" exprTail="tl" exprTailAtt=Expr ")"
 		public Group getGroup_3() { return cGroup_3; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_3_0() { return cLeftParenthesisKeyword_3_0; }
 
-		//exprHead="hd"
-		public Assignment getExprHeadAssignment_3_1() { return cExprHeadAssignment_3_1; }
+		//exprTail="tl"
+		public Assignment getExprTailAssignment_3_1() { return cExprTailAssignment_3_1; }
 
-		//"hd"
-		public Keyword getExprHeadHdKeyword_3_1_0() { return cExprHeadHdKeyword_3_1_0; }
+		//"tl"
+		public Keyword getExprTailTlKeyword_3_1_0() { return cExprTailTlKeyword_3_1_0; }
 
-		//exprHeadAtt=Expr
-		public Assignment getExprHeadAttAssignment_3_2() { return cExprHeadAttAssignment_3_2; }
+		//exprTailAtt=Expr
+		public Assignment getExprTailAttAssignment_3_2() { return cExprTailAttAssignment_3_2; }
 
 		//Expr
-		public RuleCall getExprHeadAttExprParserRuleCall_3_2_0() { return cExprHeadAttExprParserRuleCall_3_2_0; }
+		public RuleCall getExprTailAttExprParserRuleCall_3_2_0() { return cExprTailAttExprParserRuleCall_3_2_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_3_3() { return cRightParenthesisKeyword_3_3; }
 
-		//"(" exprTail="tl" exprTailAtt=Expr ")"
+		//"(" nomSymb=SYMBOL symbAtt=Expr ")"
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"("
 		public Keyword getLeftParenthesisKeyword_4_0() { return cLeftParenthesisKeyword_4_0; }
 
-		//exprTail="tl"
-		public Assignment getExprTailAssignment_4_1() { return cExprTailAssignment_4_1; }
+		//nomSymb=SYMBOL
+		public Assignment getNomSymbAssignment_4_1() { return cNomSymbAssignment_4_1; }
 
-		//"tl"
-		public Keyword getExprTailTlKeyword_4_1_0() { return cExprTailTlKeyword_4_1_0; }
+		//SYMBOL
+		public RuleCall getNomSymbSYMBOLTerminalRuleCall_4_1_0() { return cNomSymbSYMBOLTerminalRuleCall_4_1_0; }
 
-		//exprTailAtt=Expr
-		public Assignment getExprTailAttAssignment_4_2() { return cExprTailAttAssignment_4_2; }
+		//symbAtt=Expr
+		public Assignment getSymbAttAssignment_4_2() { return cSymbAttAssignment_4_2; }
 
 		//Expr
-		public RuleCall getExprTailAttExprParserRuleCall_4_2_0() { return cExprTailAttExprParserRuleCall_4_2_0; }
+		public RuleCall getSymbAttExprParserRuleCall_4_2_0() { return cSymbAttExprParserRuleCall_4_2_0; }
 
 		//")"
 		public Keyword getRightParenthesisKeyword_4_3() { return cRightParenthesisKeyword_4_3; }
-
-		//"(" nomSymb=SYMBOL symbAtt=Expr ")"
-		public Group getGroup_5() { return cGroup_5; }
-
-		//"("
-		public Keyword getLeftParenthesisKeyword_5_0() { return cLeftParenthesisKeyword_5_0; }
-
-		//nomSymb=SYMBOL
-		public Assignment getNomSymbAssignment_5_1() { return cNomSymbAssignment_5_1; }
-
-		//SYMBOL
-		public RuleCall getNomSymbSYMBOLTerminalRuleCall_5_1_0() { return cNomSymbSYMBOLTerminalRuleCall_5_1_0; }
-
-		//symbAtt=Expr
-		public Assignment getSymbAttAssignment_5_2() { return cSymbAttAssignment_5_2; }
-
-		//Expr
-		public RuleCall getSymbAttExprParserRuleCall_5_2_0() { return cSymbAttExprParserRuleCall_5_2_0; }
-
-		//")"
-		public Keyword getRightParenthesisKeyword_5_3() { return cRightParenthesisKeyword_5_3; }
 	}
 
 	public class ExprAndElements extends AbstractParserRuleElementFinder {
@@ -941,6 +889,58 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		//ExprSimple
 		public RuleCall getExprSim2ExprSimpleParserRuleCall_1_2_0() { return cExprSim2ExprSimpleParserRuleCall_1_2_0; }
 	}
+
+	public class ConsElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "Cons");
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Assignment cExprConsAssignment_0 = (Assignment)cGroup.eContents().get(0);
+		private final Keyword cExprConsConsKeyword_0_0 = (Keyword)cExprConsAssignment_0.eContents().get(0);
+		private final Assignment cExprConsAtt1Assignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprConsAtt1ExprParserRuleCall_1_0 = (RuleCall)cExprConsAtt1Assignment_1.eContents().get(0);
+		private final Assignment cExprConsAttListAssignment_2 = (Assignment)cGroup.eContents().get(2);
+		private final RuleCall cExprConsAttListConsAttListParserRuleCall_2_0 = (RuleCall)cExprConsAttListAssignment_2.eContents().get(0);
+		
+		//Cons:
+		//	exprCons="cons" exprConsAtt1=Expr exprConsAttList=ConsAttList;
+		@Override public ParserRule getRule() { return rule; }
+
+		//exprCons="cons" exprConsAtt1=Expr exprConsAttList=ConsAttList
+		public Group getGroup() { return cGroup; }
+
+		//exprCons="cons"
+		public Assignment getExprConsAssignment_0() { return cExprConsAssignment_0; }
+
+		//"cons"
+		public Keyword getExprConsConsKeyword_0_0() { return cExprConsConsKeyword_0_0; }
+
+		//exprConsAtt1=Expr
+		public Assignment getExprConsAtt1Assignment_1() { return cExprConsAtt1Assignment_1; }
+
+		//Expr
+		public RuleCall getExprConsAtt1ExprParserRuleCall_1_0() { return cExprConsAtt1ExprParserRuleCall_1_0; }
+
+		//exprConsAttList=ConsAttList
+		public Assignment getExprConsAttListAssignment_2() { return cExprConsAttListAssignment_2; }
+
+		//ConsAttList
+		public RuleCall getExprConsAttListConsAttListParserRuleCall_2_0() { return cExprConsAttListConsAttListParserRuleCall_2_0; }
+	}
+
+	public class ConsAttListElements extends AbstractParserRuleElementFinder {
+		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConsAttList");
+		private final Assignment cConsListAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cConsListExprParserRuleCall_0 = (RuleCall)cConsListAssignment.eContents().get(0);
+		
+		//ConsAttList:
+		//	consList+=Expr+;
+		@Override public ParserRule getRule() { return rule; }
+
+		//consList+=Expr+
+		public Assignment getConsListAssignment() { return cConsListAssignment; }
+
+		//Expr
+		public RuleCall getConsListExprParserRuleCall_0() { return cConsListExprParserRuleCall_0; }
+	}
 	
 	
 	private final ProgramElements pProgram;
@@ -962,6 +962,8 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExprOrElements pExprOr;
 	private final ExprNotElements pExprNot;
 	private final ExprEqElements pExprEq;
+	private final ConsElements pCons;
+	private final ConsAttListElements pConsAttList;
 	private final TerminalRule tSYMBOL;
 	private final TerminalRule tLC;
 	
@@ -993,6 +995,8 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExprOr = new ExprOrElements();
 		this.pExprNot = new ExprNotElements();
 		this.pExprEq = new ExprEqElements();
+		this.pCons = new ConsElements();
+		this.pConsAttList = new ConsAttListElements();
 		this.tSYMBOL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SYMBOL");
 		this.tLC = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LC");
 	}
@@ -1169,9 +1173,9 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//ExprSimple:
-	//	(nil="nil" | vari=VARIABLE | symb=SYMBOL) | "(" exprCons="cons" exprConsAtt1=Expr exprConsAtt2=Expr ")" | "("
-	//	exprList="list" exprListAtt1=Expr exprListAtt2=Expr ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl"
-	//	exprTailAtt=Expr ")" | "(" nomSymb=SYMBOL symbAtt=Expr ")";
+	//	(nil="nil" | vari=VARIABLE | symb=SYMBOL) // '(' (exprList = List)')' |
+	//	| "(" exprCons=Cons ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl" exprTailAtt=Expr ")" | "("
+	//	nomSymb=SYMBOL symbAtt=Expr ")";
 	public ExprSimpleElements getExprSimpleAccess() {
 		return pExprSimple;
 	}
@@ -1220,6 +1224,28 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprEqAccess().getRule();
 	}
 
+	//Cons:
+	//	exprCons="cons" exprConsAtt1=Expr exprConsAttList=ConsAttList;
+	public ConsElements getConsAccess() {
+		return pCons;
+	}
+	
+	public ParserRule getConsRule() {
+		return getConsAccess().getRule();
+	}
+
+	//ConsAttList:
+	//	consList+=Expr+;
+	public ConsAttListElements getConsAttListAccess() {
+		return pConsAttList;
+	}
+	
+	public ParserRule getConsAttListRule() {
+		return getConsAttListAccess().getRule();
+	}
+
+	////List: (exprList = 'list') (exprListAtt1 = Expr) (exprListAttList = ListAttList);
+	////ListAttList:listList += Expr;
 	//terminal SYMBOL:
 	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9" | "_" | "->" | "-" | "+" | "&" | "." | "/")*;
 	public TerminalRule getSYMBOLRule() {
