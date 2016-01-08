@@ -1,0 +1,6 @@
+function doNothing:
+read X
+%
+nop
+%
+write X

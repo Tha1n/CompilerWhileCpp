@@ -16,8 +16,10 @@ class CppGenerator {
 	{
 		m_labelList = labelList
 		val funcList = funcs.functions
-		var cpp = '''import "BinTree.h"
-		
+		var cpp = '''#include "BinTree.h"
+#include <iostream>
+#include <vector>
+
 		'''
 		for(var i = 0; i < funcList.size; i++)
 		{
@@ -32,7 +34,7 @@ class CppGenerator {
 			else
 			{
 				_previousFunctions.add(funName)
-				cpp = cpp + '''List<BinTree> ''' + funNameTranslation.get(funName) + '''(List<BinTree> args)
+				cpp = cpp + '''std::vector<BinTree> ''' + funNameTranslation.get(funName) + '''(std::vector<BinTree> args)
 {
 	//Read
 	''' + 
@@ -42,7 +44,7 @@ class CppGenerator {
 	''' + compileInstructions(func.m_quadList) +
 	'''
 	
-	//TODO% write
+	//write
 	''' + writeWriteVar(func.writeVarList) + '''
 }
 
@@ -78,7 +80,7 @@ class CppGenerator {
 	
 	def public String writeWriteVar(ArrayList<String> writeVar)
 	{
-		var result = '''List<BinTree> retour;
+		var result = '''std::vector<BinTree> retour;
 		'''
 		
     	var iterator = writeVar.iterator
@@ -86,7 +88,7 @@ class CppGenerator {
 		while(iterator.hasNext)
 		{
 			val variable = iterator.next
-			result += "retour.add(" + variable + ");\n"
+			result += "retour.push_back(" + variable + ");\n"
 		}
 		
 		result += "return retour;\n"
@@ -96,14 +98,16 @@ class CppGenerator {
 	
 	def public String writeEntryArg(HashMap<String, String> readVar)
 	{
-		var result = '''if(argc < ''' + readVar.size + ''')
-		std::cout << "Not enough arg\n";
-	List<BinTree> entry;
+		var result = '''if(argc < ''' + (readVar.size+1) + ''') {
+	std::cout << "Not enough arg\n";
+	return -1;
+}
+	std::vector<BinTree> entry;
 		'''
 		
-		for(var i = 0; i < readVar.size; i+=1)
+		for(var i = 1; i <= readVar.size; i+=1)
 		{
-			result += "	entry.append(BinTree(argv[" + i + "]));\n"
+			result += "	entry.push_back(BinTree(argv[" + i + "]));\n"
 		}
 	
 		result
@@ -119,9 +123,9 @@ class CppGenerator {
 			''' + writeEntryArg(entryFunc.readVarList)
 			+ '''
 			
-			List<BinTree> result = ''' + 
+			std::vector<BinTree> result = ''' + 
 			funNameTranslation.get(entryFunc.m_name)
-			+ '''(List<BinTree> entry);
+			+ '''(entry);
 	for(auto bT : result)
 		std::cout << bT << std::endl;
 	return 0;
@@ -138,17 +142,19 @@ class CppGenerator {
 			val quadruplet = quadruplets.get(i)
 			switch quadruplet.op.op {
 				case CodeOp.OP_NOP : {
-					cpp +=  '''//NOP
+					cpp +=  '''//<NOP, _, _, _>
 				'''
 				}
 				case CodeOp.OP_WHILE : {
-					cpp +=  '''while (BinTree::isTrue(''' + quadruplet.arg1 + ''')) {
+					cpp +=  '''//<WHILE ''' + quadruplet.op.optLabel1 + ''', ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+while (BinTree::isTrue(''' + quadruplet.arg1 + ''')) {
 	''' + compileInstructions(getLabel(quadruplet.op.optLabel1).code) +  '''
 }
 				'''
 				}
 				case CodeOp.OP_IF : {
-					cpp +=  '''if (BinTree::isTrue(''' + quadruplet.arg1 + ''')) {
+					cpp +=  '''//<IF ''' + quadruplet.op.optLabel1 + ''' ''' + quadruplet.op.optLabel2 + ''', ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+if (BinTree::isTrue(''' + quadruplet.arg1 + ''')) {
 	''' + compileInstructions(getLabel(quadruplet.op.optLabel1).code) +  '''
 } else {
 	''' + compileInstructions(getLabel(quadruplet.op.optLabel2).code) +  '''
@@ -156,27 +162,32 @@ class CppGenerator {
 				'''
 				}
 				case CodeOp.OP_FOREACH : {
-					cpp +=  '''for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
+						cpp +=  '''//<FOREACH ''' + quadruplet.op.optLabel1 + ''', ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 	''' + compileInstructions(getLabel(quadruplet.op.optLabel1).code) +  '''
 }
 				'''
 				}
 				case CodeOp.OP_AFF : {
-					cpp +=  quadruplet.result + ''' = ''' + quadruplet.arg1 + ''';
+					cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + quadruplet.result + ''' = ''' + quadruplet.arg1 + ''';
 				'''
 				}
 				case CodeOp.OP_CONS : {
-					cpp +=  quadruplet.result + ''' = BinTree::cons(''' + 
+					cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' +  quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + quadruplet.result + ''' = BinTree::cons(''' + 
 					quadruplet.arg1 + ''', ''' + quadruplet.arg2 +''');
 				'''
 				}
 				case CodeOp.OP_HD : {
-					cpp +=  quadruplet.result + ''' = BinTree::hd(''' + 
+					cpp +=  '''//<HD, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + quadruplet.result + ''' = BinTree::hd(''' + 
 					quadruplet.arg1 +''');
 				'''
 				}
 				case CodeOp.OP_TL : {
-					cpp +=  quadruplet.result + ''' = BinTree::tl(''' + 
+					cpp +=  '''//<TL, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + quadruplet.result + ''' = BinTree::tl(''' + 
 					quadruplet.arg1 +''');
 				'''
 				}
