@@ -3,13 +3,24 @@
  */
 package org.xtext.example.generator
 
+import SymboleTable.CodeOp
+import SymboleTable.Fonction
+import SymboleTable.FunDictionary
+import SymboleTable.Label
+import SymboleTable.Quadruplet
+import SymboleTable.Variable
+import java.util.ArrayList
+import java.util.HashMap
+import java.util.List
+import java.util.Set
+import org.eclipse.emf.common.util.URI
 import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.emf.ecore.util.EcoreUtil
 import org.eclipse.xtext.generator.IFileSystemAccess
 import org.eclipse.xtext.generator.IGenerator
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.xtext.example.WhileCppStandaloneSetup
 import org.xtext.example.whileCpp.Command
-import org.xtext.example.whileCpp.CommandForEach
-import org.xtext.example.whileCpp.CommandIf
-import org.xtext.example.whileCpp.CommandWhile
 import org.xtext.example.whileCpp.Commands
 import org.xtext.example.whileCpp.Definition
 import org.xtext.example.whileCpp.Expr
@@ -24,22 +35,6 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
-import org.eclipse.emf.common.util.URI
-import org.xtext.example.WhileCppStandaloneSetup
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.emf.ecore.util.EcoreUtil
-import SymboleTable.Fonction
-import SymboleTable.Variable
-import SymboleTable.FunDictionary
-import java.util.Set
-import java.util.List
-import SymboleTable.Quadruplet
-import SymboleTable.CodeOp
-import java.util.HashMap
-import java.util.ArrayList
-import SymboleTable.Label
-import java.io.FileWriter
-import java.io.BufferedWriter
 
 /**
  * Generates code from your model files on save.
@@ -92,27 +87,39 @@ class ThreeAddGenerator implements IGenerator {
 	def public void generate(String in, FunDictionary tab3A)
 	{
 		resetDico
-		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
+		
+        val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val resourceSet = injector.getInstance(XtextResourceSet);
-		val uri = URI.createURI(in);
+        val uri = URI.createURI(in);
 		val xtextResource = resourceSet.getResource(uri, true);
+		EcoreUtil.resolveAll(xtextResource);
+        
 		this.funNameTranslation = new HashMap<String, String>();
 		this.varNameTranslation = new HashMap<String, Quadruplet>();
 		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
-		EcoreUtil.resolveAll(xtextResource);
 		
-		try{
-  			val fstream = new FileWriter("PP.3a")
-  			val buff = new BufferedWriter(fstream)
-  			for(p: xtextResource.allContents.toIterable.filter(Program))
-				buff.write(print3a())
-  			buff.close()
-  		}catch (Exception e){
-  			println("Can't write PP.3a - Error: " + e.getMessage())
-  		}
-		
+		try {
+			for(p: xtextResource.allContents.toIterable.filter(Program)) {
+				p.compile
+			}			
+		}
+		catch (Exception e) {
+			System.out.println("Unknown exception " + e.toString);
+		}
+	}
+	
+	def public FunDictionary dico() {
+		return this.dico;
+	}
+	
+	def public HashMap<String,String> funNameTranslation() {
+		return this.funNameTranslation;
+	}
+	
+	def public ArrayList<Label> labelList() {
+		return this.m_labelList;
 	}
 	
 	def public Label generateLabel() {
@@ -140,6 +147,7 @@ class ThreeAddGenerator implements IGenerator {
 		}
 		
 		//TODO move to whc
+		//TODO test of whc before remove those 2 lines
 		val cppGenerator = new CppGenerator();
 		cppGenerator.generateCPP(dico, funNameTranslation, m_labelList)
 	}

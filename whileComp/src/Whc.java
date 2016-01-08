@@ -16,9 +16,9 @@ import SymboleTable.FunDictionary;
 import SymboleTable.Quadruplet;
 
 public class Whc {
-	
+
 	//Table des codes 3A
-	private static FunDictionary tab3A;	
+	private static FunDictionary tab3A;
 	//Generator While -> 3 Adresses
 	private static ThreeAddGenerator gen3A;
 	//Generator 3A -> C++
@@ -33,14 +33,19 @@ public class Whc {
 		System.out.println("Main");
 		outFile = "";
 		inputProg = "";
+		gen3A = new ThreeAddGenerator();
+		genCpp = new CppGenerator();
 
 		CommandLine commandLine;
 		//output file
-		Option option_Out = OptionBuilder.withArgName(Resources.OPT_OUT).hasArg().withDescription("").create(Resources.OPT_OUT);
+		Option option_Out =
+				OptionBuilder.withArgName(Resources.OPT_OUT).hasArg().withDescription("").create(Resources.OPT_OUT);
 		//input file
-		Option option_In = OptionBuilder.withDescription("").create(Resources.OPT_IN);
+		Option option_In =
+				OptionBuilder.withDescription("").create(Resources.OPT_IN);
 		//help
-		Option option_Help = OptionBuilder.withArgName(Resources.OPT_HELP).create(Resources.OPT_HELP);
+		Option option_Help =
+				OptionBuilder.withArgName(Resources.OPT_HELP).create(Resources.OPT_HELP);
 
 		//Add options
 		Options options = new Options();
@@ -62,7 +67,9 @@ public class Whc {
 
 			if (commandLine.hasOption(Resources.OPT_IN))
 			{
-				inputProg = commandLine.getOptionValue(Resources.OPT_IN);
+				System.out.println("dbg opt in");
+				inputProg = commandLine.getOptionValue(Resources.OPT_IN, "good01.wh");
+				System.out.println("dbg inputprog = " + inputProg);
 			}
 
 			if (commandLine.hasOption("help"))
@@ -94,8 +101,9 @@ public class Whc {
 	}
 
 	private static void callCppCompiler() {
-		if(inputProg != null && !inputProg.isEmpty())
-		    gen3A.generate(inputProg, tab3A);
+		if(inputProg != null && !inputProg.isEmpty()) {
+			gen3A.generate(inputProg, tab3A);
+			genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList());
+		}
 	}
-
 }
