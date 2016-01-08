@@ -13,6 +13,14 @@ public class Quadruplet {
 		this.arg1 = a1;
 		this.arg2 = a2;
 	}
+	
+	public String getSecond (){
+		return this.result;
+	}
+	
+	public String getThird(){
+		return this.arg2;
+	}
 
 
 	public String toString(){

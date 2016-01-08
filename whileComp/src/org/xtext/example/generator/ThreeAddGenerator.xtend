@@ -40,6 +40,7 @@ import java.util.ArrayList
 import SymboleTable.Label
 import java.io.FileWriter
 import java.io.BufferedWriter
+import java.util.Stack
 
 /**
  * Generates code from your model files on save.
@@ -213,18 +214,40 @@ class ThreeAddGenerator implements IGenerator {
 	}
 	case c.vars!=null && c.exprs!=null : 
 	{
+		val pile = new ArrayList();
 		val res = c.exprs.compile(f).toString
 		val variable = c.vars.compile(f).toString()
-		val affect = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, res, "_")
 		if(l==null)
 		{
-			f.addQuad(affect)
-			print("[DBG]f += <:=, " + variable.trim + "," + res + ", _>\n")
+			for(exp : c.exprs.expGen)
+			{
+				pile.add(exp.exprSimp.vari);
+				val second = this.varNameTranslation.get(exp.exprSimp.vari).second;
+				f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),second,exp.exprSimp.vari,"_")); 
+				print("[DBG]f += <:=, " + second + "," + exp.exprSimp.vari + ", _>\n")
+				
+			}
+			var cpt = 0;
+			for(varToAffect : c.vars.varGen)
+			{
+				val temp = pile.head;
+				pile.remove(0);
+				var sec = "nil";
+				try{
+					sec = this.varNameTranslation.entrySet.get(cpt).value.second;
+					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),varToAffect,temp,"_")); 
+				}
+				catch(Exception e){
+					System.out.println("Error");
+				}
+				print("[DBG]f += <:=, " + varToAffect + "," + sec + ", _>\n");
+				cpt++;
+			}
 		}
 		else
 		{
-			l.add(affect)
-			print("[DBG]" + l.name + " += <:=, " + variable.trim + "," + res + ", _>\n")
+			//l.add(affect)
+			//print("[DBG]" + l.name + " += <:=, " + variable.trim + "," + res + ", _>\n")
 		}
 	}
 	case c.cmdWhile!=null : 
@@ -289,7 +312,7 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.vari!=null : {
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.vari, "_")
-	 		this.varNameTranslation.put(variable, quadruplet)
+	 		this.varNameTranslation.put(ex.vari, quadruplet)
 	 		print("[DBG]" + variable + " := " + ex.vari + "\n")
 	 		variable
 	 	}
