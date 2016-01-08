@@ -42,7 +42,7 @@ public class Whc {
 				OptionBuilder.withArgName(Resources.OPT_OUT).hasArg().withDescription("").create(Resources.OPT_OUT);
 		//input file
 		Option option_In =
-				OptionBuilder.withDescription("").create(Resources.OPT_IN);
+				OptionBuilder.withArgName(Resources.OPT_IN).hasArg().withDescription("").create(Resources.OPT_IN);
 		//help
 		Option option_Help =
 				OptionBuilder.withArgName(Resources.OPT_HELP).create(Resources.OPT_HELP);
@@ -67,9 +67,7 @@ public class Whc {
 
 			if (commandLine.hasOption(Resources.OPT_IN))
 			{
-				System.out.println("dbg opt in");
-				inputProg = commandLine.getOptionValue(Resources.OPT_IN, "good01.wh");
-				System.out.println("dbg inputprog = " + inputProg);
+				inputProg = commandLine.getOptionValue(Resources.OPT_IN);
 			}
 
 			if (commandLine.hasOption("help"))
