@@ -18,8 +18,8 @@ return retour;
 
 int main(int argc, char *argv[]) {
 if(argc < 2) {
-		std::cout << "Not enough arg\n";
-		return -1;
+	std::cout << "Not enough arg\n";
+	return -1;
 }
 	std::vector<BinTree> entry;
 	entry.push_back(BinTree(argv[1]));
