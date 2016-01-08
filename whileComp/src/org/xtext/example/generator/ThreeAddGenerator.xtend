@@ -234,8 +234,9 @@ class ThreeAddGenerator implements IGenerator {
 			{
 				pile.add(exp.exprSimp.vari);
 				val second = this.varNameTranslation.get(exp.exprSimp.vari).second;
-				f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),second,exp.exprSimp.vari,"_")); 
+				//f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),second,exp.exprSimp.vari,"_")); 
 				print("[DBG]f += <:=, " + second + "," + exp.exprSimp.vari + ", _>\n")
+				println("Première partie")
 				
 			}
 			var cpt = 0;
@@ -246,7 +247,7 @@ class ThreeAddGenerator implements IGenerator {
 				var sec = "nil";
 				try{
 					sec = this.varNameTranslation.entrySet.get(cpt).value.second;
-					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),varToAffect,temp,"_")); 
+					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),varToAffect,sec,"_")); 
 				}
 				catch(Exception e){
 					System.out.println("Error");
