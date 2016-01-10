@@ -90,6 +90,9 @@ public class Whc {
 				//Nom du fichier de sortie
 				if (commandLine.hasOption(Resources.OPT_OUT)) {
 					outFile = commandLine.getOptionValue(Resources.OPT_OUT);
+					if(outFile.length() < ".cpp".length() || 
+							outFile.indexOf(".cpp") != outFile.length() - ".cpp".length())
+						outFile += ".cpp";
 				}
 
 				//Nom du fichier en entrée
@@ -126,22 +129,7 @@ public class Whc {
 			}
 
 			//Compilation du code CPP
-			Process p;
-			try {
-				p = Runtime.getRuntime().exec("g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
-				p.waitFor();
-
-				BufferedReader reader = 
-						new BufferedReader(new InputStreamReader(p.getInputStream()));
-
-				String line = "";			
-				while ((line = reader.readLine())!= null) {
-					System.out.println(line);
-				}
-			} catch (Exception e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			System.out.println("Now, you can run : g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
 		}
 	}
 }

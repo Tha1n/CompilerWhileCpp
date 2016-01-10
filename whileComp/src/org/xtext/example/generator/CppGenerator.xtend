@@ -211,7 +211,7 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 						_previousVar.add(toAff)
 						toAff = "BinTree " + toAff;
 					}
-					cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' +  quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+					cpp +=  '''//<CONS, ''' + quadruplet.result + ''', ''' +  quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
 ''' + toAff + ''' = BinTree::cons(''' + 
 					quadruplet.arg1 + ''', ''' + quadruplet.arg2 +''');
 				'''

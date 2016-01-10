@@ -384,10 +384,15 @@ class ThreeAddGenerator implements IGenerator {
 	 		variable
 	 	}
 	 	case ex.exprCons!=null : {
-	 		print("cons")
+	 		val listCons = ex.exprCons.exprConsAttList.consList
+	 		while(listCons.size > 1)
+	 		{
+	 			val variable = generateVar
+	 			val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, listCons.get(listCons.size -1).compile(f, l).toString, listCons.get(listCons.size -2).compile(f, l).toString)
+	 		}
+	 		
 	 		val variable = generateVar
-	 		//TODO: Don't work (pas de compile(f) pour la liste)
-	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, ex.exprCons.exprConsAttList.consList.toString())
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
