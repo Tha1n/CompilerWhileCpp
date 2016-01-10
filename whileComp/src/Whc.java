@@ -22,13 +22,17 @@ import org.xtext.example.generator.ThreeAddGenerator;
 
 import SymboleTable.FunDictionary;
 
+/**
+ * Interface du compilateur
+ *
+ */
 public class Whc {
 
 	//Table des codes 3A
 	private static FunDictionary tab3A;
-	//Generator While -> 3 Adresses
+	//Generateur While -> 3 Adresses
 	private static ThreeAddGenerator gen3A;
-	//Generator 3A -> C++
+	//Generateur 3A -> C++
 	private static CppGenerator genCpp;
 	//"":stdout else the output file
 	private static String outFile;
@@ -110,7 +114,7 @@ public class Whc {
 			gen3A.generate(inputFile, tab3A);
 			
 			//Génération du code CPP à partir du code 3A
-			String toWrite = genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList());
+			String toWrite = genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList(), gen3A.getErrors());
 			
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
 		              new FileOutputStream(outFile), "utf-8"))) {

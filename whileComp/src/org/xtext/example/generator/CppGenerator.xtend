@@ -10,10 +10,19 @@ import SymboleTable.Label
 class CppGenerator {
 	
 	private var _previousFunctions = new ArrayList<String>(); 
+	private var _previousVar = new ArrayList<String>();
 	private ArrayList<Label> m_labelList;
 	
-	def public String generateCPP(FunDictionary funcs, HashMap<String, String> funNameTranslation, ArrayList<Label> labelList)
+	def public String generateCPP(FunDictionary funcs, HashMap<String, String> funNameTranslation, ArrayList<Label> labelList, ArrayList<String> errors)
 	{
+		if(errors.size != 0)
+		{
+			for(var i = 0; i < errors.size; i += 1)
+			{
+				println(errors.get(i))
+			}
+			return ""
+		}
 		m_labelList = labelList
 		val funcList = funcs.functions
 		var cpp = '''#include "BinTree.h"
@@ -29,7 +38,6 @@ class CppGenerator {
 			{
 				cpp = '''Error:''' + funName + ''' previously declared!
 				'''
-				//TODO error
 			}
 			else
 			{
@@ -67,6 +75,7 @@ class CppGenerator {
 		while(iterator.hasNext)
 		{
 			val pair = iterator.next
+			_previousVar.add(pair.value)
 			result = result + pair.value + " = args.at(" + cpt + ")"
 			cpt += 1
 			if(iterator.hasNext)
@@ -118,6 +127,7 @@ class CppGenerator {
 		
 		var result = cpp 
 		var entryFunc = funcs.functions.last
+		
 		result += '''
 		
 		int main(int argc, char *argv[]) {
@@ -170,25 +180,63 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 				'''
 				}
 				case CodeOp.OP_AFF : {
-					cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
-''' + quadruplet.result + ''' = ''' + quadruplet.arg1 + ''';
+					var toAff = quadruplet.result
+					if(_previousVar.contains(toAff) == false)
+					{
+						_previousVar.add(toAff)
+						toAff = "BinTree " + toAff;
+					}
+					var result = quadruplet.arg1
+					if(_previousVar.contains(result) == false)
+					{
+						_previousVar.add(result)
+						result = "BinTree " + result;
+						cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + result + ''';
+
 				'''
+					}
+					else
+					{
+						cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + toAff + ''' = ''' + quadruplet.arg1 + ''';
+
+				'''
+					}
 				}
 				case CodeOp.OP_CONS : {
+					var toAff = quadruplet.result
+					if(_previousVar.contains(toAff) == false)
+					{
+						_previousVar.add(toAff)
+						toAff = "BinTree " + toAff;
+					}
 					cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' +  quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
-''' + quadruplet.result + ''' = BinTree::cons(''' + 
+''' + toAff + ''' = BinTree::cons(''' + 
 					quadruplet.arg1 + ''', ''' + quadruplet.arg2 +''');
 				'''
 				}
 				case CodeOp.OP_HD : {
+					var toAff = quadruplet.result
+					if(_previousVar.contains(toAff) == false)
+					{
+						_previousVar.add(toAff)
+						toAff = "BinTree " + toAff;
+					}
 					cpp +=  '''//<HD, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
-''' + quadruplet.result + ''' = BinTree::hd(''' + 
+''' + toAff + ''' = BinTree::hd(''' + 
 					quadruplet.arg1 +''');
 				'''
 				}
 				case CodeOp.OP_TL : {
+					var toAff = quadruplet.result
+					if(_previousVar.contains(toAff) == false)
+					{
+						_previousVar.add(toAff)
+						toAff = "BinTree " + toAff;
+					}
 					cpp +=  '''//<TL, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
-''' + quadruplet.result + ''' = BinTree::tl(''' + 
+''' + toAff + ''' = BinTree::tl(''' + 
 					quadruplet.arg1 +''');
 				'''
 				}
@@ -205,7 +253,6 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 	
 	def public Label getLabel(String name)
 	{
-		//TODO iterator
 		for(var i = 0; i < m_labelList.size; i += 1)
 		{
 			if(m_labelList.get(i).name == name)

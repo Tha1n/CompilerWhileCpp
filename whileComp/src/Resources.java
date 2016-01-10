@@ -1,4 +1,7 @@
-
+/**
+ * This class is used in the class Whpp to parse options
+ *
+ */
 public final class Resources {
 	//Ressources Pretty Printer
 	public static final String MAP_ALL = "All";

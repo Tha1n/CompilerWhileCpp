@@ -9,7 +9,6 @@ import org.eclipse.xtext.generator.IFileSystemAccess;
 import org.eclipse.xtext.generator.IGenerator;
 import org.xtext.example.generator.PrettyPrinterGenerator;
 import org.xtext.example.generator.ThreeAddGenerator;
-import org.xtext.example.generator.UglyPrinterGenerator;
 
 /**
  * Generates code from your model files on save.
@@ -20,9 +19,6 @@ import org.xtext.example.generator.UglyPrinterGenerator;
 public class WhileCppGenerator implements IGenerator {
   @Inject
   private PrettyPrinterGenerator PrettyGen;
-  
-  @Inject
-  private UglyPrinterGenerator UglyGen;
   
   @Inject
   private ThreeAddGenerator ThreeAddGen;

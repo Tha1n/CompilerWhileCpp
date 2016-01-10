@@ -1,14 +1,14 @@
-# Production de code intermédiaire : Documentation partielle
+# Production de code intermédiaire
 
-Ce document a pour but de définir précisément le code C++ approprié à chaque élément du langage _WHILE_. Tous les exemples décrits ci-après se baseront sur des objets de type Arbre Binaire (BinTree). Toutes les variables nouvellement déclarées en CPP se voient attribuer la valeur _nullptr_.
+Ce document a pour but de définir précisément le code __C++__ approprié à chaque élément du langage __WHILE__. Tous les exemples décrits ci-après se baseront sur des objets de type Arbre Binaire (BinTree). Toutes les variables nouvellement déclarées en CPP se voient attribuer la valeur _BinTree::NIL_.
 
 ## Traduction d'une fonction
 
 Contenu | WHILE | CPP
 ---|---|---
-Définition | function __name__ : | List< BinTree > __name__(List< BinTree > args) {}
+Définition | function __name__ : | std::vector< BinTree > __name__(std::vector< BinTree > args) {}
 Paramètre(s) | __read VAR (, VAR2, ..., VARn)__ | BinTree __VAR__ = args.at\(x\)
-Retour(s) | __write VAR (, VAR2, ..., VARn)__ | La fonction retourne une List< BinTree > contenant les variables retournées.
+Retour(s) | __write VAR (, VAR2, ..., VARn)__ | La fonction retourne une std::vector< BinTree > contenant les variables retournées.
 
 Exemple de traduction d'une fonction While en CPP :
 
@@ -16,19 +16,22 @@ Exemple de traduction d'une fonction While en CPP :
 function foo:
 read X
 %
-nop ;
+nop
 %
 write Y
 ```
 ```cpp
-List<BinTree> foo(List<BinTree> args)
+std::vector<BinTree> f0(std::vector<BinTree> args)
 {
- BinTree X = args.at(0);
- List<BinTree> ret;
- //NOP
- BinTree Y;
- ret.add(Y);
- return ret;
+	//Read
+BinTree v_0 = args.at(0);
+//Instructions
+//<NOP, _, _, _>
+
+//write
+std::vector<BinTree> retour;
+retour.push_back(v_1);
+return retour;
 }
 ```
 
@@ -56,18 +59,18 @@ Exemple de traduction d'instructions While en CPP :
 
 ```python
 read X,Y
-X:=cons(1 nil);
+X:=cons(nil nil);
 Y:=tl(X);
-W:=hd(cons(1,cons(nil,nil)));
+W:=hd(cons(nil,cons(nil,nil)));
 Z:=X;
 nop;
 ```
 
 ```cpp
 BinTree X = args.at(0), Y = args.at(1);
-X=BinTree::cons(1,BinTree::nil);
+X=BinTree::cons(BinTree::NIL,BinTree::NIL);
 Y=BinTree::tl(X);
-BinTree W = BinTree::hd(BinTree::cons(1,BinTree::cons(BinTree::nil,BinTree::nil)));
+BinTree W = BinTree::hd(BinTree::cons(BinTree::NIL,BinTree::cons(BinTree::NIL,BinTree::NIL)));
 BinTree Z = X;
 //NOP
 ```
@@ -86,12 +89,12 @@ X = (hd Y) | < hd, X, Y, \_ >
 X = (tl Y) | < tl, X, Y,\_ >
 X = Y =? Z | < =?, X, Y, Z >
 X := Y | < :=, X, Y, \_  >
-if cond then codeThen else codeElse | if cond goTo then\n else: codeElse; goTo fi\n then: codeThen; fi
-while cond then code od | while: if cond goTo then\n else: goTo fi\n then: code; goTo while; fi
-for cond then code od | for: if cond goTo then\n else: goTo fi\n then: code; goTo for; fi
-foreach elem in ensemb do cmds od | foreach: if e:Var goTo then\n else: goTo fi\n then: code; goTo foreach; fi
+if cond then codeThen else codeElse | < (if, codeThen, codeElse), \_, cond, \_ >
+while cond then code od | < (while, code), \_, cond, \_ >
+for cond then code od | < (while, code), \_, cond, \_ >
+foreach elem in ensemb do cmds od | < (foreach, code), \_, ensemble, \_ >
 
-Une variable créée par le compilateur aura la notation %vXX avec XX le numéro de variable.
+Une variable créée par le compilateur aura la notation %v_XX avec XX le numéro de variable.
 
 ## Exemples WHILE->3@
 
@@ -100,15 +103,20 @@ Une variable créée par le compilateur aura la notation %vXX avec XX le numéro
 function foo:
 read X, Z
 %
-nop ;
+nop
 %
 write Y
 ```
 
 ```python
-<nop, _, _, _>
+-------------------------------------
+        Table des symboles           
+ - foo : 2 inputs --> 1 outputs
+	 -> X
+	 -> Z
 
-+ Table des symboles
+-------------------------------------
+[DBG]f += <NOP>
 ```
 
 ### Exemple 2
@@ -116,9 +124,9 @@ write Y
 function foo:
 read X,Y
 %
-X:=cons(nil nil);
+X:=(cons nil nil);
 Z:=X;
-nop;
+nop
 %
 write Z
 ```
@@ -203,13 +211,13 @@ fi:
 ```
 
 ```cpp
-List<BinTree> foo(List<BinTree> args)
+std::vector<BinTree> foo(std::vector<BinTree> args)
 {
     BinTree X = args.at(0), Z = args.at(1);
 
    //NOP
 
-    List<BinTree> retour;
+    std::vector<BinTree> retour;
     retour.add(Y);
     return retour;
 }
@@ -226,10 +234,10 @@ List<BinTree> foo(List<BinTree> args)
 ```
 
 ```cpp
-List<BinTree> foo(List<BinTree> args)
+std::vector<BinTree> foo(std::vector<BinTree> args)
 {
     BinTree X = args.at(0), Y = args.at(1);
-    List<BinTree> retour;
+    std::vector<BinTree> retour;
 
     X=BinTree::cons(BinTree::NIL,BinTree::NIL);
     Z=X;
@@ -261,7 +269,7 @@ List<BinTree> foo(List<BinTree> args)
 ```
 
 ```cpp
-List<BinTree> foo(List<BinTree> args)
+std::vector<BinTree> foo(std::vector<BinTree> args)
 {
     BinTree X = args.at(0), Y = args.at(1);
 
@@ -271,7 +279,7 @@ List<BinTree> foo(List<BinTree> args)
     Z := X;
     //NOP
 
-    List<BinTree> retour;
+    std::vector<BinTree> retour;
     retour.add(Z);
     return retour;
 }

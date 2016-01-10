@@ -7,9 +7,11 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
-//Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
-//l'@ code cible, et une liste de variables
-
+/**
+ * 
+ * Fonction contient les meta donnees d'une fonction --> nb d'entrees, de sorties, 
+ * l'@ code cible, et une liste de variables
+ */
 public class Fonction {
 	private String m_name;
 
@@ -22,10 +24,7 @@ public class Fonction {
 	private HashMap<String, String> m_readVarList;
 	private ArrayList<String> m_writeVarList;
 	private ArrayList<Quadruplet> m_quadList;
-	private ArrayList<String> m_gen_var_list;
 	
-	//adresse donnée à la variable
-	private String VAR_INTERN = "intern";
 	private String VAR_INPUT = "input";
 	
 	public Fonction(String name, int nbIn, int nbOut, String adressCode) {

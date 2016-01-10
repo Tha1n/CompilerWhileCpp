@@ -50,11 +50,17 @@ class ThreeAddGenerator implements IGenerator {
 	private HashMap<String, String> funNameTranslation;
 	private ArrayList<Label> m_labelList;
 	private HashMap<String, String> varNameTranslation;
+	private ArrayList<String> errors;
 	private int numVar;
 	 
 	def public List<String> getFunctionsNames()
 	{
 		return dico.listFuncName.toList
+	}
+	
+	def public ArrayList<String> getErrors()
+	{
+		return errors
 	}
 	
 	def public List<Fonction> getFunctions()
@@ -99,6 +105,7 @@ class ThreeAddGenerator implements IGenerator {
 		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
+		this.errors = new ArrayList<String>();
 		
 		try {
 			for(p: xtextResource.allContents.toIterable.filter(Program)) {
@@ -142,21 +149,19 @@ class ThreeAddGenerator implements IGenerator {
 		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
+		this.errors = new ArrayList<String>();
 		for(p: resource.allContents.toIterable.filter(Program)) {
 			fsa.generateFile("PP.3a", p.compile())
 		}
 		
-		//TODO move to whc
-		//TODO test of whc before remove those 2 lines
 		val cppGenerator = new CppGenerator();
-		cppGenerator.generateCPP(dico, funNameTranslation, m_labelList)
+		cppGenerator.generateCPP(dico, funNameTranslation, m_labelList, errors)
 	}
 
 	def compile (Program p)
 '''«FOR f: p.fonctions»
 «f.compile()»
 «ENDFOR»'''
-//«print3a()»'''
 	
 	def compile (Function f)
 	//Ajout de la fonction dans la liste puis ajout de son code 3A
@@ -164,7 +169,7 @@ class ThreeAddGenerator implements IGenerator {
 «IF dico.putFunction(newF)»
 «this.funNameTranslation.put(f.nom, "f"+this.funNameTranslation.size)»
 «f.definition.compile(newF)»
-«ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
+«ELSE» «errors.add("Erreur, " + f.nom + " déjà déclarée")»
 «ENDIF»
 '''
 
@@ -248,31 +253,36 @@ class ThreeAddGenerator implements IGenerator {
 				}
 				
 			}
+			var total = pile.size
 			var cpt = 0;
 			for(varToAffect : c.vars.varGen)
 			{
 				var toAffect = varNameTranslation.get(varToAffect)
-					val temp = pile.head;
-					pile.remove(0);
-					var sec = "nil";
-					try{
-						compile(temp, f, l)
-						var finalResult = ""
-						if(l == null)
-						{
-							finalResult = f.m_quadList.last.result
-						}
-						else
-						{
-							finalResult = l.code.last.result
-						}
-						f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult,"_")); 
+				val temp = pile.head;
+				pile.remove(0);
+				var sec = "nil";
+				try{
+					compile(temp, f, l)
+					var finalResult = ""
+					if(l == null)
+					{
+						finalResult = f.m_quadList.last.result
 					}
-					catch(Exception e){
-						System.out.println("Error");
+					else
+					{
+						finalResult = l.code.last.result
 					}
-					print("[DBG]f += <:=, " + toAffect + "," + temp + ", _>\n");
-					cpt++;
+					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult,"_")); 
+				}
+				catch(Exception e){
+					System.out.println("Error");
+				}
+				print("[DBG]f += <:=, " + toAffect + "," + temp + ", _>\n");
+				cpt++;
+			}
+			if(cpt != total)
+			{
+				errors.add("Erreur, pile incorrecte lors d'une multi affectation")
 			}
 		}
 	}
@@ -428,7 +438,6 @@ class ThreeAddGenerator implements IGenerator {
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, Fonction f, Label l)
-	//TODO
 '''«IF v.eContents.empty»
 		«FOR in : v.varGen»
 			«var vari = new Variable (in.toString, "intern")»

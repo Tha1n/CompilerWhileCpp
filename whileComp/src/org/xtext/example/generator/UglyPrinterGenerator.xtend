@@ -28,6 +28,9 @@ import org.eclipse.emf.ecore.util.EcoreUtil
 import java.io.FileWriter
 import java.io.BufferedWriter
 
+/**
+ * OLD AND NOT USED
+ */
 class UglyPrinterGenerator implements IGenerator {
 
 	def public void generate(String in, String outputFile)

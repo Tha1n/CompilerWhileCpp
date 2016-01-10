@@ -38,6 +38,9 @@ import org.xtext.example.whileCpp.Output;
 import org.xtext.example.whileCpp.Program;
 import org.xtext.example.whileCpp.Vars;
 
+/**
+ * OLD AND NOT USED
+ */
 @SuppressWarnings("all")
 public class UglyPrinterGenerator implements IGenerator {
   public void generate(final String in, final String outputFile) {

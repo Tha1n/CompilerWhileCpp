@@ -16,12 +16,10 @@ import javax.inject.Inject
 class WhileCppGenerator implements IGenerator {
 
 	@Inject PrettyPrinterGenerator PrettyGen
-  	@Inject UglyPrinterGenerator UglyGen
   	@Inject ThreeAddGenerator ThreeAddGen
 
   override void doGenerate(Resource input, IFileSystemAccess fsa) {
     PrettyGen.doGenerate(input, fsa)
-    //UglyGen.doGenerate(input, fsa)
     ThreeAddGen.doGenerate(input, fsa)
 	}
 }
