@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
@@ -41,7 +42,7 @@ public class Whc {
 
 	public static void main(String[] parameters) {
 
-		outFile = "default";
+		outFile = "default.cpp";
 		inputFile = "";
 		gen3A = new ThreeAddGenerator();
 		genCpp = new CppGenerator();
@@ -50,7 +51,7 @@ public class Whc {
 		//output file
 		Option option_Out =
 				OptionBuilder.withArgName(Resources.OPT_OUT).hasArg().withDescription("").create(Resources.OPT_OUT);
-		
+
 		//help
 		Option option_Help =
 				OptionBuilder.withArgName(Resources.OPT_HELP).create(Resources.OPT_HELP);
@@ -108,34 +109,36 @@ public class Whc {
 
 	private static void callCppCompiler() {
 		File whf = new File(inputFile);
-		
+
 		if(inputFile != null && !inputFile.isEmpty() && whf.exists()) {
 			//Génération du code 3A
 			gen3A.generate(inputFile, tab3A);
-			
+
 			//Génération du code CPP à partir du code 3A
 			String toWrite = genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList(), gen3A.getErrors());
-			
+
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-		              new FileOutputStream(outFile), "utf-8"))) {
-		   writer.write(toWrite);
-		} catch (IOException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-			
+					new FileOutputStream(outFile), "utf-8"))) {
+				writer.write(toWrite);
+			} catch (IOException e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
 			//Compilation du code CPP
-			Runtime rt = Runtime.getRuntime();
+			Process p;
 			try {
-				String outName = inputFile.substring(0, inputFile.length() - 3);
-				Process pr = rt.exec("g++ -o " + outName + " -std=c++11 BinTree.* " + inputFile + " > salut");
-				try {
-					pr.waitFor();
-				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
-					e.printStackTrace();
+				p = Runtime.getRuntime().exec("g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
+				p.waitFor();
+
+				BufferedReader reader = 
+						new BufferedReader(new InputStreamReader(p.getInputStream()));
+
+				String line = "";			
+				while ((line = reader.readLine())!= null) {
+					System.out.println(line);
 				}
-			} catch (IOException e) {
+			} catch (Exception e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}

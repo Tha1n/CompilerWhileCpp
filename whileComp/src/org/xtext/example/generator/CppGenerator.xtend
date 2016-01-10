@@ -67,7 +67,7 @@ class CppGenerator {
 	
 	def public String writeReadVar(HashMap<String, String> readVar)
 	{
-		var result = "BinTree "
+		var result = ""
 		var cpt = 0
 		
     	var iterator = readVar.entrySet.iterator
@@ -76,12 +76,8 @@ class CppGenerator {
 		{
 			val pair = iterator.next
 			_previousVar.add(pair.value)
-			result = result + pair.value + " = args.at(" + cpt + ")"
+			result = result + "BinTree " + pair.value + " = args.size() < " + cpt + "? BinTree() : args.at(" + cpt + ");\n"
 			cpt += 1
-			if(iterator.hasNext)
-				result += ", "
-			else
-				result += ";\n"
 		}
 	
 		result
@@ -98,6 +94,11 @@ class CppGenerator {
 		while(iterator.hasNext)
 		{
 			val variable = iterator.next
+			if(!_previousVar.contains(variable))
+			{
+				_previousVar.add(variable)
+				result += "BinTree " + variable + ";\n";
+			}
 			result += "retour.push_back(" + variable + ");\n"
 		}
 		
@@ -108,16 +109,13 @@ class CppGenerator {
 	
 	def public String writeEntryArg(HashMap<String, String> readVar)
 	{
-		var result = '''if(argc < ''' + (readVar.size+1) + ''') {
-	std::cout << "Not enough arg\n";
-	return -1;
-}
+		var result = '''
 	std::vector<BinTree> entry;
 		'''
 		
 		for(var i = 1; i <= readVar.size; i+=1)
 		{
-			result += "	entry.push_back(BinTree(argv[" + i + "]));\n"
+			result += "argc < " + i + "? entry.push_back(BinTree(argv[" + i + "])) : entry.push_back(BinTree());\n"
 		}
 	
 		result
@@ -187,8 +185,10 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 						toAff = "BinTree " + toAff;
 					}
 					var result = quadruplet.arg1
-					if(_previousVar.contains(result) == false)
+					if(result == "nil" || _previousVar.contains(result) == false)
 					{
+						if(result == "nil")
+							result = quadruplet.result
 						_previousVar.add(result)
 						result = "BinTree " + result;
 						cpp +=  '''//<AFF, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>

@@ -3,8 +3,8 @@
 BinTree::BinTree()
 {
     _node = nullptr;
-    _left = NIL;
-    _right = NIL;
+    _left = nullptr;
+    _right = nullptr;
 }
 
 BinTree::BinTree (const BinTree & bt)
@@ -17,8 +17,8 @@ BinTree::BinTree (const BinTree & bt)
 BinTree::BinTree(std::string node)
 {
     _node = new std::string(node);
-    _left = NIL;
-    _right = NIL;
+    _left = nullptr;
+    _right = nullptr;
 }
 
 BinTree::~BinTree()
@@ -26,46 +26,46 @@ BinTree::~BinTree()
 
 }
 
-bool BinTree::isNIL(const BinTree* tree)
+bool BinTree::isNIL(const BinTree tree)
 {
-    return tree == NIL;
+    return tree._node == nullptr && tree._left == nullptr && tree._right == nullptr;
 }
 
-bool BinTree::isSymb(const BinTree* tree)
+bool BinTree::isSymb(const BinTree tree)
 {
-    return !isNIL(tree) && tree->_node != nullptr;
+    return !isNIL(tree) && tree._node != nullptr;
 }
 
-bool BinTree::isVar(const BinTree* tree)
+bool BinTree::isVar(const BinTree tree)
 {
     return !isNIL(tree) && !isSymb(tree);
 }
 
-BinTree* BinTree::hd(BinTree* tree)
+BinTree BinTree::hd(BinTree tree)
 {
     if(isNIL(tree))
       return tree;
     else
-        return tree->_left;
+        return *tree._left;
 }
 
-BinTree* BinTree::tl(BinTree* tree)
+BinTree BinTree::tl(BinTree tree)
 {
     if(isNIL(tree))
       return tree;
     else
-        return tree->_right;
+        return *tree._right;
 }
 
-BinTree* BinTree::cons(BinTree* left, BinTree* right)
+BinTree BinTree::cons(BinTree left, BinTree right)
 {
-    BinTree* rtTree = new BinTree();
-    rtTree->_left = left;
-    rtTree->_right = right;
+    BinTree rtTree;
+    rtTree._left = new BinTree(left);
+    rtTree._right = new BinTree(right);
     return rtTree;
 }
 
-bool BinTree::isTrue(BinTree* tree)
+bool BinTree::isTrue(BinTree tree)
 {
     if(isNIL(tree))
       return false;
@@ -95,9 +95,9 @@ bool BinTree::operator ==(BinTree const & other)
 
 std::string BinTree::toString() const
 {
-    if(isNIL(this))
+    if(isNIL(*this))
         return "NIL";
-    else if(isSymb(this))
+    else if(isSymb(*this))
         return "[" + *_node + "," + _left->toString() + "," + _right->toString() + "]";
     else
         return "[" + _left->toString() + "," + _right->toString() + "]";

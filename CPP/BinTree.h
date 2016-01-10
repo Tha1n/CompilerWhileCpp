@@ -12,14 +12,13 @@ public:
         BinTree(std::string node);
         ~BinTree();
 
-        constexpr static BinTree* NIL = nullptr;
-        static bool isNIL(const BinTree* tree);
-        static bool isSymb(const BinTree* tree);
-        static bool isVar(const BinTree* tree);
-        static BinTree* hd(BinTree* tree);
-        static BinTree* tl(BinTree* tree);
-        static BinTree* cons(BinTree* left, BinTree* right);
-        static bool isTrue(BinTree* tree);
+        static bool isNIL(const BinTree tree);
+        static bool isSymb(const BinTree tree);
+        static bool isVar(const BinTree tree);
+        static BinTree hd(BinTree tree);
+        static BinTree tl(BinTree tree);
+        static BinTree cons(BinTree left, BinTree right);
+        static bool isTrue(BinTree tree);
 
         //surcharge opérateurs
         BinTree operator =(BinTree const & other);
