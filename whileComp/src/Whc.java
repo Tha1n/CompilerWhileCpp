@@ -1,6 +1,14 @@
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.FileReader;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+import java.io.Writer;
 
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
@@ -29,7 +37,7 @@ public class Whc {
 
 	public static void main(String[] parameters) {
 
-		outFile = "";
+		outFile = "default";
 		inputFile = "";
 		gen3A = new ThreeAddGenerator();
 		genCpp = new CppGenerator();
@@ -102,10 +110,31 @@ public class Whc {
 			gen3A.generate(inputFile, tab3A);
 			
 			//Génération du code CPP à partir du code 3A
-			genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList());
+			String toWrite = genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList());
+			
+			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+		              new FileOutputStream(outFile), "utf-8"))) {
+		   writer.write(toWrite);
+		} catch (IOException e1) {
+			// TODO Auto-generated catch block
+			e1.printStackTrace();
+		}
 			
 			//Compilation du code CPP
-			//TODO Compilation du code CPP
+			Runtime rt = Runtime.getRuntime();
+			try {
+				String outName = inputFile.substring(0, inputFile.length() - 3);
+				Process pr = rt.exec("g++ -o " + outName + " -std=c++11 BinTree.* " + inputFile + " > salut");
+				try {
+					pr.waitFor();
+				} catch (InterruptedException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+			} catch (IOException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 		}
 	}
 }

@@ -1,6 +1,6 @@
 function doNothing:
 read X
 %
-nop
+X := (tl (hd X))
 %
 write X

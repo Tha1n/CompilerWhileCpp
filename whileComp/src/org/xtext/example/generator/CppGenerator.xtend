@@ -12,7 +12,7 @@ class CppGenerator {
 	private var _previousFunctions = new ArrayList<String>(); 
 	private ArrayList<Label> m_labelList;
 	
-	def public void generateCPP(FunDictionary funcs, HashMap<String, String> funNameTranslation, ArrayList<Label> labelList)
+	def public String generateCPP(FunDictionary funcs, HashMap<String, String> funNameTranslation, ArrayList<Label> labelList)
 	{
 		m_labelList = labelList
 		val funcList = funcs.functions
@@ -52,8 +52,9 @@ class CppGenerator {
 			}
 		}
 		
-		cpp = cpp + addMain(cpp, funcs, funNameTranslation)
+		cpp = addMain(cpp, funcs, funNameTranslation)
 		print(cpp)
+		cpp
 	}
 	
 	def public String writeReadVar(HashMap<String, String> readVar)

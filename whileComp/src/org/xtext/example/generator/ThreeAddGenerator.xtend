@@ -49,7 +49,7 @@ class ThreeAddGenerator implements IGenerator {
 	private ArrayList<Variable> m_globalVarList;
 	private HashMap<String, String> funNameTranslation;
 	private ArrayList<Label> m_labelList;
-	private HashMap<String, Quadruplet> varNameTranslation;
+	private HashMap<String, String> varNameTranslation;
 	private int numVar;
 	 
 	def public List<String> getFunctionsNames()
@@ -95,7 +95,7 @@ class ThreeAddGenerator implements IGenerator {
 		EcoreUtil.resolveAll(xtextResource);
         
 		this.funNameTranslation = new HashMap<String, String>();
-		this.varNameTranslation = new HashMap<String, Quadruplet>();
+		this.varNameTranslation = new HashMap<String, String>();
 		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
@@ -138,7 +138,7 @@ class ThreeAddGenerator implements IGenerator {
         resetDico
         
 		this.funNameTranslation = new HashMap<String, String>();
-		this.varNameTranslation = new HashMap<String, Quadruplet>();
+		this.varNameTranslation = new HashMap<String, String>();
 		this.numVar = -1
 		this.m_globalVarList = new ArrayList<Variable>();
 		this.m_labelList = new ArrayList<Label>();
@@ -175,10 +175,20 @@ class ThreeAddGenerator implements IGenerator {
 	
 	def compile (Input i, Fonction f)
 	//Gestion des variables While contenus dans le Read translate en var CPP
-	'''«FOR in : i.varIn»«f.addReadVar(in.toString, generateVar)»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
+	'''«FOR in : i.varIn»«f.addReadVar(in,getVari(in))»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1»«ENDIF»«ENDFOR»'''
 			
 	def compile (Output o, Fonction f)
-	'''«FOR out : o.varOut»«f.addWriteVar(out)»«ENDFOR»'''
+	'''«FOR out : o.varOut»«f.addWriteVar(getVari(out))»«ENDFOR»'''
+	
+	def String getVari(String vari)
+	{
+		var newVari = varNameTranslation.get(vari)
+		if(newVari == null) {
+			newVari = generateVar
+			varNameTranslation.put(vari, newVari)
+		}
+		newVari
+	}
 	
 	def compile (Commands c, Fonction f, Label l)
 	'''«IF c != null»«FOR cm: c.commande»«IF cm != null»«cm.compile(f, l)»«ENDIF»«ENDFOR»«ELSE»_«ENDIF»'''
@@ -232,28 +242,34 @@ class ThreeAddGenerator implements IGenerator {
 		{
 			for(exp : c.exprs.expGen)
 			{
-				pile.add(exp.exprSimp.vari);
-				val second = this.varNameTranslation.get(exp.exprSimp.vari).second;
-				//f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),second,exp.exprSimp.vari,"_")); 
-				print("[DBG]f += <:=, " + second + "," + exp.exprSimp.vari + ", _>\n")
-				println("Première partie")
+				if(exp != null)
+				{
+					pile.add(exp.exprSimp.vari);
+					val second = this.varNameTranslation.get(exp.exprSimp.vari);
+					//f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),second,exp.exprSimp.vari,"_")); 
+					print("[DBG]f += <:=, " + second + "," + exp.exprSimp.vari + ", _>\n")
+					println("Première partie")
+				}
 				
 			}
 			var cpt = 0;
 			for(varToAffect : c.vars.varGen)
 			{
 				val temp = pile.head;
-				pile.remove(0);
-				var sec = "nil";
-				try{
-					sec = this.varNameTranslation.entrySet.get(cpt).value.second;
-					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),varToAffect,sec,"_")); 
+				if(temp != null)
+				{
+					pile.remove(0);
+					var sec = "nil";
+					try{
+						sec = this.varNameTranslation.entrySet.get(cpt).value;
+						f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),varToAffect,sec,"_")); 
+					}
+					catch(Exception e){
+						System.out.println("Error");
+					}
+					print("[DBG]f += <:=, " + varToAffect + "," + sec + ", _>\n");
+					cpt++;
 				}
-				catch(Exception e){
-					System.out.println("Error");
-				}
-				print("[DBG]f += <:=, " + varToAffect + "," + sec + ", _>\n");
-				cpt++;
 			}
 		}
 		else
@@ -318,7 +334,6 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.nil!=null : {
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, "nil", "_")
-	 		this.varNameTranslation.put(variable, quadruplet)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
@@ -334,7 +349,6 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.vari!=null : {
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.vari, "_")
-	 		this.varNameTranslation.put(ex.vari, quadruplet)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
@@ -350,7 +364,6 @@ class ThreeAddGenerator implements IGenerator {
 	 	case ex.symb!=null : {
 	 		val variable = generateVar
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.symb, "_")
-	 		this.varNameTranslation.put(variable, quadruplet)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
@@ -368,7 +381,6 @@ class ThreeAddGenerator implements IGenerator {
 	 		val variable = generateVar
 	 		//TODO: Don't work (pas de compile(f) pour la liste)
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, ex.exprCons.exprConsAttList.consList.toString())
-	 		this.varNameTranslation.put(variable, quadruplet)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
@@ -386,7 +398,6 @@ class ThreeAddGenerator implements IGenerator {
 	 		val variable = generateVar
 	 		val res = ex.exprHeadAtt.compile(f, l).toString
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_HD), variable, res, "_")
-	 		this.varNameTranslation.put(variable, quadruplet)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
@@ -403,7 +414,6 @@ class ThreeAddGenerator implements IGenerator {
 	 		val variable = generateVar
 	 		val res = ex.exprTailAtt.compile(f, l).toString
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_TL), variable, res, "_")
-	 		this.varNameTranslation.put(variable, quadruplet)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
