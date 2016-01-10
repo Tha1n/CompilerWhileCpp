@@ -244,39 +244,36 @@ class ThreeAddGenerator implements IGenerator {
 			{
 				if(exp != null)
 				{
-					pile.add(exp.exprSimp.vari);
-					val second = this.varNameTranslation.get(exp.exprSimp.vari);
-					//f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),second,exp.exprSimp.vari,"_")); 
-					print("[DBG]f += <:=, " + second + "," + exp.exprSimp.vari + ", _>\n")
-					println("Première partie")
+					pile.add(exp);
 				}
 				
 			}
 			var cpt = 0;
 			for(varToAffect : c.vars.varGen)
 			{
-				val temp = pile.head;
-				if(temp != null)
-				{
+				var toAffect = varNameTranslation.get(varToAffect)
+					val temp = pile.head;
 					pile.remove(0);
 					var sec = "nil";
 					try{
-						sec = this.varNameTranslation.entrySet.get(cpt).value;
-						f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),varToAffect,sec,"_")); 
+						compile(temp, f, l)
+						var finalResult = ""
+						if(l == null)
+						{
+							finalResult = f.m_quadList.last.result
+						}
+						else
+						{
+							finalResult = l.code.last.result
+						}
+						f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult,"_")); 
 					}
 					catch(Exception e){
 						System.out.println("Error");
 					}
-					print("[DBG]f += <:=, " + varToAffect + "," + sec + ", _>\n");
+					print("[DBG]f += <:=, " + toAffect + "," + temp + ", _>\n");
 					cpt++;
-				}
 			}
-		}
-		else
-		{
-
-			//l.add(affect)
-			//print("[DBG]" + l.name + " += <:=, " + variable.trim + "," + res + ", _>\n")
 		}
 	}
 	case c.cmdWhile!=null : 
@@ -348,11 +345,11 @@ class ThreeAddGenerator implements IGenerator {
 	 	}
 	 	case ex.vari!=null : {
 	 		val variable = generateVar
-	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, ex.vari, "_")
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_AFF), variable, getVari(ex.vari), "_")
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := " + ex.vari + "\n")
+	 			print("[DBG]f += " + variable + " := " + getVari(ex.vari) + "\n")
 	 		}
 	 		else
 	 		{
