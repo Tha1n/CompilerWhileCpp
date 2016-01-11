@@ -359,7 +359,7 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := " + getVari(ex.vari) + "\n")
+	 			print("[DBG HERE]f += " + variable + " := " + getVari(ex.vari) + "\n")
 	 		}
 	 		else
 	 		{
@@ -385,26 +385,31 @@ class ThreeAddGenerator implements IGenerator {
 	 	}
 	 	case ex.exprCons!=null : {
 	 		val listCons = ex.exprCons.exprConsAttList.consList
-	 		while(listCons.size > 1)
+	 		val first = ex.exprCons.exprConsAtt1
+	 		System.out.println("Taille " + listCons.size())
+//	 		System.out.println("First" + first.toString)
+//	 		System.out.println("HERE :" + listCons.get(0).compile(f,l).toString)
+	 		for(e : listCons)
 	 		{
 	 			val variable = generateVar
-	 			val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, listCons.get(listCons.size -1).compile(f, l).toString, listCons.get(listCons.size -2).compile(f, l).toString)
+	 			val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, first.compile(f, l).toString, listCons.get(0).compile(f,l).toString)
+	 			System.out.println(quadruplet.toString)
+	 			//l.add(quadruplet)	 				 			
 	 		}
-	 		
-	 		val variable = generateVar
-	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
-	 		if(l == null)
-	 		{
-	 			f.addQuad(quadruplet)
-	 			print("[DBG] CONS... but don't work yet\n")
-	 		}
-	 		else
-	 		{
-	 			l.add(quadruplet)
-	 			print("[DBG] CONS... but don't work yet\n")
-	 		}
-	 		print("[DBG] CONS... but don't work yet\n")
-	 		variable
+//	 		val variable = generateVar
+//	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
+//	 		if(l == null)
+//	 		{
+//	 			f.addQuad(quadruplet)
+//	 			print("[DBG] CONS... but don't work yet\n")
+//	 		}
+//	 		else
+//	 		{
+//	 			l.add(quadruplet)
+//	 			print("[DBG] CONS... but don't work yet\n")
+//	 		}
+//	 		print("[DBG] CONS... but don't work yet\n")
+//	 		variable
 	 	}
 	 	case ex.exprHead!=null : {
 	 		val variable = generateVar
