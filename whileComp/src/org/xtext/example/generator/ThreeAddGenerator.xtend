@@ -407,7 +407,7 @@ class ThreeAddGenerator implements IGenerator {
 	 			
 	 			if (LastVarUsed == "") {
 	 				val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, 
-	 				ListCons.get(i).compile(f, l).toString, ListCons.get(i - 1).compile(f, l).toString)
+	 				ListCons.get(i - 1).compile(f, l).toString, ListCons.get(i).compile(f, l).toString)
 	 				
 	 				TempListQuad.add(quadruplet)
 	 				LastVarUsed = variable
