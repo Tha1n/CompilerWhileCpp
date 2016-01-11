@@ -58,6 +58,11 @@ class ThreeAddGenerator implements IGenerator {
 		return dico.listFuncName.toList
 	}
 	
+	def public ArrayList<Label> getLabelList()
+	{
+		return m_labelList;
+	}
+	
 	def public ArrayList<String> getErrors()
 	{
 		return errors
@@ -241,8 +246,7 @@ class ThreeAddGenerator implements IGenerator {
 	case c.vars!=null && c.exprs!=null : 
 	{
 		val pile = new ArrayList();
-		val res = c.exprs.compile(f, l).toString
-		val variable = c.vars.compile(f, l).toString()
+		c.vars.compile(f, l).toString()
 		if(l==null)
 		{
 			for(exp : c.exprs.expGen)
@@ -251,16 +255,14 @@ class ThreeAddGenerator implements IGenerator {
 				{
 					pile.add(exp);
 				}
-				
 			}
 			var total = pile.size
 			var cpt = 0;
 			for(varToAffect : c.vars.varGen)
 			{
-				var toAffect = varNameTranslation.get(varToAffect)
+				var toAffect = getVari(varToAffect)
 				val temp = pile.head;
 				pile.remove(0);
-				var sec = "nil";
 				try{
 					compile(temp, f, l)
 					var finalResult = ""
@@ -410,6 +412,23 @@ class ThreeAddGenerator implements IGenerator {
 //	 		}
 //	 		print("[DBG] CONS... but don't work yet\n")
 //	 		variable
+	 	}
+	 	case ex.nomSymb!=null : {
+	 		val variable = generateVar
+	 		val funName = funNameTranslation.get(ex.nomSymb)
+	 		val paramFun = getVari(ex.symbAtt.exprSimp.vari)
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CALL), variable, funName, paramFun)
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := (" + funName + " " + paramFun + ")\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]f += " + variable + " := (" + funName + " " + paramFun + ")\n")
+	 		}
+	 		variable
 	 	}
 	 	case ex.exprHead!=null : {
 	 		val variable = generateVar

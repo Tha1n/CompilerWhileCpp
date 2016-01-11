@@ -240,6 +240,18 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 					quadruplet.arg1 +''');
 				'''
 				}
+				case CodeOp.OP_CALL : {
+					var toAff = quadruplet.result
+					if(_previousVar.contains(toAff) == false)
+					{
+						_previousVar.add(toAff)
+						toAff = "BinTree " + toAff;
+					}
+					cpp +=  '''//<CALL, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+''' + toAff + ''' = ''' + quadruplet.arg1 + '''(''' + 
+					quadruplet.arg2 +''');
+				'''
+				}
 				default: {
 					
 				}
