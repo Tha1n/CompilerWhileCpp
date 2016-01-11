@@ -41,8 +41,9 @@ ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
 ExprNot: (not = 'not')? (exprEq = ExprEq);
 ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple);
 
-Cons: (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAttList = ConsAttList);
-ConsAttList: consList += Expr+;
+Cons: (exprCons = 'cons') (exprConsAttList += Expr+);
+//Cons: (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAttList = ConsAttList);
+//ConsAttList: consList += Expr+;
 
 //List: (exprList = 'list') (exprListAtt1 = Expr) (exprListAttList = ListAttList);
 //ListAttList:listList += Expr;
