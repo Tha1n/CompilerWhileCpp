@@ -396,23 +396,58 @@ class ThreeAddGenerator implements IGenerator {
 	 		variable
 	 	}
 	 	case ex.exprCons!=null : {
-	 		val listCons = ex.exprCons.exprConsAttList.consList
-	 		while(listCons.size > 1)
-	 		{
-	 			val variable = generateVar
-	 			val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, listCons.get(listCons.size -1).compile(f, l).toString, listCons.get(listCons.size -2).compile(f, l).toString)
-	 		}
+	 		val ListCons = ex.exprCons.exprConsAttList
+	 		var i = ListCons.length - 1 //Dernier indice du tableau
+	 		var TempListQuad = new ArrayList<Quadruplet>()
 	 		
-	 		val variable = generateVar
-	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
+	 		var LastVarUsed = ""
+	 		var variable = ""
+	 		while(i >= 0) {
+	 			variable = generateVar
+	 			
+	 			if (LastVarUsed == "") {
+	 				val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, 
+	 				ListCons.get(i).compile(f, l).toString, ListCons.get(i - 1).compile(f, l).toString)
+	 				
+	 				TempListQuad.add(quadruplet)
+	 				LastVarUsed = variable
+	 				i = i - 2
+	 			}
+	 			else {
+	 				val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, 
+	 				ListCons.get(i).compile(f, l).toString, LastVarUsed)
+	 				
+	 				TempListQuad.add(quadruplet)
+	 				LastVarUsed = variable
+	 				i--
+	 			}
+	 		}
+	 		//val listCons = ex.exprCons.exprConsAttList.consList
+	 		//while(listCons.size > 1)
+	 		//{
+	 			//val variable = generateVar
+	 			//val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable,
+	 			//	listCons.get(listCons.size -1).compile(f, l).toString, listCons.get(listCons.size -2).compile(f, l).toString
+	 			//)
+	 		//}
+	 		
+	 		//val variable = generateVar
+	 		//val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
+	 		
 	 		if(l == null)
 	 		{
-	 			f.addQuad(quadruplet)
+	 			for (e : TempListQuad)
+	 				f.addQuad(e)
+	 				
+	 			//TODO Printing relevant DEBUG info
 	 			print("[DBG] CONS... but don't work yet\n")
 	 		}
 	 		else
 	 		{
-	 			l.add(quadruplet)
+	 			for (e : TempListQuad)
+	 				l.add(e)
+	 				
+	 			//TODO Printing relevant DEBUG info
 	 			print("[DBG] CONS... but don't work yet\n")
 	 		}
 	 		print("[DBG] CONS... but don't work yet\n")
