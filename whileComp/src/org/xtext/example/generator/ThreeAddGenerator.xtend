@@ -35,6 +35,7 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
+import java.lang.reflect.Array
 
 /**
  * Generates code from your model files on save.
@@ -258,9 +259,9 @@ class ThreeAddGenerator implements IGenerator {
 			}
 			var total = pile.size
 			var cpt = 0;
+			var listVars = new ArrayList<String>()
 			for(varToAffect : c.vars.varGen)
 			{
-				var toAffect = getVari(varToAffect)
 				val temp = pile.head;
 				pile.remove(0);
 				try{
@@ -274,12 +275,21 @@ class ThreeAddGenerator implements IGenerator {
 					{
 						finalResult = l.code.last.result
 					}
-					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult,"_")); 
+					listVars.add(finalResult.toString)
 				}
 				catch(Exception e){
 					System.out.println("Error");
 				}
-				print("[DBG]f += <:=, " + toAffect + "," + temp + ", _>\n");
+			}
+			var i = 0
+			for(varToAffect : c.vars.varGen)
+			{
+				val finalResult = listVars.get(i)
+				i += 1
+				var toAffect = getVari(varToAffect)
+					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult.toString,"_")); 
+				
+				print("[DBG]f += <:=, " + toAffect + "," + finalResult.toString + ", _>\n");
 				cpt++;
 			}
 			if(cpt != total)
