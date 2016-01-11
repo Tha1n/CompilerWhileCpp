@@ -58,6 +58,11 @@ class ThreeAddGenerator implements IGenerator {
 		return dico.listFuncName.toList
 	}
 	
+	def public ArrayList<Label> getLabelList()
+	{
+		return m_labelList;
+	}
+	
 	def public ArrayList<String> getErrors()
 	{
 		return errors
