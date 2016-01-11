@@ -411,6 +411,23 @@ class ThreeAddGenerator implements IGenerator {
 	 		print("[DBG] CONS... but don't work yet\n")
 	 		variable
 	 	}
+	 	case ex.nomSymb!=null : {
+	 		val variable = generateVar
+	 		val funName = funNameTranslation.get(ex.nomSymb)
+	 		val paramFun = getVari(ex.symbAtt.exprSimp.vari)
+	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CALL), variable, funName, paramFun)
+	 		if(l == null)
+	 		{
+	 			f.addQuad(quadruplet)
+	 			print("[DBG]f += " + variable + " := (" + funName + " " + paramFun + ")\n")
+	 		}
+	 		else
+	 		{
+	 			l.add(quadruplet)
+	 			print("[DBG]f += " + variable + " := (" + funName + " " + paramFun + ")\n")
+	 		}
+	 		variable
+	 	}
 	 	case ex.exprHead!=null : {
 	 		val variable = generateVar
 	 		val res = ex.exprHeadAtt.compile(f, l).toString

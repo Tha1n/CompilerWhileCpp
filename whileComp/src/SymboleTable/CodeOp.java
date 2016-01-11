@@ -9,6 +9,7 @@ public class CodeOp {
 	public final static int OP_CONS = 5;
 	public final static int OP_HD = 6;
 	public final static int OP_TL = 7;
+	public final static int OP_CALL = 8;
 
 
 	private int op;
@@ -98,6 +99,9 @@ public class CodeOp {
 			break;
 		case 7:
 			opToString =  "tl";
+			break;
+		case 8:
+			opToString =  "call";
 			break;
 		default:
 			opToString = "Undefined";
