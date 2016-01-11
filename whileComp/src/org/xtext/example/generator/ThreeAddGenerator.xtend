@@ -246,8 +246,7 @@ class ThreeAddGenerator implements IGenerator {
 	case c.vars!=null && c.exprs!=null : 
 	{
 		val pile = new ArrayList();
-		val res = c.exprs.compile(f, l).toString
-		val variable = c.vars.compile(f, l).toString()
+		c.vars.compile(f, l).toString()
 		if(l==null)
 		{
 			for(exp : c.exprs.expGen)
@@ -256,16 +255,14 @@ class ThreeAddGenerator implements IGenerator {
 				{
 					pile.add(exp);
 				}
-				
 			}
 			var total = pile.size
 			var cpt = 0;
 			for(varToAffect : c.vars.varGen)
 			{
-				var toAffect = varNameTranslation.get(varToAffect)
+				var toAffect = getVari(varToAffect)
 				val temp = pile.head;
 				pile.remove(0);
-				var sec = "nil";
 				try{
 					compile(temp, f, l)
 					var finalResult = ""
