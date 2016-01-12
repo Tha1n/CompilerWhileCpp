@@ -116,7 +116,7 @@ class CppGenerator {
 		
 		for(var i = 1; i <= readVar.size; i+=1)
 		{
-			result += "argc < " + i + "? entry.push_back(BinTree(argv[" + i + "])) : entry.push_back(BinTree());\n"
+			result += "argc > " + i + "? entry.push_back(BinTree(argv[" + i + "])) : entry.push_back(BinTree());\n"
 		}
 	
 		result
