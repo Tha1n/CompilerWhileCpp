@@ -4146,31 +4146,31 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
                     alt16=2;
                     }
                     break;
+                case RULE_SYMBOL:
+                    {
+                    int LA16_3 = input.LA(3);
+
+                    if ( (LA16_3==35||LA16_3==41) ) {
+                        alt16=1;
+                    }
+                    else if ( ((LA16_3>=RULE_SYMBOL && LA16_3<=RULE_VARIABLE)||(LA16_3>=33 && LA16_3<=34)||LA16_3==40) ) {
+                        alt16=2;
+                    }
+                    else {
+                        if (state.backtracking>0) {state.failed=true; return current;}
+                        NoViableAltException nvae =
+                            new NoViableAltException("", 16, 3, input);
+
+                        throw nvae;
+                    }
+                    }
+                    break;
                 case RULE_VARIABLE:
                 case 33:
                 case 34:
                 case 40:
                     {
                     alt16=1;
-                    }
-                    break;
-                case RULE_SYMBOL:
-                    {
-                    int LA16_4 = input.LA(3);
-
-                    if ( ((LA16_4>=RULE_SYMBOL && LA16_4<=RULE_VARIABLE)||(LA16_4>=33 && LA16_4<=34)||LA16_4==40) ) {
-                        alt16=2;
-                    }
-                    else if ( (LA16_4==35||LA16_4==41) ) {
-                        alt16=1;
-                    }
-                    else {
-                        if (state.backtracking>0) {state.failed=true; return current;}
-                        NoViableAltException nvae =
-                            new NoViableAltException("", 16, 4, input);
-
-                        throw nvae;
-                    }
                     }
                     break;
                 default:
@@ -4403,24 +4403,22 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
 
 
     // $ANTLR start "ruleCons"
-    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1595:1: ruleCons returns [EObject current=null] : ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAtt1_1_0= ruleExpr ) ) ( (lv_exprConsAttList_2_0= ruleConsAttList ) ) ) ;
+    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1595:1: ruleCons returns [EObject current=null] : ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAttList_1_0= ruleExpr ) )+ ) ;
     public final EObject ruleCons() throws RecognitionException {
         EObject current = null;
 
         Token lv_exprCons_0_0=null;
-        EObject lv_exprConsAtt1_1_0 = null;
-
-        EObject lv_exprConsAttList_2_0 = null;
+        EObject lv_exprConsAttList_1_0 = null;
 
 
          enterRule(); 
             
         try {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1598:28: ( ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAtt1_1_0= ruleExpr ) ) ( (lv_exprConsAttList_2_0= ruleConsAttList ) ) ) )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:1: ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAtt1_1_0= ruleExpr ) ) ( (lv_exprConsAttList_2_0= ruleConsAttList ) ) )
+            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1598:28: ( ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAttList_1_0= ruleExpr ) )+ ) )
+            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:1: ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAttList_1_0= ruleExpr ) )+ )
             {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:1: ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAtt1_1_0= ruleExpr ) ) ( (lv_exprConsAttList_2_0= ruleConsAttList ) ) )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:2: ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAtt1_1_0= ruleExpr ) ) ( (lv_exprConsAttList_2_0= ruleConsAttList ) )
+            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:1: ( ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAttList_1_0= ruleExpr ) )+ )
+            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:2: ( (lv_exprCons_0_0= 'cons' ) ) ( (lv_exprConsAttList_1_0= ruleExpr ) )+
             {
             // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1599:2: ( (lv_exprCons_0_0= 'cons' ) )
             // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1600:1: (lv_exprCons_0_0= 'cons' )
@@ -4448,153 +4446,7 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
 
             }
 
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1614:2: ( (lv_exprConsAtt1_1_0= ruleExpr ) )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1615:1: (lv_exprConsAtt1_1_0= ruleExpr )
-            {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1615:1: (lv_exprConsAtt1_1_0= ruleExpr )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1616:3: lv_exprConsAtt1_1_0= ruleExpr
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getConsAccess().getExprConsAtt1ExprParserRuleCall_1_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_ruleExpr_in_ruleCons3354);
-            lv_exprConsAtt1_1_0=ruleExpr();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getConsRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"exprConsAtt1",
-                      		lv_exprConsAtt1_1_0, 
-                      		"Expr");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1632:2: ( (lv_exprConsAttList_2_0= ruleConsAttList ) )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1633:1: (lv_exprConsAttList_2_0= ruleConsAttList )
-            {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1633:1: (lv_exprConsAttList_2_0= ruleConsAttList )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1634:3: lv_exprConsAttList_2_0= ruleConsAttList
-            {
-            if ( state.backtracking==0 ) {
-               
-              	        newCompositeNode(grammarAccess.getConsAccess().getExprConsAttListConsAttListParserRuleCall_2_0()); 
-              	    
-            }
-            pushFollow(FOLLOW_ruleConsAttList_in_ruleCons3375);
-            lv_exprConsAttList_2_0=ruleConsAttList();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-
-              	        if (current==null) {
-              	            current = createModelElementForParent(grammarAccess.getConsRule());
-              	        }
-                     		set(
-                     			current, 
-                     			"exprConsAttList",
-                      		lv_exprConsAttList_2_0, 
-                      		"ConsAttList");
-              	        afterParserOrEnumRuleCall();
-              	    
-            }
-
-            }
-
-
-            }
-
-
-            }
-
-
-            }
-
-            if ( state.backtracking==0 ) {
-               leaveRule(); 
-            }
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "ruleCons"
-
-
-    // $ANTLR start "entryRuleConsAttList"
-    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1658:1: entryRuleConsAttList returns [EObject current=null] : iv_ruleConsAttList= ruleConsAttList EOF ;
-    public final EObject entryRuleConsAttList() throws RecognitionException {
-        EObject current = null;
-
-        EObject iv_ruleConsAttList = null;
-
-
-        try {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1659:2: (iv_ruleConsAttList= ruleConsAttList EOF )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1660:2: iv_ruleConsAttList= ruleConsAttList EOF
-            {
-            if ( state.backtracking==0 ) {
-               newCompositeNode(grammarAccess.getConsAttListRule()); 
-            }
-            pushFollow(FOLLOW_ruleConsAttList_in_entryRuleConsAttList3411);
-            iv_ruleConsAttList=ruleConsAttList();
-
-            state._fsp--;
-            if (state.failed) return current;
-            if ( state.backtracking==0 ) {
-               current =iv_ruleConsAttList; 
-            }
-            match(input,EOF,FOLLOW_EOF_in_entryRuleConsAttList3421); if (state.failed) return current;
-
-            }
-
-        }
-         
-            catch (RecognitionException re) { 
-                recover(input,re); 
-                appendSkippedTokens();
-            } 
-        finally {
-        }
-        return current;
-    }
-    // $ANTLR end "entryRuleConsAttList"
-
-
-    // $ANTLR start "ruleConsAttList"
-    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1667:1: ruleConsAttList returns [EObject current=null] : ( (lv_consList_0_0= ruleExpr ) )+ ;
-    public final EObject ruleConsAttList() throws RecognitionException {
-        EObject current = null;
-
-        EObject lv_consList_0_0 = null;
-
-
-         enterRule(); 
-            
-        try {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1670:28: ( ( (lv_consList_0_0= ruleExpr ) )+ )
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1671:1: ( (lv_consList_0_0= ruleExpr ) )+
-            {
-            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1671:1: ( (lv_consList_0_0= ruleExpr ) )+
+            // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1614:2: ( (lv_exprConsAttList_1_0= ruleExpr ) )+
             int cnt17=0;
             loop17:
             do {
@@ -4608,30 +4460,30 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
 
                 switch (alt17) {
             	case 1 :
-            	    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1672:1: (lv_consList_0_0= ruleExpr )
+            	    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1615:1: (lv_exprConsAttList_1_0= ruleExpr )
             	    {
-            	    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1672:1: (lv_consList_0_0= ruleExpr )
-            	    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1673:3: lv_consList_0_0= ruleExpr
+            	    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1615:1: (lv_exprConsAttList_1_0= ruleExpr )
+            	    // ../whileComp/src-gen/org/xtext/example/parser/antlr/internal/InternalWhileCpp.g:1616:3: lv_exprConsAttList_1_0= ruleExpr
             	    {
             	    if ( state.backtracking==0 ) {
             	       
-            	      	        newCompositeNode(grammarAccess.getConsAttListAccess().getConsListExprParserRuleCall_0()); 
+            	      	        newCompositeNode(grammarAccess.getConsAccess().getExprConsAttListExprParserRuleCall_1_0()); 
             	      	    
             	    }
-            	    pushFollow(FOLLOW_ruleExpr_in_ruleConsAttList3466);
-            	    lv_consList_0_0=ruleExpr();
+            	    pushFollow(FOLLOW_ruleExpr_in_ruleCons3354);
+            	    lv_exprConsAttList_1_0=ruleExpr();
 
             	    state._fsp--;
             	    if (state.failed) return current;
             	    if ( state.backtracking==0 ) {
 
             	      	        if (current==null) {
-            	      	            current = createModelElementForParent(grammarAccess.getConsAttListRule());
+            	      	            current = createModelElementForParent(grammarAccess.getConsRule());
             	      	        }
             	             		add(
             	             			current, 
-            	             			"consList",
-            	              		lv_consList_0_0, 
+            	             			"exprConsAttList",
+            	              		lv_exprConsAttList_1_0, 
             	              		"Expr");
             	      	        afterParserOrEnumRuleCall();
             	      	    
@@ -4656,6 +4508,9 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
 
             }
 
+
+            }
+
             if ( state.backtracking==0 ) {
                leaveRule(); 
             }
@@ -4669,7 +4524,7 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
         }
         return current;
     }
-    // $ANTLR end "ruleConsAttList"
+    // $ANTLR end "ruleCons"
 
     // $ANTLR start synpred2_InternalWhileCpp
     public final void synpred2_InternalWhileCpp_fragment() throws RecognitionException {   
@@ -4941,11 +4796,7 @@ public class InternalWhileCppParser extends AbstractInternalAntlrParser {
     public static final BitSet FOLLOW_ruleCons_in_entryRuleCons3267 = new BitSet(new long[]{0x0000000000000000L});
     public static final BitSet FOLLOW_EOF_in_entryRuleCons3277 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_42_in_ruleCons3320 = new BitSet(new long[]{0x0000010600000030L});
-    public static final BitSet FOLLOW_ruleExpr_in_ruleCons3354 = new BitSet(new long[]{0x0000010600000030L});
-    public static final BitSet FOLLOW_ruleConsAttList_in_ruleCons3375 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleConsAttList_in_entryRuleConsAttList3411 = new BitSet(new long[]{0x0000000000000000L});
-    public static final BitSet FOLLOW_EOF_in_entryRuleConsAttList3421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_ruleConsAttList3466 = new BitSet(new long[]{0x0000010600000032L});
+    public static final BitSet FOLLOW_ruleExpr_in_ruleCons3354 = new BitSet(new long[]{0x0000010600000032L});
     public static final BitSet FOLLOW_ruleCommand_in_synpred2_InternalWhileCpp945 = new BitSet(new long[]{0x0000000000100000L});
     public static final BitSet FOLLOW_20_in_synpred2_InternalWhileCpp951 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleExpr_in_synpred8_InternalWhileCpp1983 = new BitSet(new long[]{0x0000000000080000L});

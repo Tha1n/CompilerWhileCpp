@@ -589,41 +589,6 @@ finally {
 
 
 
-// Entry rule entryRuleConsAttList
-entryRuleConsAttList 
-:
-{ before(grammarAccess.getConsAttListRule()); }
-	 ruleConsAttList
-{ after(grammarAccess.getConsAttListRule()); } 
-	 EOF 
-;
-
-// Rule ConsAttList
-ruleConsAttList
-    @init {
-		int stackSize = keepStackSize();
-    }
-	:
-(
-(
-{ before(grammarAccess.getConsAttListAccess().getConsListAssignment()); }
-(rule__ConsAttList__ConsListAssignment)
-{ after(grammarAccess.getConsAttListAccess().getConsListAssignment()); }
-)
-(
-{ before(grammarAccess.getConsAttListAccess().getConsListAssignment()); }
-(rule__ConsAttList__ConsListAssignment)*
-{ after(grammarAccess.getConsAttListAccess().getConsListAssignment()); }
-)
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-
 
 rule__Command__Alternatives
     @init {
@@ -3601,7 +3566,6 @@ rule__Cons__Group__1
     }
 :
 	rule__Cons__Group__1__Impl
-	rule__Cons__Group__2
 ;
 finally {
 	restoreStackSize(stackSize);
@@ -3613,45 +3577,22 @@ rule__Cons__Group__1__Impl
     }
 :
 (
-{ before(grammarAccess.getConsAccess().getExprConsAtt1Assignment_1()); }
-(rule__Cons__ExprConsAtt1Assignment_1)
-{ after(grammarAccess.getConsAccess().getExprConsAtt1Assignment_1()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-
-rule__Cons__Group__2
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-	rule__Cons__Group__2__Impl
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Cons__Group__2__Impl
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
 (
-{ before(grammarAccess.getConsAccess().getExprConsAttListAssignment_2()); }
-(rule__Cons__ExprConsAttListAssignment_2)
-{ after(grammarAccess.getConsAccess().getExprConsAttListAssignment_2()); }
+{ before(grammarAccess.getConsAccess().getExprConsAttListAssignment_1()); }
+(rule__Cons__ExprConsAttListAssignment_1)
+{ after(grammarAccess.getConsAccess().getExprConsAttListAssignment_1()); }
+)
+(
+{ before(grammarAccess.getConsAccess().getExprConsAttListAssignment_1()); }
+(rule__Cons__ExprConsAttListAssignment_1)*
+{ after(grammarAccess.getConsAccess().getExprConsAttListAssignment_1()); }
+)
 )
 
 ;
 finally {
 	restoreStackSize(stackSize);
 }
-
-
 
 
 
@@ -4556,44 +4497,14 @@ finally {
 	restoreStackSize(stackSize);
 }
 
-rule__Cons__ExprConsAtt1Assignment_1
+rule__Cons__ExprConsAttListAssignment_1
     @init {
 		int stackSize = keepStackSize();
     }
 :
 (
-{ before(grammarAccess.getConsAccess().getExprConsAtt1ExprParserRuleCall_1_0()); }
-	ruleExpr{ after(grammarAccess.getConsAccess().getExprConsAtt1ExprParserRuleCall_1_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__Cons__ExprConsAttListAssignment_2
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getConsAccess().getExprConsAttListConsAttListParserRuleCall_2_0()); }
-	ruleConsAttList{ after(grammarAccess.getConsAccess().getExprConsAttListConsAttListParserRuleCall_2_0()); }
-)
-
-;
-finally {
-	restoreStackSize(stackSize);
-}
-
-rule__ConsAttList__ConsListAssignment
-    @init {
-		int stackSize = keepStackSize();
-    }
-:
-(
-{ before(grammarAccess.getConsAttListAccess().getConsListExprParserRuleCall_0()); }
-	ruleExpr{ after(grammarAccess.getConsAttListAccess().getConsListExprParserRuleCall_0()); }
+{ before(grammarAccess.getConsAccess().getExprConsAttListExprParserRuleCall_1_0()); }
+	ruleExpr{ after(grammarAccess.getConsAccess().getExprConsAttListExprParserRuleCall_1_0()); }
 )
 
 ;

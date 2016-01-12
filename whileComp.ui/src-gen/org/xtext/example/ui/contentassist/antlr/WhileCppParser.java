@@ -130,9 +130,7 @@ public class WhileCppParser extends AbstractContentAssistParser {
 					put(grammarAccess.getExprEqAccess().getExprSim1Assignment_1_0(), "rule__ExprEq__ExprSim1Assignment_1_0");
 					put(grammarAccess.getExprEqAccess().getExprSim2Assignment_1_2(), "rule__ExprEq__ExprSim2Assignment_1_2");
 					put(grammarAccess.getConsAccess().getExprConsAssignment_0(), "rule__Cons__ExprConsAssignment_0");
-					put(grammarAccess.getConsAccess().getExprConsAtt1Assignment_1(), "rule__Cons__ExprConsAtt1Assignment_1");
-					put(grammarAccess.getConsAccess().getExprConsAttListAssignment_2(), "rule__Cons__ExprConsAttListAssignment_2");
-					put(grammarAccess.getConsAttListAccess().getConsListAssignment(), "rule__ConsAttList__ConsListAssignment");
+					put(grammarAccess.getConsAccess().getExprConsAttListAssignment_1(), "rule__Cons__ExprConsAttListAssignment_1");
 				}
 			};
 		}

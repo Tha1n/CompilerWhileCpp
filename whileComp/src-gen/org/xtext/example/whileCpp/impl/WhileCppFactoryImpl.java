@@ -83,7 +83,6 @@ public class WhileCppFactoryImpl extends EFactoryImpl implements WhileCppFactory
       case WhileCppPackage.EXPR_NOT: return createExprNot();
       case WhileCppPackage.EXPR_EQ: return createExprEq();
       case WhileCppPackage.CONS: return createCons();
-      case WhileCppPackage.CONS_ATT_LIST: return createConsAttList();
       default:
         throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
     }
@@ -296,17 +295,6 @@ public class WhileCppFactoryImpl extends EFactoryImpl implements WhileCppFactory
   {
     ConsImpl cons = new ConsImpl();
     return cons;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public ConsAttList createConsAttList()
-  {
-    ConsAttListImpl consAttList = new ConsAttListImpl();
-    return consAttList;
   }
 
   /**

@@ -1614,79 +1614,22 @@ ruleCons returns [EObject current=null]
 )(
 (
 		{ 
-	        newCompositeNode(grammarAccess.getConsAccess().getExprConsAtt1ExprParserRuleCall_1_0()); 
+	        newCompositeNode(grammarAccess.getConsAccess().getExprConsAttListExprParserRuleCall_1_0()); 
 	    }
-		lv_exprConsAtt1_1_0=ruleExpr		{
+		lv_exprConsAttList_1_0=ruleExpr		{
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getConsRule());
-	        }
-       		set(
-       			$current, 
-       			"exprConsAtt1",
-        		lv_exprConsAtt1_1_0, 
-        		"Expr");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-)(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getConsAccess().getExprConsAttListConsAttListParserRuleCall_2_0()); 
-	    }
-		lv_exprConsAttList_2_0=ruleConsAttList		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getConsRule());
-	        }
-       		set(
-       			$current, 
-       			"exprConsAttList",
-        		lv_exprConsAttList_2_0, 
-        		"ConsAttList");
-	        afterParserOrEnumRuleCall();
-	    }
-
-)
-))
-;
-
-
-
-
-
-// Entry rule entryRuleConsAttList
-entryRuleConsAttList returns [EObject current=null] 
-	:
-	{ newCompositeNode(grammarAccess.getConsAttListRule()); }
-	 iv_ruleConsAttList=ruleConsAttList 
-	 { $current=$iv_ruleConsAttList.current; } 
-	 EOF 
-;
-
-// Rule ConsAttList
-ruleConsAttList returns [EObject current=null] 
-    @init { enterRule(); 
-    }
-    @after { leaveRule(); }:
-(
-(
-		{ 
-	        newCompositeNode(grammarAccess.getConsAttListAccess().getConsListExprParserRuleCall_0()); 
-	    }
-		lv_consList_0_0=ruleExpr		{
-	        if ($current==null) {
-	            $current = createModelElementForParent(grammarAccess.getConsAttListRule());
 	        }
        		add(
        			$current, 
-       			"consList",
-        		lv_consList_0_0, 
+       			"exprConsAttList",
+        		lv_exprConsAttList_1_0, 
         		"Expr");
 	        afterParserOrEnumRuleCall();
 	    }
 
 )
-)+
+)+)
 ;
 
 

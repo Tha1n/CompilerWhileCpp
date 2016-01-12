@@ -35,6 +35,7 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
+import java.lang.reflect.Array
 
 /**
  * Generates code from your model files on save.
@@ -258,9 +259,9 @@ class ThreeAddGenerator implements IGenerator {
 			}
 			var total = pile.size
 			var cpt = 0;
+			var listVars = new ArrayList<String>()
 			for(varToAffect : c.vars.varGen)
 			{
-				var toAffect = getVari(varToAffect)
 				val temp = pile.head;
 				pile.remove(0);
 				try{
@@ -274,12 +275,21 @@ class ThreeAddGenerator implements IGenerator {
 					{
 						finalResult = l.code.last.result
 					}
-					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult,"_")); 
+					listVars.add(finalResult.toString)
 				}
 				catch(Exception e){
 					System.out.println("Error");
 				}
-				print("[DBG]f += <:=, " + toAffect + "," + temp + ", _>\n");
+			}
+			var i = 0
+			for(varToAffect : c.vars.varGen)
+			{
+				val finalResult = listVars.get(i)
+				i += 1
+				var toAffect = getVari(varToAffect)
+					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult.toString,"_")); 
+				
+				print("[DBG]f += <:=, " + toAffect + "," + finalResult.toString + ", _>\n");
 				cpt++;
 			}
 			if(cpt != total)
@@ -386,32 +396,62 @@ class ThreeAddGenerator implements IGenerator {
 	 		variable
 	 	}
 	 	case ex.exprCons!=null : {
-	 		val listCons = ex.exprCons.exprConsAttList.consList
-	 		val first = ex.exprCons.exprConsAtt1
-	 		System.out.println("Taille " + listCons.size())
-//	 		System.out.println("First" + first.toString)
-//	 		System.out.println("HERE :" + listCons.get(0).compile(f,l).toString)
-	 		for(e : listCons)
-	 		{
-	 			val variable = generateVar
-	 			val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, first.compile(f, l).toString, listCons.get(0).compile(f,l).toString)
-	 			System.out.println(quadruplet.toString)
-	 			//l.add(quadruplet)	 				 			
+	 		val ListCons = ex.exprCons.exprConsAttList
+	 		var i = ListCons.length - 1 //Dernier indice du tableau
+	 		var TempListQuad = new ArrayList<Quadruplet>()
+	 		
+	 		var LastVarUsed = ""
+	 		var variable = ""
+	 		while(i >= 0) {
+	 			variable = generateVar
+	 			
+	 			if (LastVarUsed == "") {
+	 				val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, 
+	 				ListCons.get(i - 1).compile(f, l).toString, ListCons.get(i).compile(f, l).toString)
+	 				
+	 				TempListQuad.add(quadruplet)
+	 				LastVarUsed = variable
+	 				i = i - 2
+	 			}
+	 			else {
+	 				val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, 
+	 				ListCons.get(i).compile(f, l).toString, LastVarUsed)
+	 				
+	 				TempListQuad.add(quadruplet)
+	 				LastVarUsed = variable
+	 				i--
+	 			}
 	 		}
-//	 		val variable = generateVar
-//	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
-//	 		if(l == null)
-//	 		{
-//	 			f.addQuad(quadruplet)
-//	 			print("[DBG] CONS... but don't work yet\n")
-//	 		}
-//	 		else
-//	 		{
-//	 			l.add(quadruplet)
-//	 			print("[DBG] CONS... but don't work yet\n")
-//	 		}
-//	 		print("[DBG] CONS... but don't work yet\n")
-//	 		variable
+	 		//val listCons = ex.exprCons.exprConsAttList.consList
+	 		//while(listCons.size > 1)
+	 		//{
+	 			//val variable = generateVar
+	 			//val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable,
+	 			//	listCons.get(listCons.size -1).compile(f, l).toString, listCons.get(listCons.size -2).compile(f, l).toString
+	 			//)
+	 		//}
+	 		
+	 		//val variable = generateVar
+	 		//val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
+	 		
+	 		if(l == null)
+	 		{
+	 			for (e : TempListQuad)
+	 				f.addQuad(e)
+	 				
+	 			//TODO Printing relevant DEBUG info
+	 			print("[DBG] CONS... but don't work yet\n")
+	 		}
+	 		else
+	 		{
+	 			for (e : TempListQuad)
+	 				l.add(e)
+	 				
+	 			//TODO Printing relevant DEBUG info
+	 			print("[DBG] CONS... but don't work yet\n")
+	 		}
+	 		print("[DBG] CONS... but don't work yet\n")
+	 		variable
 	 	}
 	 	case ex.nomSymb!=null : {
 	 		val variable = generateVar
