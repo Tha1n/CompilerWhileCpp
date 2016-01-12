@@ -895,16 +895,14 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Group cGroup = (Group)rule.eContents().get(1);
 		private final Assignment cExprConsAssignment_0 = (Assignment)cGroup.eContents().get(0);
 		private final Keyword cExprConsConsKeyword_0_0 = (Keyword)cExprConsAssignment_0.eContents().get(0);
-		private final Assignment cExprConsAtt1Assignment_1 = (Assignment)cGroup.eContents().get(1);
-		private final RuleCall cExprConsAtt1ExprParserRuleCall_1_0 = (RuleCall)cExprConsAtt1Assignment_1.eContents().get(0);
-		private final Assignment cExprConsAttListAssignment_2 = (Assignment)cGroup.eContents().get(2);
-		private final RuleCall cExprConsAttListConsAttListParserRuleCall_2_0 = (RuleCall)cExprConsAttListAssignment_2.eContents().get(0);
+		private final Assignment cExprConsAttListAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExprConsAttListExprParserRuleCall_1_0 = (RuleCall)cExprConsAttListAssignment_1.eContents().get(0);
 		
 		//Cons:
-		//	exprCons="cons" exprConsAtt1=Expr exprConsAttList=ConsAttList;
+		//	exprCons="cons" exprConsAttList+=Expr+;
 		@Override public ParserRule getRule() { return rule; }
 
-		//exprCons="cons" exprConsAtt1=Expr exprConsAttList=ConsAttList
+		//exprCons="cons" exprConsAttList+=Expr+
 		public Group getGroup() { return cGroup; }
 
 		//exprCons="cons"
@@ -913,33 +911,11 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		//"cons"
 		public Keyword getExprConsConsKeyword_0_0() { return cExprConsConsKeyword_0_0; }
 
-		//exprConsAtt1=Expr
-		public Assignment getExprConsAtt1Assignment_1() { return cExprConsAtt1Assignment_1; }
+		//exprConsAttList+=Expr+
+		public Assignment getExprConsAttListAssignment_1() { return cExprConsAttListAssignment_1; }
 
 		//Expr
-		public RuleCall getExprConsAtt1ExprParserRuleCall_1_0() { return cExprConsAtt1ExprParserRuleCall_1_0; }
-
-		//exprConsAttList=ConsAttList
-		public Assignment getExprConsAttListAssignment_2() { return cExprConsAttListAssignment_2; }
-
-		//ConsAttList
-		public RuleCall getExprConsAttListConsAttListParserRuleCall_2_0() { return cExprConsAttListConsAttListParserRuleCall_2_0; }
-	}
-
-	public class ConsAttListElements extends AbstractParserRuleElementFinder {
-		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ConsAttList");
-		private final Assignment cConsListAssignment = (Assignment)rule.eContents().get(1);
-		private final RuleCall cConsListExprParserRuleCall_0 = (RuleCall)cConsListAssignment.eContents().get(0);
-		
-		//ConsAttList:
-		//	consList+=Expr+;
-		@Override public ParserRule getRule() { return rule; }
-
-		//consList+=Expr+
-		public Assignment getConsListAssignment() { return cConsListAssignment; }
-
-		//Expr
-		public RuleCall getConsListExprParserRuleCall_0() { return cConsListExprParserRuleCall_0; }
+		public RuleCall getExprConsAttListExprParserRuleCall_1_0() { return cExprConsAttListExprParserRuleCall_1_0; }
 	}
 	
 	
@@ -963,7 +939,6 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	private final ExprNotElements pExprNot;
 	private final ExprEqElements pExprEq;
 	private final ConsElements pCons;
-	private final ConsAttListElements pConsAttList;
 	private final TerminalRule tSYMBOL;
 	private final TerminalRule tLC;
 	
@@ -996,7 +971,6 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		this.pExprNot = new ExprNotElements();
 		this.pExprEq = new ExprEqElements();
 		this.pCons = new ConsElements();
-		this.pConsAttList = new ConsAttListElements();
 		this.tSYMBOL = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "SYMBOL");
 		this.tLC = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "LC");
 	}
@@ -1225,7 +1199,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	//Cons:
-	//	exprCons="cons" exprConsAtt1=Expr exprConsAttList=ConsAttList;
+	//	exprCons="cons" exprConsAttList+=Expr+;
 	public ConsElements getConsAccess() {
 		return pCons;
 	}
@@ -1234,16 +1208,8 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getConsAccess().getRule();
 	}
 
-	//ConsAttList:
-	//	consList+=Expr+;
-	public ConsAttListElements getConsAttListAccess() {
-		return pConsAttList;
-	}
-	
-	public ParserRule getConsAttListRule() {
-		return getConsAttListAccess().getRule();
-	}
-
+	////Cons: (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAttList = ConsAttList);
+	////ConsAttList: consList += Expr+;
 	////List: (exprList = 'list') (exprListAtt1 = Expr) (exprListAttList = ListAttList);
 	////ListAttList:listList += Expr;
 	//terminal SYMBOL:

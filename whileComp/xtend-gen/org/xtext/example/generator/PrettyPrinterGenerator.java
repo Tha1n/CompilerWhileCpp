@@ -35,8 +35,6 @@ import org.xtext.example.whileCpp.CommandForEach;
 import org.xtext.example.whileCpp.CommandIf;
 import org.xtext.example.whileCpp.CommandWhile;
 import org.xtext.example.whileCpp.Commands;
-import org.xtext.example.whileCpp.Cons;
-import org.xtext.example.whileCpp.ConsAttList;
 import org.xtext.example.whileCpp.Definition;
 import org.xtext.example.whileCpp.Expr;
 import org.xtext.example.whileCpp.ExprAnd;
@@ -597,91 +595,11 @@ public class PrettyPrinterGenerator implements IGenerator {
   }
   
   public CharSequence compile(final ExprSimple ex, final int indent) {
-    StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    String _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      String _nil = ex.getNil();
-      boolean _notEquals = (!Objects.equal(_nil, null));
-      if (_notEquals) {
-        _matched=true;
-        _switchResult = "nil";
-      }
-    }
-    if (!_matched) {
-      String _vari = ex.getVari();
-      boolean _notEquals_1 = (!Objects.equal(_vari, null));
-      if (_notEquals_1) {
-        _matched=true;
-        _switchResult = ex.getVari();
-      }
-    }
-    if (!_matched) {
-      String _symb = ex.getSymb();
-      boolean _notEquals_2 = (!Objects.equal(_symb, null));
-      if (_notEquals_2) {
-        _matched=true;
-        _switchResult = ex.getSymb();
-      }
-    }
-    if (!_matched) {
-      Cons _exprCons = ex.getExprCons();
-      boolean _notEquals_3 = (!Objects.equal(_exprCons, null));
-      if (_notEquals_3) {
-        _matched=true;
-        Cons _exprCons_1 = ex.getExprCons();
-        Expr _exprConsAtt1 = _exprCons_1.getExprConsAtt1();
-        Object _compile = this.compile(_exprConsAtt1, 0);
-        String _plus = ("(cons " + _compile);
-        String _plus_1 = (_plus + " ");
-        Cons _exprCons_2 = ex.getExprCons();
-        ConsAttList _exprConsAttList = _exprCons_2.getExprConsAttList();
-        EList<Expr> _consList = _exprConsAttList.getConsList();
-        List<Expr> _list = IterableExtensions.<Expr>toList(_consList);
-        CharSequence _consListRec = this.consListRec(_list);
-        String _plus_2 = (_plus_1 + _consListRec);
-        _switchResult = (_plus_2 + ")");
-      }
-    }
-    if (!_matched) {
-      String _exprHead = ex.getExprHead();
-      boolean _notEquals_4 = (!Objects.equal(_exprHead, null));
-      if (_notEquals_4) {
-        _matched=true;
-        Expr _exprHeadAtt = ex.getExprHeadAtt();
-        Object _compile_1 = this.compile(_exprHeadAtt, 0);
-        String _plus_3 = ("(hd " + _compile_1);
-        _switchResult = (_plus_3 + ")");
-      }
-    }
-    if (!_matched) {
-      String _exprTail = ex.getExprTail();
-      boolean _notEquals_5 = (!Objects.equal(_exprTail, null));
-      if (_notEquals_5) {
-        _matched=true;
-        Expr _exprTailAtt = ex.getExprTailAtt();
-        Object _compile_2 = this.compile(_exprTailAtt, 0);
-        String _plus_4 = ("(tl " + _compile_2);
-        _switchResult = (_plus_4 + ")");
-      }
-    }
-    if (!_matched) {
-      String _nomSymb = ex.getNomSymb();
-      boolean _notEquals_6 = (!Objects.equal(_nomSymb, null));
-      if (_notEquals_6) {
-        _matched=true;
-        String _nomSymb_1 = ex.getNomSymb();
-        String _plus_5 = ("(" + _nomSymb_1);
-        Expr _symbAtt = ex.getSymbAtt();
-        Object _compile_3 = this.compile(_symbAtt, 0);
-        String _plus_6 = (_plus_5 + _compile_3);
-        _switchResult = (_plus_6 + ")");
-      }
-    }
-    _builder.append(_switchResult, "");
-    return _builder;
+    throw new Error("Unresolved compilation problems:"
+      + "\nThe method exprConsAtt1 is undefined for the type PrettyPrinterGenerator"
+      + "\nThe method consList is undefined for the type PrettyPrinterGenerator"
+      + "\ncompile cannot be resolved"
+      + "\ntoList cannot be resolved");
   }
   
   public CharSequence consListRec(final List<Expr> l) {

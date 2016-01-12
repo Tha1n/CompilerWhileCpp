@@ -23,7 +23,6 @@ import org.xtext.example.whileCpp.CommandIf;
 import org.xtext.example.whileCpp.CommandWhile;
 import org.xtext.example.whileCpp.Commands;
 import org.xtext.example.whileCpp.Cons;
-import org.xtext.example.whileCpp.ConsAttList;
 import org.xtext.example.whileCpp.Definition;
 import org.xtext.example.whileCpp.Expr;
 import org.xtext.example.whileCpp.ExprAnd;
@@ -65,9 +64,6 @@ public class WhileCppSemanticSequencer extends AbstractDelegatingSemanticSequenc
 				return; 
 			case WhileCppPackage.CONS:
 				sequence_Cons(context, (Cons) semanticObject); 
-				return; 
-			case WhileCppPackage.CONS_ATT_LIST:
-				sequence_ConsAttList(context, (ConsAttList) semanticObject); 
 				return; 
 			case WhileCppPackage.DEFINITION:
 				sequence_Definition(context, (Definition) semanticObject); 
@@ -172,32 +168,10 @@ public class WhileCppSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	
 	/**
 	 * Constraint:
-	 *     consList+=Expr+
-	 */
-	protected void sequence_ConsAttList(EObject context, ConsAttList semanticObject) {
-		genericSequencer.createSequence(context, semanticObject);
-	}
-	
-	
-	/**
-	 * Constraint:
-	 *     (exprCons='cons' exprConsAtt1=Expr exprConsAttList=ConsAttList)
+	 *     (exprCons='cons' exprConsAttList+=Expr+)
 	 */
 	protected void sequence_Cons(EObject context, Cons semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, WhileCppPackage.Literals.CONS__EXPR_CONS) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCppPackage.Literals.CONS__EXPR_CONS));
-			if(transientValues.isValueTransient(semanticObject, WhileCppPackage.Literals.CONS__EXPR_CONS_ATT1) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCppPackage.Literals.CONS__EXPR_CONS_ATT1));
-			if(transientValues.isValueTransient(semanticObject, WhileCppPackage.Literals.CONS__EXPR_CONS_ATT_LIST) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, WhileCppPackage.Literals.CONS__EXPR_CONS_ATT_LIST));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getConsAccess().getExprConsConsKeyword_0_0(), semanticObject.getExprCons());
-		feeder.accept(grammarAccess.getConsAccess().getExprConsAtt1ExprParserRuleCall_1_0(), semanticObject.getExprConsAtt1());
-		feeder.accept(grammarAccess.getConsAccess().getExprConsAttListConsAttListParserRuleCall_2_0(), semanticObject.getExprConsAttList());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	

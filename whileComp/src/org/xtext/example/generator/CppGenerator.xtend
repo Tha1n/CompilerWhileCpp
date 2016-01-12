@@ -6,6 +6,7 @@ import SymboleTable.Quadruplet
 import java.util.HashMap
 import SymboleTable.CodeOp
 import SymboleTable.Label
+import SymboleTable.Logger
 
 class CppGenerator {
 	
@@ -61,7 +62,7 @@ class CppGenerator {
 		}
 		
 		cpp = addMain(cpp, funcs, funNameTranslation)
-		print(cpp)
+		Logger.PRINT(cpp)
 		cpp
 	}
 	

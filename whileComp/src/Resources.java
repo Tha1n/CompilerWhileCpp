@@ -21,4 +21,5 @@ public final class Resources {
 	
 	//Ressources spécifiques Compiler
 	public static final String OPT_HELP = "help";
+	public static final String OPT_DEBUG = "debug";
 }

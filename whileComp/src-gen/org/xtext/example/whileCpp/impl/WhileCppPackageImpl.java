@@ -15,7 +15,6 @@ import org.xtext.example.whileCpp.CommandIf;
 import org.xtext.example.whileCpp.CommandWhile;
 import org.xtext.example.whileCpp.Commands;
 import org.xtext.example.whileCpp.Cons;
-import org.xtext.example.whileCpp.ConsAttList;
 import org.xtext.example.whileCpp.Definition;
 import org.xtext.example.whileCpp.Expr;
 import org.xtext.example.whileCpp.ExprAnd;
@@ -172,13 +171,6 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * @generated
    */
   private EClass consEClass = null;
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  private EClass consAttListEClass = null;
 
   /**
    * Creates an instance of the model <b>Package</b>, registered with
@@ -938,39 +930,9 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
    * <!-- end-user-doc -->
    * @generated
    */
-  public EReference getCons_ExprConsAtt1()
-  {
-    return (EReference)consEClass.getEStructuralFeatures().get(1);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
   public EReference getCons_ExprConsAttList()
   {
-    return (EReference)consEClass.getEStructuralFeatures().get(2);
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EClass getConsAttList()
-  {
-    return consAttListEClass;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public EReference getConsAttList_ConsList()
-  {
-    return (EReference)consAttListEClass.getEStructuralFeatures().get(0);
+    return (EReference)consEClass.getEStructuralFeatures().get(1);
   }
 
   /**
@@ -1090,11 +1052,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
 
     consEClass = createEClass(CONS);
     createEAttribute(consEClass, CONS__EXPR_CONS);
-    createEReference(consEClass, CONS__EXPR_CONS_ATT1);
     createEReference(consEClass, CONS__EXPR_CONS_ATT_LIST);
-
-    consAttListEClass = createEClass(CONS_ATT_LIST);
-    createEReference(consAttListEClass, CONS_ATT_LIST__CONS_LIST);
   }
 
   /**
@@ -1215,11 +1173,7 @@ public class WhileCppPackageImpl extends EPackageImpl implements WhileCppPackage
 
     initEClass(consEClass, Cons.class, "Cons", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getCons_ExprCons(), ecorePackage.getEString(), "exprCons", null, 0, 1, Cons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCons_ExprConsAtt1(), this.getExpr(), null, "exprConsAtt1", null, 0, 1, Cons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-    initEReference(getCons_ExprConsAttList(), this.getConsAttList(), null, "exprConsAttList", null, 0, 1, Cons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-
-    initEClass(consAttListEClass, ConsAttList.class, "ConsAttList", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEReference(getConsAttList_ConsList(), this.getExpr(), null, "consList", null, 0, -1, ConsAttList.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEReference(getCons_ExprConsAttList(), this.getExpr(), null, "exprConsAttList", null, 0, -1, Cons.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     // Create resource
     createResource(eNS_URI);

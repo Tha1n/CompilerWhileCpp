@@ -94,11 +94,7 @@
     </genClasses>
     <genClasses ecoreClass="WhileCpp.ecore#//Cons">
       <genFeatures createChild="false" ecoreFeature="ecore:EAttribute WhileCpp.ecore#//Cons/exprCons"/>
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Cons/exprConsAtt1"/>
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//Cons/exprConsAttList"/>
-    </genClasses>
-    <genClasses ecoreClass="WhileCpp.ecore#//ConsAttList">
-      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference WhileCpp.ecore#//ConsAttList/consList"/>
     </genClasses>
   </genPackages>
 </genmodel:GenModel>

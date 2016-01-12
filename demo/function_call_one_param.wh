@@ -1,0 +1,13 @@
+function  foo2:
+read  X
+%
+nop
+%
+write X
+
+function  foo:
+read  X
+%
+X := (foo2 X)
+%
+write X
