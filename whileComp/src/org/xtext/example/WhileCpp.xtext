@@ -35,7 +35,7 @@ Expr: =>(exprSimp = ExprSimple) | (exprAnd = ExprAnd);
 ExprSimple: (nil = 'nil' | vari = VARIABLE | symb = SYMBOL ) |
 '(' exprCons = Cons ')' | // '(' (exprList = List)')' |
 '(' (exprHead = 'hd') (exprHeadAtt = Expr) ')' | '(' (exprTail = 'tl') (exprTailAtt = Expr) ')' |
-'(' (nomSymb = SYMBOL) (symbAtt = Expr) ')';
+'(' (nomSymb = SYMBOL) (symbAtt += Expr+) ')';
 ExprAnd: (exprOr = ExprOr) ((exprAnd = 'and') (exprAndAtt = ExprAnd))?;
 ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
 ExprNot: (not = 'not')? (exprEq = ExprEq);
