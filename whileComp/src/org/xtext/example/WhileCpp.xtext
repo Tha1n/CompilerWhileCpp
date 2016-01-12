@@ -4,54 +4,64 @@ hidden(LC, WS, ML_COMMENT, SL_COMMENT)
 
 generate whileCpp "http://www.xtext.org/example/WhileCpp"
 
-
+//Programme
 Program: (fonctions+=Function )*;
 
+//Fonction
 Function: 'function' nom=SYMBOL ':' definition=Definition;
+//Définition de fonction
 Definition:
 'read' inputs=Input 
 '%' commandes=Commands 
 '%' 'write' outputs=Output;
 
-Input: (varIn+=VARIABLE ',')*(varIn+=VARIABLE); //varIn = variables Entrée
-//Permet de reconnaitre des chaines de la forme var1,var2 ou var
+//Input de la fonction
+Input: (varIn+=VARIABLE ',')*(varIn+=VARIABLE);
+//Output de la fonction
 Output: (varOut+=VARIABLE ',')*(varOut+=VARIABLE); //varOut = variables Sorties
 
+//Variables
 Vars: (varGen += VARIABLE',')* (varGen += VARIABLE); //varGen = variables générales
+//Terminal représentant une seule variable
 terminal VARIABLE: ('A'..'Z') (('A'..'Z')|('a'..'z')|('0'..'9')|'->'|'-'|'+'|'&'|'.'|'/'|'_')*;
 
-//Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
+//Commandes
 Commands: =>(commande += Command ';')*(commande += Command);
-//Permet de reconnaitre des chaines de la forme c1;c2
-//Les differentes commandes
+//Les commandes dans cet ordre: nop; Affectation; While; If; ForEach
 Command: ( nop ='nop' | vars = Vars ':=' (exprs=Exprs) | cmdWhile = CommandWhile | cmdIf = CommandIf | cmdForEach = CommandForEach);
 CommandWhile: (w='while'|'for') expr = Expr 'do' cmds = Commands 'od';
 CommandIf: 'if' cond = Expr 'then' cmdsThen = Commands ('else' (cmdsElse = Commands) )? 'fi';
 CommandForEach: 'foreach' elem = Expr 'in' ensemb = Expr 'do' cmds = Commands 'od';
 
+//Expression
 Exprs: =>(expGen += Expr',')* (expGen += Expr);
+
 //Utilisation de => pour eviter le message d'erreur langage non LL(*)
 Expr: =>(exprSimp = ExprSimple) | (exprAnd = ExprAnd);
+
+//Expression simple dans cet ordre: nil; variable; symbole;
 ExprSimple: (nil = 'nil' | vari = VARIABLE | symb = SYMBOL ) |
 '(' exprCons = Cons ')' | // '(' (exprList = List)')' |
 '(' (exprHead = 'hd') (exprHeadAtt = Expr) ')' | '(' (exprTail = 'tl') (exprTailAtt = Expr) ')' |
 '(' (nomSymb = SYMBOL) (symbAtt += Expr+) ')';
+
+//Expression ET
 ExprAnd: (exprOr = ExprOr) ((exprAnd = 'and') (exprAndAtt = ExprAnd))?;
+//Expression OU
 ExprOr: (exprNot = ExprNot) ((exprOr = 'or') (exprOrAtt = ExprOr))?;
+//Expression NOT
 ExprNot: (not = 'not')? (exprEq = ExprEq);
+//Expression d'égalité conditionnelle
 ExprEq: '('(expr = Expr)')' | (exprSim1 = ExprSimple)'=?'(exprSim2 = ExprSimple);
 
+//Constructeur
 Cons: (exprCons = 'cons') (exprConsAttList += Expr+);
-//Cons: (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAttList = ConsAttList);
-//ConsAttList: consList += Expr+;
 
 //List: (exprList = 'list') (exprListAtt1 = Expr) (exprListAttList = ListAttList);
 //ListAttList:listList += Expr;
 
+//Terminal représentant un symbole
 terminal SYMBOL: ('a'..'z') (('A'..'Z')|('a'..'z')|('0'..'9')|'_'|'->'|'-'|'+'|'&'|'.'|'/')*;
-//Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
 
-
-
+//Layout character
 terminal LC: (' ')*;
-//Caracteres de separations
