@@ -45,7 +45,6 @@ import org.eclipse.emf.common.util.EList
  * See https://www.eclipse.org/Xtext/documentation/303_runtime_concepts.html#code-generation
  */
 class PrettyPrinterGenerator implements IGenerator {
-	
 	FunDictionary dico = new FunDictionary();
 	int ibd = 1
 	int ibif = 1
@@ -55,52 +54,25 @@ class PrettyPrinterGenerator implements IGenerator {
 	//gestion dico :
 	int portee = 0
 	
-	
-	/*
-	 * pour fonction : 
-	 * regarder si prÃ©sente 
-	 * 	oui : error 2 fonctions avec mÃªme signature
-	 * 	non : ajouter Ã  la map
-	 */
-	 
-	 /*
-	 * pour variable : 
-	 * regarder si prÃ©sente dans la fonction 
-	 * 	oui : regarder si meme portÃ©e : 
-	 * 		oui : deja dÃ©clarÃ©e mettre Ã  jour
-	 * 		non : ajouter Ã  la liste
-	 * 	non : ajouter Ã  la liste des variables pour cette fonction
-	 */
-	 
-	 
-	 
-	def public List<String> getFunctionsNames()
-	{
+	def public List<String> getFunctionsNames() {
 		return dico.listFuncName.toList
 	}
 	
-	def public List<Fonction> getFunctions()
-	{
+	def public List<Fonction> getFunctions() {
 		return dico.functions
 	}
 	
-	def public void resetDico()
-	{
+	def public void resetDico() {
 		dico = new FunDictionary();
 	}
 	
 	
-	def public Set<String> getVariables(int fn)
-	{
+	def public Set<String> getVariables(int fn) {
 		return dico.functions.get(fn).listVarName.toSet
 	} 
 	
-	
-	
-	def void parseMap(Map<String, Integer> indent)
-	{
-		if(indent.get("All") != null)
-		{
+	def void parseMap(Map<String, Integer> indent) {
+		if(indent.get("All") != null) {
 			ibd = indent.get("All")
 			ibif = ibd
 			ibforeach = ibif
@@ -115,8 +87,7 @@ class PrettyPrinterGenerator implements IGenerator {
 	}
 	
 	
-	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width)
-	{
+	def public void generate(String in, String outputFile, Map<String, Integer> indentation, Integer width) {
 		resetDico
 		val injector = new WhileCppStandaloneSetup().createInjectorAndDoEMFRegistration();
 		val resourceSet = injector.getInstance(XtextResourceSet);
@@ -130,7 +101,7 @@ class PrettyPrinterGenerator implements IGenerator {
 		if(out.equals(""))
 			out = in + "pp"
 			
-		try{
+		try {
   			val fstream = new FileWriter(out)
   			val buff = new BufferedWriter(fstream)
   			for(p: xtextResource.allContents.toIterable.filter(Program))
@@ -139,59 +110,54 @@ class PrettyPrinterGenerator implements IGenerator {
   		}catch (Exception e){
   			println("Can't write " + out + " - Error: " + e.getMessage())
   		}
-		
-		println(dico.toString)
 	}
 	
 	//ident all structures
 	def indent (int level)
-	'''Â«FOR i : 1..levelÂ»Â«IF level>0Â»Â«FOR j : 1..ibdÂ»Â«" "Â»Â«ENDFORÂ»Â«ENDIFÂ»Â«ENDFORÂ»'''
+	'''«FOR i : 1..level»«IF level>0»«FOR j : 1..ibd»«" "»«ENDFOR»«ENDIF»«ENDFOR»'''
 	
 	override void doGenerate(Resource resource, IFileSystemAccess fsa) {
-		
         resetDico
-		for(p: resource.allContents.toIterable.filter(Program)) {
+		for(p: resource.allContents.toIterable.filter(Program))
 			fsa.generateFile("PP.wh", p.compile(0))
-			}
-		print(dico.toString())
 	}
 
 	def compile (Program p, int indent)
-'''Â«indent(indent)Â»Â«FOR f: p.fonctionsÂ»
-Â«f.compile(indent)Â»
-Â«indent(indent)Â»Â«ENDFORÂ»'''
+'''«indent(indent)»«FOR f: p.fonctions»
+«f.compile(indent)»
+«indent(indent)»«ENDFOR»'''
 	
 	
 
 	
 	def compile (Function f, int indent)
-'''Â«indent(indent)Â»function Â«f.nomÂ»:
-Â«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")Â»
-Â«IF dico.putFunction(newF)Â»
-Â«f.definition.compile(indent, newF)Â»
-Â«ELSE Â» ERREUR: FONCTION Â«f.nom Â» DÃ‰JÃ€ DÃ‰CLARÃ‰E
-Â«ENDIFÂ»
+'''«indent(indent)»function «f.nom»:
+«var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,"nomFonctionCible")»
+«IF dico.putFunction(newF)»
+«f.definition.compile(indent, newF)»
+«ELSE » ERREUR: FONCTION «f.nom » DÉJÀ DÉCLARÉE
+«ENDIF»
 '''
 	
 	def compile (Definition d, int indent, Fonction f)
-	'''Â«indent(indent)Â»read Â«d.inputs.compile(0, f)Â»
-Â«indent(indent)Â»%
-Â«d.commandes.compile(indent+1, f)Â»
-Â«indent(indent)Â»%
-Â«indent(indent)Â»write Â«d.outputs.compile(0, f)Â»'''
+	'''«indent(indent)»read «d.inputs.compile(0, f)»
+«indent(indent)»%
+«d.commandes.compile(indent+1, f)»
+«indent(indent)»%
+«indent(indent)»write «d.outputs.compile(0, f)»'''
 	
 	def compile (Input i, int indent, Fonction f)
-	'''Â«indent(indent)Â»Â«FOR in : i.varInÂ»Â«inÂ»Â«f.add(new Variable(in, "input"))Â»Â«IF i.varIn.indexOf(in)!=i.varIn.size-1Â», Â«ENDIFÂ»Â«ENDFORÂ»'''
+	'''«indent(indent)»«FOR in : i.varIn»«in»«f.add(new Variable(in, "input"))»«IF i.varIn.indexOf(in)!=i.varIn.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile (Commands c, int indent, Fonction f)
-	'''Â«FOR cm: c.commandeÂ»Â«cm.compile(indent, f)Â»Â«IF c.commande.indexOf(cm)!=c.commande.size-1Â» ;
-Â«ENDIFÂ»Â«ENDFORÂ»'''
+	'''«FOR cm: c.commande»«cm.compile(indent, f)»«IF c.commande.indexOf(cm)!=c.commande.size-1» ;
+«ENDIF»«ENDFOR»'''
 		
 	def compile (Output o, int indent, Fonction f)
-	'''Â«indent(indent)Â»Â«FOR in : o.varOutÂ»Â«inÂ»Â«IF o.varOut.indexOf(in)!=o.varOut.size-1Â», Â«ENDIFÂ»Â«ENDFORÂ»'''
+	'''«indent(indent)»«FOR in : o.varOut»«in»«IF o.varOut.indexOf(in)!=o.varOut.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Command c, int indent, Fonction f)
-'''Â«switch (c){
+'''«switch (c){
 	case c.nop!=null : indent(indent) + "nop"
 	case c.cmdIf!=null : c.cmdIf.compile(indent, f)
 	case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)
@@ -199,72 +165,71 @@ class PrettyPrinterGenerator implements IGenerator {
 	case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)
 	default : c.class.name
 }
-Â»'''
+»'''
 
 
 
 	
 	def compile(CommandWhile c, int indent, Fonction f)
-'''Â«indent(indent)Â»Â«IF c.w!=nullÂ»while Â«ELSEÂ»for Â«ENDIFÂ»Â«c.expr.compile(0)Â» do
-Â«c.cmds.compile(indent+ibwhile, f)Â»
-Â«indent(indent)Â»od'''
+'''«indent(indent)»«IF c.w!=null»while «ELSE»for «ENDIF»«c.expr.compile(0)» do
+«c.cmds.compile(indent+ibwhile, f)»
+«indent(indent)»od'''
 	
 	def compile(CommandIf c, int indent, Fonction f)
-'''Â«indent(indent)Â»if Â«c.cond.compile(0)Â» then 
-Â«c.cmdsThen.compile(indent+ibif, f)Â»Â«IF c.cmdsElse!=nullÂ»
-Â«indent(indent)Â»else
-Â«c.cmdsElse.compile(indent+ibif, f)Â»Â«ENDIFÂ»
-Â«indent(indent)Â»fi'''
+'''«indent(indent)»if «c.cond.compile(0)» then 
+«c.cmdsThen.compile(indent+ibif, f)»«IF c.cmdsElse!=null»
+«indent(indent)»else
+«c.cmdsElse.compile(indent+ibif, f)»«ENDIF»
+«indent(indent)»fi'''
 	
 	def compile(CommandForEach c, int indent, Fonction f)
-'''Â«indent(indent)Â»foreach Â«c.elem.compile(0)Â» in Â«c.ensemb.compile(0)Â» do	
-Â«c.cmds.compile(indent+ibforeach, f)Â»
-Â«indent(indent)Â»od'''
+'''«indent(indent)»foreach «c.elem.compile(0)» in «c.ensemb.compile(0)» do	
+«c.cmds.compile(indent+ibforeach, f)»
+«indent(indent)»od'''
 	
 	//ajouter la variable dans sa fonction
 	def compile(Vars v, int indent, Fonction f)
-'''Â«indent(indent)Â»Â«FOR in : v.varGenÂ»Â«inÂ»Â«var vari = new Variable (in.toString, "intern")Â»Â«dico.putVariable(vari, f)Â»Â«IF v.varGen.indexOf(in)!=v.varGen.size-1Â», Â«ENDIFÂ»Â«ENDFORÂ»'''
+'''«indent(indent)»«FOR in : v.varGen»«in»«var vari = new Variable (in.toString, "intern")»«dico.putVariable(vari, f)»«IF v.varGen.indexOf(in)!=v.varGen.size-1», «ENDIF»«ENDFOR»'''
 	
 	def compile(Exprs e, int indent)
-'''Â«FOR in : e.expGenÂ»Â«in.compile(indent)Â»Â«IF e.expGen.indexOf(in)!=e.expGen.size-1Â», Â«ELSEÂ»Â«ENDIFÂ»Â«ENDFORÂ»'''
+'''«FOR in : e.expGen»«in.compile(indent)»«IF e.expGen.indexOf(in)!=e.expGen.size-1», «ELSE»«ENDIF»«ENDFOR»'''
 	
 	def compile (Expr ex, int indent)
-'''Â«switch(ex){
+'''«switch(ex){
 			case ex.exprSimp!=null : ex.exprSimp.compile(indent)
 			case ex.exprAnd!=null : ex.exprAnd.compile(indent)
 	    }
-	 Â»'''
+	 »'''
 	
 	def compile (ExprSimple ex, int indent)
-	 '''Â«indent(indent)Â»Â«switch(ex){
+	 '''«indent(indent)»«switch(ex){
 	 	case ex.nil!=null : "nil"
 	 	case ex.vari!=null : ex.vari
 	 	case ex.symb!=null : ex.symb
-	 	case ex.exprCons!=null : "(cons " + ex.exprCons.exprConsAtt1.compile(0) + " " + consListRec(ex.exprCons.exprConsAttList.consList.toList) + ")"
+	 	case ex.exprCons!=null : "(cons " + consListRec(ex.exprCons.exprConsAttList.toList) + ")"
 	 	//case ex.exprList!=null : "(list "+ ex.exprListAtt1.compile(0) + " " + ex.exprListAtt2.compile(0) + ")"
 	 	case ex.exprHead!=null : "(hd "+ ex.exprHeadAtt.compile(0) + ")"
 	 	case ex.exprTail!=null : "(tl " + ex.exprTailAtt.compile(0) +")"
 	 	case ex.nomSymb!=null : "(" + ex.nomSymb + ex.symbAtt.compile(0) + ")"
 	 }
-	 Â»'''
+	 »'''
 	  	
 	 def consListRec(List<Expr> l)'''
-	 Â«IF l.size == 1Â»Â«l.head.compile(0)
-	 Â»Â«ELSEÂ»Â«
-	 		"(cons " + l.head.compile(0) + " " + consListRec((l.tail.toList)) + ")"Â»Â«
-	 ENDIFÂ»'''
+	 «IF l.size == 2»«l.head.compile(0) + l.get(1).compile(0)
+	 »«ELSE»«
+	 		l.head.compile(0) " (cons " + consListRec((l.tail.toList)) + ")"»«
+	 ENDIF»'''
 	 
 	
 	def compile (ExprAnd ex, int indent)
-	'''Â«ex.exprOr.compile(indent)Â»Â«IF ex.exprAnd!=nullÂ»Â«ex.exprAndAtt.compile(0)Â»Â«ENDIFÂ»'''
+	'''«ex.exprOr.compile(indent)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(0)»«ENDIF»'''
 	
 	def compile (ExprOr ex, int indent)
-	'''Â«ex.exprNot.compile(indent)Â»Â«IF ex.exprOr!=nullÂ»Â«ex.exprOrAtt.compile(0)Â»Â«ENDIFÂ»'''
+	'''«ex.exprNot.compile(indent)»«IF ex.exprOr!=null»«ex.exprOrAtt.compile(0)»«ENDIF»'''
 	
 	def compile (ExprNot ex, int indent)
-	'''Â«indent(indent)Â»Â«IF ex.not!=nullÂ»not Â«ENDIFÂ»Â«ex.exprEq.compile(0)Â»'''
+	'''«indent(indent)»«IF ex.not!=null»not «ENDIF»«ex.exprEq.compile(0)»'''
 	
 	def compile (ExprEq ex, int indent)
-	'''Â«indent(indent)Â»Â«IF ex.expr!=nullÂ»(Â«ex.expr.compile(0)Â»)Â«ELSEÂ»Â«ex.exprSim1.compile(0)Â» =? Â«ex.exprSim2.compile(0)Â»Â«ENDIFÂ»'''
+	'''«indent(indent)»«IF ex.expr!=null»(«ex.expr.compile(0)»)«ELSE»«ex.exprSim1.compile(0)» =? «ex.exprSim2.compile(0)»«ENDIF»'''
 }
-
