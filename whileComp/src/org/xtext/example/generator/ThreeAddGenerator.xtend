@@ -245,6 +245,7 @@ class ThreeAddGenerator implements IGenerator {
 	case c.vars!=null && c.exprs!=null : 
 	{
 		val pile = new ArrayList();
+		var total = 0
 		c.vars.compile(f, l).toString()
 		if(l==null)
 		{
@@ -255,7 +256,6 @@ class ThreeAddGenerator implements IGenerator {
 					pile.add(exp);
 				}
 			}
-			var total = pile.size
 			var cpt = 0;
 			var listVars = new ArrayList<String>()
 			
@@ -280,27 +280,30 @@ class ThreeAddGenerator implements IGenerator {
 						{
 							finalResult = l.code.last.result
 						}
-						listVars.add(finalResult.toString)
+						//If multiple vars
+						val finalVars = finalResult.split(",")
+						for(var fv = 0; fv < finalVars.size; fv+=1) {
+							listVars.add(finalVars.get(fv))
+							total++
+						}
 					}
 					catch(Exception e){
 						System.out.println("Error");
 					}
-					cpt++	
 				}
 			}
-			if(cpt != total && cpt != 1)
-			{
-				errors.add("Erreur, pile incorrecte lors d'une multi affectation")
-			}
-			var i = 0
 			for(varToAffect : c.vars.varGen)
 			{
-				val finalResult = listVars.get(i)
-				if(cpt > 1)	i += 1
+				val finalResult = listVars.get(cpt)
+				cpt += 1
 				var toAffect = getVari(varToAffect)
 					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult.toString,"_")); 
 				
 				Logger.PRINT("[DBG]f += <:=, " + toAffect + "," + finalResult.toString + ", _>\n");
+			}
+			if(cpt != total && cpt != 1)
+			{
+				errors.add("Erreur, pile incorrecte lors d'une multi affectation")
 			}
 		}
 	}
@@ -444,7 +447,7 @@ class ThreeAddGenerator implements IGenerator {
 	 		variable
 	 	}
 	 	case ex.nomSymb!=null : {
-	 		val variable = generateVar
+	 		var variable = ""
 	 		val funName = funNameTranslation.get(ex.nomSymb)
 	 		var paramsFun = ""
 	 		//Arguments
@@ -453,6 +456,13 @@ class ThreeAddGenerator implements IGenerator {
 	 			paramsFun += ex.symbAtt.get(i).compile(f,l).toString
 	 			if(i != ex.symbAtt.size -1)
 	 				paramsFun += ","
+	 		}
+	 		//Variable
+	 		for(var i = 0; i < ex.symbAtt.size; i+=1)
+	 		{
+	 			variable += generateVar
+	 			if(i != ex.symbAtt.size -1)
+	 				variable += ","
 	 		}
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CALL), variable, funName, paramsFun)
 	 		if(l == null)

@@ -243,15 +243,15 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 				}
 				case CodeOp.OP_CALL : {
 					var toAff = quadruplet.result
-					if(_previousVar.contains(toAff) == false)
-					{
-						_previousVar.add(toAff)
-						toAff = "BinTree " + toAff;
-					}
+					var variables = toAff.split(",")
 					cpp +=  '''//<CALL, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
-''' + toAff + ''' = ''' + quadruplet.arg1 + '''(''' + 
-					quadruplet.arg2 +''');
-				'''
+'''
+					for(var v = 0; v < variables.size; v+=1)
+					{
+						val variableToWrite = variables.get(v)
+						_previousVar.add(variableToWrite)
+						cpp += "BinTree " + variableToWrite + " = " + quadruplet.arg1 + "(" + quadruplet.arg2 + ").at(" + v +");\n"
+					}
 				}
 				default: {
 					
