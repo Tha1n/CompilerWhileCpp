@@ -35,7 +35,7 @@ import org.xtext.example.whileCpp.Input
 import org.xtext.example.whileCpp.Output
 import org.xtext.example.whileCpp.Program
 import org.xtext.example.whileCpp.Vars
-import java.lang.reflect.Array
+import SymboleTable.Logger
 
 /**
  * Generates code from your model files on save.
@@ -212,20 +212,18 @@ class ThreeAddGenerator implements IGenerator {
 		if(l==null)
 		{
 			f.addQuad(nop)
-			print("[DBG]f += <NOP>\n")
+			Logger.PRINT("[DBG]f += <NOP>\n")
 		}
 		else
 		{
 			l.add(nop)
-			print("[DBG]" + l.name + " += <NOP>\n")
+			Logger.PRINT("[DBG]" + l.name + " += <NOP>\n")
 		}		 
 	}
 	case c.cmdIf!=null : 
 	{
 		val cond = c.cmdIf.cond.compile(f, l).toString
-		//1. Generate if Label
 		val ifLabel = generateLabel
-		//2. Generate else Label
 		val elseLabel = generateLabel
 		
 		val ifQuad = new Quadruplet(new CodeOp(CodeOp.OP_IF, ifLabel.name, elseLabel.name), "_", cond, "_");
@@ -233,12 +231,12 @@ class ThreeAddGenerator implements IGenerator {
 		if(l==null)
 		{
 			f.addQuad(ifQuad)
-			print("[DBG]f += <IF " + ifLabel.name + " " + elseLabel.name + ", _, " + cond + ", _>\n")
+			Logger.PRINT("[DBG]f += <IF " + ifLabel.name + " " + elseLabel.name + ", _, " + cond + ", _>\n")
 		}
 		else
 		{
 			l.add(ifQuad)
-			print("[DBG]" + l.name + " += <IF " + ifLabel.name + " " + elseLabel.name + ", _, " + cond + ", _>\n")
+			Logger.PRINT("[DBG]" + l.name + " += <IF " + ifLabel.name + " " + elseLabel.name + ", _, " + cond + ", _>\n")
 		}
 		
 		c.cmdIf.cmdsThen.compile(f, ifLabel)
@@ -289,7 +287,7 @@ class ThreeAddGenerator implements IGenerator {
 				var toAffect = getVari(varToAffect)
 					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult.toString,"_")); 
 				
-				print("[DBG]f += <:=, " + toAffect + "," + finalResult.toString + ", _>\n");
+				Logger.PRINT("[DBG]f += <:=, " + toAffect + "," + finalResult.toString + ", _>\n");
 				cpt++;
 			}
 			if(cpt != total)
@@ -309,12 +307,12 @@ class ThreeAddGenerator implements IGenerator {
 		if(l==null)
 		{
 			f.addQuad(whileQuad)
-			print("[DBG]f += <WHILE " + whileLabel.name + ", _, " + expString + ",_>\n")
+			Logger.PRINT("[DBG]f += <WHILE " + whileLabel.name + ", _, " + expString + ",_>\n")
 		}
 		else
 		{
 			l.add(whileQuad)
-			print("[DBG]" + l.name + " += <WHILE " + whileLabel.name + ", _, " + expString + ",_>\n")
+			Logger.PRINT("[DBG]" + l.name + " += <WHILE " + whileLabel.name + ", _, " + expString + ",_>\n")
 		}
 		c.cmdWhile.cmds.compile(f, whileLabel)
 	} 
@@ -328,12 +326,12 @@ class ThreeAddGenerator implements IGenerator {
 		if(l==null)
 		{
 			f.addQuad(whileQuad)
-			print("[DBG]f += <FOREACH " + foreachLabel.name + ", _," + elem + ", " + ensemble + ">\n")
+			Logger.PRINT("[DBG]f += <FOREACH " + foreachLabel.name + ", _," + elem + ", " + ensemble + ">\n")
 		}
 		else
 		{
 			l.add(whileQuad)
-			print("[DBG]" + l.name + " += <FOREACH " + foreachLabel.name + ", _," + elem + ", " + ensemble + ">\n")
+			Logger.PRINT("[DBG]" + l.name + " += <FOREACH " + foreachLabel.name + ", _," + elem + ", " + ensemble + ">\n")
 		}
 		c.cmdForEach.cmds.compile(f, foreachLabel)
 	} 
@@ -356,12 +354,12 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := nil\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := nil\n")
 	 		}
 	 		else
 	 		{
 	 			l.add(quadruplet)
-	 			print("[DBG]" + l.name + " += " + variable + " := nil\n")
+	 			Logger.PRINT("[DBG]" + l.name + " += " + variable + " := nil\n")
 	 		}
 	 		variable
 	 	}
@@ -371,12 +369,12 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG HERE]f += " + variable + " := " + getVari(ex.vari) + "\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := " + getVari(ex.vari) + "\n")
 	 		}
 	 		else
 	 		{
 	 			l.add(quadruplet)
-	 			print("[DBG]" + l.name + " += " + variable + " := " + ex.vari + "\n")
+	 			Logger.PRINT("[DBG]" + l.name + " += " + variable + " := " + ex.vari + "\n")
 	 		}
 	 		variable
 	 	}
@@ -386,12 +384,12 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := " + ex.symb + "\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := " + ex.symb + "\n")
 	 		}
 	 		else
 	 		{
 	 			l.add(quadruplet)
-	 			print("[DBG]" + l.name + " += " + variable + " := " + ex.symb + "\n")
+	 			Logger.PRINT("[DBG]" + l.name + " += " + variable + " := " + ex.symb + "\n")
 	 		}
 	 		variable
 	 	}
@@ -414,43 +412,27 @@ class ThreeAddGenerator implements IGenerator {
 	 				i = i - 2
 	 			}
 	 			else {
+	 				val arg1 = ListCons.get(i).compile(f, l).toString
 	 				val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, 
-	 				ListCons.get(i).compile(f, l).toString, LastVarUsed)
+	 				arg1, LastVarUsed)
 	 				
 	 				TempListQuad.add(quadruplet)
 	 				LastVarUsed = variable
 	 				i--
 	 			}
 	 		}
-	 		//val listCons = ex.exprCons.exprConsAttList.consList
-	 		//while(listCons.size > 1)
-	 		//{
-	 			//val variable = generateVar
-	 			//val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable,
-	 			//	listCons.get(listCons.size -1).compile(f, l).toString, listCons.get(listCons.size -2).compile(f, l).toString
-	 			//)
-	 		//}
-	 		
-	 		//val variable = generateVar
-	 		//val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CONS), variable, ex.exprCons.exprConsAtt1.compile(f, l).toString, listCons.get(0).compile(f, l).toString)
-	 		
-	 		if(l == null)
+	 		for (e : TempListQuad)
 	 		{
-	 			for (e : TempListQuad)
-	 				f.addQuad(e)
-	 				
-	 			//TODO Printing relevant DEBUG info
-	 			print("[DBG] CONS... but don't work yet\n")
+	 			f.addQuad(e)
+	 			if(l == null)
+	 			{
+		 			Logger.PRINT("[DBG]f+= <CONS, "+ e.result + ", " + e.arg1 + ", " + e.arg2 +"\n")
+	 			}
+	 			else
+	 			{
+	 				Logger.PRINT("[DBG]" + l.name + "+= <CONS, "+ e.result + ", " + e.arg1 + ", " + e.arg2 +"\n")
+	 			}
 	 		}
-	 		else
-	 		{
-	 			for (e : TempListQuad)
-	 				l.add(e)
-	 				
-	 			//TODO Printing relevant DEBUG info
-	 			print("[DBG] CONS... but don't work yet\n")
-	 		}
-	 		print("[DBG] CONS... but don't work yet\n")
 	 		variable
 	 	}
 	 	case ex.nomSymb!=null : {
@@ -468,12 +450,12 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := (" + funName + " " + paramsFun + ")\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := (" + funName + " " + paramsFun + ")\n")
 	 		}
 	 		else
 	 		{
 	 			l.add(quadruplet)
-	 			print("[DBG]f += " + variable + " := (" + funName + " " + paramsFun + ")\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := (" + funName + " " + paramsFun + ")\n")
 	 		}
 	 		variable
 	 	}
@@ -484,12 +466,12 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := (hd " + res + ")\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := (hd " + res + ")\n")
 	 		}
 	 		else
 	 		{
 	 			l.add(quadruplet)
-	 			print("[DBG]" + l.name + " += " + variable + " := (hd " + res + ")\n")
+	 			Logger.PRINT("[DBG]" + l.name + " += " + variable + " := (hd " + res + ")\n")
 	 		}
 	 		variable
 	 	}
@@ -500,12 +482,12 @@ class ThreeAddGenerator implements IGenerator {
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
-	 			print("[DBG]f += " + variable + " := (tl " + res + ")\n")
+	 			Logger.PRINT("[DBG]f += " + variable + " := (tl " + res + ")\n")
 	 		}
 	 		else
 	 		{
 	 			l.add(quadruplet)
-	 			print("[DBG]" + l.name + " += " + variable + " := (tl " + res + ")\n")
+	 			Logger.PRINT("[DBG]" + l.name + " += " + variable + " := (tl " + res + ")\n")
 	 		}
 	 		variable
 	 	}

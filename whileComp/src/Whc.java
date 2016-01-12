@@ -1,14 +1,10 @@
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
-import java.io.UnsupportedEncodingException;
 import java.io.Writer;
 
 import org.apache.commons.cli.CommandLine;
@@ -22,6 +18,7 @@ import org.xtext.example.generator.CppGenerator;
 import org.xtext.example.generator.ThreeAddGenerator;
 
 import SymboleTable.FunDictionary;
+import SymboleTable.Logger;
 
 /**
  * Interface du compilateur
@@ -56,12 +53,16 @@ public class Whc {
 		Option option_Help =
 				OptionBuilder.withArgName(Resources.OPT_HELP).create(Resources.OPT_HELP);
 
+		Option option_Debug =
+				OptionBuilder.withArgName(Resources.OPT_DEBUG).create(Resources.OPT_DEBUG);
+
 		//Add options
 		Options options = new Options();
 		CommandLineParser parser = new GnuParser();
 
 		options.addOption(option_Out);
 		options.addOption(option_Help);
+		options.addOption(option_Debug);
 
 		try
 		{
@@ -100,6 +101,9 @@ public class Whc {
 				if (commandLine.getArgs().length > 0)
 					inputFile = commandLine.getArgs()[0];
 			}
+			if (commandLine.hasOption("debug")) {
+				Logger._debug = true;
+			}
 		}
 		catch (ParseException exception)
 		{
@@ -115,9 +119,11 @@ public class Whc {
 
 		if(inputFile != null && !inputFile.isEmpty() && whf.exists()) {
 			//Génération du code 3A
+			System.out.println("Generate 3@ code");
 			gen3A.generate(inputFile, tab3A);
 
 			//Génération du code CPP à partir du code 3A
+			System.out.println("Generate Cpp code");
 			String toWrite = genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList(), gen3A.getErrors());
 
 			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
@@ -129,7 +135,7 @@ public class Whc {
 			}
 
 			//Compilation du code CPP
-			System.out.println("Now, you can run : g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
+			System.out.println("Now, you can run : /bin/g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
 		}
 	}
 }
