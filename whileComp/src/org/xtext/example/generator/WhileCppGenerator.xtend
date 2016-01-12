@@ -19,7 +19,7 @@ class WhileCppGenerator implements IGenerator {
   	@Inject ThreeAddGenerator ThreeAddGen
 
   override void doGenerate(Resource input, IFileSystemAccess fsa) {
-    //PrettyGen.doGenerate(input, fsa)
+    PrettyGen.doGenerate(input, fsa)
     ThreeAddGen.doGenerate(input, fsa)
 	}
 }
