@@ -258,41 +258,49 @@ class ThreeAddGenerator implements IGenerator {
 			var total = pile.size
 			var cpt = 0;
 			var listVars = new ArrayList<String>()
+			
 			for(varToAffect : c.vars.varGen)
 			{
 				val temp = pile.head;
-				pile.remove(0);
-				try{
-					compile(temp, f, l)
-					var finalResult = ""
-					if(l == null)
-					{
-						finalResult = f.m_quadList.last.result
-					}
-					else
-					{
-						finalResult = l.code.last.result
-					}
-					listVars.add(finalResult.toString)
+				if(temp == null)
+				{
+					listVars.add(listVars.get(0))
 				}
-				catch(Exception e){
-					System.out.println("Error");
+				else
+				{
+					pile.remove(0);
+					try{
+						compile(temp, f, l)
+						var finalResult = ""
+						if(l == null)
+						{
+							finalResult = f.m_quadList.last.result
+						}
+						else
+						{
+							finalResult = l.code.last.result
+						}
+						listVars.add(finalResult.toString)
+					}
+					catch(Exception e){
+						System.out.println("Error");
+					}
+					cpt++	
 				}
+			}
+			if(cpt != total && cpt != 1)
+			{
+				errors.add("Erreur, pile incorrecte lors d'une multi affectation")
 			}
 			var i = 0
 			for(varToAffect : c.vars.varGen)
 			{
 				val finalResult = listVars.get(i)
-				i += 1
+				if(cpt > 1)	i += 1
 				var toAffect = getVari(varToAffect)
 					f.addQuad(new Quadruplet(new CodeOp(CodeOp.OP_AFF),toAffect,finalResult.toString,"_")); 
 				
 				Logger.PRINT("[DBG]f += <:=, " + toAffect + "," + finalResult.toString + ", _>\n");
-				cpt++;
-			}
-			if(cpt != total)
-			{
-				errors.add("Erreur, pile incorrecte lors d'une multi affectation")
 			}
 		}
 	}
