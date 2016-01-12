@@ -1,0 +1,8 @@
+function  foo:
+read  X
+%
+while X do
+nop
+od
+%
+write X
