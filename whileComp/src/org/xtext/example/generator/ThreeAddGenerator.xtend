@@ -465,6 +465,8 @@ class ThreeAddGenerator implements IGenerator {
 	 				variable += ","
 	 		}
 	 		val quadruplet = new Quadruplet(new CodeOp(CodeOp.OP_CALL), variable, funName, paramsFun)
+	 		if(funName == null)
+	 			errors.add("Erreur, fonction non définie : " + ex.nomSymb)
 	 		if(l == null)
 	 		{
 	 			f.addQuad(quadruplet)
