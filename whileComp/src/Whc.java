@@ -126,16 +126,19 @@ public class Whc {
 			System.out.println("Generate Cpp code");
 			String toWrite = genCpp.generateCPP(gen3A.dico(), gen3A.funNameTranslation(), gen3A.labelList(), gen3A.getErrors());
 
-			try (Writer writer = new BufferedWriter(new OutputStreamWriter(
-					new FileOutputStream(outFile), "utf-8"))) {
-				writer.write(toWrite);
-			} catch (IOException e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
+			if(toWrite != "")
+			{
+				try (Writer writer = new BufferedWriter(new OutputStreamWriter(
+						new FileOutputStream(outFile), "utf-8"))) {
+					writer.write(toWrite);
+				} catch (IOException e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 
-			//Compilation du code CPP
-			System.out.println("Now, you can run : /bin/g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
+				//Compilation du code CPP
+				System.out.println("Now, you can run : /bin/g++ BinTree.* " + outFile + " -std=c++11 -o " + outFile.substring(0, outFile.length() - ".cpp".length()));
+			}
 		}
 	}
 }
