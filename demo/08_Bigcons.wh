@@ -1,6 +1,6 @@
 function  foo:
 read  X
 %
-nop
+X := (cons A B C D E F)
 %
 write X

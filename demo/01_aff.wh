@@ -1,0 +1,6 @@
+function Aff:
+read A
+%
+A := nil
+%
+write A

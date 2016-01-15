@@ -1,0 +1,6 @@
+function f:
+read X
+%
+Y := nil
+%
+write X
