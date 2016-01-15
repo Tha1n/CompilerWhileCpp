@@ -1,43 +1,80 @@
-# NAME
-  whpp - pretty print while programs
+# WhileToCpp
 
-# SYNOPSIS
-  java -jar __whpp.jar__ `[OPTION]`...
+Cette archive contient un compilateur de __WHILE__ vers __CPP__. Il a été réalisé par _Sébastien Blin, Pierre-Henri Collin, Kevin Ledy, Alexandre Quettier, Benjamin Vion_.
 
-# DESCRIPTION
-  Transform a ugly indented while program into a beautiful indented while program.
+# Dépendances
 
-## Options
-  `-all`,  
-    give the default indentation length for __all__ structures
+Afin de pleinement utiliser notre compilateur vous aurez besoin de :
 
-  `-if`,  
-    give the default indentation length for the __if__ structure
++ Un environnement __Java__ fonctionnel.
++ Un compilateur __c++__ (_g++_ de préférence)
 
-  `-foreach`,  
-    give the default indentation length for the __foreach__ structure
+# Utilisation
 
-  `-while`,  
-    give the default indentation length for the __while__ structure
+Dans le dossier _bin_:
+`java -jar whc.jar INPUT.wh`
 
-  `-i`,  
-    the input file which contains a while program to indent
+De plus les options `-o` (pour préciser un fichier de sortie) et `-debug` (afin de voir ce que fait plus précisément le compilateur)
 
-  `-o`,  
-    the output file which will contains the indented while program
+# Exemple
 
-  `-page`,  
-    the maximum width of a program (Not implemented yet)
+```cpp
+[AmarOk@TARSI ~/Projets/ESIR/COMP/ProjetCompilation/bin]java -jar whc.jar ../demo/swap.wh -debug
+Generate 3@ code
+[DBG]f += v_2 := v_1
 
-## Exit status
-  If the `-o` option is not used, whpp print the pretty indented program.   If the `-o` option is used, whpp create a file defined by the option and print the indented program into this file.  
-  If the `-i` option is not used, whpp doesn't print anything.
+[DBG]f += v_3 := v_0
 
-## Known bugs
-  None
+[DBG]f += <:=, v_0,v_2, _>
 
-# Authors
-  Written by Sébastien Blin, Pierre-Henri Collin, Kevin Ledy, Alexandre Quettier, Benjamin Vion
+[DBG]f += <:=, v_1,v_3, _>
 
-# Reporting Bugs
-  You can open an issue at : [https://github.com/Tha1n/ProjetCompilation](https://github.com/Tha1n/ProjetCompilation)
+Generate Cpp code
+#include "BinTree.h"
+#include <iostream>
+#include <vector>
+
+std::vector<BinTree> f0(std::vector<BinTree> args)
+{
+	//Read
+BinTree v_0 = args.size() < 0? BinTree() : args.at(0);
+BinTree v_1 = args.size() < 1? BinTree() : args.at(1);
+//Instructions
+//<AFF, v_2, v_1,_>
+BinTree v_2 = v_1;
+
+//<AFF, v_3, v_0,_>
+BinTree v_3 = v_0;
+
+//<AFF, v_0, v_2,_>
+v_0 = v_2;
+
+//<AFF, v_1, v_3,_>
+v_1 = v_3;
+
+
+//write
+std::vector<BinTree> retour;
+retour.push_back(v_0);
+retour.push_back(v_1);
+return retour;
+}
+
+
+int main(int argc, char *argv[]) {
+std::vector<BinTree> entry;
+argc > 1? entry.push_back(BinTree(argv[1])) : entry.push_back(BinTree());
+argc > 2? entry.push_back(BinTree(argv[2])) : entry.push_back(BinTree());
+
+std::vector<BinTree> result = f0(entry);
+	for(auto bT : result)
+		std::cout << bT << std::endl;
+	return 0;
+}
+
+Now, you can run : /bin/g++ BinTree.* default.cpp -std=c++11 -o default
+```
+
+# Exemples
+
+Vous pouvez touver des exemples de code __WHILE__ dans _demo/_
