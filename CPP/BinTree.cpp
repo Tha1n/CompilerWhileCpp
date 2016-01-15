@@ -17,8 +17,8 @@ BinTree::BinTree (const BinTree & bt)
 BinTree::BinTree(std::string node)
 {
     _node = new std::string(node);
-    _left = nullptr;
-    _right = nullptr;
+    _left = new BinTree();
+    _right = new BinTree();
 }
 
 BinTree::~BinTree()

@@ -1,4 +1,4 @@
-function  foo:
+function foo:
 read  X,Y
 %
 X,Y := Y,X

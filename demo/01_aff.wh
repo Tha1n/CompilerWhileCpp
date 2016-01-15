@@ -1,4 +1,4 @@
-function Aff:
+function aff:
 read A
 %
 A := nil
