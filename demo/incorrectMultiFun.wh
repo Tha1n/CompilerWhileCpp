@@ -1,0 +1,13 @@
+function foo:
+read X
+%
+nop
+%
+write X
+
+function foo:
+read X
+%
+nop
+%
+write X

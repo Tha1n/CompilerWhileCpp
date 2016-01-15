@@ -1,0 +1,6 @@
+function foo:
+read X
+%
+X := (bar X)
+%
+write X

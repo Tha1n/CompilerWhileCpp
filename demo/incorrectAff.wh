@@ -1,0 +1,6 @@
+function incorrectAff:
+read A,B
+%
+X,Y,Z:=A,B
+%
+write X,Y,Z
