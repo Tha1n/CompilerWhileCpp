@@ -1,0 +1,12 @@
+function h :
+read X
+%
+while x do
+  while y do
+    while z do
+      nop
+    od
+  od
+od
+%
+write X
