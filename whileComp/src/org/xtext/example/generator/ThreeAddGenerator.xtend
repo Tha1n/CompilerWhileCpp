@@ -531,7 +531,23 @@ class ThreeAddGenerator implements IGenerator {
 
 	def compile (ExprAnd ex, Fonction f, Label l)
   //TODO
-	'''«ex.exprOr.compile(f, l)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f, l)»«ENDIF»'''
+	'''« if (exprAnd == null) {
+        val lb = generateLabel()
+        ex.exprOr.compile(f, lb)
+      }
+      else {
+        val lb = generateLabel()
+        val quad = new Quadruplet(new CodeOp(CodeOp.OP_AND), lb, "_", "_")
+
+        if (l == null)
+          f.addQuad(quad)
+        else
+          l.add(quad)
+
+        ex.exprOr.compile(f, lb)
+        ex.exprAndAtt.compile(f, lb)
+      }»
+      «ex.exprOr.compile(f, l)»«IF ex.exprAnd!=null»«ex.exprAndAtt.compile(f, l)»«ENDIF»'''
 
 	def compile (ExprOr ex, Fonction f, Label l)
 	'''« if (exprOr == null) {
@@ -547,6 +563,7 @@ class ThreeAddGenerator implements IGenerator {
         else
           l.add(quad)
 
+        ex.exprNot.compile(f, lb)
         ex.exprOrAtt.compile(f, lb)
       }»'''
 
