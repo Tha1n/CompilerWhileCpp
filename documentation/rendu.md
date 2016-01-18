@@ -59,42 +59,39 @@ Ce projet est découpé en 2 parties distinctes. La première, la plus grosse es
 + _whileComp/src/_ contient les interfaces d'entrées, c'est-à-dire _whpp.java_ pour le pretty printer et _whc.java_ pour le compilateur
 + _whileComp/src/org/xtext/example_ contient le fichier de définition de la grammaire
 + _whileComp/src/org/xtext/generator_ contient les générateurs comme le PrettyPrinter, le générateur de code 3 adresses (_ThreeAddGenerator.xtend_) et le générateur de code C++ (_CppGenerator.xtend_) ainsi que le fichier appellé lors de la sauvegarde d'un fichier sur une instance Eclipse (_WhileCppGenerator.xtend_).
-+ _whileComp/src/SymbolTable_ contient nos classes utiles pour la génération et les tests.
++ _whileComp/src/SymbolTable_ contient nos classes utiles pour la génération et les tests (telles que la table des symboles, la représentation d'une fonction, etc.).
 + _whileComp.tests/src/_ contient nos tests unitaires du PrettyPrinter, de la table des symboles et du ThreeAddGenerator (Nos tests seront développés plus loin).
 
-La seconde partie contient le code servant lors de l'éxécution d'un programme __WHILE__, c'est-à-dire la __libWh__. Cette bibliothèque est présente dans le dossier _CPP_ et contient le fichier _BinTree.h_ et _BinTree.cpp_. Cette bibliothèque peut-être liée de 2 façons à notre programme __WHILE__. Soit en la donnant comme bibliothèque à g++, soit comme fichier du projet. Nous avons opté pour la seconde méthode. Ainsi nous avons juste à appeller `g++ -o test BinTree.* FICHIERWHILETRADUIT.cpp -std=c++11` notre fichier traduit incluant cette bibliothèque (`#include "BinTree.h"`)
+La seconde partie contient le code servant lors de l'exécution d'un programme __WHILE__, c'est-à-dire la __libWh__. Cette bibliothèque est présente dans le dossier _CPP_ et contient le fichier _BinTree.h_ et _BinTree.cpp_. Cette bibliothèque peut-être liée de 2 façons à notre programme __WHILE__. Soit en la donnant comme bibliothèque à g++, soit comme fichier du projet. Nous avons opté pour la seconde méthode. Ainsi nous avons juste à appeler `g++ -o test BinTree.* FICHIERWHILETRADUIT.cpp -std=c++11` notre fichier traduit incluant cette bibliothèque (`#include "BinTree.h"`)
 
 Pour récapituler :
 
-1. Nous appellons notre programme via `java -jar whc.jar FICHIER.wh -o FICHIER.cpp`
+1. Nous appelons notre programme via `java -jar whc.jar FICHIER.wh -o FICHIER.cpp`
 2. La classe _Whc_ récupère le contenu du fichier d'entrée et le donne à traiter au _ThreeAddGenerator_
-3. Ce générateur va alors vérifier que le fichier est correct et générer le code 3 adresses du code __WHILE__. Il redonne alors à la classe _Whc_ une liste de Fonctions (un objet fonction contenant la table des symboles, et une liste de quadruplet), une map entre les noms de fonctions du code __WHILE__ et leurs équivalents __Cpp__, la liste des labels créés (contenant des quadruplets) et les erreurs trouvées dans le fichier __WHILE__.
+3. Ce générateur va alors vérifier que le fichier est correct et générer le code 3 adresses du code __WHILE__. Il redonne alors à la classe _Whc_ une liste de Fonctions (un objet fonction contenant la table des symboles et une liste de quadruplet), une map entre les noms de fonctions du code __WHILE__ et leurs équivalents __Cpp__, la liste des labels créés (contenant des quadruplets) et les erreurs trouvées dans le fichier __WHILE__.
 4. La classe _Whc_ passe alors ces résultats à la classe _CppGenerator_. Ce générateur va alors traduire les quadruplets générés en code __Cpp__, inclure les bonnes bibliothèques, générer la fonction main et retourner le code généré
-5. Enfin la classe _Whc_ écrit le code généré dans le fichier de sortie et compile avec g++
+5. Enfin la classe _Whc_ écrit le code généré dans le fichier de sortie et compile avec `g++`
 
 
 # Les outils de productivité
 
 ## Git
 
-Pour gérer les différentes versions du Compilateur, nous avons utilisé l'outil __Git__.
+Pour gérer les différentes versions du compilateur, nous avons utilisé l'outil __Git__.
 Ainsi nous avions accès à la fois à la documentation et aux sources du projet.
 Mais ce qui nous intéressait particulièrement était les _Issues_ qui permettent de créer des posts où l'on peut débattre sur un sujet, parler de bugs, etc.
 
 Nous nous en sommes donc servis en faisant différents types d'issues :
 
 - ToDoList : pour énumérer les tâches à faire et qui prenait quoi
-
 - Comptes-Rendus-Réunions : prises de notes ou commentaires émisdurant les réunions d'avancement du projet, qui nous permettaient après coup de revenir dessus
-
 - Des exemples de traduction de WHILE vers C++ pour toujours savoir vers où nousallions. Nous avons essayé de couvrir le maximum de cas
+-  Autres : ces issues étaient plutôt temporaires car le débat portait soit sur la grammaire au départ du projet, soit d'un problème technique, d'une manière de concevoir, etc
 
-- Autres : ces issues étaient plutôt temporaires car le débat portait soit sur la grammaire au départ du projet, soit d'un problème technique, d'une manière de concevoir, etc
-
-D'ailleurs __Git__ nous a aussi aidé dans le versionnage car plusieurs bugs ont pu être débusqués et réparés en regardant les différences entre deux versions.
+D'ailleurs __Git__ nous a aussi aidé dans le versionnage, car plusieurs bugs ont pu être débusqués et réparés en regardant les différences entre deux versions.
 Par conséquent, __Git__ a été un outil très important afin de mener à bien ce projet, tant sur l'aspect programmation que conception ou débats et questions.
 
-Par contre, il y a de nombreuses fonctions utiles de __GIt__ que nous n'avons pas utilisé comme donner des noms de versions, ou le développement sur plusieurs branches (ce qui aurait été plus logique). Enfin on aurait modifié la gestion des TODO List en les écrivant plus précisément depuis le début, ça nous aurait évité d'oublier des trucs commes `=?` ou not.
+Par contre, il y a de nombreuses fonctions utiles de __GIt__ que nous n'avons pas utilisé comme donner des noms de versions, ou le développement sur plusieurs branches (ce qui aurait été plus logique). Enfin on aurait modifié la gestion des TODO List en les écrivant plus précisément depuis le début, ça nous aurait évité d'oublier des trucs comme `=?` ou `not`.
 
 ## Validation du projet
 
@@ -109,7 +106,7 @@ Notre stratégie de tests s'articule autour de 4 grandes parties qui suivent l'a
 
 Le second fichier de test a pour mission de vérifier le bon fonctionnement de la table de symbole.
 
-Le troisième fichier de test a pour but de tester le passage du code while au code 3 adresses :
+Le troisième fichier de test a pour but de tester le passage du code __While__ au code 3 adresses :
 
 Pour ce qui est du passage du code 3 adresses au code __C++__, nous n'avons pas réalisé de fichier de test. Nous avons testé _à la main_ que la traduction se réalise correctement.
-Pour cela, nous avons créé un répertoire (demo) qui contient un ensemble de fichiers __While__ avec des fonctions simples et d'autres plus compliqués, puis après avoir lancé le générateur de code __C++__, on compare le résultat avec la spécification que nous avons défini dans le schéma de traduction.
+Pour cela, nous avons créé un répertoire (_demo_) qui contient un ensemble de fichiers __While__ avec des fonctions simples et d'autres plus compliqués, puis après avoir lancé le générateur de code __C++__, on compare le résultat avec la spécification que nous avons défini dans le schéma de traduction.
