@@ -8,15 +8,15 @@ Ce rapport décrit comment nous avons choisi d'implémenter la traduction du lan
 
 # Schéma de traduction
 
-Dans notre projet, nous visions donc la conversion du langage __While__ vers le langage __C++__. Pour parvenir à cette conversion, nous avons du établir très tôt une liste des correspondances entre les structures __While__ et les les composants que nous offre le __C++__. Toutefois, avant cette transcription, il a été nécessaire de passer du code __While__ vers du code 3 adresses afin de simplifier la tâche.
+Dans notre projet, nous visions donc la conversion du langage __While__ vers le langage __C++__. Pour parvenir à cette conversion, nous avons du établir très tôt une liste des correspondances entre les structures __While__ et les composants que nous offre le __C++__. Toutefois, avant cette transcription, il a été nécessaire de passer du code __While__ vers du code 3 adresses afin de simplifier la tâche.
 
 ## Correspondance While --> C++
 ### Structure de données
-Comme nous le savons, en __While__, il n'existe qu'un seul type de structure de données. Cette structure est un arbre binaire. Il a donc été décidé dès le départ que nous représenterions cette structure de données par une classe __C++__ _BinTree_. Cette classe va donc regrouper toutes les méthodes nécessaire à l'exécution d'un code __While__. On trouve ainsi des méthodes permettant de tester si le _BinTree_ est à _nil_, si c'est un symbole ou encore une variable. On trouve également des méthodes d'accès sur les attributs de la classe et qui permettent donc d'accéder aux attributs _head_ et _tail_.
+Comme nous le savons, en __While__, il n'existe qu'un seul type de structure de données. Cette structure est un arbre binaire. Il a donc été décidé dès le départ que nous représenterions cette structure de données par une classe __C++__ _BinTree_. Cette classe va donc regrouper toutes les méthodes nécessaires à l'exécution d'un code __While__. On trouve ainsi des méthodes permettant de tester si le _BinTree_ est à _nil_, si c'est un symbole ou encore une variable. On trouve également des méthodes d'accès sur les attributs de la classe et qui permettent donc d'accéder aux attributs _head_ et _tail_.
 En revanche, on trouve dans cette classe _BinTree_ une méthode qui correspond à une commande de __While__, la méthode _cons_. Cette méthode va donc prendre 2 _BinTree_ pour n'en former qu'un (les deux _BinTree_ en entrée devenant les _head_ et _tail_ du nouvel arbre). Cette méthode ainsi que les précédentes sont déclarés en _static_ en __C++__, pour que ces méthodes soient utilisables sans instancier un seul objet puisqu'elles caractérisent un _BinTree_ en général et non un objet.
 
 ### Structures de contrôle
-Pour ces traductions, nous reprenons simplement les structures existantes en __C++__. Un _if_ __While__ est donc traduit vers un _if_ __C++__. En utilisant les méthodes permettant de tester des conditions (_isNil_ notamment), on exécute la boucle le nombre de fois nécessaires.
+Pour ces traductions, nous reprenons simplement les structures existantes en __C++__. Un _if_ __While__ est donc traduit vers un _if_ __C++__. En utilisant les méthodes permettant de tester des conditions (_isNil_ notamment), on exécute la boucle le nombre de fois nécessaire.
 
 ## Code 3A
 Avant de procéder à la génération du __C++__, nous avons réalisé une transcription du __While__ en code 3 adresses. Nous présentons dans la suite de ce document le code 3 adresses que nous avons choisi pour nos structures.
@@ -41,14 +41,14 @@ foreach elem in ensemb do cmds od | < FOREACH l\_0, \_, elem, ensemb >
 
 ### Justifications des codes 3 adresses
 
-Le code 3 adresses que nous avons choisi est un code que nous avons voulu simple et efficace. Pour les instructions simples comme les affectations, le _nop_, les tests d'égalités, nous avons repris le code 3 adresses que M. Ridoux nous avaient montrés en cours de compilation.
+Le code 3 adresses que nous avons choisi est un code que nous avons voulu simple et efficace. Pour les instructions simples comme les affectations, le _nop_, les tests d'égalités, nous avons repris le code 3 adresses que _M. Ridoux_ nous a montré en cours de compilation.
 
 Justification des codes 3 adresses :
 
 + __< CONS, v\_1, B, C > < CONS, v\_6, A, v\_1 > < :=, X, v\_6, \_ >__ : Cette représentation découle des choix précédents pour notre pretty printer ou nous avions limiter un cons à seulement 2 opérandes. Il fallait donc automatiquement remplacer `cons A B C` par `cons A (cons B C)`. De la même façon, ici nous isolons des paires de variables pour faciliter la génération de code.
 + __< CALL, X, foo, Y >__ : Dans cette représentation, nous isolons en premier, les variables où l'on va stocker le résultat de la méthode (ici X) et en second les variables qui sont passées en paramètres (ici Y).
-+ __< IF l\_0 l\_1, \_, cond, \_ >__ : Les labels _l\_0_ et _l\_1_ contiendront respectivement le code du _Then_ et le code du _Else_. Ils seront exécutés suivant l'évaluation de la condition _cond_
-+ __< WHILE l\_0, \_, cond, \_ >__ : Exactement le même principe que pour le _if_, l'évaluation de la condition conditionne l'exécution du code situé au label _l\_0_. Le code 3 adresses du _while_ est également utilisé pour représenter un _for_ par commodité.
++ __< IF l\_0 l\_1, \_, cond, \_ >__ : Les labels l\_0 et l\_1 contiendront respectivement le code du _Then_ et le code du _Else_. Ils seront exécutés suivant l'évaluation de la condition _cond_
++ __< WHILE l\_0, \_, cond, \_ >__ : Exactement le même principe que pour le _if_, l'évaluation de la condition conditionne l'exécution du code situé au label l\_0. Le code 3 adresses du _while_ est également utilisé pour représenter un _for_ par commodité.
 + __< FOREACH l\_0, \_, elem, ensemb >__ : Ici encore, la même utilisation des labels est faite tant qu'on garantie l'évaluation de la condition.
 
 
