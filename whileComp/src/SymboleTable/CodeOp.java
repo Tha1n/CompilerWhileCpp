@@ -10,6 +10,10 @@ public class CodeOp {
 	public final static int OP_HD = 6;
 	public final static int OP_TL = 7;
 	public final static int OP_CALL = 8;
+	public final static int OP_AND = 9;
+	public final static int OP_OR = 10;
+	public final static int OP_NOT = 11;
+	public final static int OP_EQ = 12;
 
 
 	private int op;
@@ -71,7 +75,7 @@ public class CodeOp {
 	public void setOptLabel2(String optLabel2) {
 		this.optLabel2 = optLabel2;
 	}
-	
+
 	public String toString()
 	{
 		String opToString;
@@ -102,6 +106,18 @@ public class CodeOp {
 			break;
 		case 8:
 			opToString =  "call";
+			break;
+		case 9:
+			opToString = "and";
+			break;
+		case 10:
+			opToString = "or";
+			break;
+		case 11:
+			opToString = "not";
+			break;
+		case 12:
+			opToString = "eq";
 			break;
 		default:
 			opToString = "Undefined";
