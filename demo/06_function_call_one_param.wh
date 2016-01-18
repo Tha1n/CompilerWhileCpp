@@ -1,13 +1,13 @@
-function  foo2:
-read  X
+function swap:
+read X, Y
 %
-nop
+X,Y:=Y,X
 %
-write X
+write X, Y
 
-function  foo:
-read  X
+function foo:
+read X, Y
 %
-X := (foo2 X)
+X,Y := (swap X Y)
 %
-write X
+write X, Y

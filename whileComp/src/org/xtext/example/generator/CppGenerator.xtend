@@ -13,6 +13,7 @@ class CppGenerator {
 	private var _previousFunctions = new ArrayList<String>(); 
 	private var _previousVar = new ArrayList<String>();
 	private ArrayList<Label> m_labelList;
+	private var _cptRes = 0;
 	
 	def public String generateCPP(FunDictionary funcs, HashMap<String, String> funNameTranslation, ArrayList<Label> labelList, ArrayList<String> errors)
 	{
@@ -244,14 +245,23 @@ for (auto const ''' + quadruplet.arg1 + ''': ''' + quadruplet.arg2 + ''') {
 				case CodeOp.OP_CALL : {
 					var toAff = quadruplet.result
 					var variables = toAff.split(",")
+					var toGive = quadruplet.arg2.split(",")
 					cpp +=  '''//<CALL, ''' + quadruplet.result + ''', ''' + quadruplet.arg1.toString + ''',''' + quadruplet.arg2.toString + '''>
+std::vector<BinTree> t''' + _cptRes + ''';
 '''
+					for(var v = 0; v < toGive.size; v+=1)
+					{
+						cpp += "t" + _cptRes + ".push_back(" + toGive.get(v) + ");\n"
+					}
+					cpp += '''
+std::vector<BinTree> r''' + _cptRes + " = " + quadruplet.arg1 + "(t" + _cptRes + ");\n"
 					for(var v = 0; v < variables.size; v+=1)
 					{
 						val variableToWrite = variables.get(v)
 						_previousVar.add(variableToWrite)
-						cpp += "BinTree " + variableToWrite + " = " + quadruplet.arg1 + "(" + quadruplet.arg2 + ").at(" + v +");\n"
+						cpp += "BinTree " + variableToWrite + " = r" + _cptRes + ".at(" + v +");\n"
 					}
+					_cptRes++
 				}
 				default: {
 					

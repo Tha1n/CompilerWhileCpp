@@ -1,6 +1,10 @@
 function f:
 read X
 %
+if X then
 Y := nil
+else
+Y := (cons nil nil)
+fi
 %
-write X
+write Y

@@ -1,6 +1,11 @@
 function  foo:
-read  X
+read X,Y
 %
-X := (cons A B C D E F)
+X:=(tl X) ;
+Y:=(cons nil Y);
+while X do
+X:=(tl X) ;
+Y:=(cons nil Y)
+od
 %
-write X
+write Y
