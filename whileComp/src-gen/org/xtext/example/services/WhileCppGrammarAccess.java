@@ -23,6 +23,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cFonctionsAssignment = (Assignment)rule.eContents().get(1);
 		private final RuleCall cFonctionsFunctionParserRuleCall_0 = (RuleCall)cFonctionsAssignment.eContents().get(0);
 		
+		////Programme
 		//Program:
 		//	fonctions+=Function*;
 		@Override public ParserRule getRule() { return rule; }
@@ -44,6 +45,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cDefinitionAssignment_3 = (Assignment)cGroup.eContents().get(3);
 		private final RuleCall cDefinitionDefinitionParserRuleCall_3_0 = (RuleCall)cDefinitionAssignment_3.eContents().get(0);
 		
+		////Fonction
 		//Function:
 		//	"function" nom=SYMBOL ":" definition=Definition;
 		@Override public ParserRule getRule() { return rule; }
@@ -84,6 +86,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cOutputsAssignment_6 = (Assignment)cGroup.eContents().get(6);
 		private final RuleCall cOutputsOutputParserRuleCall_6_0 = (RuleCall)cOutputsAssignment_6.eContents().get(0);
 		
+		////Définition de fonction
 		//Definition:
 		//	"read" inputs=Input "%" commandes=Commands "%" "write" outputs=Output;
 		@Override public ParserRule getRule() { return rule; }
@@ -132,7 +135,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cVarInAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cVarInVARIABLETerminalRuleCall_1_0 = (RuleCall)cVarInAssignment_1.eContents().get(0);
 		
-		////varIn = variables Entrée
+		////Input de la fonction
 		//Input:
 		//	(varIn+=VARIABLE ",")* varIn+=VARIABLE;
 		@Override public ParserRule getRule() { return rule; }
@@ -169,7 +172,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cVarOutAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cVarOutVARIABLETerminalRuleCall_1_0 = (RuleCall)cVarOutAssignment_1.eContents().get(0);
 		
-		////Permet de reconnaitre des chaines de la forme var1,var2 ou var
+		////Output de la fonction
 		////varOut = variables Sorties
 		//Output:
 		//	(varOut+=VARIABLE ",")* varOut+=VARIABLE;
@@ -207,6 +210,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cVarGenAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cVarGenVARIABLETerminalRuleCall_1_0 = (RuleCall)cVarGenAssignment_1.eContents().get(0);
 		
+		////Variables
 		////varGen = variables générales
 		//Vars:
 		//	(varGen+=VARIABLE ",")* varGen+=VARIABLE;
@@ -245,7 +249,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCommandeAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cCommandeCommandParserRuleCall_1_0 = (RuleCall)cCommandeAssignment_1.eContents().get(0);
 		
-		////Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
+		////Commandes
 		//Commands:
 		//	=> (commande+=Command ";")* commande+=Command;
 		@Override public ParserRule getRule() { return rule; }
@@ -293,8 +297,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cCmdForEachAssignment_4 = (Assignment)cAlternatives.eContents().get(4);
 		private final RuleCall cCmdForEachCommandForEachParserRuleCall_4_0 = (RuleCall)cCmdForEachAssignment_4.eContents().get(0);
 		
-		////Permet de reconnaitre des chaines de la forme c1;c2
-		////Les differentes commandes
+		////Les commandes dans cet ordre: nop; Affectation; While; If; ForEach
 		//Command:
 		//	nop="nop" | vars=Vars ":=" exprs=Exprs | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach;
 		@Override public ParserRule getRule() { return rule; }
@@ -516,6 +519,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExpGenAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExpGenExprParserRuleCall_1_0 = (RuleCall)cExpGenAssignment_1.eContents().get(0);
 		
+		////Expression
 		//Exprs:
 		//	=> (expGen+=Expr ",")* expGen+=Expr;
 		@Override public ParserRule getRule() { return rule; }
@@ -615,15 +619,16 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSymbAttExprParserRuleCall_4_2_0 = (RuleCall)cSymbAttAssignment_4_2.eContents().get(0);
 		private final Keyword cRightParenthesisKeyword_4_3 = (Keyword)cGroup_4.eContents().get(3);
 		
+		////Expression simple dans cet ordre: nil; variable; symbole;
 		//ExprSimple:
 		//	(nil="nil" | vari=VARIABLE | symb=SYMBOL) // '(' (exprList = List)')' |
 		//	| "(" exprCons=Cons ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl" exprTailAtt=Expr ")" | "("
-		//	nomSymb=SYMBOL symbAtt=Expr ")";
+		//	nomSymb=SYMBOL symbAtt+=Expr+ ")";
 		@Override public ParserRule getRule() { return rule; }
 
 		//(nil="nil" | vari=VARIABLE | symb=SYMBOL) // '(' (exprList = List)')' |
 		//| "(" exprCons=Cons ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl" exprTailAtt=Expr ")" | "("
-		//nomSymb=SYMBOL symbAtt=Expr ")"
+		//nomSymb=SYMBOL symbAtt+=Expr+ ")"
 		public Alternatives getAlternatives() { return cAlternatives; }
 
 		//nil="nil" | vari=VARIABLE | symb=SYMBOL
@@ -704,7 +709,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		//")"
 		public Keyword getRightParenthesisKeyword_3_3() { return cRightParenthesisKeyword_3_3; }
 
-		//"(" nomSymb=SYMBOL symbAtt=Expr ")"
+		//"(" nomSymb=SYMBOL symbAtt+=Expr+ ")"
 		public Group getGroup_4() { return cGroup_4; }
 
 		//"("
@@ -716,7 +721,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		//SYMBOL
 		public RuleCall getNomSymbSYMBOLTerminalRuleCall_4_1_0() { return cNomSymbSYMBOLTerminalRuleCall_4_1_0; }
 
-		//symbAtt=Expr
+		//symbAtt+=Expr+
 		public Assignment getSymbAttAssignment_4_2() { return cSymbAttAssignment_4_2; }
 
 		//Expr
@@ -737,6 +742,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExprAndAttAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cExprAndAttExprAndParserRuleCall_1_1_0 = (RuleCall)cExprAndAttAssignment_1_1.eContents().get(0);
 		
+		////Expression ET
 		//ExprAnd:
 		//	exprOr=ExprOr (exprAnd="and" exprAndAtt=ExprAnd)?;
 		@Override public ParserRule getRule() { return rule; }
@@ -777,6 +783,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExprOrAttAssignment_1_1 = (Assignment)cGroup_1.eContents().get(1);
 		private final RuleCall cExprOrAttExprOrParserRuleCall_1_1_0 = (RuleCall)cExprOrAttAssignment_1_1.eContents().get(0);
 		
+		////Expression OU
 		//ExprOr:
 		//	exprNot=ExprNot (exprOr="or" exprOrAtt=ExprOr)?;
 		@Override public ParserRule getRule() { return rule; }
@@ -814,6 +821,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExprEqAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprEqExprEqParserRuleCall_1_0 = (RuleCall)cExprEqAssignment_1.eContents().get(0);
 		
+		////Expression NOT
 		//ExprNot:
 		//	not="not"? exprEq=ExprEq;
 		@Override public ParserRule getRule() { return rule; }
@@ -849,6 +857,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExprSim2Assignment_1_2 = (Assignment)cGroup_1.eContents().get(2);
 		private final RuleCall cExprSim2ExprSimpleParserRuleCall_1_2_0 = (RuleCall)cExprSim2Assignment_1_2.eContents().get(0);
 		
+		////Expression d'égalité conditionnelle
 		//ExprEq:
 		//	"(" expr=Expr ")" | exprSim1=ExprSimple "=?" exprSim2=ExprSimple;
 		@Override public ParserRule getRule() { return rule; }
@@ -898,6 +907,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cExprConsAttListAssignment_1 = (Assignment)cGroup.eContents().get(1);
 		private final RuleCall cExprConsAttListExprParserRuleCall_1_0 = (RuleCall)cExprConsAttListAssignment_1.eContents().get(0);
 		
+		////Constructeur
 		//Cons:
 		//	exprCons="cons" exprConsAttList+=Expr+;
 		@Override public ParserRule getRule() { return rule; }
@@ -1002,6 +1012,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 	
+	////Programme
 	//Program:
 	//	fonctions+=Function*;
 	public ProgramElements getProgramAccess() {
@@ -1012,6 +1023,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getProgramAccess().getRule();
 	}
 
+	////Fonction
 	//Function:
 	//	"function" nom=SYMBOL ":" definition=Definition;
 	public FunctionElements getFunctionAccess() {
@@ -1022,6 +1034,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getFunctionAccess().getRule();
 	}
 
+	////Définition de fonction
 	//Definition:
 	//	"read" inputs=Input "%" commandes=Commands "%" "write" outputs=Output;
 	public DefinitionElements getDefinitionAccess() {
@@ -1032,7 +1045,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getDefinitionAccess().getRule();
 	}
 
-	////varIn = variables Entrée
+	////Input de la fonction
 	//Input:
 	//	(varIn+=VARIABLE ",")* varIn+=VARIABLE;
 	public InputElements getInputAccess() {
@@ -1043,7 +1056,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getInputAccess().getRule();
 	}
 
-	////Permet de reconnaitre des chaines de la forme var1,var2 ou var
+	////Output de la fonction
 	////varOut = variables Sorties
 	//Output:
 	//	(varOut+=VARIABLE ",")* varOut+=VARIABLE;
@@ -1055,6 +1068,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getOutputAccess().getRule();
 	}
 
+	////Variables
 	////varGen = variables générales
 	//Vars:
 	//	(varGen+=VARIABLE ",")* varGen+=VARIABLE;
@@ -1066,13 +1080,14 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getVarsAccess().getRule();
 	}
 
+	////Terminal représentant une seule variable
 	//terminal VARIABLE:
 	//	"A".."Z" ("A".."Z" | "a".."z" | "0".."9" | "->" | "-" | "+" | "&" | "." | "/" | "_")*;
 	public TerminalRule getVARIABLERule() {
 		return tVARIABLE;
 	} 
 
-	////Une variable commence par une majuscule et est suivi par une lettre, ou chiffre, ou _
+	////Commandes
 	//Commands:
 	//	=> (commande+=Command ";")* commande+=Command;
 	public CommandsElements getCommandsAccess() {
@@ -1083,8 +1098,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getCommandsAccess().getRule();
 	}
 
-	////Permet de reconnaitre des chaines de la forme c1;c2
-	////Les differentes commandes
+	////Les commandes dans cet ordre: nop; Affectation; While; If; ForEach
 	//Command:
 	//	nop="nop" | vars=Vars ":=" exprs=Exprs | cmdWhile=CommandWhile | cmdIf=CommandIf | cmdForEach=CommandForEach;
 	public CommandElements getCommandAccess() {
@@ -1125,6 +1139,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getCommandForEachAccess().getRule();
 	}
 
+	////Expression
 	//Exprs:
 	//	=> (expGen+=Expr ",")* expGen+=Expr;
 	public ExprsElements getExprsAccess() {
@@ -1146,10 +1161,11 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprAccess().getRule();
 	}
 
+	////Expression simple dans cet ordre: nil; variable; symbole;
 	//ExprSimple:
 	//	(nil="nil" | vari=VARIABLE | symb=SYMBOL) // '(' (exprList = List)')' |
 	//	| "(" exprCons=Cons ")" | "(" exprHead="hd" exprHeadAtt=Expr ")" | "(" exprTail="tl" exprTailAtt=Expr ")" | "("
-	//	nomSymb=SYMBOL symbAtt=Expr ")";
+	//	nomSymb=SYMBOL symbAtt+=Expr+ ")";
 	public ExprSimpleElements getExprSimpleAccess() {
 		return pExprSimple;
 	}
@@ -1158,6 +1174,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprSimpleAccess().getRule();
 	}
 
+	////Expression ET
 	//ExprAnd:
 	//	exprOr=ExprOr (exprAnd="and" exprAndAtt=ExprAnd)?;
 	public ExprAndElements getExprAndAccess() {
@@ -1168,6 +1185,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprAndAccess().getRule();
 	}
 
+	////Expression OU
 	//ExprOr:
 	//	exprNot=ExprNot (exprOr="or" exprOrAtt=ExprOr)?;
 	public ExprOrElements getExprOrAccess() {
@@ -1178,6 +1196,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprOrAccess().getRule();
 	}
 
+	////Expression NOT
 	//ExprNot:
 	//	not="not"? exprEq=ExprEq;
 	public ExprNotElements getExprNotAccess() {
@@ -1188,6 +1207,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprNotAccess().getRule();
 	}
 
+	////Expression d'égalité conditionnelle
 	//ExprEq:
 	//	"(" expr=Expr ")" | exprSim1=ExprSimple "=?" exprSim2=ExprSimple;
 	public ExprEqElements getExprEqAccess() {
@@ -1198,6 +1218,7 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getExprEqAccess().getRule();
 	}
 
+	////Constructeur
 	//Cons:
 	//	exprCons="cons" exprConsAttList+=Expr+;
 	public ConsElements getConsAccess() {
@@ -1208,18 +1229,16 @@ public class WhileCppGrammarAccess extends AbstractGrammarElementFinder {
 		return getConsAccess().getRule();
 	}
 
-	////Cons: (exprCons = 'cons') (exprConsAtt1 = Expr) (exprConsAttList = ConsAttList);
-	////ConsAttList: consList += Expr+;
 	////List: (exprList = 'list') (exprListAtt1 = Expr) (exprListAttList = ListAttList);
 	////ListAttList:listList += Expr;
+	////Terminal représentant un symbole
 	//terminal SYMBOL:
 	//	"a".."z" ("A".."Z" | "a".."z" | "0".."9" | "_" | "->" | "-" | "+" | "&" | "." | "/")*;
 	public TerminalRule getSYMBOLRule() {
 		return tSYMBOL;
 	} 
 
-	////Un symbole est compose d'une minuscule suivie de lettres, chiffres ou _
-	////Caracteres de separations
+	////Layout character
 	//terminal LC:
 	//	" "*;
 	public TerminalRule getLCRule() {

@@ -2224,16 +2224,6 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
             }
             else if ( (LA5_0==31) ) {
                 switch ( input.LA(2) ) {
-                case RULE_SYMBOL:
-                    {
-                    alt5=5;
-                    }
-                    break;
-                case 42:
-                    {
-                    alt5=2;
-                    }
-                    break;
                 case 37:
                     {
                     alt5=3;
@@ -2242,6 +2232,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
                 case 38:
                     {
                     alt5=4;
+                    }
+                    break;
+                case RULE_SYMBOL:
+                    {
+                    alt5=5;
+                    }
+                    break;
+                case 42:
+                    {
+                    alt5=2;
                     }
                     break;
                 default:
@@ -8773,25 +8773,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__Group_4__2__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2984:1: rule__ExprSimple__Group_4__2__Impl : ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2984:1: rule__ExprSimple__Group_4__2__Impl : ( ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) ( ( rule__ExprSimple__SymbAttAssignment_4_2 )* ) ) ;
     public final void rule__ExprSimple__Group_4__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2988:1: ( ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2989:1: ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2988:1: ( ( ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) ( ( rule__ExprSimple__SymbAttAssignment_4_2 )* ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2989:1: ( ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) ( ( rule__ExprSimple__SymbAttAssignment_4_2 )* ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2989:1: ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2990:1: ( rule__ExprSimple__SymbAttAssignment_4_2 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2989:1: ( ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) ( ( rule__ExprSimple__SymbAttAssignment_4_2 )* ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2990:1: ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) ) ( ( rule__ExprSimple__SymbAttAssignment_4_2 )* )
+            {
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2990:1: ( ( rule__ExprSimple__SymbAttAssignment_4_2 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2991:1: ( rule__ExprSimple__SymbAttAssignment_4_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2991:1: ( rule__ExprSimple__SymbAttAssignment_4_2 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2991:2: rule__ExprSimple__SymbAttAssignment_4_2
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2992:1: ( rule__ExprSimple__SymbAttAssignment_4_2 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2992:2: rule__ExprSimple__SymbAttAssignment_4_2
             {
-            pushFollow(FOLLOW_rule__ExprSimple__SymbAttAssignment_4_2_in_rule__ExprSimple__Group_4__2__Impl6010);
+            pushFollow(FOLLOW_rule__ExprSimple__SymbAttAssignment_4_2_in_rule__ExprSimple__Group_4__2__Impl6012);
             rule__ExprSimple__SymbAttAssignment_4_2();
 
             state._fsp--;
@@ -8802,6 +8805,50 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); 
             }
+
+            }
+
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2995:1: ( ( rule__ExprSimple__SymbAttAssignment_4_2 )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2996:1: ( rule__ExprSimple__SymbAttAssignment_4_2 )*
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); 
+            }
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2997:1: ( rule__ExprSimple__SymbAttAssignment_4_2 )*
+            loop14:
+            do {
+                int alt14=2;
+                int LA14_0 = input.LA(1);
+
+                if ( ((LA14_0>=RULE_SYMBOL && LA14_0<=RULE_VARIABLE)||LA14_0==31||LA14_0==36||LA14_0==41) ) {
+                    alt14=1;
+                }
+
+
+                switch (alt14) {
+            	case 1 :
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:2997:2: rule__ExprSimple__SymbAttAssignment_4_2
+            	    {
+            	    pushFollow(FOLLOW_rule__ExprSimple__SymbAttAssignment_4_2_in_rule__ExprSimple__Group_4__2__Impl6024);
+            	    rule__ExprSimple__SymbAttAssignment_4_2();
+
+            	    state._fsp--;
+            	    if (state.failed) return ;
+
+            	    }
+            	    break;
+
+            	default :
+            	    break loop14;
+                }
+            } while (true);
+
+            if ( state.backtracking==0 ) {
+               after(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); 
+            }
+
+            }
+
 
             }
 
@@ -8824,16 +8871,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__Group_4__3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3001:1: rule__ExprSimple__Group_4__3 : rule__ExprSimple__Group_4__3__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3008:1: rule__ExprSimple__Group_4__3 : rule__ExprSimple__Group_4__3__Impl ;
     public final void rule__ExprSimple__Group_4__3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3005:1: ( rule__ExprSimple__Group_4__3__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3006:2: rule__ExprSimple__Group_4__3__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3012:1: ( rule__ExprSimple__Group_4__3__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3013:2: rule__ExprSimple__Group_4__3__Impl
             {
-            pushFollow(FOLLOW_rule__ExprSimple__Group_4__3__Impl_in_rule__ExprSimple__Group_4__36040);
+            pushFollow(FOLLOW_rule__ExprSimple__Group_4__3__Impl_in_rule__ExprSimple__Group_4__36057);
             rule__ExprSimple__Group_4__3__Impl();
 
             state._fsp--;
@@ -8857,22 +8904,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__Group_4__3__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3012:1: rule__ExprSimple__Group_4__3__Impl : ( ')' ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3019:1: rule__ExprSimple__Group_4__3__Impl : ( ')' ) ;
     public final void rule__ExprSimple__Group_4__3__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3016:1: ( ( ')' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3017:1: ( ')' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3023:1: ( ( ')' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3024:1: ( ')' )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3017:1: ( ')' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3018:1: ')'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3024:1: ( ')' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3025:1: ')'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getRightParenthesisKeyword_4_3()); 
             }
-            match(input,32,FOLLOW_32_in_rule__ExprSimple__Group_4__3__Impl6068); if (state.failed) return ;
+            match(input,32,FOLLOW_32_in_rule__ExprSimple__Group_4__3__Impl6085); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getRightParenthesisKeyword_4_3()); 
             }
@@ -8898,21 +8945,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3039:1: rule__ExprAnd__Group__0 : rule__ExprAnd__Group__0__Impl rule__ExprAnd__Group__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3046:1: rule__ExprAnd__Group__0 : rule__ExprAnd__Group__0__Impl rule__ExprAnd__Group__1 ;
     public final void rule__ExprAnd__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3043:1: ( rule__ExprAnd__Group__0__Impl rule__ExprAnd__Group__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3044:2: rule__ExprAnd__Group__0__Impl rule__ExprAnd__Group__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3050:1: ( rule__ExprAnd__Group__0__Impl rule__ExprAnd__Group__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3051:2: rule__ExprAnd__Group__0__Impl rule__ExprAnd__Group__1
             {
-            pushFollow(FOLLOW_rule__ExprAnd__Group__0__Impl_in_rule__ExprAnd__Group__06107);
+            pushFollow(FOLLOW_rule__ExprAnd__Group__0__Impl_in_rule__ExprAnd__Group__06124);
             rule__ExprAnd__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprAnd__Group__1_in_rule__ExprAnd__Group__06110);
+            pushFollow(FOLLOW_rule__ExprAnd__Group__1_in_rule__ExprAnd__Group__06127);
             rule__ExprAnd__Group__1();
 
             state._fsp--;
@@ -8936,25 +8983,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3051:1: rule__ExprAnd__Group__0__Impl : ( ( rule__ExprAnd__ExprOrAssignment_0 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3058:1: rule__ExprAnd__Group__0__Impl : ( ( rule__ExprAnd__ExprOrAssignment_0 ) ) ;
     public final void rule__ExprAnd__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3055:1: ( ( ( rule__ExprAnd__ExprOrAssignment_0 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3056:1: ( ( rule__ExprAnd__ExprOrAssignment_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3062:1: ( ( ( rule__ExprAnd__ExprOrAssignment_0 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3063:1: ( ( rule__ExprAnd__ExprOrAssignment_0 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3056:1: ( ( rule__ExprAnd__ExprOrAssignment_0 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3057:1: ( rule__ExprAnd__ExprOrAssignment_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3063:1: ( ( rule__ExprAnd__ExprOrAssignment_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3064:1: ( rule__ExprAnd__ExprOrAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getExprOrAssignment_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3058:1: ( rule__ExprAnd__ExprOrAssignment_0 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3058:2: rule__ExprAnd__ExprOrAssignment_0
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3065:1: ( rule__ExprAnd__ExprOrAssignment_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3065:2: rule__ExprAnd__ExprOrAssignment_0
             {
-            pushFollow(FOLLOW_rule__ExprAnd__ExprOrAssignment_0_in_rule__ExprAnd__Group__0__Impl6137);
+            pushFollow(FOLLOW_rule__ExprAnd__ExprOrAssignment_0_in_rule__ExprAnd__Group__0__Impl6154);
             rule__ExprAnd__ExprOrAssignment_0();
 
             state._fsp--;
@@ -8987,16 +9034,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3068:1: rule__ExprAnd__Group__1 : rule__ExprAnd__Group__1__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3075:1: rule__ExprAnd__Group__1 : rule__ExprAnd__Group__1__Impl ;
     public final void rule__ExprAnd__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3072:1: ( rule__ExprAnd__Group__1__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3073:2: rule__ExprAnd__Group__1__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3079:1: ( rule__ExprAnd__Group__1__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3080:2: rule__ExprAnd__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExprAnd__Group__1__Impl_in_rule__ExprAnd__Group__16167);
+            pushFollow(FOLLOW_rule__ExprAnd__Group__1__Impl_in_rule__ExprAnd__Group__16184);
             rule__ExprAnd__Group__1__Impl();
 
             state._fsp--;
@@ -9020,33 +9067,33 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3079:1: rule__ExprAnd__Group__1__Impl : ( ( rule__ExprAnd__Group_1__0 )? ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3086:1: rule__ExprAnd__Group__1__Impl : ( ( rule__ExprAnd__Group_1__0 )? ) ;
     public final void rule__ExprAnd__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3083:1: ( ( ( rule__ExprAnd__Group_1__0 )? ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3084:1: ( ( rule__ExprAnd__Group_1__0 )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3090:1: ( ( ( rule__ExprAnd__Group_1__0 )? ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3091:1: ( ( rule__ExprAnd__Group_1__0 )? )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3084:1: ( ( rule__ExprAnd__Group_1__0 )? )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3085:1: ( rule__ExprAnd__Group_1__0 )?
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3091:1: ( ( rule__ExprAnd__Group_1__0 )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3092:1: ( rule__ExprAnd__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getGroup_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3086:1: ( rule__ExprAnd__Group_1__0 )?
-            int alt14=2;
-            int LA14_0 = input.LA(1);
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3093:1: ( rule__ExprAnd__Group_1__0 )?
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA14_0==39) ) {
-                alt14=1;
+            if ( (LA15_0==39) ) {
+                alt15=1;
             }
-            switch (alt14) {
+            switch (alt15) {
                 case 1 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3086:2: rule__ExprAnd__Group_1__0
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3093:2: rule__ExprAnd__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__ExprAnd__Group_1__0_in_rule__ExprAnd__Group__1__Impl6194);
+                    pushFollow(FOLLOW_rule__ExprAnd__Group_1__0_in_rule__ExprAnd__Group__1__Impl6211);
                     rule__ExprAnd__Group_1__0();
 
                     state._fsp--;
@@ -9082,21 +9129,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group_1__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3100:1: rule__ExprAnd__Group_1__0 : rule__ExprAnd__Group_1__0__Impl rule__ExprAnd__Group_1__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3107:1: rule__ExprAnd__Group_1__0 : rule__ExprAnd__Group_1__0__Impl rule__ExprAnd__Group_1__1 ;
     public final void rule__ExprAnd__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3104:1: ( rule__ExprAnd__Group_1__0__Impl rule__ExprAnd__Group_1__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3105:2: rule__ExprAnd__Group_1__0__Impl rule__ExprAnd__Group_1__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3111:1: ( rule__ExprAnd__Group_1__0__Impl rule__ExprAnd__Group_1__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3112:2: rule__ExprAnd__Group_1__0__Impl rule__ExprAnd__Group_1__1
             {
-            pushFollow(FOLLOW_rule__ExprAnd__Group_1__0__Impl_in_rule__ExprAnd__Group_1__06229);
+            pushFollow(FOLLOW_rule__ExprAnd__Group_1__0__Impl_in_rule__ExprAnd__Group_1__06246);
             rule__ExprAnd__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprAnd__Group_1__1_in_rule__ExprAnd__Group_1__06232);
+            pushFollow(FOLLOW_rule__ExprAnd__Group_1__1_in_rule__ExprAnd__Group_1__06249);
             rule__ExprAnd__Group_1__1();
 
             state._fsp--;
@@ -9120,25 +9167,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group_1__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3112:1: rule__ExprAnd__Group_1__0__Impl : ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3119:1: rule__ExprAnd__Group_1__0__Impl : ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) ) ;
     public final void rule__ExprAnd__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3116:1: ( ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3117:1: ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3123:1: ( ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3124:1: ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3117:1: ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3118:1: ( rule__ExprAnd__ExprAndAssignment_1_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3124:1: ( ( rule__ExprAnd__ExprAndAssignment_1_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3125:1: ( rule__ExprAnd__ExprAndAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getExprAndAssignment_1_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3119:1: ( rule__ExprAnd__ExprAndAssignment_1_0 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3119:2: rule__ExprAnd__ExprAndAssignment_1_0
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3126:1: ( rule__ExprAnd__ExprAndAssignment_1_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3126:2: rule__ExprAnd__ExprAndAssignment_1_0
             {
-            pushFollow(FOLLOW_rule__ExprAnd__ExprAndAssignment_1_0_in_rule__ExprAnd__Group_1__0__Impl6259);
+            pushFollow(FOLLOW_rule__ExprAnd__ExprAndAssignment_1_0_in_rule__ExprAnd__Group_1__0__Impl6276);
             rule__ExprAnd__ExprAndAssignment_1_0();
 
             state._fsp--;
@@ -9171,16 +9218,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group_1__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3129:1: rule__ExprAnd__Group_1__1 : rule__ExprAnd__Group_1__1__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3136:1: rule__ExprAnd__Group_1__1 : rule__ExprAnd__Group_1__1__Impl ;
     public final void rule__ExprAnd__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3133:1: ( rule__ExprAnd__Group_1__1__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3134:2: rule__ExprAnd__Group_1__1__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3140:1: ( rule__ExprAnd__Group_1__1__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3141:2: rule__ExprAnd__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExprAnd__Group_1__1__Impl_in_rule__ExprAnd__Group_1__16289);
+            pushFollow(FOLLOW_rule__ExprAnd__Group_1__1__Impl_in_rule__ExprAnd__Group_1__16306);
             rule__ExprAnd__Group_1__1__Impl();
 
             state._fsp--;
@@ -9204,25 +9251,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__Group_1__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3140:1: rule__ExprAnd__Group_1__1__Impl : ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3147:1: rule__ExprAnd__Group_1__1__Impl : ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) ) ;
     public final void rule__ExprAnd__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3144:1: ( ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3145:1: ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3151:1: ( ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3152:1: ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3145:1: ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3146:1: ( rule__ExprAnd__ExprAndAttAssignment_1_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3152:1: ( ( rule__ExprAnd__ExprAndAttAssignment_1_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3153:1: ( rule__ExprAnd__ExprAndAttAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getExprAndAttAssignment_1_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3147:1: ( rule__ExprAnd__ExprAndAttAssignment_1_1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3147:2: rule__ExprAnd__ExprAndAttAssignment_1_1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3154:1: ( rule__ExprAnd__ExprAndAttAssignment_1_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3154:2: rule__ExprAnd__ExprAndAttAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__ExprAnd__ExprAndAttAssignment_1_1_in_rule__ExprAnd__Group_1__1__Impl6316);
+            pushFollow(FOLLOW_rule__ExprAnd__ExprAndAttAssignment_1_1_in_rule__ExprAnd__Group_1__1__Impl6333);
             rule__ExprAnd__ExprAndAttAssignment_1_1();
 
             state._fsp--;
@@ -9255,21 +9302,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3161:1: rule__ExprOr__Group__0 : rule__ExprOr__Group__0__Impl rule__ExprOr__Group__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3168:1: rule__ExprOr__Group__0 : rule__ExprOr__Group__0__Impl rule__ExprOr__Group__1 ;
     public final void rule__ExprOr__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3165:1: ( rule__ExprOr__Group__0__Impl rule__ExprOr__Group__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3166:2: rule__ExprOr__Group__0__Impl rule__ExprOr__Group__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3172:1: ( rule__ExprOr__Group__0__Impl rule__ExprOr__Group__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3173:2: rule__ExprOr__Group__0__Impl rule__ExprOr__Group__1
             {
-            pushFollow(FOLLOW_rule__ExprOr__Group__0__Impl_in_rule__ExprOr__Group__06350);
+            pushFollow(FOLLOW_rule__ExprOr__Group__0__Impl_in_rule__ExprOr__Group__06367);
             rule__ExprOr__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprOr__Group__1_in_rule__ExprOr__Group__06353);
+            pushFollow(FOLLOW_rule__ExprOr__Group__1_in_rule__ExprOr__Group__06370);
             rule__ExprOr__Group__1();
 
             state._fsp--;
@@ -9293,25 +9340,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3173:1: rule__ExprOr__Group__0__Impl : ( ( rule__ExprOr__ExprNotAssignment_0 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3180:1: rule__ExprOr__Group__0__Impl : ( ( rule__ExprOr__ExprNotAssignment_0 ) ) ;
     public final void rule__ExprOr__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3177:1: ( ( ( rule__ExprOr__ExprNotAssignment_0 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3178:1: ( ( rule__ExprOr__ExprNotAssignment_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3184:1: ( ( ( rule__ExprOr__ExprNotAssignment_0 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3185:1: ( ( rule__ExprOr__ExprNotAssignment_0 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3178:1: ( ( rule__ExprOr__ExprNotAssignment_0 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3179:1: ( rule__ExprOr__ExprNotAssignment_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3185:1: ( ( rule__ExprOr__ExprNotAssignment_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3186:1: ( rule__ExprOr__ExprNotAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getExprNotAssignment_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3180:1: ( rule__ExprOr__ExprNotAssignment_0 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3180:2: rule__ExprOr__ExprNotAssignment_0
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3187:1: ( rule__ExprOr__ExprNotAssignment_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3187:2: rule__ExprOr__ExprNotAssignment_0
             {
-            pushFollow(FOLLOW_rule__ExprOr__ExprNotAssignment_0_in_rule__ExprOr__Group__0__Impl6380);
+            pushFollow(FOLLOW_rule__ExprOr__ExprNotAssignment_0_in_rule__ExprOr__Group__0__Impl6397);
             rule__ExprOr__ExprNotAssignment_0();
 
             state._fsp--;
@@ -9344,16 +9391,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3190:1: rule__ExprOr__Group__1 : rule__ExprOr__Group__1__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3197:1: rule__ExprOr__Group__1 : rule__ExprOr__Group__1__Impl ;
     public final void rule__ExprOr__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3194:1: ( rule__ExprOr__Group__1__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3195:2: rule__ExprOr__Group__1__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3201:1: ( rule__ExprOr__Group__1__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3202:2: rule__ExprOr__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExprOr__Group__1__Impl_in_rule__ExprOr__Group__16410);
+            pushFollow(FOLLOW_rule__ExprOr__Group__1__Impl_in_rule__ExprOr__Group__16427);
             rule__ExprOr__Group__1__Impl();
 
             state._fsp--;
@@ -9377,33 +9424,33 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3201:1: rule__ExprOr__Group__1__Impl : ( ( rule__ExprOr__Group_1__0 )? ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3208:1: rule__ExprOr__Group__1__Impl : ( ( rule__ExprOr__Group_1__0 )? ) ;
     public final void rule__ExprOr__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3205:1: ( ( ( rule__ExprOr__Group_1__0 )? ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3206:1: ( ( rule__ExprOr__Group_1__0 )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3212:1: ( ( ( rule__ExprOr__Group_1__0 )? ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3213:1: ( ( rule__ExprOr__Group_1__0 )? )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3206:1: ( ( rule__ExprOr__Group_1__0 )? )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3207:1: ( rule__ExprOr__Group_1__0 )?
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3213:1: ( ( rule__ExprOr__Group_1__0 )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3214:1: ( rule__ExprOr__Group_1__0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getGroup_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3208:1: ( rule__ExprOr__Group_1__0 )?
-            int alt15=2;
-            int LA15_0 = input.LA(1);
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3215:1: ( rule__ExprOr__Group_1__0 )?
+            int alt16=2;
+            int LA16_0 = input.LA(1);
 
-            if ( (LA15_0==40) ) {
-                alt15=1;
+            if ( (LA16_0==40) ) {
+                alt16=1;
             }
-            switch (alt15) {
+            switch (alt16) {
                 case 1 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3208:2: rule__ExprOr__Group_1__0
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3215:2: rule__ExprOr__Group_1__0
                     {
-                    pushFollow(FOLLOW_rule__ExprOr__Group_1__0_in_rule__ExprOr__Group__1__Impl6437);
+                    pushFollow(FOLLOW_rule__ExprOr__Group_1__0_in_rule__ExprOr__Group__1__Impl6454);
                     rule__ExprOr__Group_1__0();
 
                     state._fsp--;
@@ -9439,21 +9486,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group_1__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3222:1: rule__ExprOr__Group_1__0 : rule__ExprOr__Group_1__0__Impl rule__ExprOr__Group_1__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3229:1: rule__ExprOr__Group_1__0 : rule__ExprOr__Group_1__0__Impl rule__ExprOr__Group_1__1 ;
     public final void rule__ExprOr__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3226:1: ( rule__ExprOr__Group_1__0__Impl rule__ExprOr__Group_1__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3227:2: rule__ExprOr__Group_1__0__Impl rule__ExprOr__Group_1__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3233:1: ( rule__ExprOr__Group_1__0__Impl rule__ExprOr__Group_1__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3234:2: rule__ExprOr__Group_1__0__Impl rule__ExprOr__Group_1__1
             {
-            pushFollow(FOLLOW_rule__ExprOr__Group_1__0__Impl_in_rule__ExprOr__Group_1__06472);
+            pushFollow(FOLLOW_rule__ExprOr__Group_1__0__Impl_in_rule__ExprOr__Group_1__06489);
             rule__ExprOr__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprOr__Group_1__1_in_rule__ExprOr__Group_1__06475);
+            pushFollow(FOLLOW_rule__ExprOr__Group_1__1_in_rule__ExprOr__Group_1__06492);
             rule__ExprOr__Group_1__1();
 
             state._fsp--;
@@ -9477,25 +9524,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group_1__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3234:1: rule__ExprOr__Group_1__0__Impl : ( ( rule__ExprOr__ExprOrAssignment_1_0 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3241:1: rule__ExprOr__Group_1__0__Impl : ( ( rule__ExprOr__ExprOrAssignment_1_0 ) ) ;
     public final void rule__ExprOr__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3238:1: ( ( ( rule__ExprOr__ExprOrAssignment_1_0 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3239:1: ( ( rule__ExprOr__ExprOrAssignment_1_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3245:1: ( ( ( rule__ExprOr__ExprOrAssignment_1_0 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3246:1: ( ( rule__ExprOr__ExprOrAssignment_1_0 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3239:1: ( ( rule__ExprOr__ExprOrAssignment_1_0 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3240:1: ( rule__ExprOr__ExprOrAssignment_1_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3246:1: ( ( rule__ExprOr__ExprOrAssignment_1_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3247:1: ( rule__ExprOr__ExprOrAssignment_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getExprOrAssignment_1_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3241:1: ( rule__ExprOr__ExprOrAssignment_1_0 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3241:2: rule__ExprOr__ExprOrAssignment_1_0
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3248:1: ( rule__ExprOr__ExprOrAssignment_1_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3248:2: rule__ExprOr__ExprOrAssignment_1_0
             {
-            pushFollow(FOLLOW_rule__ExprOr__ExprOrAssignment_1_0_in_rule__ExprOr__Group_1__0__Impl6502);
+            pushFollow(FOLLOW_rule__ExprOr__ExprOrAssignment_1_0_in_rule__ExprOr__Group_1__0__Impl6519);
             rule__ExprOr__ExprOrAssignment_1_0();
 
             state._fsp--;
@@ -9528,16 +9575,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group_1__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3251:1: rule__ExprOr__Group_1__1 : rule__ExprOr__Group_1__1__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3258:1: rule__ExprOr__Group_1__1 : rule__ExprOr__Group_1__1__Impl ;
     public final void rule__ExprOr__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3255:1: ( rule__ExprOr__Group_1__1__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3256:2: rule__ExprOr__Group_1__1__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3262:1: ( rule__ExprOr__Group_1__1__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3263:2: rule__ExprOr__Group_1__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExprOr__Group_1__1__Impl_in_rule__ExprOr__Group_1__16532);
+            pushFollow(FOLLOW_rule__ExprOr__Group_1__1__Impl_in_rule__ExprOr__Group_1__16549);
             rule__ExprOr__Group_1__1__Impl();
 
             state._fsp--;
@@ -9561,25 +9608,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__Group_1__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3262:1: rule__ExprOr__Group_1__1__Impl : ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3269:1: rule__ExprOr__Group_1__1__Impl : ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) ) ;
     public final void rule__ExprOr__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3266:1: ( ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3267:1: ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3273:1: ( ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3274:1: ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3267:1: ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3268:1: ( rule__ExprOr__ExprOrAttAssignment_1_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3274:1: ( ( rule__ExprOr__ExprOrAttAssignment_1_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3275:1: ( rule__ExprOr__ExprOrAttAssignment_1_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getExprOrAttAssignment_1_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3269:1: ( rule__ExprOr__ExprOrAttAssignment_1_1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3269:2: rule__ExprOr__ExprOrAttAssignment_1_1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3276:1: ( rule__ExprOr__ExprOrAttAssignment_1_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3276:2: rule__ExprOr__ExprOrAttAssignment_1_1
             {
-            pushFollow(FOLLOW_rule__ExprOr__ExprOrAttAssignment_1_1_in_rule__ExprOr__Group_1__1__Impl6559);
+            pushFollow(FOLLOW_rule__ExprOr__ExprOrAttAssignment_1_1_in_rule__ExprOr__Group_1__1__Impl6576);
             rule__ExprOr__ExprOrAttAssignment_1_1();
 
             state._fsp--;
@@ -9612,21 +9659,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprNot__Group__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3283:1: rule__ExprNot__Group__0 : rule__ExprNot__Group__0__Impl rule__ExprNot__Group__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3290:1: rule__ExprNot__Group__0 : rule__ExprNot__Group__0__Impl rule__ExprNot__Group__1 ;
     public final void rule__ExprNot__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3287:1: ( rule__ExprNot__Group__0__Impl rule__ExprNot__Group__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3288:2: rule__ExprNot__Group__0__Impl rule__ExprNot__Group__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3294:1: ( rule__ExprNot__Group__0__Impl rule__ExprNot__Group__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3295:2: rule__ExprNot__Group__0__Impl rule__ExprNot__Group__1
             {
-            pushFollow(FOLLOW_rule__ExprNot__Group__0__Impl_in_rule__ExprNot__Group__06593);
+            pushFollow(FOLLOW_rule__ExprNot__Group__0__Impl_in_rule__ExprNot__Group__06610);
             rule__ExprNot__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprNot__Group__1_in_rule__ExprNot__Group__06596);
+            pushFollow(FOLLOW_rule__ExprNot__Group__1_in_rule__ExprNot__Group__06613);
             rule__ExprNot__Group__1();
 
             state._fsp--;
@@ -9650,33 +9697,33 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprNot__Group__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3295:1: rule__ExprNot__Group__0__Impl : ( ( rule__ExprNot__NotAssignment_0 )? ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3302:1: rule__ExprNot__Group__0__Impl : ( ( rule__ExprNot__NotAssignment_0 )? ) ;
     public final void rule__ExprNot__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3299:1: ( ( ( rule__ExprNot__NotAssignment_0 )? ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3300:1: ( ( rule__ExprNot__NotAssignment_0 )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3306:1: ( ( ( rule__ExprNot__NotAssignment_0 )? ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3307:1: ( ( rule__ExprNot__NotAssignment_0 )? )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3300:1: ( ( rule__ExprNot__NotAssignment_0 )? )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3301:1: ( rule__ExprNot__NotAssignment_0 )?
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3307:1: ( ( rule__ExprNot__NotAssignment_0 )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3308:1: ( rule__ExprNot__NotAssignment_0 )?
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprNotAccess().getNotAssignment_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3302:1: ( rule__ExprNot__NotAssignment_0 )?
-            int alt16=2;
-            int LA16_0 = input.LA(1);
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3309:1: ( rule__ExprNot__NotAssignment_0 )?
+            int alt17=2;
+            int LA17_0 = input.LA(1);
 
-            if ( (LA16_0==41) ) {
-                alt16=1;
+            if ( (LA17_0==41) ) {
+                alt17=1;
             }
-            switch (alt16) {
+            switch (alt17) {
                 case 1 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3302:2: rule__ExprNot__NotAssignment_0
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3309:2: rule__ExprNot__NotAssignment_0
                     {
-                    pushFollow(FOLLOW_rule__ExprNot__NotAssignment_0_in_rule__ExprNot__Group__0__Impl6623);
+                    pushFollow(FOLLOW_rule__ExprNot__NotAssignment_0_in_rule__ExprNot__Group__0__Impl6640);
                     rule__ExprNot__NotAssignment_0();
 
                     state._fsp--;
@@ -9712,16 +9759,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprNot__Group__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3312:1: rule__ExprNot__Group__1 : rule__ExprNot__Group__1__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3319:1: rule__ExprNot__Group__1 : rule__ExprNot__Group__1__Impl ;
     public final void rule__ExprNot__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3316:1: ( rule__ExprNot__Group__1__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3317:2: rule__ExprNot__Group__1__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3323:1: ( rule__ExprNot__Group__1__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3324:2: rule__ExprNot__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__ExprNot__Group__1__Impl_in_rule__ExprNot__Group__16654);
+            pushFollow(FOLLOW_rule__ExprNot__Group__1__Impl_in_rule__ExprNot__Group__16671);
             rule__ExprNot__Group__1__Impl();
 
             state._fsp--;
@@ -9745,25 +9792,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprNot__Group__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3323:1: rule__ExprNot__Group__1__Impl : ( ( rule__ExprNot__ExprEqAssignment_1 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3330:1: rule__ExprNot__Group__1__Impl : ( ( rule__ExprNot__ExprEqAssignment_1 ) ) ;
     public final void rule__ExprNot__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3327:1: ( ( ( rule__ExprNot__ExprEqAssignment_1 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3328:1: ( ( rule__ExprNot__ExprEqAssignment_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3334:1: ( ( ( rule__ExprNot__ExprEqAssignment_1 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3335:1: ( ( rule__ExprNot__ExprEqAssignment_1 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3328:1: ( ( rule__ExprNot__ExprEqAssignment_1 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3329:1: ( rule__ExprNot__ExprEqAssignment_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3335:1: ( ( rule__ExprNot__ExprEqAssignment_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3336:1: ( rule__ExprNot__ExprEqAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprNotAccess().getExprEqAssignment_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3330:1: ( rule__ExprNot__ExprEqAssignment_1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3330:2: rule__ExprNot__ExprEqAssignment_1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3337:1: ( rule__ExprNot__ExprEqAssignment_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3337:2: rule__ExprNot__ExprEqAssignment_1
             {
-            pushFollow(FOLLOW_rule__ExprNot__ExprEqAssignment_1_in_rule__ExprNot__Group__1__Impl6681);
+            pushFollow(FOLLOW_rule__ExprNot__ExprEqAssignment_1_in_rule__ExprNot__Group__1__Impl6698);
             rule__ExprNot__ExprEqAssignment_1();
 
             state._fsp--;
@@ -9796,21 +9843,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_0__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3344:1: rule__ExprEq__Group_0__0 : rule__ExprEq__Group_0__0__Impl rule__ExprEq__Group_0__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3351:1: rule__ExprEq__Group_0__0 : rule__ExprEq__Group_0__0__Impl rule__ExprEq__Group_0__1 ;
     public final void rule__ExprEq__Group_0__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3348:1: ( rule__ExprEq__Group_0__0__Impl rule__ExprEq__Group_0__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3349:2: rule__ExprEq__Group_0__0__Impl rule__ExprEq__Group_0__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3355:1: ( rule__ExprEq__Group_0__0__Impl rule__ExprEq__Group_0__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3356:2: rule__ExprEq__Group_0__0__Impl rule__ExprEq__Group_0__1
             {
-            pushFollow(FOLLOW_rule__ExprEq__Group_0__0__Impl_in_rule__ExprEq__Group_0__06715);
+            pushFollow(FOLLOW_rule__ExprEq__Group_0__0__Impl_in_rule__ExprEq__Group_0__06732);
             rule__ExprEq__Group_0__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprEq__Group_0__1_in_rule__ExprEq__Group_0__06718);
+            pushFollow(FOLLOW_rule__ExprEq__Group_0__1_in_rule__ExprEq__Group_0__06735);
             rule__ExprEq__Group_0__1();
 
             state._fsp--;
@@ -9834,22 +9881,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_0__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3356:1: rule__ExprEq__Group_0__0__Impl : ( '(' ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3363:1: rule__ExprEq__Group_0__0__Impl : ( '(' ) ;
     public final void rule__ExprEq__Group_0__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3360:1: ( ( '(' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3361:1: ( '(' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3367:1: ( ( '(' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3368:1: ( '(' )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3361:1: ( '(' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3362:1: '('
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3368:1: ( '(' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3369:1: '('
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getLeftParenthesisKeyword_0_0()); 
             }
-            match(input,31,FOLLOW_31_in_rule__ExprEq__Group_0__0__Impl6746); if (state.failed) return ;
+            match(input,31,FOLLOW_31_in_rule__ExprEq__Group_0__0__Impl6763); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprEqAccess().getLeftParenthesisKeyword_0_0()); 
             }
@@ -9875,21 +9922,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_0__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3375:1: rule__ExprEq__Group_0__1 : rule__ExprEq__Group_0__1__Impl rule__ExprEq__Group_0__2 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3382:1: rule__ExprEq__Group_0__1 : rule__ExprEq__Group_0__1__Impl rule__ExprEq__Group_0__2 ;
     public final void rule__ExprEq__Group_0__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3379:1: ( rule__ExprEq__Group_0__1__Impl rule__ExprEq__Group_0__2 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3380:2: rule__ExprEq__Group_0__1__Impl rule__ExprEq__Group_0__2
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3386:1: ( rule__ExprEq__Group_0__1__Impl rule__ExprEq__Group_0__2 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3387:2: rule__ExprEq__Group_0__1__Impl rule__ExprEq__Group_0__2
             {
-            pushFollow(FOLLOW_rule__ExprEq__Group_0__1__Impl_in_rule__ExprEq__Group_0__16777);
+            pushFollow(FOLLOW_rule__ExprEq__Group_0__1__Impl_in_rule__ExprEq__Group_0__16794);
             rule__ExprEq__Group_0__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprEq__Group_0__2_in_rule__ExprEq__Group_0__16780);
+            pushFollow(FOLLOW_rule__ExprEq__Group_0__2_in_rule__ExprEq__Group_0__16797);
             rule__ExprEq__Group_0__2();
 
             state._fsp--;
@@ -9913,25 +9960,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_0__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3387:1: rule__ExprEq__Group_0__1__Impl : ( ( rule__ExprEq__ExprAssignment_0_1 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3394:1: rule__ExprEq__Group_0__1__Impl : ( ( rule__ExprEq__ExprAssignment_0_1 ) ) ;
     public final void rule__ExprEq__Group_0__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3391:1: ( ( ( rule__ExprEq__ExprAssignment_0_1 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3392:1: ( ( rule__ExprEq__ExprAssignment_0_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3398:1: ( ( ( rule__ExprEq__ExprAssignment_0_1 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3399:1: ( ( rule__ExprEq__ExprAssignment_0_1 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3392:1: ( ( rule__ExprEq__ExprAssignment_0_1 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3393:1: ( rule__ExprEq__ExprAssignment_0_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3399:1: ( ( rule__ExprEq__ExprAssignment_0_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3400:1: ( rule__ExprEq__ExprAssignment_0_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getExprAssignment_0_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3394:1: ( rule__ExprEq__ExprAssignment_0_1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3394:2: rule__ExprEq__ExprAssignment_0_1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3401:1: ( rule__ExprEq__ExprAssignment_0_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3401:2: rule__ExprEq__ExprAssignment_0_1
             {
-            pushFollow(FOLLOW_rule__ExprEq__ExprAssignment_0_1_in_rule__ExprEq__Group_0__1__Impl6807);
+            pushFollow(FOLLOW_rule__ExprEq__ExprAssignment_0_1_in_rule__ExprEq__Group_0__1__Impl6824);
             rule__ExprEq__ExprAssignment_0_1();
 
             state._fsp--;
@@ -9964,16 +10011,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_0__2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3404:1: rule__ExprEq__Group_0__2 : rule__ExprEq__Group_0__2__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3411:1: rule__ExprEq__Group_0__2 : rule__ExprEq__Group_0__2__Impl ;
     public final void rule__ExprEq__Group_0__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3408:1: ( rule__ExprEq__Group_0__2__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3409:2: rule__ExprEq__Group_0__2__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3415:1: ( rule__ExprEq__Group_0__2__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3416:2: rule__ExprEq__Group_0__2__Impl
             {
-            pushFollow(FOLLOW_rule__ExprEq__Group_0__2__Impl_in_rule__ExprEq__Group_0__26837);
+            pushFollow(FOLLOW_rule__ExprEq__Group_0__2__Impl_in_rule__ExprEq__Group_0__26854);
             rule__ExprEq__Group_0__2__Impl();
 
             state._fsp--;
@@ -9997,22 +10044,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_0__2__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3415:1: rule__ExprEq__Group_0__2__Impl : ( ')' ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3422:1: rule__ExprEq__Group_0__2__Impl : ( ')' ) ;
     public final void rule__ExprEq__Group_0__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3419:1: ( ( ')' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3420:1: ( ')' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3426:1: ( ( ')' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3427:1: ( ')' )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3420:1: ( ')' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3421:1: ')'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3427:1: ( ')' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3428:1: ')'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getRightParenthesisKeyword_0_2()); 
             }
-            match(input,32,FOLLOW_32_in_rule__ExprEq__Group_0__2__Impl6865); if (state.failed) return ;
+            match(input,32,FOLLOW_32_in_rule__ExprEq__Group_0__2__Impl6882); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprEqAccess().getRightParenthesisKeyword_0_2()); 
             }
@@ -10038,21 +10085,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_1__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3440:1: rule__ExprEq__Group_1__0 : rule__ExprEq__Group_1__0__Impl rule__ExprEq__Group_1__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3447:1: rule__ExprEq__Group_1__0 : rule__ExprEq__Group_1__0__Impl rule__ExprEq__Group_1__1 ;
     public final void rule__ExprEq__Group_1__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3444:1: ( rule__ExprEq__Group_1__0__Impl rule__ExprEq__Group_1__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3445:2: rule__ExprEq__Group_1__0__Impl rule__ExprEq__Group_1__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3451:1: ( rule__ExprEq__Group_1__0__Impl rule__ExprEq__Group_1__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3452:2: rule__ExprEq__Group_1__0__Impl rule__ExprEq__Group_1__1
             {
-            pushFollow(FOLLOW_rule__ExprEq__Group_1__0__Impl_in_rule__ExprEq__Group_1__06902);
+            pushFollow(FOLLOW_rule__ExprEq__Group_1__0__Impl_in_rule__ExprEq__Group_1__06919);
             rule__ExprEq__Group_1__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprEq__Group_1__1_in_rule__ExprEq__Group_1__06905);
+            pushFollow(FOLLOW_rule__ExprEq__Group_1__1_in_rule__ExprEq__Group_1__06922);
             rule__ExprEq__Group_1__1();
 
             state._fsp--;
@@ -10076,25 +10123,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_1__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3452:1: rule__ExprEq__Group_1__0__Impl : ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3459:1: rule__ExprEq__Group_1__0__Impl : ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) ) ;
     public final void rule__ExprEq__Group_1__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3456:1: ( ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3457:1: ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3463:1: ( ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3464:1: ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3457:1: ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3458:1: ( rule__ExprEq__ExprSim1Assignment_1_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3464:1: ( ( rule__ExprEq__ExprSim1Assignment_1_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3465:1: ( rule__ExprEq__ExprSim1Assignment_1_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getExprSim1Assignment_1_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3459:1: ( rule__ExprEq__ExprSim1Assignment_1_0 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3459:2: rule__ExprEq__ExprSim1Assignment_1_0
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3466:1: ( rule__ExprEq__ExprSim1Assignment_1_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3466:2: rule__ExprEq__ExprSim1Assignment_1_0
             {
-            pushFollow(FOLLOW_rule__ExprEq__ExprSim1Assignment_1_0_in_rule__ExprEq__Group_1__0__Impl6932);
+            pushFollow(FOLLOW_rule__ExprEq__ExprSim1Assignment_1_0_in_rule__ExprEq__Group_1__0__Impl6949);
             rule__ExprEq__ExprSim1Assignment_1_0();
 
             state._fsp--;
@@ -10127,21 +10174,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_1__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3469:1: rule__ExprEq__Group_1__1 : rule__ExprEq__Group_1__1__Impl rule__ExprEq__Group_1__2 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3476:1: rule__ExprEq__Group_1__1 : rule__ExprEq__Group_1__1__Impl rule__ExprEq__Group_1__2 ;
     public final void rule__ExprEq__Group_1__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3473:1: ( rule__ExprEq__Group_1__1__Impl rule__ExprEq__Group_1__2 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3474:2: rule__ExprEq__Group_1__1__Impl rule__ExprEq__Group_1__2
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3480:1: ( rule__ExprEq__Group_1__1__Impl rule__ExprEq__Group_1__2 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3481:2: rule__ExprEq__Group_1__1__Impl rule__ExprEq__Group_1__2
             {
-            pushFollow(FOLLOW_rule__ExprEq__Group_1__1__Impl_in_rule__ExprEq__Group_1__16962);
+            pushFollow(FOLLOW_rule__ExprEq__Group_1__1__Impl_in_rule__ExprEq__Group_1__16979);
             rule__ExprEq__Group_1__1__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__ExprEq__Group_1__2_in_rule__ExprEq__Group_1__16965);
+            pushFollow(FOLLOW_rule__ExprEq__Group_1__2_in_rule__ExprEq__Group_1__16982);
             rule__ExprEq__Group_1__2();
 
             state._fsp--;
@@ -10165,22 +10212,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_1__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3481:1: rule__ExprEq__Group_1__1__Impl : ( '=?' ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3488:1: rule__ExprEq__Group_1__1__Impl : ( '=?' ) ;
     public final void rule__ExprEq__Group_1__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3485:1: ( ( '=?' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3486:1: ( '=?' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3492:1: ( ( '=?' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3493:1: ( '=?' )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3486:1: ( '=?' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3487:1: '=?'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3493:1: ( '=?' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3494:1: '=?'
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getEqualsSignQuestionMarkKeyword_1_1()); 
             }
-            match(input,33,FOLLOW_33_in_rule__ExprEq__Group_1__1__Impl6993); if (state.failed) return ;
+            match(input,33,FOLLOW_33_in_rule__ExprEq__Group_1__1__Impl7010); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprEqAccess().getEqualsSignQuestionMarkKeyword_1_1()); 
             }
@@ -10206,16 +10253,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_1__2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3500:1: rule__ExprEq__Group_1__2 : rule__ExprEq__Group_1__2__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3507:1: rule__ExprEq__Group_1__2 : rule__ExprEq__Group_1__2__Impl ;
     public final void rule__ExprEq__Group_1__2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3504:1: ( rule__ExprEq__Group_1__2__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3505:2: rule__ExprEq__Group_1__2__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3511:1: ( rule__ExprEq__Group_1__2__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3512:2: rule__ExprEq__Group_1__2__Impl
             {
-            pushFollow(FOLLOW_rule__ExprEq__Group_1__2__Impl_in_rule__ExprEq__Group_1__27024);
+            pushFollow(FOLLOW_rule__ExprEq__Group_1__2__Impl_in_rule__ExprEq__Group_1__27041);
             rule__ExprEq__Group_1__2__Impl();
 
             state._fsp--;
@@ -10239,25 +10286,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__Group_1__2__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3511:1: rule__ExprEq__Group_1__2__Impl : ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3518:1: rule__ExprEq__Group_1__2__Impl : ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) ) ;
     public final void rule__ExprEq__Group_1__2__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3515:1: ( ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3516:1: ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3522:1: ( ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3523:1: ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3516:1: ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3517:1: ( rule__ExprEq__ExprSim2Assignment_1_2 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3523:1: ( ( rule__ExprEq__ExprSim2Assignment_1_2 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3524:1: ( rule__ExprEq__ExprSim2Assignment_1_2 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getExprSim2Assignment_1_2()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3518:1: ( rule__ExprEq__ExprSim2Assignment_1_2 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3518:2: rule__ExprEq__ExprSim2Assignment_1_2
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3525:1: ( rule__ExprEq__ExprSim2Assignment_1_2 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3525:2: rule__ExprEq__ExprSim2Assignment_1_2
             {
-            pushFollow(FOLLOW_rule__ExprEq__ExprSim2Assignment_1_2_in_rule__ExprEq__Group_1__2__Impl7051);
+            pushFollow(FOLLOW_rule__ExprEq__ExprSim2Assignment_1_2_in_rule__ExprEq__Group_1__2__Impl7068);
             rule__ExprEq__ExprSim2Assignment_1_2();
 
             state._fsp--;
@@ -10290,21 +10337,21 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Cons__Group__0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3534:1: rule__Cons__Group__0 : rule__Cons__Group__0__Impl rule__Cons__Group__1 ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3541:1: rule__Cons__Group__0 : rule__Cons__Group__0__Impl rule__Cons__Group__1 ;
     public final void rule__Cons__Group__0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3538:1: ( rule__Cons__Group__0__Impl rule__Cons__Group__1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3539:2: rule__Cons__Group__0__Impl rule__Cons__Group__1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3545:1: ( rule__Cons__Group__0__Impl rule__Cons__Group__1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3546:2: rule__Cons__Group__0__Impl rule__Cons__Group__1
             {
-            pushFollow(FOLLOW_rule__Cons__Group__0__Impl_in_rule__Cons__Group__07087);
+            pushFollow(FOLLOW_rule__Cons__Group__0__Impl_in_rule__Cons__Group__07104);
             rule__Cons__Group__0__Impl();
 
             state._fsp--;
             if (state.failed) return ;
-            pushFollow(FOLLOW_rule__Cons__Group__1_in_rule__Cons__Group__07090);
+            pushFollow(FOLLOW_rule__Cons__Group__1_in_rule__Cons__Group__07107);
             rule__Cons__Group__1();
 
             state._fsp--;
@@ -10328,25 +10375,25 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Cons__Group__0__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3546:1: rule__Cons__Group__0__Impl : ( ( rule__Cons__ExprConsAssignment_0 ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3553:1: rule__Cons__Group__0__Impl : ( ( rule__Cons__ExprConsAssignment_0 ) ) ;
     public final void rule__Cons__Group__0__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3550:1: ( ( ( rule__Cons__ExprConsAssignment_0 ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3551:1: ( ( rule__Cons__ExprConsAssignment_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3557:1: ( ( ( rule__Cons__ExprConsAssignment_0 ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3558:1: ( ( rule__Cons__ExprConsAssignment_0 ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3551:1: ( ( rule__Cons__ExprConsAssignment_0 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3552:1: ( rule__Cons__ExprConsAssignment_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3558:1: ( ( rule__Cons__ExprConsAssignment_0 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3559:1: ( rule__Cons__ExprConsAssignment_0 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConsAccess().getExprConsAssignment_0()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3553:1: ( rule__Cons__ExprConsAssignment_0 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3553:2: rule__Cons__ExprConsAssignment_0
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3560:1: ( rule__Cons__ExprConsAssignment_0 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3560:2: rule__Cons__ExprConsAssignment_0
             {
-            pushFollow(FOLLOW_rule__Cons__ExprConsAssignment_0_in_rule__Cons__Group__0__Impl7117);
+            pushFollow(FOLLOW_rule__Cons__ExprConsAssignment_0_in_rule__Cons__Group__0__Impl7134);
             rule__Cons__ExprConsAssignment_0();
 
             state._fsp--;
@@ -10379,16 +10426,16 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Cons__Group__1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3563:1: rule__Cons__Group__1 : rule__Cons__Group__1__Impl ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3570:1: rule__Cons__Group__1 : rule__Cons__Group__1__Impl ;
     public final void rule__Cons__Group__1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3567:1: ( rule__Cons__Group__1__Impl )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3568:2: rule__Cons__Group__1__Impl
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3574:1: ( rule__Cons__Group__1__Impl )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3575:2: rule__Cons__Group__1__Impl
             {
-            pushFollow(FOLLOW_rule__Cons__Group__1__Impl_in_rule__Cons__Group__17147);
+            pushFollow(FOLLOW_rule__Cons__Group__1__Impl_in_rule__Cons__Group__17164);
             rule__Cons__Group__1__Impl();
 
             state._fsp--;
@@ -10412,28 +10459,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Cons__Group__1__Impl"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3574:1: rule__Cons__Group__1__Impl : ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3581:1: rule__Cons__Group__1__Impl : ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) ) ;
     public final void rule__Cons__Group__1__Impl() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3578:1: ( ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3579:1: ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3585:1: ( ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3586:1: ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3579:1: ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3580:1: ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3586:1: ( ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3587:1: ( ( rule__Cons__ExprConsAttListAssignment_1 ) ) ( ( rule__Cons__ExprConsAttListAssignment_1 )* )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3580:1: ( ( rule__Cons__ExprConsAttListAssignment_1 ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3581:1: ( rule__Cons__ExprConsAttListAssignment_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3587:1: ( ( rule__Cons__ExprConsAttListAssignment_1 ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3588:1: ( rule__Cons__ExprConsAttListAssignment_1 )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConsAccess().getExprConsAttListAssignment_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3582:1: ( rule__Cons__ExprConsAttListAssignment_1 )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3582:2: rule__Cons__ExprConsAttListAssignment_1
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3589:1: ( rule__Cons__ExprConsAttListAssignment_1 )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3589:2: rule__Cons__ExprConsAttListAssignment_1
             {
-            pushFollow(FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7176);
+            pushFollow(FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7193);
             rule__Cons__ExprConsAttListAssignment_1();
 
             state._fsp--;
@@ -10447,28 +10494,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
             }
 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3585:1: ( ( rule__Cons__ExprConsAttListAssignment_1 )* )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3586:1: ( rule__Cons__ExprConsAttListAssignment_1 )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3592:1: ( ( rule__Cons__ExprConsAttListAssignment_1 )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3593:1: ( rule__Cons__ExprConsAttListAssignment_1 )*
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConsAccess().getExprConsAttListAssignment_1()); 
             }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3587:1: ( rule__Cons__ExprConsAttListAssignment_1 )*
-            loop17:
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3594:1: ( rule__Cons__ExprConsAttListAssignment_1 )*
+            loop18:
             do {
-                int alt17=2;
-                int LA17_0 = input.LA(1);
+                int alt18=2;
+                int LA18_0 = input.LA(1);
 
-                if ( ((LA17_0>=RULE_SYMBOL && LA17_0<=RULE_VARIABLE)||LA17_0==31||LA17_0==36||LA17_0==41) ) {
-                    alt17=1;
+                if ( ((LA18_0>=RULE_SYMBOL && LA18_0<=RULE_VARIABLE)||LA18_0==31||LA18_0==36||LA18_0==41) ) {
+                    alt18=1;
                 }
 
 
-                switch (alt17) {
+                switch (alt18) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3587:2: rule__Cons__ExprConsAttListAssignment_1
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3594:2: rule__Cons__ExprConsAttListAssignment_1
             	    {
-            	    pushFollow(FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7188);
+            	    pushFollow(FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7205);
             	    rule__Cons__ExprConsAttListAssignment_1();
 
             	    state._fsp--;
@@ -10478,7 +10525,7 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
             	    break;
 
             	default :
-            	    break loop17;
+            	    break loop18;
                 }
             } while (true);
 
@@ -10510,22 +10557,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Program__FonctionsAssignment"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3603:1: rule__Program__FonctionsAssignment : ( ruleFunction ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3610:1: rule__Program__FonctionsAssignment : ( ruleFunction ) ;
     public final void rule__Program__FonctionsAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3607:1: ( ( ruleFunction ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3608:1: ( ruleFunction )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3614:1: ( ( ruleFunction ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3615:1: ( ruleFunction )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3608:1: ( ruleFunction )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3609:1: ruleFunction
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3615:1: ( ruleFunction )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3616:1: ruleFunction
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getProgramAccess().getFonctionsFunctionParserRuleCall_0()); 
             }
-            pushFollow(FOLLOW_ruleFunction_in_rule__Program__FonctionsAssignment7230);
+            pushFollow(FOLLOW_ruleFunction_in_rule__Program__FonctionsAssignment7247);
             ruleFunction();
 
             state._fsp--;
@@ -10555,22 +10602,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Function__NomAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3618:1: rule__Function__NomAssignment_1 : ( RULE_SYMBOL ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3625:1: rule__Function__NomAssignment_1 : ( RULE_SYMBOL ) ;
     public final void rule__Function__NomAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3622:1: ( ( RULE_SYMBOL ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3623:1: ( RULE_SYMBOL )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3629:1: ( ( RULE_SYMBOL ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3630:1: ( RULE_SYMBOL )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3623:1: ( RULE_SYMBOL )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3624:1: RULE_SYMBOL
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3630:1: ( RULE_SYMBOL )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3631:1: RULE_SYMBOL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionAccess().getNomSYMBOLTerminalRuleCall_1_0()); 
             }
-            match(input,RULE_SYMBOL,FOLLOW_RULE_SYMBOL_in_rule__Function__NomAssignment_17261); if (state.failed) return ;
+            match(input,RULE_SYMBOL,FOLLOW_RULE_SYMBOL_in_rule__Function__NomAssignment_17278); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getFunctionAccess().getNomSYMBOLTerminalRuleCall_1_0()); 
             }
@@ -10596,22 +10643,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Function__DefinitionAssignment_3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3633:1: rule__Function__DefinitionAssignment_3 : ( ruleDefinition ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3640:1: rule__Function__DefinitionAssignment_3 : ( ruleDefinition ) ;
     public final void rule__Function__DefinitionAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3637:1: ( ( ruleDefinition ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3638:1: ( ruleDefinition )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3644:1: ( ( ruleDefinition ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3645:1: ( ruleDefinition )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3638:1: ( ruleDefinition )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3639:1: ruleDefinition
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3645:1: ( ruleDefinition )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3646:1: ruleDefinition
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getFunctionAccess().getDefinitionDefinitionParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleDefinition_in_rule__Function__DefinitionAssignment_37292);
+            pushFollow(FOLLOW_ruleDefinition_in_rule__Function__DefinitionAssignment_37309);
             ruleDefinition();
 
             state._fsp--;
@@ -10641,22 +10688,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__InputsAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3648:1: rule__Definition__InputsAssignment_1 : ( ruleInput ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3655:1: rule__Definition__InputsAssignment_1 : ( ruleInput ) ;
     public final void rule__Definition__InputsAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3652:1: ( ( ruleInput ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3653:1: ( ruleInput )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3659:1: ( ( ruleInput ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3660:1: ( ruleInput )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3653:1: ( ruleInput )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3654:1: ruleInput
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3660:1: ( ruleInput )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3661:1: ruleInput
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionAccess().getInputsInputParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleInput_in_rule__Definition__InputsAssignment_17323);
+            pushFollow(FOLLOW_ruleInput_in_rule__Definition__InputsAssignment_17340);
             ruleInput();
 
             state._fsp--;
@@ -10686,22 +10733,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__CommandesAssignment_3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3663:1: rule__Definition__CommandesAssignment_3 : ( ruleCommands ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3670:1: rule__Definition__CommandesAssignment_3 : ( ruleCommands ) ;
     public final void rule__Definition__CommandesAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3667:1: ( ( ruleCommands ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3668:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3674:1: ( ( ruleCommands ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3675:1: ( ruleCommands )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3668:1: ( ruleCommands )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3669:1: ruleCommands
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3675:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3676:1: ruleCommands
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionAccess().getCommandesCommandsParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleCommands_in_rule__Definition__CommandesAssignment_37354);
+            pushFollow(FOLLOW_ruleCommands_in_rule__Definition__CommandesAssignment_37371);
             ruleCommands();
 
             state._fsp--;
@@ -10731,22 +10778,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Definition__OutputsAssignment_6"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3678:1: rule__Definition__OutputsAssignment_6 : ( ruleOutput ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3685:1: rule__Definition__OutputsAssignment_6 : ( ruleOutput ) ;
     public final void rule__Definition__OutputsAssignment_6() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3682:1: ( ( ruleOutput ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3683:1: ( ruleOutput )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3689:1: ( ( ruleOutput ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3690:1: ( ruleOutput )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3683:1: ( ruleOutput )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3684:1: ruleOutput
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3690:1: ( ruleOutput )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3691:1: ruleOutput
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getDefinitionAccess().getOutputsOutputParserRuleCall_6_0()); 
             }
-            pushFollow(FOLLOW_ruleOutput_in_rule__Definition__OutputsAssignment_67385);
+            pushFollow(FOLLOW_ruleOutput_in_rule__Definition__OutputsAssignment_67402);
             ruleOutput();
 
             state._fsp--;
@@ -10776,22 +10823,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Input__VarInAssignment_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3693:1: rule__Input__VarInAssignment_0_0 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3700:1: rule__Input__VarInAssignment_0_0 : ( RULE_VARIABLE ) ;
     public final void rule__Input__VarInAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3697:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3698:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3704:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3705:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3698:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3699:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3705:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3706:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputAccess().getVarInVARIABLETerminalRuleCall_0_0_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_0_07416); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_0_07433); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInputAccess().getVarInVARIABLETerminalRuleCall_0_0_0()); 
             }
@@ -10817,22 +10864,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Input__VarInAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3708:1: rule__Input__VarInAssignment_1 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3715:1: rule__Input__VarInAssignment_1 : ( RULE_VARIABLE ) ;
     public final void rule__Input__VarInAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3712:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3713:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3719:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3720:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3713:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3714:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3720:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3721:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getInputAccess().getVarInVARIABLETerminalRuleCall_1_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_17447); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_17464); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getInputAccess().getVarInVARIABLETerminalRuleCall_1_0()); 
             }
@@ -10858,22 +10905,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Output__VarOutAssignment_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3723:1: rule__Output__VarOutAssignment_0_0 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3730:1: rule__Output__VarOutAssignment_0_0 : ( RULE_VARIABLE ) ;
     public final void rule__Output__VarOutAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3727:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3728:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3734:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3735:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3728:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3729:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3735:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3736:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputAccess().getVarOutVARIABLETerminalRuleCall_0_0_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_0_07478); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_0_07495); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getOutputAccess().getVarOutVARIABLETerminalRuleCall_0_0_0()); 
             }
@@ -10899,22 +10946,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Output__VarOutAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3738:1: rule__Output__VarOutAssignment_1 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3745:1: rule__Output__VarOutAssignment_1 : ( RULE_VARIABLE ) ;
     public final void rule__Output__VarOutAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3742:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3743:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3749:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3750:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3743:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3744:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3750:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3751:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getOutputAccess().getVarOutVARIABLETerminalRuleCall_1_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_17509); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_17526); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getOutputAccess().getVarOutVARIABLETerminalRuleCall_1_0()); 
             }
@@ -10940,22 +10987,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Vars__VarGenAssignment_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3753:1: rule__Vars__VarGenAssignment_0_0 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3760:1: rule__Vars__VarGenAssignment_0_0 : ( RULE_VARIABLE ) ;
     public final void rule__Vars__VarGenAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3757:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3758:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3764:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3765:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3758:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3759:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3765:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3766:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarsAccess().getVarGenVARIABLETerminalRuleCall_0_0_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_0_07540); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_0_07557); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVarsAccess().getVarGenVARIABLETerminalRuleCall_0_0_0()); 
             }
@@ -10981,22 +11028,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Vars__VarGenAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3768:1: rule__Vars__VarGenAssignment_1 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3775:1: rule__Vars__VarGenAssignment_1 : ( RULE_VARIABLE ) ;
     public final void rule__Vars__VarGenAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3772:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3773:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3779:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3780:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3773:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3774:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3780:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3781:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getVarsAccess().getVarGenVARIABLETerminalRuleCall_1_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_17571); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_17588); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getVarsAccess().getVarGenVARIABLETerminalRuleCall_1_0()); 
             }
@@ -11022,22 +11069,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Commands__CommandeAssignment_0_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3783:1: rule__Commands__CommandeAssignment_0_0_0 : ( ruleCommand ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3790:1: rule__Commands__CommandeAssignment_0_0_0 : ( ruleCommand ) ;
     public final void rule__Commands__CommandeAssignment_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3787:1: ( ( ruleCommand ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3788:1: ( ruleCommand )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3794:1: ( ( ruleCommand ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3795:1: ( ruleCommand )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3788:1: ( ruleCommand )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3789:1: ruleCommand
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3795:1: ( ruleCommand )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3796:1: ruleCommand
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandsAccess().getCommandeCommandParserRuleCall_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_0_0_07602);
+            pushFollow(FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_0_0_07619);
             ruleCommand();
 
             state._fsp--;
@@ -11067,22 +11114,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Commands__CommandeAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3798:1: rule__Commands__CommandeAssignment_1 : ( ruleCommand ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3805:1: rule__Commands__CommandeAssignment_1 : ( ruleCommand ) ;
     public final void rule__Commands__CommandeAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3802:1: ( ( ruleCommand ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3803:1: ( ruleCommand )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3809:1: ( ( ruleCommand ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3810:1: ( ruleCommand )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3803:1: ( ruleCommand )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3804:1: ruleCommand
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3810:1: ( ruleCommand )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3811:1: ruleCommand
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandsAccess().getCommandeCommandParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_17633);
+            pushFollow(FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_17650);
             ruleCommand();
 
             state._fsp--;
@@ -11112,28 +11159,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Command__NopAssignment_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3813:1: rule__Command__NopAssignment_0 : ( ( 'nop' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3820:1: rule__Command__NopAssignment_0 : ( ( 'nop' ) ) ;
     public final void rule__Command__NopAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3817:1: ( ( ( 'nop' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3818:1: ( ( 'nop' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3824:1: ( ( ( 'nop' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3825:1: ( ( 'nop' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3818:1: ( ( 'nop' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3819:1: ( 'nop' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandAccess().getNopNopKeyword_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3820:1: ( 'nop' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3821:1: 'nop'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3825:1: ( ( 'nop' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3826:1: ( 'nop' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getNopNopKeyword_0_0()); 
             }
-            match(input,34,FOLLOW_34_in_rule__Command__NopAssignment_07669); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3827:1: ( 'nop' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3828:1: 'nop'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getCommandAccess().getNopNopKeyword_0_0()); 
+            }
+            match(input,34,FOLLOW_34_in_rule__Command__NopAssignment_07686); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCommandAccess().getNopNopKeyword_0_0()); 
             }
@@ -11165,22 +11212,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Command__VarsAssignment_1_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3836:1: rule__Command__VarsAssignment_1_0 : ( ruleVars ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3843:1: rule__Command__VarsAssignment_1_0 : ( ruleVars ) ;
     public final void rule__Command__VarsAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3840:1: ( ( ruleVars ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3841:1: ( ruleVars )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3847:1: ( ( ruleVars ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3848:1: ( ruleVars )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3841:1: ( ruleVars )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3842:1: ruleVars
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3848:1: ( ruleVars )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3849:1: ruleVars
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getVarsVarsParserRuleCall_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleVars_in_rule__Command__VarsAssignment_1_07708);
+            pushFollow(FOLLOW_ruleVars_in_rule__Command__VarsAssignment_1_07725);
             ruleVars();
 
             state._fsp--;
@@ -11210,22 +11257,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Command__ExprsAssignment_1_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3851:1: rule__Command__ExprsAssignment_1_2 : ( ruleExprs ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3858:1: rule__Command__ExprsAssignment_1_2 : ( ruleExprs ) ;
     public final void rule__Command__ExprsAssignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3855:1: ( ( ruleExprs ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3856:1: ( ruleExprs )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3862:1: ( ( ruleExprs ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3863:1: ( ruleExprs )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3856:1: ( ruleExprs )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3857:1: ruleExprs
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3863:1: ( ruleExprs )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3864:1: ruleExprs
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getExprsExprsParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExprs_in_rule__Command__ExprsAssignment_1_27739);
+            pushFollow(FOLLOW_ruleExprs_in_rule__Command__ExprsAssignment_1_27756);
             ruleExprs();
 
             state._fsp--;
@@ -11255,22 +11302,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Command__CmdWhileAssignment_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3866:1: rule__Command__CmdWhileAssignment_2 : ( ruleCommandWhile ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3873:1: rule__Command__CmdWhileAssignment_2 : ( ruleCommandWhile ) ;
     public final void rule__Command__CmdWhileAssignment_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3870:1: ( ( ruleCommandWhile ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3871:1: ( ruleCommandWhile )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3877:1: ( ( ruleCommandWhile ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3878:1: ( ruleCommandWhile )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3871:1: ( ruleCommandWhile )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3872:1: ruleCommandWhile
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3878:1: ( ruleCommandWhile )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3879:1: ruleCommandWhile
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getCmdWhileCommandWhileParserRuleCall_2_0()); 
             }
-            pushFollow(FOLLOW_ruleCommandWhile_in_rule__Command__CmdWhileAssignment_27770);
+            pushFollow(FOLLOW_ruleCommandWhile_in_rule__Command__CmdWhileAssignment_27787);
             ruleCommandWhile();
 
             state._fsp--;
@@ -11300,22 +11347,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Command__CmdIfAssignment_3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3881:1: rule__Command__CmdIfAssignment_3 : ( ruleCommandIf ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3888:1: rule__Command__CmdIfAssignment_3 : ( ruleCommandIf ) ;
     public final void rule__Command__CmdIfAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3885:1: ( ( ruleCommandIf ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3886:1: ( ruleCommandIf )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3892:1: ( ( ruleCommandIf ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3893:1: ( ruleCommandIf )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3886:1: ( ruleCommandIf )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3887:1: ruleCommandIf
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3893:1: ( ruleCommandIf )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3894:1: ruleCommandIf
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getCmdIfCommandIfParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleCommandIf_in_rule__Command__CmdIfAssignment_37801);
+            pushFollow(FOLLOW_ruleCommandIf_in_rule__Command__CmdIfAssignment_37818);
             ruleCommandIf();
 
             state._fsp--;
@@ -11345,22 +11392,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Command__CmdForEachAssignment_4"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3896:1: rule__Command__CmdForEachAssignment_4 : ( ruleCommandForEach ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3903:1: rule__Command__CmdForEachAssignment_4 : ( ruleCommandForEach ) ;
     public final void rule__Command__CmdForEachAssignment_4() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3900:1: ( ( ruleCommandForEach ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3901:1: ( ruleCommandForEach )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3907:1: ( ( ruleCommandForEach ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3908:1: ( ruleCommandForEach )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3901:1: ( ruleCommandForEach )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3902:1: ruleCommandForEach
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3908:1: ( ruleCommandForEach )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3909:1: ruleCommandForEach
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandAccess().getCmdForEachCommandForEachParserRuleCall_4_0()); 
             }
-            pushFollow(FOLLOW_ruleCommandForEach_in_rule__Command__CmdForEachAssignment_47832);
+            pushFollow(FOLLOW_ruleCommandForEach_in_rule__Command__CmdForEachAssignment_47849);
             ruleCommandForEach();
 
             state._fsp--;
@@ -11390,28 +11437,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandWhile__WAssignment_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3911:1: rule__CommandWhile__WAssignment_0_0 : ( ( 'while' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3918:1: rule__CommandWhile__WAssignment_0_0 : ( ( 'while' ) ) ;
     public final void rule__CommandWhile__WAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3915:1: ( ( ( 'while' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3916:1: ( ( 'while' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3922:1: ( ( ( 'while' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3923:1: ( ( 'while' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3916:1: ( ( 'while' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3917:1: ( 'while' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getCommandWhileAccess().getWWhileKeyword_0_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3918:1: ( 'while' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3919:1: 'while'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3923:1: ( ( 'while' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3924:1: ( 'while' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandWhileAccess().getWWhileKeyword_0_0_0()); 
             }
-            match(input,35,FOLLOW_35_in_rule__CommandWhile__WAssignment_0_07868); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3925:1: ( 'while' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3926:1: 'while'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getCommandWhileAccess().getWWhileKeyword_0_0_0()); 
+            }
+            match(input,35,FOLLOW_35_in_rule__CommandWhile__WAssignment_0_07885); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getCommandWhileAccess().getWWhileKeyword_0_0_0()); 
             }
@@ -11443,22 +11490,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandWhile__ExprAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3934:1: rule__CommandWhile__ExprAssignment_1 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3941:1: rule__CommandWhile__ExprAssignment_1 : ( ruleExpr ) ;
     public final void rule__CommandWhile__ExprAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3938:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3939:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3945:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3946:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3939:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3940:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3946:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3947:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandWhileAccess().getExprExprParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__CommandWhile__ExprAssignment_17907);
+            pushFollow(FOLLOW_ruleExpr_in_rule__CommandWhile__ExprAssignment_17924);
             ruleExpr();
 
             state._fsp--;
@@ -11488,22 +11535,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandWhile__CmdsAssignment_3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3949:1: rule__CommandWhile__CmdsAssignment_3 : ( ruleCommands ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3956:1: rule__CommandWhile__CmdsAssignment_3 : ( ruleCommands ) ;
     public final void rule__CommandWhile__CmdsAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3953:1: ( ( ruleCommands ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3954:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3960:1: ( ( ruleCommands ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3961:1: ( ruleCommands )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3954:1: ( ruleCommands )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3955:1: ruleCommands
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3961:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3962:1: ruleCommands
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandWhileAccess().getCmdsCommandsParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleCommands_in_rule__CommandWhile__CmdsAssignment_37938);
+            pushFollow(FOLLOW_ruleCommands_in_rule__CommandWhile__CmdsAssignment_37955);
             ruleCommands();
 
             state._fsp--;
@@ -11533,22 +11580,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandIf__CondAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3964:1: rule__CommandIf__CondAssignment_1 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3971:1: rule__CommandIf__CondAssignment_1 : ( ruleExpr ) ;
     public final void rule__CommandIf__CondAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3968:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3969:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3975:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3976:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3969:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3970:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3976:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3977:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandIfAccess().getCondExprParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__CommandIf__CondAssignment_17969);
+            pushFollow(FOLLOW_ruleExpr_in_rule__CommandIf__CondAssignment_17986);
             ruleExpr();
 
             state._fsp--;
@@ -11578,22 +11625,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandIf__CmdsThenAssignment_3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3979:1: rule__CommandIf__CmdsThenAssignment_3 : ( ruleCommands ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3986:1: rule__CommandIf__CmdsThenAssignment_3 : ( ruleCommands ) ;
     public final void rule__CommandIf__CmdsThenAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3983:1: ( ( ruleCommands ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3984:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3990:1: ( ( ruleCommands ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3991:1: ( ruleCommands )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3984:1: ( ruleCommands )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3985:1: ruleCommands
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3991:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3992:1: ruleCommands
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandIfAccess().getCmdsThenCommandsParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleCommands_in_rule__CommandIf__CmdsThenAssignment_38000);
+            pushFollow(FOLLOW_ruleCommands_in_rule__CommandIf__CmdsThenAssignment_38017);
             ruleCommands();
 
             state._fsp--;
@@ -11623,22 +11670,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandIf__CmdsElseAssignment_4_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3994:1: rule__CommandIf__CmdsElseAssignment_4_1 : ( ruleCommands ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4001:1: rule__CommandIf__CmdsElseAssignment_4_1 : ( ruleCommands ) ;
     public final void rule__CommandIf__CmdsElseAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3998:1: ( ( ruleCommands ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3999:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4005:1: ( ( ruleCommands ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4006:1: ( ruleCommands )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:3999:1: ( ruleCommands )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4000:1: ruleCommands
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4006:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4007:1: ruleCommands
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandIfAccess().getCmdsElseCommandsParserRuleCall_4_1_0()); 
             }
-            pushFollow(FOLLOW_ruleCommands_in_rule__CommandIf__CmdsElseAssignment_4_18031);
+            pushFollow(FOLLOW_ruleCommands_in_rule__CommandIf__CmdsElseAssignment_4_18048);
             ruleCommands();
 
             state._fsp--;
@@ -11668,22 +11715,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandForEach__ElemAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4009:1: rule__CommandForEach__ElemAssignment_1 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4016:1: rule__CommandForEach__ElemAssignment_1 : ( ruleExpr ) ;
     public final void rule__CommandForEach__ElemAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4013:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4014:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4020:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4021:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4014:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4015:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4021:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4022:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandForEachAccess().getElemExprParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__CommandForEach__ElemAssignment_18062);
+            pushFollow(FOLLOW_ruleExpr_in_rule__CommandForEach__ElemAssignment_18079);
             ruleExpr();
 
             state._fsp--;
@@ -11713,22 +11760,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandForEach__EnsembAssignment_3"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4024:1: rule__CommandForEach__EnsembAssignment_3 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4031:1: rule__CommandForEach__EnsembAssignment_3 : ( ruleExpr ) ;
     public final void rule__CommandForEach__EnsembAssignment_3() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4028:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4029:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4035:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4036:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4029:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4030:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4036:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4037:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandForEachAccess().getEnsembExprParserRuleCall_3_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__CommandForEach__EnsembAssignment_38093);
+            pushFollow(FOLLOW_ruleExpr_in_rule__CommandForEach__EnsembAssignment_38110);
             ruleExpr();
 
             state._fsp--;
@@ -11758,22 +11805,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__CommandForEach__CmdsAssignment_5"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4039:1: rule__CommandForEach__CmdsAssignment_5 : ( ruleCommands ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4046:1: rule__CommandForEach__CmdsAssignment_5 : ( ruleCommands ) ;
     public final void rule__CommandForEach__CmdsAssignment_5() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4043:1: ( ( ruleCommands ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4044:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4050:1: ( ( ruleCommands ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4051:1: ( ruleCommands )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4044:1: ( ruleCommands )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4045:1: ruleCommands
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4051:1: ( ruleCommands )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4052:1: ruleCommands
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getCommandForEachAccess().getCmdsCommandsParserRuleCall_5_0()); 
             }
-            pushFollow(FOLLOW_ruleCommands_in_rule__CommandForEach__CmdsAssignment_58124);
+            pushFollow(FOLLOW_ruleCommands_in_rule__CommandForEach__CmdsAssignment_58141);
             ruleCommands();
 
             state._fsp--;
@@ -11803,22 +11850,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exprs__ExpGenAssignment_0_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4054:1: rule__Exprs__ExpGenAssignment_0_0_0 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4061:1: rule__Exprs__ExpGenAssignment_0_0_0 : ( ruleExpr ) ;
     public final void rule__Exprs__ExpGenAssignment_0_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4058:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4059:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4065:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4066:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4059:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4060:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4066:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4067:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprsAccess().getExpGenExprParserRuleCall_0_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_0_0_08155);
+            pushFollow(FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_0_0_08172);
             ruleExpr();
 
             state._fsp--;
@@ -11848,22 +11895,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Exprs__ExpGenAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4069:1: rule__Exprs__ExpGenAssignment_1 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4076:1: rule__Exprs__ExpGenAssignment_1 : ( ruleExpr ) ;
     public final void rule__Exprs__ExpGenAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4073:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4074:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4080:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4081:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4074:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4075:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4081:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4082:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprsAccess().getExpGenExprParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_18186);
+            pushFollow(FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_18203);
             ruleExpr();
 
             state._fsp--;
@@ -11893,22 +11940,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Expr__ExprSimpAssignment_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4084:1: rule__Expr__ExprSimpAssignment_0_0 : ( ruleExprSimple ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4091:1: rule__Expr__ExprSimpAssignment_0_0 : ( ruleExprSimple ) ;
     public final void rule__Expr__ExprSimpAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4088:1: ( ( ruleExprSimple ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4089:1: ( ruleExprSimple )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4095:1: ( ( ruleExprSimple ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4096:1: ( ruleExprSimple )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4089:1: ( ruleExprSimple )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4090:1: ruleExprSimple
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4096:1: ( ruleExprSimple )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4097:1: ruleExprSimple
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAccess().getExprSimpExprSimpleParserRuleCall_0_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExprSimple_in_rule__Expr__ExprSimpAssignment_0_08217);
+            pushFollow(FOLLOW_ruleExprSimple_in_rule__Expr__ExprSimpAssignment_0_08234);
             ruleExprSimple();
 
             state._fsp--;
@@ -11938,22 +11985,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Expr__ExprAndAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4099:1: rule__Expr__ExprAndAssignment_1 : ( ruleExprAnd ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4106:1: rule__Expr__ExprAndAssignment_1 : ( ruleExprAnd ) ;
     public final void rule__Expr__ExprAndAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4103:1: ( ( ruleExprAnd ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4104:1: ( ruleExprAnd )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4110:1: ( ( ruleExprAnd ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4111:1: ( ruleExprAnd )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4104:1: ( ruleExprAnd )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4105:1: ruleExprAnd
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4111:1: ( ruleExprAnd )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4112:1: ruleExprAnd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAccess().getExprAndExprAndParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExprAnd_in_rule__Expr__ExprAndAssignment_18248);
+            pushFollow(FOLLOW_ruleExprAnd_in_rule__Expr__ExprAndAssignment_18265);
             ruleExprAnd();
 
             state._fsp--;
@@ -11983,28 +12030,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__NilAssignment_0_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4114:1: rule__ExprSimple__NilAssignment_0_0 : ( ( 'nil' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4121:1: rule__ExprSimple__NilAssignment_0_0 : ( ( 'nil' ) ) ;
     public final void rule__ExprSimple__NilAssignment_0_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4118:1: ( ( ( 'nil' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4119:1: ( ( 'nil' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4125:1: ( ( ( 'nil' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4126:1: ( ( 'nil' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4119:1: ( ( 'nil' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4120:1: ( 'nil' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4121:1: ( 'nil' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4122:1: 'nil'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4126:1: ( ( 'nil' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4127:1: ( 'nil' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0_0()); 
             }
-            match(input,36,FOLLOW_36_in_rule__ExprSimple__NilAssignment_0_08284); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4128:1: ( 'nil' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4129:1: 'nil'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0_0()); 
+            }
+            match(input,36,FOLLOW_36_in_rule__ExprSimple__NilAssignment_0_08301); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getNilNilKeyword_0_0_0()); 
             }
@@ -12036,22 +12083,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__VariAssignment_0_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4137:1: rule__ExprSimple__VariAssignment_0_1 : ( RULE_VARIABLE ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4144:1: rule__ExprSimple__VariAssignment_0_1 : ( RULE_VARIABLE ) ;
     public final void rule__ExprSimple__VariAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4141:1: ( ( RULE_VARIABLE ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4142:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4148:1: ( ( RULE_VARIABLE ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4149:1: ( RULE_VARIABLE )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4142:1: ( RULE_VARIABLE )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4143:1: RULE_VARIABLE
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4149:1: ( RULE_VARIABLE )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4150:1: RULE_VARIABLE
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getVariVARIABLETerminalRuleCall_0_1_0()); 
             }
-            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__ExprSimple__VariAssignment_0_18323); if (state.failed) return ;
+            match(input,RULE_VARIABLE,FOLLOW_RULE_VARIABLE_in_rule__ExprSimple__VariAssignment_0_18340); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getVariVARIABLETerminalRuleCall_0_1_0()); 
             }
@@ -12077,22 +12124,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__SymbAssignment_0_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4152:1: rule__ExprSimple__SymbAssignment_0_2 : ( RULE_SYMBOL ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4159:1: rule__ExprSimple__SymbAssignment_0_2 : ( RULE_SYMBOL ) ;
     public final void rule__ExprSimple__SymbAssignment_0_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4156:1: ( ( RULE_SYMBOL ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4157:1: ( RULE_SYMBOL )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4163:1: ( ( RULE_SYMBOL ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4164:1: ( RULE_SYMBOL )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4157:1: ( RULE_SYMBOL )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4158:1: RULE_SYMBOL
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4164:1: ( RULE_SYMBOL )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4165:1: RULE_SYMBOL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getSymbSYMBOLTerminalRuleCall_0_2_0()); 
             }
-            match(input,RULE_SYMBOL,FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__SymbAssignment_0_28354); if (state.failed) return ;
+            match(input,RULE_SYMBOL,FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__SymbAssignment_0_28371); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getSymbSYMBOLTerminalRuleCall_0_2_0()); 
             }
@@ -12118,22 +12165,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__ExprConsAssignment_1_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4167:1: rule__ExprSimple__ExprConsAssignment_1_1 : ( ruleCons ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4174:1: rule__ExprSimple__ExprConsAssignment_1_1 : ( ruleCons ) ;
     public final void rule__ExprSimple__ExprConsAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4171:1: ( ( ruleCons ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4172:1: ( ruleCons )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4178:1: ( ( ruleCons ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4179:1: ( ruleCons )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4172:1: ( ruleCons )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4173:1: ruleCons
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4179:1: ( ruleCons )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4180:1: ruleCons
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getExprConsConsParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleCons_in_rule__ExprSimple__ExprConsAssignment_1_18385);
+            pushFollow(FOLLOW_ruleCons_in_rule__ExprSimple__ExprConsAssignment_1_18402);
             ruleCons();
 
             state._fsp--;
@@ -12163,28 +12210,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__ExprHeadAssignment_2_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4182:1: rule__ExprSimple__ExprHeadAssignment_2_1 : ( ( 'hd' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4189:1: rule__ExprSimple__ExprHeadAssignment_2_1 : ( ( 'hd' ) ) ;
     public final void rule__ExprSimple__ExprHeadAssignment_2_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4186:1: ( ( ( 'hd' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4187:1: ( ( 'hd' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4193:1: ( ( ( 'hd' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4194:1: ( ( 'hd' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4187:1: ( ( 'hd' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4188:1: ( 'hd' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getExprHeadHdKeyword_2_1_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4189:1: ( 'hd' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4190:1: 'hd'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4194:1: ( ( 'hd' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4195:1: ( 'hd' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getExprHeadHdKeyword_2_1_0()); 
             }
-            match(input,37,FOLLOW_37_in_rule__ExprSimple__ExprHeadAssignment_2_18421); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4196:1: ( 'hd' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4197:1: 'hd'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprSimpleAccess().getExprHeadHdKeyword_2_1_0()); 
+            }
+            match(input,37,FOLLOW_37_in_rule__ExprSimple__ExprHeadAssignment_2_18438); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getExprHeadHdKeyword_2_1_0()); 
             }
@@ -12216,22 +12263,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__ExprHeadAttAssignment_2_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4205:1: rule__ExprSimple__ExprHeadAttAssignment_2_2 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4212:1: rule__ExprSimple__ExprHeadAttAssignment_2_2 : ( ruleExpr ) ;
     public final void rule__ExprSimple__ExprHeadAttAssignment_2_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4209:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4210:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4216:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4217:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4210:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4211:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4217:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4218:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getExprHeadAttExprParserRuleCall_2_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__ExprSimple__ExprHeadAttAssignment_2_28460);
+            pushFollow(FOLLOW_ruleExpr_in_rule__ExprSimple__ExprHeadAttAssignment_2_28477);
             ruleExpr();
 
             state._fsp--;
@@ -12261,28 +12308,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__ExprTailAssignment_3_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4220:1: rule__ExprSimple__ExprTailAssignment_3_1 : ( ( 'tl' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4227:1: rule__ExprSimple__ExprTailAssignment_3_1 : ( ( 'tl' ) ) ;
     public final void rule__ExprSimple__ExprTailAssignment_3_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4224:1: ( ( ( 'tl' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4225:1: ( ( 'tl' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4231:1: ( ( ( 'tl' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4232:1: ( ( 'tl' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4225:1: ( ( 'tl' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4226:1: ( 'tl' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprSimpleAccess().getExprTailTlKeyword_3_1_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4227:1: ( 'tl' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4228:1: 'tl'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4232:1: ( ( 'tl' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4233:1: ( 'tl' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getExprTailTlKeyword_3_1_0()); 
             }
-            match(input,38,FOLLOW_38_in_rule__ExprSimple__ExprTailAssignment_3_18496); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4234:1: ( 'tl' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4235:1: 'tl'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprSimpleAccess().getExprTailTlKeyword_3_1_0()); 
+            }
+            match(input,38,FOLLOW_38_in_rule__ExprSimple__ExprTailAssignment_3_18513); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getExprTailTlKeyword_3_1_0()); 
             }
@@ -12314,22 +12361,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__ExprTailAttAssignment_3_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4243:1: rule__ExprSimple__ExprTailAttAssignment_3_2 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4250:1: rule__ExprSimple__ExprTailAttAssignment_3_2 : ( ruleExpr ) ;
     public final void rule__ExprSimple__ExprTailAttAssignment_3_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4247:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4248:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4254:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4255:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4248:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4249:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4255:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4256:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getExprTailAttExprParserRuleCall_3_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__ExprSimple__ExprTailAttAssignment_3_28535);
+            pushFollow(FOLLOW_ruleExpr_in_rule__ExprSimple__ExprTailAttAssignment_3_28552);
             ruleExpr();
 
             state._fsp--;
@@ -12359,22 +12406,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__NomSymbAssignment_4_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4258:1: rule__ExprSimple__NomSymbAssignment_4_1 : ( RULE_SYMBOL ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4265:1: rule__ExprSimple__NomSymbAssignment_4_1 : ( RULE_SYMBOL ) ;
     public final void rule__ExprSimple__NomSymbAssignment_4_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4262:1: ( ( RULE_SYMBOL ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4263:1: ( RULE_SYMBOL )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4269:1: ( ( RULE_SYMBOL ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4270:1: ( RULE_SYMBOL )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4263:1: ( RULE_SYMBOL )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4264:1: RULE_SYMBOL
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4270:1: ( RULE_SYMBOL )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4271:1: RULE_SYMBOL
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getNomSymbSYMBOLTerminalRuleCall_4_1_0()); 
             }
-            match(input,RULE_SYMBOL,FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__NomSymbAssignment_4_18566); if (state.failed) return ;
+            match(input,RULE_SYMBOL,FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__NomSymbAssignment_4_18583); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprSimpleAccess().getNomSymbSYMBOLTerminalRuleCall_4_1_0()); 
             }
@@ -12400,22 +12447,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprSimple__SymbAttAssignment_4_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4273:1: rule__ExprSimple__SymbAttAssignment_4_2 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4280:1: rule__ExprSimple__SymbAttAssignment_4_2 : ( ruleExpr ) ;
     public final void rule__ExprSimple__SymbAttAssignment_4_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4277:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4278:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4284:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4285:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4278:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4279:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4285:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4286:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprSimpleAccess().getSymbAttExprParserRuleCall_4_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__ExprSimple__SymbAttAssignment_4_28597);
+            pushFollow(FOLLOW_ruleExpr_in_rule__ExprSimple__SymbAttAssignment_4_28614);
             ruleExpr();
 
             state._fsp--;
@@ -12445,22 +12492,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__ExprOrAssignment_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4288:1: rule__ExprAnd__ExprOrAssignment_0 : ( ruleExprOr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4295:1: rule__ExprAnd__ExprOrAssignment_0 : ( ruleExprOr ) ;
     public final void rule__ExprAnd__ExprOrAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4292:1: ( ( ruleExprOr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4293:1: ( ruleExprOr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4299:1: ( ( ruleExprOr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4300:1: ( ruleExprOr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4293:1: ( ruleExprOr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4294:1: ruleExprOr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4300:1: ( ruleExprOr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4301:1: ruleExprOr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getExprOrExprOrParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExprOr_in_rule__ExprAnd__ExprOrAssignment_08628);
+            pushFollow(FOLLOW_ruleExprOr_in_rule__ExprAnd__ExprOrAssignment_08645);
             ruleExprOr();
 
             state._fsp--;
@@ -12490,28 +12537,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__ExprAndAssignment_1_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4303:1: rule__ExprAnd__ExprAndAssignment_1_0 : ( ( 'and' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4310:1: rule__ExprAnd__ExprAndAssignment_1_0 : ( ( 'and' ) ) ;
     public final void rule__ExprAnd__ExprAndAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4307:1: ( ( ( 'and' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4308:1: ( ( 'and' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4314:1: ( ( ( 'and' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4315:1: ( ( 'and' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4308:1: ( ( 'and' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4309:1: ( 'and' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprAndAccess().getExprAndAndKeyword_1_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4310:1: ( 'and' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4311:1: 'and'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4315:1: ( ( 'and' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4316:1: ( 'and' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getExprAndAndKeyword_1_0_0()); 
             }
-            match(input,39,FOLLOW_39_in_rule__ExprAnd__ExprAndAssignment_1_08664); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4317:1: ( 'and' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4318:1: 'and'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprAndAccess().getExprAndAndKeyword_1_0_0()); 
+            }
+            match(input,39,FOLLOW_39_in_rule__ExprAnd__ExprAndAssignment_1_08681); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprAndAccess().getExprAndAndKeyword_1_0_0()); 
             }
@@ -12543,22 +12590,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprAnd__ExprAndAttAssignment_1_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4326:1: rule__ExprAnd__ExprAndAttAssignment_1_1 : ( ruleExprAnd ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4333:1: rule__ExprAnd__ExprAndAttAssignment_1_1 : ( ruleExprAnd ) ;
     public final void rule__ExprAnd__ExprAndAttAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4330:1: ( ( ruleExprAnd ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4331:1: ( ruleExprAnd )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4337:1: ( ( ruleExprAnd ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4338:1: ( ruleExprAnd )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4331:1: ( ruleExprAnd )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4332:1: ruleExprAnd
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4338:1: ( ruleExprAnd )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4339:1: ruleExprAnd
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprAndAccess().getExprAndAttExprAndParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExprAnd_in_rule__ExprAnd__ExprAndAttAssignment_1_18703);
+            pushFollow(FOLLOW_ruleExprAnd_in_rule__ExprAnd__ExprAndAttAssignment_1_18720);
             ruleExprAnd();
 
             state._fsp--;
@@ -12588,22 +12635,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__ExprNotAssignment_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4341:1: rule__ExprOr__ExprNotAssignment_0 : ( ruleExprNot ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4348:1: rule__ExprOr__ExprNotAssignment_0 : ( ruleExprNot ) ;
     public final void rule__ExprOr__ExprNotAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4345:1: ( ( ruleExprNot ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4346:1: ( ruleExprNot )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4352:1: ( ( ruleExprNot ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4353:1: ( ruleExprNot )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4346:1: ( ruleExprNot )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4347:1: ruleExprNot
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4353:1: ( ruleExprNot )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4354:1: ruleExprNot
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getExprNotExprNotParserRuleCall_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExprNot_in_rule__ExprOr__ExprNotAssignment_08734);
+            pushFollow(FOLLOW_ruleExprNot_in_rule__ExprOr__ExprNotAssignment_08751);
             ruleExprNot();
 
             state._fsp--;
@@ -12633,28 +12680,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__ExprOrAssignment_1_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4356:1: rule__ExprOr__ExprOrAssignment_1_0 : ( ( 'or' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4363:1: rule__ExprOr__ExprOrAssignment_1_0 : ( ( 'or' ) ) ;
     public final void rule__ExprOr__ExprOrAssignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4360:1: ( ( ( 'or' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4361:1: ( ( 'or' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4367:1: ( ( ( 'or' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4368:1: ( ( 'or' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4361:1: ( ( 'or' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4362:1: ( 'or' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprOrAccess().getExprOrOrKeyword_1_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4363:1: ( 'or' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4364:1: 'or'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4368:1: ( ( 'or' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4369:1: ( 'or' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getExprOrOrKeyword_1_0_0()); 
             }
-            match(input,40,FOLLOW_40_in_rule__ExprOr__ExprOrAssignment_1_08770); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4370:1: ( 'or' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4371:1: 'or'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprOrAccess().getExprOrOrKeyword_1_0_0()); 
+            }
+            match(input,40,FOLLOW_40_in_rule__ExprOr__ExprOrAssignment_1_08787); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprOrAccess().getExprOrOrKeyword_1_0_0()); 
             }
@@ -12686,22 +12733,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprOr__ExprOrAttAssignment_1_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4379:1: rule__ExprOr__ExprOrAttAssignment_1_1 : ( ruleExprOr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4386:1: rule__ExprOr__ExprOrAttAssignment_1_1 : ( ruleExprOr ) ;
     public final void rule__ExprOr__ExprOrAttAssignment_1_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4383:1: ( ( ruleExprOr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4384:1: ( ruleExprOr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4390:1: ( ( ruleExprOr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4391:1: ( ruleExprOr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4384:1: ( ruleExprOr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4385:1: ruleExprOr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4391:1: ( ruleExprOr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4392:1: ruleExprOr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprOrAccess().getExprOrAttExprOrParserRuleCall_1_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExprOr_in_rule__ExprOr__ExprOrAttAssignment_1_18809);
+            pushFollow(FOLLOW_ruleExprOr_in_rule__ExprOr__ExprOrAttAssignment_1_18826);
             ruleExprOr();
 
             state._fsp--;
@@ -12731,28 +12778,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprNot__NotAssignment_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4394:1: rule__ExprNot__NotAssignment_0 : ( ( 'not' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4401:1: rule__ExprNot__NotAssignment_0 : ( ( 'not' ) ) ;
     public final void rule__ExprNot__NotAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4398:1: ( ( ( 'not' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4399:1: ( ( 'not' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4405:1: ( ( ( 'not' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4406:1: ( ( 'not' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4399:1: ( ( 'not' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4400:1: ( 'not' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getExprNotAccess().getNotNotKeyword_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4401:1: ( 'not' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4402:1: 'not'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4406:1: ( ( 'not' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4407:1: ( 'not' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprNotAccess().getNotNotKeyword_0_0()); 
             }
-            match(input,41,FOLLOW_41_in_rule__ExprNot__NotAssignment_08845); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4408:1: ( 'not' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4409:1: 'not'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getExprNotAccess().getNotNotKeyword_0_0()); 
+            }
+            match(input,41,FOLLOW_41_in_rule__ExprNot__NotAssignment_08862); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getExprNotAccess().getNotNotKeyword_0_0()); 
             }
@@ -12784,22 +12831,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprNot__ExprEqAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4417:1: rule__ExprNot__ExprEqAssignment_1 : ( ruleExprEq ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4424:1: rule__ExprNot__ExprEqAssignment_1 : ( ruleExprEq ) ;
     public final void rule__ExprNot__ExprEqAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4421:1: ( ( ruleExprEq ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4422:1: ( ruleExprEq )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4428:1: ( ( ruleExprEq ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4429:1: ( ruleExprEq )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4422:1: ( ruleExprEq )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4423:1: ruleExprEq
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4429:1: ( ruleExprEq )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4430:1: ruleExprEq
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprNotAccess().getExprEqExprEqParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExprEq_in_rule__ExprNot__ExprEqAssignment_18884);
+            pushFollow(FOLLOW_ruleExprEq_in_rule__ExprNot__ExprEqAssignment_18901);
             ruleExprEq();
 
             state._fsp--;
@@ -12829,22 +12876,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__ExprAssignment_0_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4432:1: rule__ExprEq__ExprAssignment_0_1 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4439:1: rule__ExprEq__ExprAssignment_0_1 : ( ruleExpr ) ;
     public final void rule__ExprEq__ExprAssignment_0_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4436:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4437:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4443:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4444:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4437:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4438:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4444:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4445:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getExprExprParserRuleCall_0_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__ExprEq__ExprAssignment_0_18915);
+            pushFollow(FOLLOW_ruleExpr_in_rule__ExprEq__ExprAssignment_0_18932);
             ruleExpr();
 
             state._fsp--;
@@ -12874,22 +12921,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__ExprSim1Assignment_1_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4447:1: rule__ExprEq__ExprSim1Assignment_1_0 : ( ruleExprSimple ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4454:1: rule__ExprEq__ExprSim1Assignment_1_0 : ( ruleExprSimple ) ;
     public final void rule__ExprEq__ExprSim1Assignment_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4451:1: ( ( ruleExprSimple ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4452:1: ( ruleExprSimple )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4458:1: ( ( ruleExprSimple ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4459:1: ( ruleExprSimple )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4452:1: ( ruleExprSimple )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4453:1: ruleExprSimple
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4459:1: ( ruleExprSimple )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4460:1: ruleExprSimple
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getExprSim1ExprSimpleParserRuleCall_1_0_0()); 
             }
-            pushFollow(FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim1Assignment_1_08946);
+            pushFollow(FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim1Assignment_1_08963);
             ruleExprSimple();
 
             state._fsp--;
@@ -12919,22 +12966,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__ExprEq__ExprSim2Assignment_1_2"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4462:1: rule__ExprEq__ExprSim2Assignment_1_2 : ( ruleExprSimple ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4469:1: rule__ExprEq__ExprSim2Assignment_1_2 : ( ruleExprSimple ) ;
     public final void rule__ExprEq__ExprSim2Assignment_1_2() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4466:1: ( ( ruleExprSimple ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4467:1: ( ruleExprSimple )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4473:1: ( ( ruleExprSimple ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4474:1: ( ruleExprSimple )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4467:1: ( ruleExprSimple )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4468:1: ruleExprSimple
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4474:1: ( ruleExprSimple )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4475:1: ruleExprSimple
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getExprEqAccess().getExprSim2ExprSimpleParserRuleCall_1_2_0()); 
             }
-            pushFollow(FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim2Assignment_1_28977);
+            pushFollow(FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim2Assignment_1_28994);
             ruleExprSimple();
 
             state._fsp--;
@@ -12964,28 +13011,28 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Cons__ExprConsAssignment_0"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4477:1: rule__Cons__ExprConsAssignment_0 : ( ( 'cons' ) ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4484:1: rule__Cons__ExprConsAssignment_0 : ( ( 'cons' ) ) ;
     public final void rule__Cons__ExprConsAssignment_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4481:1: ( ( ( 'cons' ) ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4482:1: ( ( 'cons' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4488:1: ( ( ( 'cons' ) ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4489:1: ( ( 'cons' ) )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4482:1: ( ( 'cons' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4483:1: ( 'cons' )
-            {
-            if ( state.backtracking==0 ) {
-               before(grammarAccess.getConsAccess().getExprConsConsKeyword_0_0()); 
-            }
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4484:1: ( 'cons' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4485:1: 'cons'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4489:1: ( ( 'cons' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4490:1: ( 'cons' )
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConsAccess().getExprConsConsKeyword_0_0()); 
             }
-            match(input,42,FOLLOW_42_in_rule__Cons__ExprConsAssignment_09013); if (state.failed) return ;
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4491:1: ( 'cons' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4492:1: 'cons'
+            {
+            if ( state.backtracking==0 ) {
+               before(grammarAccess.getConsAccess().getExprConsConsKeyword_0_0()); 
+            }
+            match(input,42,FOLLOW_42_in_rule__Cons__ExprConsAssignment_09030); if (state.failed) return ;
             if ( state.backtracking==0 ) {
                after(grammarAccess.getConsAccess().getExprConsConsKeyword_0_0()); 
             }
@@ -13017,22 +13064,22 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
 
 
     // $ANTLR start "rule__Cons__ExprConsAttListAssignment_1"
-    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4500:1: rule__Cons__ExprConsAttListAssignment_1 : ( ruleExpr ) ;
+    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4507:1: rule__Cons__ExprConsAttListAssignment_1 : ( ruleExpr ) ;
     public final void rule__Cons__ExprConsAttListAssignment_1() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4504:1: ( ( ruleExpr ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4505:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4511:1: ( ( ruleExpr ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4512:1: ( ruleExpr )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4505:1: ( ruleExpr )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4506:1: ruleExpr
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4512:1: ( ruleExpr )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4513:1: ruleExpr
             {
             if ( state.backtracking==0 ) {
                before(grammarAccess.getConsAccess().getExprConsAttListExprParserRuleCall_1_0()); 
             }
-            pushFollow(FOLLOW_ruleExpr_in_rule__Cons__ExprConsAttListAssignment_19052);
+            pushFollow(FOLLOW_ruleExpr_in_rule__Cons__ExprConsAttListAssignment_19069);
             ruleExpr();
 
             state._fsp--;
@@ -13477,112 +13524,113 @@ public class InternalWhileCppParser extends AbstractInternalContentAssistParser 
     public static final BitSet FOLLOW_rule__ExprSimple__NomSymbAssignment_4_1_in_rule__ExprSimple__Group_4__1__Impl5950 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ExprSimple__Group_4__2__Impl_in_rule__ExprSimple__Group_4__25980 = new BitSet(new long[]{0x0000000100000000L});
     public static final BitSet FOLLOW_rule__ExprSimple__Group_4__3_in_rule__ExprSimple__Group_4__25983 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprSimple__SymbAttAssignment_4_2_in_rule__ExprSimple__Group_4__2__Impl6010 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprSimple__Group_4__3__Impl_in_rule__ExprSimple__Group_4__36040 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rule__ExprSimple__Group_4__3__Impl6068 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group__0__Impl_in_rule__ExprAnd__Group__06107 = new BitSet(new long[]{0x0000008000000000L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group__1_in_rule__ExprAnd__Group__06110 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__ExprOrAssignment_0_in_rule__ExprAnd__Group__0__Impl6137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group__1__Impl_in_rule__ExprAnd__Group__16167 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__0_in_rule__ExprAnd__Group__1__Impl6194 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__0__Impl_in_rule__ExprAnd__Group_1__06229 = new BitSet(new long[]{0x0000021080000030L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__1_in_rule__ExprAnd__Group_1__06232 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__ExprAndAssignment_1_0_in_rule__ExprAnd__Group_1__0__Impl6259 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__1__Impl_in_rule__ExprAnd__Group_1__16289 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprAnd__ExprAndAttAssignment_1_1_in_rule__ExprAnd__Group_1__1__Impl6316 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group__0__Impl_in_rule__ExprOr__Group__06350 = new BitSet(new long[]{0x0000010000000000L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group__1_in_rule__ExprOr__Group__06353 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__ExprNotAssignment_0_in_rule__ExprOr__Group__0__Impl6380 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group__1__Impl_in_rule__ExprOr__Group__16410 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group_1__0_in_rule__ExprOr__Group__1__Impl6437 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group_1__0__Impl_in_rule__ExprOr__Group_1__06472 = new BitSet(new long[]{0x0000021080000030L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group_1__1_in_rule__ExprOr__Group_1__06475 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__ExprOrAssignment_1_0_in_rule__ExprOr__Group_1__0__Impl6502 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__Group_1__1__Impl_in_rule__ExprOr__Group_1__16532 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprOr__ExprOrAttAssignment_1_1_in_rule__ExprOr__Group_1__1__Impl6559 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprNot__Group__0__Impl_in_rule__ExprNot__Group__06593 = new BitSet(new long[]{0x0000021080000030L});
-    public static final BitSet FOLLOW_rule__ExprNot__Group__1_in_rule__ExprNot__Group__06596 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprNot__NotAssignment_0_in_rule__ExprNot__Group__0__Impl6623 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprNot__Group__1__Impl_in_rule__ExprNot__Group__16654 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprNot__ExprEqAssignment_1_in_rule__ExprNot__Group__1__Impl6681 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_0__0__Impl_in_rule__ExprEq__Group_0__06715 = new BitSet(new long[]{0x0000021080000030L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_0__1_in_rule__ExprEq__Group_0__06718 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_31_in_rule__ExprEq__Group_0__0__Impl6746 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_0__1__Impl_in_rule__ExprEq__Group_0__16777 = new BitSet(new long[]{0x0000000100000000L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_0__2_in_rule__ExprEq__Group_0__16780 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__ExprAssignment_0_1_in_rule__ExprEq__Group_0__1__Impl6807 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_0__2__Impl_in_rule__ExprEq__Group_0__26837 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_32_in_rule__ExprEq__Group_0__2__Impl6865 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_1__0__Impl_in_rule__ExprEq__Group_1__06902 = new BitSet(new long[]{0x0000000200000000L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_1__1_in_rule__ExprEq__Group_1__06905 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__ExprSim1Assignment_1_0_in_rule__ExprEq__Group_1__0__Impl6932 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_1__1__Impl_in_rule__ExprEq__Group_1__16962 = new BitSet(new long[]{0x0000001080000030L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_1__2_in_rule__ExprEq__Group_1__16965 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_33_in_rule__ExprEq__Group_1__1__Impl6993 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__Group_1__2__Impl_in_rule__ExprEq__Group_1__27024 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__ExprEq__ExprSim2Assignment_1_2_in_rule__ExprEq__Group_1__2__Impl7051 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cons__Group__0__Impl_in_rule__Cons__Group__07087 = new BitSet(new long[]{0x0000021080000030L});
-    public static final BitSet FOLLOW_rule__Cons__Group__1_in_rule__Cons__Group__07090 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cons__ExprConsAssignment_0_in_rule__Cons__Group__0__Impl7117 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cons__Group__1__Impl_in_rule__Cons__Group__17147 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7176 = new BitSet(new long[]{0x0000021080000032L});
-    public static final BitSet FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7188 = new BitSet(new long[]{0x0000021080000032L});
-    public static final BitSet FOLLOW_ruleFunction_in_rule__Program__FonctionsAssignment7230 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SYMBOL_in_rule__Function__NomAssignment_17261 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleDefinition_in_rule__Function__DefinitionAssignment_37292 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleInput_in_rule__Definition__InputsAssignment_17323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommands_in_rule__Definition__CommandesAssignment_37354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleOutput_in_rule__Definition__OutputsAssignment_67385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_0_07416 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_17447 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_0_07478 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_17509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_0_07540 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_17571 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_0_0_07602 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_17633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_34_in_rule__Command__NopAssignment_07669 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleVars_in_rule__Command__VarsAssignment_1_07708 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprs_in_rule__Command__ExprsAssignment_1_27739 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommandWhile_in_rule__Command__CmdWhileAssignment_27770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommandIf_in_rule__Command__CmdIfAssignment_37801 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommandForEach_in_rule__Command__CmdForEachAssignment_47832 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_35_in_rule__CommandWhile__WAssignment_0_07868 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandWhile__ExprAssignment_17907 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandWhile__CmdsAssignment_37938 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandIf__CondAssignment_17969 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandIf__CmdsThenAssignment_38000 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandIf__CmdsElseAssignment_4_18031 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandForEach__ElemAssignment_18062 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandForEach__EnsembAssignment_38093 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandForEach__CmdsAssignment_58124 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_0_0_08155 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_18186 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprSimple_in_rule__Expr__ExprSimpAssignment_0_08217 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprAnd_in_rule__Expr__ExprAndAssignment_18248 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_36_in_rule__ExprSimple__NilAssignment_0_08284 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__ExprSimple__VariAssignment_0_18323 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__SymbAssignment_0_28354 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleCons_in_rule__ExprSimple__ExprConsAssignment_1_18385 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_37_in_rule__ExprSimple__ExprHeadAssignment_2_18421 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprSimple__ExprHeadAttAssignment_2_28460 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_38_in_rule__ExprSimple__ExprTailAssignment_3_18496 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprSimple__ExprTailAttAssignment_3_28535 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__NomSymbAssignment_4_18566 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprSimple__SymbAttAssignment_4_28597 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprOr_in_rule__ExprAnd__ExprOrAssignment_08628 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_39_in_rule__ExprAnd__ExprAndAssignment_1_08664 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprAnd_in_rule__ExprAnd__ExprAndAttAssignment_1_18703 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprNot_in_rule__ExprOr__ExprNotAssignment_08734 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_40_in_rule__ExprOr__ExprOrAssignment_1_08770 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprOr_in_rule__ExprOr__ExprOrAttAssignment_1_18809 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_41_in_rule__ExprNot__NotAssignment_08845 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprEq_in_rule__ExprNot__ExprEqAssignment_18884 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprEq__ExprAssignment_0_18915 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim1Assignment_1_08946 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim2Assignment_1_28977 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_42_in_rule__Cons__ExprConsAssignment_09013 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_ruleExpr_in_rule__Cons__ExprConsAttListAssignment_19052 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprSimple__SymbAttAssignment_4_2_in_rule__ExprSimple__Group_4__2__Impl6012 = new BitSet(new long[]{0x0000021080000032L});
+    public static final BitSet FOLLOW_rule__ExprSimple__SymbAttAssignment_4_2_in_rule__ExprSimple__Group_4__2__Impl6024 = new BitSet(new long[]{0x0000021080000032L});
+    public static final BitSet FOLLOW_rule__ExprSimple__Group_4__3__Impl_in_rule__ExprSimple__Group_4__36057 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_rule__ExprSimple__Group_4__3__Impl6085 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group__0__Impl_in_rule__ExprAnd__Group__06124 = new BitSet(new long[]{0x0000008000000000L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group__1_in_rule__ExprAnd__Group__06127 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__ExprOrAssignment_0_in_rule__ExprAnd__Group__0__Impl6154 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group__1__Impl_in_rule__ExprAnd__Group__16184 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__0_in_rule__ExprAnd__Group__1__Impl6211 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__0__Impl_in_rule__ExprAnd__Group_1__06246 = new BitSet(new long[]{0x0000021080000030L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__1_in_rule__ExprAnd__Group_1__06249 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__ExprAndAssignment_1_0_in_rule__ExprAnd__Group_1__0__Impl6276 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__Group_1__1__Impl_in_rule__ExprAnd__Group_1__16306 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprAnd__ExprAndAttAssignment_1_1_in_rule__ExprAnd__Group_1__1__Impl6333 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group__0__Impl_in_rule__ExprOr__Group__06367 = new BitSet(new long[]{0x0000010000000000L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group__1_in_rule__ExprOr__Group__06370 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__ExprNotAssignment_0_in_rule__ExprOr__Group__0__Impl6397 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group__1__Impl_in_rule__ExprOr__Group__16427 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group_1__0_in_rule__ExprOr__Group__1__Impl6454 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group_1__0__Impl_in_rule__ExprOr__Group_1__06489 = new BitSet(new long[]{0x0000021080000030L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group_1__1_in_rule__ExprOr__Group_1__06492 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__ExprOrAssignment_1_0_in_rule__ExprOr__Group_1__0__Impl6519 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__Group_1__1__Impl_in_rule__ExprOr__Group_1__16549 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprOr__ExprOrAttAssignment_1_1_in_rule__ExprOr__Group_1__1__Impl6576 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprNot__Group__0__Impl_in_rule__ExprNot__Group__06610 = new BitSet(new long[]{0x0000021080000030L});
+    public static final BitSet FOLLOW_rule__ExprNot__Group__1_in_rule__ExprNot__Group__06613 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprNot__NotAssignment_0_in_rule__ExprNot__Group__0__Impl6640 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprNot__Group__1__Impl_in_rule__ExprNot__Group__16671 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprNot__ExprEqAssignment_1_in_rule__ExprNot__Group__1__Impl6698 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_0__0__Impl_in_rule__ExprEq__Group_0__06732 = new BitSet(new long[]{0x0000021080000030L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_0__1_in_rule__ExprEq__Group_0__06735 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_31_in_rule__ExprEq__Group_0__0__Impl6763 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_0__1__Impl_in_rule__ExprEq__Group_0__16794 = new BitSet(new long[]{0x0000000100000000L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_0__2_in_rule__ExprEq__Group_0__16797 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__ExprAssignment_0_1_in_rule__ExprEq__Group_0__1__Impl6824 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_0__2__Impl_in_rule__ExprEq__Group_0__26854 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_32_in_rule__ExprEq__Group_0__2__Impl6882 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_1__0__Impl_in_rule__ExprEq__Group_1__06919 = new BitSet(new long[]{0x0000000200000000L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_1__1_in_rule__ExprEq__Group_1__06922 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__ExprSim1Assignment_1_0_in_rule__ExprEq__Group_1__0__Impl6949 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_1__1__Impl_in_rule__ExprEq__Group_1__16979 = new BitSet(new long[]{0x0000001080000030L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_1__2_in_rule__ExprEq__Group_1__16982 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_33_in_rule__ExprEq__Group_1__1__Impl7010 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__Group_1__2__Impl_in_rule__ExprEq__Group_1__27041 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__ExprEq__ExprSim2Assignment_1_2_in_rule__ExprEq__Group_1__2__Impl7068 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cons__Group__0__Impl_in_rule__Cons__Group__07104 = new BitSet(new long[]{0x0000021080000030L});
+    public static final BitSet FOLLOW_rule__Cons__Group__1_in_rule__Cons__Group__07107 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cons__ExprConsAssignment_0_in_rule__Cons__Group__0__Impl7134 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cons__Group__1__Impl_in_rule__Cons__Group__17164 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7193 = new BitSet(new long[]{0x0000021080000032L});
+    public static final BitSet FOLLOW_rule__Cons__ExprConsAttListAssignment_1_in_rule__Cons__Group__1__Impl7205 = new BitSet(new long[]{0x0000021080000032L});
+    public static final BitSet FOLLOW_ruleFunction_in_rule__Program__FonctionsAssignment7247 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SYMBOL_in_rule__Function__NomAssignment_17278 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleDefinition_in_rule__Function__DefinitionAssignment_37309 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleInput_in_rule__Definition__InputsAssignment_17340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommands_in_rule__Definition__CommandesAssignment_37371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleOutput_in_rule__Definition__OutputsAssignment_67402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_0_07433 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Input__VarInAssignment_17464 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_0_07495 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Output__VarOutAssignment_17526 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_0_07557 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__Vars__VarGenAssignment_17588 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_0_0_07619 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommand_in_rule__Commands__CommandeAssignment_17650 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_34_in_rule__Command__NopAssignment_07686 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleVars_in_rule__Command__VarsAssignment_1_07725 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprs_in_rule__Command__ExprsAssignment_1_27756 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommandWhile_in_rule__Command__CmdWhileAssignment_27787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommandIf_in_rule__Command__CmdIfAssignment_37818 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommandForEach_in_rule__Command__CmdForEachAssignment_47849 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_35_in_rule__CommandWhile__WAssignment_0_07885 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandWhile__ExprAssignment_17924 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandWhile__CmdsAssignment_37955 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandIf__CondAssignment_17986 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandIf__CmdsThenAssignment_38017 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandIf__CmdsElseAssignment_4_18048 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandForEach__ElemAssignment_18079 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__CommandForEach__EnsembAssignment_38110 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCommands_in_rule__CommandForEach__CmdsAssignment_58141 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_0_0_08172 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__Exprs__ExpGenAssignment_18203 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprSimple_in_rule__Expr__ExprSimpAssignment_0_08234 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprAnd_in_rule__Expr__ExprAndAssignment_18265 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_36_in_rule__ExprSimple__NilAssignment_0_08301 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VARIABLE_in_rule__ExprSimple__VariAssignment_0_18340 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__SymbAssignment_0_28371 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleCons_in_rule__ExprSimple__ExprConsAssignment_1_18402 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_37_in_rule__ExprSimple__ExprHeadAssignment_2_18438 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprSimple__ExprHeadAttAssignment_2_28477 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_38_in_rule__ExprSimple__ExprTailAssignment_3_18513 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprSimple__ExprTailAttAssignment_3_28552 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_SYMBOL_in_rule__ExprSimple__NomSymbAssignment_4_18583 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprSimple__SymbAttAssignment_4_28614 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprOr_in_rule__ExprAnd__ExprOrAssignment_08645 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_39_in_rule__ExprAnd__ExprAndAssignment_1_08681 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprAnd_in_rule__ExprAnd__ExprAndAttAssignment_1_18720 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprNot_in_rule__ExprOr__ExprNotAssignment_08751 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_40_in_rule__ExprOr__ExprOrAssignment_1_08787 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprOr_in_rule__ExprOr__ExprOrAttAssignment_1_18826 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_41_in_rule__ExprNot__NotAssignment_08862 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprEq_in_rule__ExprNot__ExprEqAssignment_18901 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__ExprEq__ExprAssignment_0_18932 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim1Assignment_1_08963 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExprSimple_in_rule__ExprEq__ExprSim2Assignment_1_28994 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_42_in_rule__Cons__ExprConsAssignment_09030 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_ruleExpr_in_rule__Cons__ExprConsAttListAssignment_19069 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Expr__Group_0__0_in_synpred7_InternalWhileCpp1375 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__ExprEq__Group_0__0_in_synpred14_InternalWhileCpp1600 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__Commands__Group_0__0_in_synpred18_InternalWhileCpp3102 = new BitSet(new long[]{0x0000000000000002L});

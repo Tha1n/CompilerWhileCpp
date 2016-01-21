@@ -9,6 +9,16 @@ Afin de pleinement utiliser notre compilateur vous aurez besoin de :
 + Un environnement __Java__ fonctionnel.
 + Un compilateur __c++__ (_g++_ de préférence)
 
+# Architecture
+
++ _bin/_ contient la __libWh__ et le __.jar__ de l'application
++ _CPP/_ contient la __libWh__
++ _demo/_ contient un ensemble de programmes __WHILE__
++ _documentation/_ contient la documentation du projet
++ _Rapport/_ contient les rapports personnels et le rapport global du projet
++ _whileComp/src/_ contient le code du générateur
++ _whileComp.tests/src/_ contient nos tests
+
 # Utilisation
 
 Dans le dossier _bin_:

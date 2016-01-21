@@ -5,7 +5,6 @@ package org.xtext.example.generator;
 
 import SymboleTable.Fonction;
 import SymboleTable.FunDictionary;
-import SymboleTable.Variable;
 import com.google.common.base.Objects;
 import com.google.common.collect.Iterables;
 import com.google.inject.Injector;
@@ -14,7 +13,6 @@ import java.io.FileWriter;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -26,7 +24,6 @@ import org.eclipse.xtext.generator.IGenerator;
 import org.eclipse.xtext.resource.XtextResourceSet;
 import org.eclipse.xtext.xbase.lib.Exceptions;
 import org.eclipse.xtext.xbase.lib.InputOutput;
-import org.eclipse.xtext.xbase.lib.IntegerRange;
 import org.eclipse.xtext.xbase.lib.IterableExtensions;
 import org.eclipse.xtext.xbase.lib.IteratorExtensions;
 import org.xtext.example.WhileCppStandaloneSetup;
@@ -69,14 +66,6 @@ public class PrettyPrinterGenerator implements IGenerator {
   
   private int portee = 0;
   
-  /**
-   * pour variable :
-   * regarder si présente dans la fonction
-   * 	oui : regarder si meme portée :
-   * 		oui : deja déclarée mettre à jour
-   * 		non : ajouter à la liste
-   * 	non : ajouter à la liste des variables pour cette fonction
-   */
   public List<String> getFunctionsNames() {
     List<String> _listFuncName = this.dico.getListFuncName();
     return IterableExtensions.<String>toList(_listFuncName);
@@ -164,27 +153,11 @@ public class PrettyPrinterGenerator implements IGenerator {
         throw Exceptions.sneakyThrow(_t);
       }
     }
-    String _string_1 = this.dico.toString();
-    InputOutput.<String>println(_string_1);
   }
   
   public CharSequence indent(final int level) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      IntegerRange _upTo = new IntegerRange(1, level);
-      for(final Integer i : _upTo) {
-        {
-          if ((level > 0)) {
-            {
-              IntegerRange _upTo_1 = new IntegerRange(1, this.ibd);
-              for(final Integer j : _upTo_1) {
-                _builder.append(" ", "");
-              }
-            }
-          }
-        }
-      }
-    }
+    _builder.append("�FOR i : 1..level��IF level>0��FOR j : 1..ibd��\" \"��ENDFOR��ENDIF��ENDFOR�");
     return _builder;
   }
   
@@ -198,509 +171,231 @@ public class PrettyPrinterGenerator implements IGenerator {
       CharSequence _compile = this.compile(p, 0);
       fsa.generateFile("PP.wh", _compile);
     }
-    String _string = this.dico.toString();
-    InputOutput.<String>print(_string);
   }
   
   public CharSequence compile(final Program p, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      EList<Function> _fonctions = p.getFonctions();
-      for(final Function f : _fonctions) {
-        _builder.newLineIfNotEmpty();
-        CharSequence _compile = this.compile(f, indent);
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-        CharSequence _indent_1 = this.indent(indent);
-        _builder.append(_indent_1, "");
-      }
-    }
+    _builder.append("�indent(indent)��FOR f: p.fonctions�");
+    _builder.newLine();
+    _builder.append("�f.compile(indent)�");
+    _builder.newLine();
+    _builder.append("�indent(indent)��ENDFOR�");
     return _builder;
   }
   
   public CharSequence compile(final Function f, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    _builder.append("function ");
-    String _nom = f.getNom();
-    _builder.append(_nom, "");
-    _builder.append(":");
-    _builder.newLineIfNotEmpty();
-    String _nom_1 = f.getNom();
-    Definition _definition = f.getDefinition();
-    Input _inputs = _definition.getInputs();
-    EList<String> _varIn = _inputs.getVarIn();
-    int _size = _varIn.size();
-    Definition _definition_1 = f.getDefinition();
-    Output _outputs = _definition_1.getOutputs();
-    EList<String> _varOut = _outputs.getVarOut();
-    int _size_1 = _varOut.size();
-    Fonction newF = new Fonction(_nom_1, _size, _size_1, "nomFonctionCible");
-    _builder.newLineIfNotEmpty();
-    {
-      boolean _putFunction = this.dico.putFunction(newF);
-      if (_putFunction) {
-        Definition _definition_2 = f.getDefinition();
-        CharSequence _compile = this.compile(_definition_2, indent, newF);
-        _builder.append(_compile, "");
-        _builder.newLineIfNotEmpty();
-      } else {
-        _builder.append(" ERREUR: FONCTION ");
-        String _nom_2 = f.getNom();
-        _builder.append(_nom_2, "");
-        _builder.append(" DÉJÀ DÉCLARÉE");
-        _builder.newLineIfNotEmpty();
-      }
-    }
+    _builder.append("�indent(indent)�function �f.nom�:");
+    _builder.newLine();
+    _builder.append("�var newF = new Fonction(f.nom,f.definition.inputs.varIn.size,f.definition.outputs.varOut.size,\"nomFonctionCible\")�");
+    _builder.newLine();
+    _builder.append("�IF dico.putFunction(newF)�");
+    _builder.newLine();
+    _builder.append("�f.definition.compile(indent, newF)�");
+    _builder.newLine();
+    _builder.append("�ELSE � ERREUR: FONCTION �f.nom � D�J� D�CLAR�E");
+    _builder.newLine();
+    _builder.append("�ENDIF�");
+    _builder.newLine();
     return _builder;
   }
   
   public CharSequence compile(final Definition d, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    _builder.append("read ");
-    Input _inputs = d.getInputs();
-    CharSequence _compile = this.compile(_inputs, 0, f);
-    _builder.append(_compile, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _indent_1 = this.indent(indent);
-    _builder.append(_indent_1, "");
-    _builder.append("%");
-    _builder.newLineIfNotEmpty();
-    Commands _commandes = d.getCommandes();
-    CharSequence _compile_1 = this.compile(_commandes, (indent + 1), f);
-    _builder.append(_compile_1, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _indent_2 = this.indent(indent);
-    _builder.append(_indent_2, "");
-    _builder.append("%");
-    _builder.newLineIfNotEmpty();
-    CharSequence _indent_3 = this.indent(indent);
-    _builder.append(_indent_3, "");
-    _builder.append("write ");
-    Output _outputs = d.getOutputs();
-    CharSequence _compile_2 = this.compile(_outputs, 0, f);
-    _builder.append(_compile_2, "");
+    _builder.append("�indent(indent)�read �d.inputs.compile(0, f)�");
+    _builder.newLine();
+    _builder.append("�indent(indent)�%");
+    _builder.newLine();
+    _builder.append("�d.commandes.compile(indent+1, f)�");
+    _builder.newLine();
+    _builder.append("�indent(indent)�%");
+    _builder.newLine();
+    _builder.append("�indent(indent)�write �d.outputs.compile(0, f)�");
     return _builder;
   }
   
   public CharSequence compile(final Input i, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      EList<String> _varIn = i.getVarIn();
-      for(final String in : _varIn) {
-        _builder.append(in, "");
-        Variable _variable = new Variable(in, "input");
-        f.add(_variable);
-        {
-          EList<String> _varIn_1 = i.getVarIn();
-          int _indexOf = _varIn_1.indexOf(in);
-          EList<String> _varIn_2 = i.getVarIn();
-          int _size = _varIn_2.size();
-          int _minus = (_size - 1);
-          boolean _notEquals = (_indexOf != _minus);
-          if (_notEquals) {
-            _builder.append(", ");
-          }
-        }
-      }
-    }
+    _builder.append("�indent(indent)��FOR in : i.varIn��in��f.add(new Variable(in, \"input\"))��IF i.varIn.indexOf(in)!=i.varIn.size-1�, �ENDIF��ENDFOR�");
     return _builder;
   }
   
   public CharSequence compile(final Commands c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<Command> _commande = c.getCommande();
-      for(final Command cm : _commande) {
-        CharSequence _compile = this.compile(cm, indent, f);
-        _builder.append(_compile, "");
-        {
-          EList<Command> _commande_1 = c.getCommande();
-          int _indexOf = _commande_1.indexOf(cm);
-          EList<Command> _commande_2 = c.getCommande();
-          int _size = _commande_2.size();
-          int _minus = (_size - 1);
-          boolean _notEquals = (_indexOf != _minus);
-          if (_notEquals) {
-            _builder.append(" ;");
-            _builder.newLineIfNotEmpty();
-          }
-        }
-      }
-    }
+    _builder.append("�FOR cm: c.commande��cm.compile(indent, f)��IF c.commande.indexOf(cm)!=c.commande.size-1� ;");
+    _builder.newLine();
+    _builder.append("�ENDIF��ENDFOR�");
     return _builder;
   }
   
   public CharSequence compile(final Output o, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      EList<String> _varOut = o.getVarOut();
-      for(final String in : _varOut) {
-        _builder.append(in, "");
-        {
-          EList<String> _varOut_1 = o.getVarOut();
-          int _indexOf = _varOut_1.indexOf(in);
-          EList<String> _varOut_2 = o.getVarOut();
-          int _size = _varOut_2.size();
-          int _minus = (_size - 1);
-          boolean _notEquals = (_indexOf != _minus);
-          if (_notEquals) {
-            _builder.append(", ");
-          }
-        }
-      }
-    }
+    _builder.append("�indent(indent)��FOR in : o.varOut��in��IF o.varOut.indexOf(in)!=o.varOut.size-1�, �ENDIF��ENDFOR�");
     return _builder;
   }
   
   public CharSequence compile(final Command c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      String _nop = c.getNop();
-      boolean _notEquals = (!Objects.equal(_nop, null));
-      if (_notEquals) {
-        _matched=true;
-        CharSequence _indent = this.indent(indent);
-        _switchResult = (_indent + "nop");
-      }
-    }
-    if (!_matched) {
-      CommandIf _cmdIf = c.getCmdIf();
-      boolean _notEquals_1 = (!Objects.equal(_cmdIf, null));
-      if (_notEquals_1) {
-        _matched=true;
-        CommandIf _cmdIf_1 = c.getCmdIf();
-        _switchResult = this.compile(_cmdIf_1, indent, f);
-      }
-    }
-    if (!_matched) {
-      CommandForEach _cmdForEach = c.getCmdForEach();
-      boolean _notEquals_2 = (!Objects.equal(_cmdForEach, null));
-      if (_notEquals_2) {
-        _matched=true;
-        CommandForEach _cmdForEach_1 = c.getCmdForEach();
-        _switchResult = this.compile(_cmdForEach_1, indent, f);
-      }
-    }
-    if (!_matched) {
-      boolean _and = false;
-      Vars _vars = c.getVars();
-      boolean _notEquals_3 = (!Objects.equal(_vars, null));
-      if (!_notEquals_3) {
-        _and = false;
-      } else {
-        Exprs _exprs = c.getExprs();
-        boolean _notEquals_4 = (!Objects.equal(_exprs, null));
-        _and = _notEquals_4;
-      }
-      if (_and) {
-        _matched=true;
-        Vars _vars_1 = c.getVars();
-        CharSequence _compile = this.compile(_vars_1, indent, f);
-        String _plus = (_compile + " := ");
-        Exprs _exprs_1 = c.getExprs();
-        CharSequence _compile_1 = this.compile(_exprs_1, 0);
-        _switchResult = (_plus + _compile_1);
-      }
-    }
-    if (!_matched) {
-      CommandWhile _cmdWhile = c.getCmdWhile();
-      boolean _notEquals_5 = (!Objects.equal(_cmdWhile, null));
-      if (_notEquals_5) {
-        _matched=true;
-        CommandWhile _cmdWhile_1 = c.getCmdWhile();
-        _switchResult = this.compile(_cmdWhile_1, indent, f);
-      }
-    }
-    if (!_matched) {
-      Class<? extends Command> _class = c.getClass();
-      _switchResult = _class.getName();
-    }
-    _builder.append(_switchResult, "");
+    _builder.append("�switch (c){");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("case c.nop!=null : indent(indent) + \"nop\"");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("case c.cmdIf!=null : c.cmdIf.compile(indent, f)");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("case c.cmdForEach!=null : c.cmdForEach.compile(indent, f)");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("case c.vars!=null && c.exprs!=null : c.vars.compile(indent, f) + \" := \" + c.exprs.compile(0)");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("case c.cmdWhile!=null : c.cmdWhile.compile(indent, f)");
+    _builder.newLine();
+    _builder.append("\t");
+    _builder.append("default : c.class.name");
+    _builder.newLine();
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("�");
     return _builder;
   }
   
   public CharSequence compile(final CommandWhile c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      String _w = c.getW();
-      boolean _notEquals = (!Objects.equal(_w, null));
-      if (_notEquals) {
-        _builder.append("while ");
-      } else {
-        _builder.append("for ");
-      }
-    }
-    Expr _expr = c.getExpr();
-    CharSequence _compile = this.compile(_expr, 0);
-    _builder.append(_compile, "");
-    _builder.append(" do");
-    _builder.newLineIfNotEmpty();
-    Commands _cmds = c.getCmds();
-    Object _compile_1 = this.compile(_cmds, (indent + this.ibwhile), f);
-    _builder.append(_compile_1, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _indent_1 = this.indent(indent);
-    _builder.append(_indent_1, "");
-    _builder.append("od");
+    _builder.append("�indent(indent)��IF c.w!=null�while �ELSE�for �ENDIF��c.expr.compile(0)� do");
+    _builder.newLine();
+    _builder.append("�c.cmds.compile(indent+ibwhile, f)�");
+    _builder.newLine();
+    _builder.append("�indent(indent)�od");
     return _builder;
   }
   
   public CharSequence compile(final CommandIf c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    _builder.append("if ");
-    Expr _cond = c.getCond();
-    CharSequence _compile = this.compile(_cond, 0);
-    _builder.append(_compile, "");
-    _builder.append(" then ");
-    _builder.newLineIfNotEmpty();
-    Commands _cmdsThen = c.getCmdsThen();
-    Object _compile_1 = this.compile(_cmdsThen, (indent + this.ibif), f);
-    _builder.append(_compile_1, "");
-    {
-      Commands _cmdsElse = c.getCmdsElse();
-      boolean _notEquals = (!Objects.equal(_cmdsElse, null));
-      if (_notEquals) {
-        _builder.newLineIfNotEmpty();
-        CharSequence _indent_1 = this.indent(indent);
-        _builder.append(_indent_1, "");
-        _builder.append("else");
-        _builder.newLineIfNotEmpty();
-        Commands _cmdsElse_1 = c.getCmdsElse();
-        Object _compile_2 = this.compile(_cmdsElse_1, (indent + this.ibif), f);
-        _builder.append(_compile_2, "");
-      }
-    }
-    _builder.newLineIfNotEmpty();
-    CharSequence _indent_2 = this.indent(indent);
-    _builder.append(_indent_2, "");
-    _builder.append("fi");
+    _builder.append("�indent(indent)�if �c.cond.compile(0)� then ");
+    _builder.newLine();
+    _builder.append("�c.cmdsThen.compile(indent+ibif, f)��IF c.cmdsElse!=null�");
+    _builder.newLine();
+    _builder.append("�indent(indent)�else");
+    _builder.newLine();
+    _builder.append("�c.cmdsElse.compile(indent+ibif, f)��ENDIF�");
+    _builder.newLine();
+    _builder.append("�indent(indent)�fi");
     return _builder;
   }
   
   public CharSequence compile(final CommandForEach c, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    _builder.append("foreach ");
-    Expr _elem = c.getElem();
-    CharSequence _compile = this.compile(_elem, 0);
-    _builder.append(_compile, "");
-    _builder.append(" in ");
-    Expr _ensemb = c.getEnsemb();
-    CharSequence _compile_1 = this.compile(_ensemb, 0);
-    _builder.append(_compile_1, "");
-    _builder.append(" do\t");
-    _builder.newLineIfNotEmpty();
-    Commands _cmds = c.getCmds();
-    Object _compile_2 = this.compile(_cmds, (indent + this.ibforeach), f);
-    _builder.append(_compile_2, "");
-    _builder.newLineIfNotEmpty();
-    CharSequence _indent_1 = this.indent(indent);
-    _builder.append(_indent_1, "");
-    _builder.append("od");
+    _builder.append("�indent(indent)�foreach �c.elem.compile(0)� in �c.ensemb.compile(0)� do\t");
+    _builder.newLine();
+    _builder.append("�c.cmds.compile(indent+ibforeach, f)�");
+    _builder.newLine();
+    _builder.append("�indent(indent)�od");
     return _builder;
   }
   
   public CharSequence compile(final Vars v, final int indent, final Fonction f) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      EList<String> _varGen = v.getVarGen();
-      for(final String in : _varGen) {
-        _builder.append(in, "");
-        String _string = in.toString();
-        Variable vari = new Variable(_string, "intern");
-        this.dico.putVariable(vari, f);
-        {
-          EList<String> _varGen_1 = v.getVarGen();
-          int _indexOf = _varGen_1.indexOf(in);
-          EList<String> _varGen_2 = v.getVarGen();
-          int _size = _varGen_2.size();
-          int _minus = (_size - 1);
-          boolean _notEquals = (_indexOf != _minus);
-          if (_notEquals) {
-            _builder.append(", ");
-          }
-        }
-      }
-    }
+    _builder.append("�indent(indent)��FOR in : v.varGen��in��var vari = new Variable (in.toString, \"intern\")��dico.putVariable(vari, f)��IF v.varGen.indexOf(in)!=v.varGen.size-1�, �ENDIF��ENDFOR�");
     return _builder;
   }
   
   public CharSequence compile(final Exprs e, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      EList<Expr> _expGen = e.getExpGen();
-      for(final Expr in : _expGen) {
-        CharSequence _compile = this.compile(in, indent);
-        _builder.append(_compile, "");
-        {
-          EList<Expr> _expGen_1 = e.getExpGen();
-          int _indexOf = _expGen_1.indexOf(in);
-          EList<Expr> _expGen_2 = e.getExpGen();
-          int _size = _expGen_2.size();
-          int _minus = (_size - 1);
-          boolean _notEquals = (_indexOf != _minus);
-          if (_notEquals) {
-            _builder.append(", ");
-          } else {
-          }
-        }
-      }
-    }
+    _builder.append("�FOR in : e.expGen��in.compile(indent)��IF e.expGen.indexOf(in)!=e.expGen.size-1�, �ELSE��ENDIF��ENDFOR�");
     return _builder;
   }
   
   public CharSequence compile(final Expr ex, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _switchResult = null;
-    boolean _matched = false;
-    if (!_matched) {
-      ExprSimple _exprSimp = ex.getExprSimp();
-      boolean _notEquals = (!Objects.equal(_exprSimp, null));
-      if (_notEquals) {
-        _matched=true;
-        ExprSimple _exprSimp_1 = ex.getExprSimp();
-        _switchResult = this.compile(_exprSimp_1, indent);
-      }
-    }
-    if (!_matched) {
-      ExprAnd _exprAnd = ex.getExprAnd();
-      boolean _notEquals_1 = (!Objects.equal(_exprAnd, null));
-      if (_notEquals_1) {
-        _matched=true;
-        ExprAnd _exprAnd_1 = ex.getExprAnd();
-        _switchResult = this.compile(_exprAnd_1, indent);
-      }
-    }
-    _builder.append(_switchResult, "");
+    _builder.append("�switch(ex){");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("case ex.exprSimp!=null : ex.exprSimp.compile(indent)");
+    _builder.newLine();
+    _builder.append("\t\t\t");
+    _builder.append("case ex.exprAnd!=null : ex.exprAnd.compile(indent)");
+    _builder.newLine();
+    _builder.append("\t    ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t ");
+    _builder.append("�");
     return _builder;
   }
   
   public CharSequence compile(final ExprSimple ex, final int indent) {
-    throw new Error("Unresolved compilation problems:"
-      + "\nThe method exprConsAtt1 is undefined for the type PrettyPrinterGenerator"
-      + "\nThe method consList is undefined for the type PrettyPrinterGenerator"
-      + "\ncompile cannot be resolved"
-      + "\ntoList cannot be resolved");
+    StringConcatenation _builder = new StringConcatenation();
+    _builder.append("�indent(indent)��switch(ex){");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.nil!=null : \"nil\"");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.vari!=null : ex.vari");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.symb!=null : ex.symb");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.exprCons!=null : \"(cons \" + consListRec(ex.exprCons.exprConsAttList.toList) + \")\"");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("//case ex.exprList!=null : \"(list \"+ ex.exprListAtt1.compile(0) + \" \" + ex.exprListAtt2.compile(0) + \")\"");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.exprHead!=null : \"(hd \"+ ex.exprHeadAtt.compile(0) + \")\"");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.exprTail!=null : \"(tl \" + ex.exprTailAtt.compile(0) +\")\"");
+    _builder.newLine();
+    _builder.append("\t \t");
+    _builder.append("case ex.nomSymb!=null : \"(\" + ex.nomSymb + ex.symbAtt.compile(0) + \")\"");
+    _builder.newLine();
+    _builder.append("\t ");
+    _builder.append("}");
+    _builder.newLine();
+    _builder.append("\t ");
+    _builder.append("�");
+    return _builder;
   }
   
   public CharSequence consListRec(final List<Expr> l) {
     StringConcatenation _builder = new StringConcatenation();
-    {
-      int _size = l.size();
-      boolean _equals = (_size == 1);
-      if (_equals) {
-        Expr _head = IterableExtensions.<Expr>head(l);
-        Object _compile = this.compile(_head, 0);
-        _builder.append(_compile, "");
-      } else {
-        Expr _head_1 = IterableExtensions.<Expr>head(l);
-        Object _compile_1 = this.compile(_head_1, 0);
-        String _plus = ("(cons " + _compile_1);
-        String _plus_1 = (_plus + " ");
-        Iterable<Expr> _tail = IterableExtensions.<Expr>tail(l);
-        List<Expr> _list = IterableExtensions.<Expr>toList(_tail);
-        Object _consListRec = this.consListRec(_list);
-        String _plus_2 = (_plus_1 + _consListRec);
-        String _plus_3 = (_plus_2 + ")");
-        _builder.append(_plus_3, "");
-      }
-    }
+    _builder.append("�IF l.size == 2��l.head.compile(0) + l.get(1).compile(0)");
+    _builder.newLine();
+    _builder.append("��ELSE��");
+    _builder.newLine();
+    _builder.append("\t\t");
+    _builder.append("l.head.compile(0) \" (cons \" + consListRec((l.tail.toList)) + \")\"��");
+    _builder.newLine();
+    _builder.append("ENDIF�");
     return _builder;
   }
   
   public CharSequence compile(final ExprAnd ex, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    ExprOr _exprOr = ex.getExprOr();
-    CharSequence _compile = this.compile(_exprOr, indent);
-    _builder.append(_compile, "");
-    {
-      String _exprAnd = ex.getExprAnd();
-      boolean _notEquals = (!Objects.equal(_exprAnd, null));
-      if (_notEquals) {
-        ExprAnd _exprAndAtt = ex.getExprAndAtt();
-        Object _compile_1 = this.compile(_exprAndAtt, 0);
-        _builder.append(_compile_1, "");
-      }
-    }
+    _builder.append("�ex.exprOr.compile(indent)��IF ex.exprAnd!=null��ex.exprAndAtt.compile(0)��ENDIF�");
     return _builder;
   }
   
   public CharSequence compile(final ExprOr ex, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    ExprNot _exprNot = ex.getExprNot();
-    CharSequence _compile = this.compile(_exprNot, indent);
-    _builder.append(_compile, "");
-    {
-      String _exprOr = ex.getExprOr();
-      boolean _notEquals = (!Objects.equal(_exprOr, null));
-      if (_notEquals) {
-        ExprOr _exprOrAtt = ex.getExprOrAtt();
-        Object _compile_1 = this.compile(_exprOrAtt, 0);
-        _builder.append(_compile_1, "");
-      }
-    }
+    _builder.append("�ex.exprNot.compile(indent)��IF ex.exprOr!=null��ex.exprOrAtt.compile(0)��ENDIF�");
     return _builder;
   }
   
   public CharSequence compile(final ExprNot ex, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      String _not = ex.getNot();
-      boolean _notEquals = (!Objects.equal(_not, null));
-      if (_notEquals) {
-        _builder.append("not ");
-      }
-    }
-    ExprEq _exprEq = ex.getExprEq();
-    CharSequence _compile = this.compile(_exprEq, 0);
-    _builder.append(_compile, "");
+    _builder.append("�indent(indent)��IF ex.not!=null�not �ENDIF��ex.exprEq.compile(0)�");
     return _builder;
   }
   
   public CharSequence compile(final ExprEq ex, final int indent) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _indent = this.indent(indent);
-    _builder.append(_indent, "");
-    {
-      Expr _expr = ex.getExpr();
-      boolean _notEquals = (!Objects.equal(_expr, null));
-      if (_notEquals) {
-        _builder.append("(");
-        Expr _expr_1 = ex.getExpr();
-        Object _compile = this.compile(_expr_1, 0);
-        _builder.append(_compile, "");
-        _builder.append(")");
-      } else {
-        ExprSimple _exprSim1 = ex.getExprSim1();
-        CharSequence _compile_1 = this.compile(_exprSim1, 0);
-        _builder.append(_compile_1, "");
-        _builder.append(" =? ");
-        ExprSimple _exprSim2 = ex.getExprSim2();
-        CharSequence _compile_2 = this.compile(_exprSim2, 0);
-        _builder.append(_compile_2, "");
-      }
-    }
+    _builder.append("�indent(indent)��IF ex.expr!=null�(�ex.expr.compile(0)�)�ELSE��ex.exprSim1.compile(0)� =? �ex.exprSim2.compile(0)��ENDIF�");
     return _builder;
   }
 }

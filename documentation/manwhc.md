@@ -5,17 +5,20 @@
   java -jar __whc.jar__ `[OPTION]` inputFile
 
 # DESCRIPTION
- Transform a WHILE file into a CPP file.
+ Transform a __WHILE__ file into a __Cpp__ file.
 
 ## Options
   `-o`,
     the output file which will contains the indented while program
 
+  `-debug`,
+    Show details for the generation
+
 ## Exit status
-  Not yet implemented
+  By default write the cpp file into _default.cpp_ or in the file given by the `-o` option.
 
 ## Known bugs
-  None
+  Expressions are not yet implemented
 
 # Authors
   Written by Sébastien Blin, Pierre-Henri Collin, Kevin Ledy, Alexandre Quettier, Benjamin Vion

@@ -2987,9 +2987,16 @@ rule__ExprSimple__Group_4__2__Impl
     }
 :
 (
+(
 { before(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); }
 (rule__ExprSimple__SymbAttAssignment_4_2)
 { after(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); }
+)
+(
+{ before(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); }
+(rule__ExprSimple__SymbAttAssignment_4_2)*
+{ after(grammarAccess.getExprSimpleAccess().getSymbAttAssignment_4_2()); }
+)
 )
 
 ;

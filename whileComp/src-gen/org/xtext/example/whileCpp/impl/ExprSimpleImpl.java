@@ -2,14 +2,21 @@
  */
 package org.xtext.example.whileCpp.impl;
 
+import java.util.Collection;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
+import org.eclipse.emf.common.util.EList;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+
+import org.eclipse.emf.ecore.util.EObjectContainmentEList;
+import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.xtext.example.whileCpp.Cons;
 import org.xtext.example.whileCpp.Expr;
@@ -191,14 +198,14 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
   protected String nomSymb = NOM_SYMB_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getSymbAtt() <em>Symb Att</em>}' containment reference.
+   * The cached value of the '{@link #getSymbAtt() <em>Symb Att</em>}' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @see #getSymbAtt()
    * @generated
    * @ordered
    */
-  protected Expr symbAtt;
+  protected EList<Expr> symbAtt;
 
   /**
    * <!-- begin-user-doc -->
@@ -508,47 +515,13 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
-  public Expr getSymbAtt()
+  public EList<Expr> getSymbAtt()
   {
+    if (symbAtt == null)
+    {
+      symbAtt = new EObjectContainmentEList<Expr>(Expr.class, this, WhileCppPackage.EXPR_SIMPLE__SYMB_ATT);
+    }
     return symbAtt;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public NotificationChain basicSetSymbAtt(Expr newSymbAtt, NotificationChain msgs)
-  {
-    Expr oldSymbAtt = symbAtt;
-    symbAtt = newSymbAtt;
-    if (eNotificationRequired())
-    {
-      ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__SYMB_ATT, oldSymbAtt, newSymbAtt);
-      if (msgs == null) msgs = notification; else msgs.add(notification);
-    }
-    return msgs;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setSymbAtt(Expr newSymbAtt)
-  {
-    if (newSymbAtt != symbAtt)
-    {
-      NotificationChain msgs = null;
-      if (symbAtt != null)
-        msgs = ((InternalEObject)symbAtt).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__SYMB_ATT, null, msgs);
-      if (newSymbAtt != null)
-        msgs = ((InternalEObject)newSymbAtt).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - WhileCppPackage.EXPR_SIMPLE__SYMB_ATT, null, msgs);
-      msgs = basicSetSymbAtt(newSymbAtt, msgs);
-      if (msgs != null) msgs.dispatch();
-    }
-    else if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, WhileCppPackage.EXPR_SIMPLE__SYMB_ATT, newSymbAtt, newSymbAtt));
   }
 
   /**
@@ -568,7 +541,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
       case WhileCppPackage.EXPR_SIMPLE__EXPR_TAIL_ATT:
         return basicSetExprTailAtt(null, msgs);
       case WhileCppPackage.EXPR_SIMPLE__SYMB_ATT:
-        return basicSetSymbAtt(null, msgs);
+        return ((InternalEList<?>)getSymbAtt()).basicRemove(otherEnd, msgs);
     }
     return super.eInverseRemove(otherEnd, featureID, msgs);
   }
@@ -612,6 +585,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
    * <!-- end-user-doc -->
    * @generated
    */
+  @SuppressWarnings("unchecked")
   @Override
   public void eSet(int featureID, Object newValue)
   {
@@ -645,7 +619,8 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         setNomSymb((String)newValue);
         return;
       case WhileCppPackage.EXPR_SIMPLE__SYMB_ATT:
-        setSymbAtt((Expr)newValue);
+        getSymbAtt().clear();
+        getSymbAtt().addAll((Collection<? extends Expr>)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -689,7 +664,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
         setNomSymb(NOM_SYMB_EDEFAULT);
         return;
       case WhileCppPackage.EXPR_SIMPLE__SYMB_ATT:
-        setSymbAtt((Expr)null);
+        getSymbAtt().clear();
         return;
     }
     super.eUnset(featureID);
@@ -724,7 +699,7 @@ public class ExprSimpleImpl extends MinimalEObjectImpl.Container implements Expr
       case WhileCppPackage.EXPR_SIMPLE__NOM_SYMB:
         return NOM_SYMB_EDEFAULT == null ? nomSymb != null : !NOM_SYMB_EDEFAULT.equals(nomSymb);
       case WhileCppPackage.EXPR_SIMPLE__SYMB_ATT:
-        return symbAtt != null;
+        return symbAtt != null && !symbAtt.isEmpty();
     }
     return super.eIsSet(featureID);
   }

@@ -242,7 +242,7 @@ public class WhileCppSemanticSequencer extends AbstractDelegatingSemanticSequenc
 	 *         exprCons=Cons | 
 	 *         (exprHead='hd' exprHeadAtt=Expr) | 
 	 *         (exprTail='tl' exprTailAtt=Expr) | 
-	 *         (nomSymb=SYMBOL symbAtt=Expr)
+	 *         (nomSymb=SYMBOL symbAtt+=Expr+)
 	 *     )
 	 */
 	protected void sequence_ExprSimple(EObject context, ExprSimple semanticObject) {

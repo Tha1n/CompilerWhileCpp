@@ -674,39 +674,39 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_VARIABLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:15: ( 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )* )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:17: 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:15: ( 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:17: 'A' .. 'Z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )*
             {
             matchRange('A','Z'); 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:26: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:26: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )*
             loop1:
             do {
                 int alt1=11;
                 alt1 = dfa1.predict(input);
                 switch (alt1) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:27: 'A' .. 'Z'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:27: 'A' .. 'Z'
             	    {
             	    matchRange('A','Z'); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:36: 'a' .. 'z'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:36: 'a' .. 'z'
             	    {
             	    matchRange('a','z'); 
 
             	    }
             	    break;
             	case 3 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:45: '0' .. '9'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:45: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
             	    }
             	    break;
             	case 4 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:54: '->'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:54: '->'
             	    {
             	    match("->"); 
 
@@ -714,42 +714,42 @@ public class InternalWhileCppLexer extends Lexer {
             	    }
             	    break;
             	case 5 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:59: '-'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:59: '-'
             	    {
             	    match('-'); 
 
             	    }
             	    break;
             	case 6 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:63: '+'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:63: '+'
             	    {
             	    match('+'); 
 
             	    }
             	    break;
             	case 7 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:67: '&'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:67: '&'
             	    {
             	    match('&'); 
 
             	    }
             	    break;
             	case 8 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:71: '.'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:71: '.'
             	    {
             	    match('.'); 
 
             	    }
             	    break;
             	case 9 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:75: '/'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:75: '/'
             	    {
             	    match('/'); 
 
             	    }
             	    break;
             	case 10 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4516:79: '_'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4523:79: '_'
             	    {
             	    match('_'); 
 
@@ -777,46 +777,46 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_SYMBOL;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:13: ( 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )* )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:15: 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:13: ( 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:15: 'a' .. 'z' ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )*
             {
             matchRange('a','z'); 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:24: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:24: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )*
             loop2:
             do {
                 int alt2=11;
                 alt2 = dfa2.predict(input);
                 switch (alt2) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:25: 'A' .. 'Z'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:25: 'A' .. 'Z'
             	    {
             	    matchRange('A','Z'); 
 
             	    }
             	    break;
             	case 2 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:34: 'a' .. 'z'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:34: 'a' .. 'z'
             	    {
             	    matchRange('a','z'); 
 
             	    }
             	    break;
             	case 3 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:43: '0' .. '9'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:43: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
             	    }
             	    break;
             	case 4 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:52: '_'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:52: '_'
             	    {
             	    match('_'); 
 
             	    }
             	    break;
             	case 5 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:56: '->'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:56: '->'
             	    {
             	    match("->"); 
 
@@ -824,35 +824,35 @@ public class InternalWhileCppLexer extends Lexer {
             	    }
             	    break;
             	case 6 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:61: '-'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:61: '-'
             	    {
             	    match('-'); 
 
             	    }
             	    break;
             	case 7 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:65: '+'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:65: '+'
             	    {
             	    match('+'); 
 
             	    }
             	    break;
             	case 8 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:69: '&'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:69: '&'
             	    {
             	    match('&'); 
 
             	    }
             	    break;
             	case 9 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:73: '.'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:73: '.'
             	    {
             	    match('.'); 
 
             	    }
             	    break;
             	case 10 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4518:77: '/'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4525:77: '/'
             	    {
             	    match('/'); 
 
@@ -880,10 +880,10 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_LC;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4520:9: ( ( ' ' )* )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4520:11: ( ' ' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4527:9: ( ( ' ' )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4527:11: ( ' ' )*
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4520:11: ( ' ' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4527:11: ( ' ' )*
             loop3:
             do {
                 int alt3=2;
@@ -896,7 +896,7 @@ public class InternalWhileCppLexer extends Lexer {
 
                 switch (alt3) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4520:11: ' '
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4527:11: ' '
             	    {
             	    match(' '); 
 
@@ -924,10 +924,10 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_ID;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4522:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4522:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4529:9: ( ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )* )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4529:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4522:11: ( '^' )?
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4529:11: ( '^' )?
             int alt4=2;
             int LA4_0 = input.LA(1);
 
@@ -936,7 +936,7 @@ public class InternalWhileCppLexer extends Lexer {
             }
             switch (alt4) {
                 case 1 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4522:11: '^'
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4529:11: '^'
                     {
                     match('^'); 
 
@@ -954,7 +954,7 @@ public class InternalWhileCppLexer extends Lexer {
                 recover(mse);
                 throw mse;}
 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4522:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4529:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             loop5:
             do {
                 int alt5=2;
@@ -1003,10 +1003,10 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4524:10: ( ( '0' .. '9' )+ )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4524:12: ( '0' .. '9' )+
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4531:10: ( ( '0' .. '9' )+ )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4531:12: ( '0' .. '9' )+
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4524:12: ( '0' .. '9' )+
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4531:12: ( '0' .. '9' )+
             int cnt6=0;
             loop6:
             do {
@@ -1020,7 +1020,7 @@ public class InternalWhileCppLexer extends Lexer {
 
                 switch (alt6) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4524:13: '0' .. '9'
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4531:13: '0' .. '9'
             	    {
             	    matchRange('0','9'); 
 
@@ -1052,10 +1052,10 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_STRING;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:13: ( ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' ) )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             int alt9=2;
             int LA9_0 = input.LA(1);
 
@@ -1073,10 +1073,10 @@ public class InternalWhileCppLexer extends Lexer {
             }
             switch (alt9) {
                 case 1 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
                     loop7:
                     do {
                         int alt7=3;
@@ -1092,7 +1092,7 @@ public class InternalWhileCppLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:21: '\\\\' .
+                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:21: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1100,7 +1100,7 @@ public class InternalWhileCppLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:28: ~ ( ( '\\\\' | '\"' ) )
+                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:28: ~ ( ( '\\\\' | '\"' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='!')||(input.LA(1)>='#' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1125,10 +1125,10 @@ public class InternalWhileCppLexer extends Lexer {
                     }
                     break;
                 case 2 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:48: '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\''
                     {
                     match('\''); 
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
                     loop8:
                     do {
                         int alt8=3;
@@ -1144,7 +1144,7 @@ public class InternalWhileCppLexer extends Lexer {
 
                         switch (alt8) {
                     	case 1 :
-                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:54: '\\\\' .
+                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:54: '\\\\' .
                     	    {
                     	    match('\\'); 
                     	    matchAny(); 
@@ -1152,7 +1152,7 @@ public class InternalWhileCppLexer extends Lexer {
                     	    }
                     	    break;
                     	case 2 :
-                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4526:61: ~ ( ( '\\\\' | '\\'' ) )
+                    	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4533:61: ~ ( ( '\\\\' | '\\'' ) )
                     	    {
                     	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='&')||(input.LA(1)>='(' && input.LA(1)<='[')||(input.LA(1)>=']' && input.LA(1)<='\uFFFF') ) {
                     	        input.consume();
@@ -1195,12 +1195,12 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_ML_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4528:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4528:19: '/*' ( options {greedy=false; } : . )* '*/'
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4535:17: ( '/*' ( options {greedy=false; } : . )* '*/' )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4535:19: '/*' ( options {greedy=false; } : . )* '*/'
             {
             match("/*"); 
 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4528:24: ( options {greedy=false; } : . )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4535:24: ( options {greedy=false; } : . )*
             loop10:
             do {
                 int alt10=2;
@@ -1225,7 +1225,7 @@ public class InternalWhileCppLexer extends Lexer {
 
                 switch (alt10) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4528:52: .
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4535:52: .
             	    {
             	    matchAny(); 
 
@@ -1255,12 +1255,12 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_SL_COMMENT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:17: ( '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )? )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:19: '//' (~ ( ( '\\n' | '\\r' ) ) )* ( ( '\\r' )? '\\n' )?
             {
             match("//"); 
 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:24: (~ ( ( '\\n' | '\\r' ) ) )*
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:24: (~ ( ( '\\n' | '\\r' ) ) )*
             loop11:
             do {
                 int alt11=2;
@@ -1273,7 +1273,7 @@ public class InternalWhileCppLexer extends Lexer {
 
                 switch (alt11) {
             	case 1 :
-            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:24: ~ ( ( '\\n' | '\\r' ) )
+            	    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
             	    if ( (input.LA(1)>='\u0000' && input.LA(1)<='\t')||(input.LA(1)>='\u000B' && input.LA(1)<='\f')||(input.LA(1)>='\u000E' && input.LA(1)<='\uFFFF') ) {
             	        input.consume();
@@ -1293,7 +1293,7 @@ public class InternalWhileCppLexer extends Lexer {
                 }
             } while (true);
 
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:40: ( ( '\\r' )? '\\n' )?
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:40: ( ( '\\r' )? '\\n' )?
             int alt13=2;
             int LA13_0 = input.LA(1);
 
@@ -1302,9 +1302,9 @@ public class InternalWhileCppLexer extends Lexer {
             }
             switch (alt13) {
                 case 1 :
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:41: ( '\\r' )? '\\n'
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:41: ( '\\r' )? '\\n'
                     {
-                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:41: ( '\\r' )?
+                    // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:41: ( '\\r' )?
                     int alt12=2;
                     int LA12_0 = input.LA(1);
 
@@ -1313,7 +1313,7 @@ public class InternalWhileCppLexer extends Lexer {
                     }
                     switch (alt12) {
                         case 1 :
-                            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4530:41: '\\r'
+                            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4537:41: '\\r'
                             {
                             match('\r'); 
 
@@ -1345,10 +1345,10 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_WS;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4532:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4532:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4539:9: ( ( ' ' | '\\t' | '\\r' | '\\n' )+ )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4539:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4532:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4539:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             int cnt14=0;
             loop14:
             do {
@@ -1402,8 +1402,8 @@ public class InternalWhileCppLexer extends Lexer {
         try {
             int _type = RULE_ANY_OTHER;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4534:16: ( . )
-            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4534:18: .
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4541:16: ( . )
+            // ../whileComp.ui/src-gen/org/xtext/example/ui/contentassist/antlr/internal/InternalWhileCpp.g:4541:18: .
             {
             matchAny(); 
 
@@ -1713,13 +1713,11 @@ public class InternalWhileCppLexer extends Lexer {
     static final String DFA1_maxS =
         "\1\172\4\uffff\1\76\7\uffff";
     static final String DFA1_acceptS =
-        "\1\uffff\1\13\1\1\1\2\1\3\1\uffff\1\6\1\7\1\10\1\11\1\12\1\4\1"+
-        "\5";
+        "\1\uffff\1\13\1\1\1\2\1\3\1\uffff\1\6\1\7\1\10\1\11\1\12\1\4\1\5";
     static final String DFA1_specialS =
         "\15\uffff}>";
     static final String[] DFA1_transitionS = {
-            "\1\7\4\uffff\1\6\1\uffff\1\5\1\10\1\11\12\4\7\uffff\32\2\4"+
-            "\uffff\1\12\1\uffff\32\3",
+            "\1\7\4\uffff\1\6\1\uffff\1\5\1\10\1\11\12\4\7\uffff\32\2\4\uffff\1\12\1\uffff\32\3",
             "",
             "",
             "",
@@ -1764,7 +1762,7 @@ public class InternalWhileCppLexer extends Lexer {
             this.transition = DFA1_transition;
         }
         public String getDescription() {
-            return "()* loopback of 4516:26: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )*";
+            return "()* loopback of 4523:26: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '->' | '-' | '+' | '&' | '.' | '/' | '_' )*";
         }
     }
     static final String DFA2_eotS =
@@ -1776,13 +1774,11 @@ public class InternalWhileCppLexer extends Lexer {
     static final String DFA2_maxS =
         "\1\172\5\uffff\1\76\6\uffff";
     static final String DFA2_acceptS =
-        "\1\uffff\1\13\1\1\1\2\1\3\1\4\1\uffff\1\7\1\10\1\11\1\12\1\5\1"+
-        "\6";
+        "\1\uffff\1\13\1\1\1\2\1\3\1\4\1\uffff\1\7\1\10\1\11\1\12\1\5\1\6";
     static final String DFA2_specialS =
         "\15\uffff}>";
     static final String[] DFA2_transitionS = {
-            "\1\10\4\uffff\1\7\1\uffff\1\6\1\11\1\12\12\4\7\uffff\32\2\4"+
-            "\uffff\1\5\1\uffff\32\3",
+            "\1\10\4\uffff\1\7\1\uffff\1\6\1\11\1\12\12\4\7\uffff\32\2\4\uffff\1\5\1\uffff\32\3",
             "",
             "",
             "",
@@ -1827,73 +1823,39 @@ public class InternalWhileCppLexer extends Lexer {
             this.transition = DFA2_transition;
         }
         public String getDescription() {
-            return "()* loopback of 4518:24: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )*";
+            return "()* loopback of 4525:24: ( 'A' .. 'Z' | 'a' .. 'z' | '0' .. '9' | '_' | '->' | '-' | '+' | '&' | '.' | '/' )*";
         }
     }
     static final String DFA15_eotS =
-        "\1\27\1\44\1\51\1\44\1\uffff\1\44\2\uffff\5\44\2\uffff\1\37\4\44"+
-        "\1\103\1\44\1\27\1\uffff\1\37\2\uffff\3\37\2\uffff\2\44\1\116\1"+
-        "\44\1\uffff\3\44\2\uffff\1\44\1\uffff\2\44\2\uffff\1\122\1\123\1"+
-        "\124\1\125\1\126\1\44\1\130\1\44\3\uffff\2\44\1\135\2\44\3\103\1"+
-        "\uffff\1\103\1\27\6\uffff\1\141\1\44\1\uffff\3\44\5\uffff\1\44\1"+
-        "\uffff\1\44\1\150\1\151\1\152\1\uffff\1\153\2\44\1\uffff\1\44\1"+
-        "\157\2\44\1\162\1\163\4\uffff\1\164\2\44\1\uffff\1\167\1\170\3\uffff"+
-        "\2\44\2\uffff\1\173\1\44\1\uffff\1\175\1\uffff";
+        "\1\27\1\44\1\51\1\44\1\uffff\1\44\2\uffff\5\44\2\uffff\1\37\4\44\1\103\1\44\1\27\1\uffff\1\37\2\uffff\3\37\2\uffff\2\44\1\116\1\44\1\uffff\3\44\2\uffff\1\44\1\uffff\2\44\2\uffff\1\122\1\123\1\124\1\125\1\126\1\44\1\130\1\44\3\uffff\2\44\1\135\2\44\3\103\1\uffff\1\103\1\27\6\uffff\1\141\1\44\1\uffff\3\44\5\uffff\1\44\1\uffff\1\44\1\150\1\151\1\152\1\uffff\1\153\2\44\1\uffff\1\44\1\157\2\44\1\162\1\163\4\uffff\1\164\2\44\1\uffff\1\167\1\170\3\uffff\2\44\2\uffff\1\173\1\44\1\uffff\1\175\1\uffff";
     static final String DFA15_eofS =
         "\176\uffff";
     static final String DFA15_minS =
-        "\1\0\1\60\1\75\1\60\1\uffff\1\60\2\uffff\5\60\2\uffff\1\77\6\60"+
-        "\1\11\1\uffff\1\101\2\uffff\2\0\1\52\2\uffff\2\60\1\46\1\60\1\uffff"+
-        "\3\60\2\uffff\1\60\1\uffff\2\60\2\uffff\5\46\1\60\1\46\1\60\3\uffff"+
-        "\2\60\1\46\5\60\1\uffff\1\60\1\11\6\uffff\1\46\1\60\1\uffff\3\60"+
-        "\5\uffff\1\60\1\uffff\1\60\3\46\1\uffff\1\46\2\60\1\uffff\1\60\1"+
-        "\46\2\60\2\46\4\uffff\1\46\2\60\1\uffff\2\46\3\uffff\2\60\2\uffff"+
-        "\1\46\1\60\1\uffff\1\46\1\uffff";
+        "\1\0\1\60\1\75\1\60\1\uffff\1\60\2\uffff\5\60\2\uffff\1\77\6\60\1\11\1\uffff\1\101\2\uffff\2\0\1\52\2\uffff\2\60\1\46\1\60\1\uffff\3\60\2\uffff\1\60\1\uffff\2\60\2\uffff\5\46\1\60\1\46\1\60\3\uffff\2\60\1\46\5\60\1\uffff\1\60\1\11\6\uffff\1\46\1\60\1\uffff\3\60\5\uffff\1\60\1\uffff\1\60\3\46\1\uffff\1\46\2\60\1\uffff\1\60\1\46\2\60\2\46\4\uffff\1\46\2\60\1\uffff\2\46\3\uffff\2\60\2\uffff\1\46\1\60\1\uffff\1\46\1\uffff";
     static final String DFA15_maxS =
-        "\1\uffff\1\172\1\75\1\172\1\uffff\1\172\2\uffff\5\172\2\uffff\1"+
-        "\77\6\172\1\40\1\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\4\172"+
-        "\1\uffff\3\172\2\uffff\1\172\1\uffff\2\172\2\uffff\10\172\3\uffff"+
-        "\10\172\1\uffff\1\172\1\40\6\uffff\2\172\1\uffff\3\172\5\uffff\1"+
-        "\172\1\uffff\4\172\1\uffff\3\172\1\uffff\6\172\4\uffff\3\172\1\uffff"+
-        "\2\172\3\uffff\2\172\2\uffff\2\172\1\uffff\1\172\1\uffff";
+        "\1\uffff\1\172\1\75\1\172\1\uffff\1\172\2\uffff\5\172\2\uffff\1\77\6\172\1\40\1\uffff\1\172\2\uffff\2\uffff\1\57\2\uffff\4\172\1\uffff\3\172\2\uffff\1\172\1\uffff\2\172\2\uffff\10\172\3\uffff\10\172\1\uffff\1\172\1\40\6\uffff\2\172\1\uffff\3\172\5\uffff\1\172\1\uffff\4\172\1\uffff\3\172\1\uffff\6\172\4\uffff\3\172\1\uffff\2\172\3\uffff\2\172\2\uffff\2\172\1\uffff\1\172\1\uffff";
     static final String DFA15_acceptS =
-        "\4\uffff\1\5\1\uffff\1\7\1\10\5\uffff\1\22\1\23\10\uffff\1\40\1"+
-        "\uffff\1\41\1\42\3\uffff\1\46\1\47\4\uffff\1\37\3\uffff\1\11\1\3"+
-        "\1\uffff\1\5\2\uffff\1\7\1\10\10\uffff\1\22\1\23\1\24\10\uffff\1"+
-        "\36\2\uffff\1\46\1\41\1\42\1\43\1\44\1\45\2\uffff\1\16\3\uffff\1"+
-        "\12\1\13\1\33\1\14\1\21\1\uffff\1\31\4\uffff\1\30\3\uffff\1\1\6"+
-        "\uffff\1\25\1\34\1\27\1\32\3\uffff\1\4\2\uffff\1\15\1\17\1\35\2"+
-        "\uffff\1\6\1\26\2\uffff\1\20\1\uffff\1\2";
+        "\4\uffff\1\5\1\uffff\1\7\1\10\5\uffff\1\22\1\23\10\uffff\1\40\1\uffff\1\41\1\42\3\uffff\1\46\1\47\4\uffff\1\37\3\uffff\1\11\1\3\1\uffff\1\5\2\uffff\1\7\1\10\10\uffff\1\22\1\23\1\24\10\uffff\1\36\2\uffff\1\46\1\41\1\42\1\43\1\44\1\45\2\uffff\1\16\3\uffff\1\12\1\13\1\33\1\14\1\21\1\uffff\1\31\4\uffff\1\30\3\uffff\1\1\6\uffff\1\25\1\34\1\27\1\32\3\uffff\1\4\2\uffff\1\15\1\17\1\35\2\uffff\1\6\1\26\2\uffff\1\20\1\uffff\1\2";
     static final String DFA15_specialS =
         "\1\1\32\uffff\1\0\1\2\141\uffff}>";
     static final String[] DFA15_transitionS = {
-            "\11\37\2\36\2\37\1\36\22\37\1\26\1\37\1\33\2\37\1\4\1\37\1"+
-            "\34\1\15\1\16\2\37\1\6\2\37\1\35\12\32\1\2\1\7\1\37\1\17\3\37"+
-            "\32\24\3\37\1\30\1\31\1\37\1\22\1\25\1\23\1\10\1\14\1\1\1\25"+
-            "\1\21\1\12\4\25\1\20\1\11\2\25\1\3\1\25\1\13\2\25\1\5\3\25\uff85"+
-            "\37",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\10\45\1\42\5\45"+
-            "\1\40\5\45\1\41\5\45",
+            "\11\37\2\36\2\37\1\36\22\37\1\26\1\37\1\33\2\37\1\4\1\37\1\34\1\15\1\16\2\37\1\6\2\37\1\35\12\32\1\2\1\7\1\37\1\17\3\37\32\24\3\37\1\30\1\31\1\37\1\22\1\25\1\23\1\10\1\14\1\1\1\25\1\21\1\12\4\25\1\20\1\11\2\25\1\3\1\25\1\13\2\25\1\5\3\25\uff85\37",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\10\45\1\42\5\45\1\40\5\45\1\41\5\45",
             "\1\50",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\4\45\1\52\25\45",
             "",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\7\45\1\55\11\45"+
-            "\1\54\10\45",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\7\45\1\55\11\45\1\54\10\45",
             "",
             "",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\16\45\1\60\13\45",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\3\45\1\61\15\45"+
-            "\1\62\10\45",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\5\45\1\63\7\45\1"+
-            "\64\14\45",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\7\45\1\65\3\45\1"+
-            "\66\16\45",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\3\45\1\61\15\45\1\62\10\45",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\5\45\1\63\7\45\1\64\14\45",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\7\45\1\65\3\45\1\66\16\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\13\45\1\67\16\45",
             "",
             "",
             "\1\72",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\10\45\1\74\5\45"+
-            "\1\73\13\45",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\10\45\1\74\5\45\1\73\13\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\3\45\1\75\26\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\15\45\1\76\14\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\16\45\1\77\13\45",
@@ -1911,8 +1873,7 @@ public class InternalWhileCppLexer extends Lexer {
             "",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\21\45\1\114\10\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\15\45\1\115\14\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
@@ -1926,28 +1887,20 @@ public class InternalWhileCppLexer extends Lexer {
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\10\45\1\121\21\45",
             "",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\4\45\1\127\25\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\22\45\1\131\7\45",
             "",
             "",
             "",
-            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\17\45\1\132\3\45"+
-            "\1\133\6\45",
+            "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\17\45\1\132\3\45\1\133\6\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\13\45\1\134\16\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\3\45\1\136\26\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\15\45\1\137\14\45",
             "\12\102\7\uffff\32\100\4\uffff\1\104\1\uffff\32\101",
@@ -1962,8 +1915,7 @@ public class InternalWhileCppLexer extends Lexer {
             "",
             "",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\4\45\1\140\25\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\4\45\1\140\25\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\2\45\1\142\27\45",
             "",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\3\45\1\143\26\45",
@@ -1977,40 +1929,30 @@ public class InternalWhileCppLexer extends Lexer {
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\15\45\1\146\14\45",
             "",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\4\45\1\147\25\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\22\45\1\154\7\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\1\155\31\45",
             "",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\23\45\1\156\6\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\4\45\1\160\25\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\4\45\1\161\25\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "",
             "",
             "",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\2\45\1\165\27\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\10\45\1\166\21\45",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "",
             "",
             "",
@@ -2018,12 +1960,10 @@ public class InternalWhileCppLexer extends Lexer {
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\16\45\1\172\13\45",
             "",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             "\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\15\45\1\174\14\45",
             "",
-            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff"+
-            "\1\47\1\uffff\32\45",
+            "\1\44\4\uffff\1\44\1\uffff\3\44\12\46\7\uffff\32\43\4\uffff\1\47\1\uffff\32\45",
             ""
     };
 

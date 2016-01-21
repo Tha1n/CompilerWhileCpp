@@ -1276,7 +1276,7 @@ ruleExprSimple returns [EObject current=null]
 	        if ($current==null) {
 	            $current = createModelElementForParent(grammarAccess.getExprSimpleRule());
 	        }
-       		set(
+       		add(
        			$current, 
        			"symbAtt",
         		lv_symbAtt_16_0, 
@@ -1285,7 +1285,7 @@ ruleExprSimple returns [EObject current=null]
 	    }
 
 )
-)	otherlv_17=')' 
+)+	otherlv_17=')' 
     {
     	newLeafNode(otherlv_17, grammarAccess.getExprSimpleAccess().getRightParenthesisKeyword_4_3());
     }

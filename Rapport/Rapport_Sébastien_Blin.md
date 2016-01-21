@@ -17,4 +17,4 @@ J'ai rédigé avec l'aide de Benjamin la documentation pour la traduction `While
 
 ## 3ème délivrable
 
-Je me suis occupé de tout le générateur `Code 3 adresses->Cpp`  (_CppGenerator.xtend_) et de fixer les bugs que l'on découvrait sur le générateur précédent où sur la __libWh__.
+Je me suis occupé de tout le générateur `Code 3 adresses->Cpp`  (_CppGenerator.xtend_), c'est-à-dire de comment passer du code 3 adresses au code _Cpp_ et de fixer les bugs que l'on découvrait sur le générateur précédent où sur la __libWh__ (notamment quelques problèmes avec un pointeur mal géré qui donnait des _segmentation fault_).

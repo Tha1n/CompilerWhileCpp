@@ -89,8 +89,8 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprTailAtt" eType="#//Expr"
         containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="nomSymb" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
-    <eStructuralFeatures xsi:type="ecore:EReference" name="symbAtt" eType="#//Expr"
-        containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="symbAtt" upperBound="-1"
+        eType="#//Expr" containment="true"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="ExprAnd">
     <eStructuralFeatures xsi:type="ecore:EReference" name="exprOr" eType="#//ExprOr"

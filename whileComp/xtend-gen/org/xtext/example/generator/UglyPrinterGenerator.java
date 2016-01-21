@@ -410,6 +410,7 @@ public class UglyPrinterGenerator implements IGenerator {
       + "\nThe method exprList is undefined for the type UglyPrinterGenerator"
       + "\nThe method exprListAtt1 is undefined for the type UglyPrinterGenerator"
       + "\nThe method exprListAtt2 is undefined for the type UglyPrinterGenerator"
+      + "\nType mismatch: cannot convert from EList<Expr> to Program"
       + "\ncompile cannot be resolved"
       + "\ncompile cannot be resolved"
       + "\n!= cannot be resolved"

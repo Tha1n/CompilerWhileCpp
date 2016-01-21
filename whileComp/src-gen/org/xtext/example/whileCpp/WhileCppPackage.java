@@ -647,7 +647,7 @@ public interface WhileCppPackage extends EPackage
   int EXPR_SIMPLE__NOM_SYMB = 8;
 
   /**
-   * The feature id for the '<em><b>Symb Att</b></em>' containment reference.
+   * The feature id for the '<em><b>Symb Att</b></em>' containment reference list.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
@@ -1425,10 +1425,10 @@ public interface WhileCppPackage extends EPackage
   EAttribute getExprSimple_NomSymb();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.xtext.example.whileCpp.ExprSimple#getSymbAtt <em>Symb Att</em>}'.
+   * Returns the meta object for the containment reference list '{@link org.xtext.example.whileCpp.ExprSimple#getSymbAtt <em>Symb Att</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Symb Att</em>'.
+   * @return the meta object for the containment reference list '<em>Symb Att</em>'.
    * @see org.xtext.example.whileCpp.ExprSimple#getSymbAtt()
    * @see #getExprSimple()
    * @generated
@@ -2088,7 +2088,7 @@ public interface WhileCppPackage extends EPackage
     EAttribute EXPR_SIMPLE__NOM_SYMB = eINSTANCE.getExprSimple_NomSymb();
 
     /**
-     * The meta object literal for the '<em><b>Symb Att</b></em>' containment reference feature.
+     * The meta object literal for the '<em><b>Symb Att</b></em>' containment reference list feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated

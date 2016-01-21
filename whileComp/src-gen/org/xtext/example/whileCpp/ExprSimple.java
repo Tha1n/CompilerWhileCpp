@@ -2,6 +2,8 @@
  */
 package org.xtext.example.whileCpp;
 
+import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -266,29 +268,19 @@ public interface ExprSimple extends EObject
   void setNomSymb(String value);
 
   /**
-   * Returns the value of the '<em><b>Symb Att</b></em>' containment reference.
+   * Returns the value of the '<em><b>Symb Att</b></em>' containment reference list.
+   * The list contents are of type {@link org.xtext.example.whileCpp.Expr}.
    * <!-- begin-user-doc -->
    * <p>
-   * If the meaning of the '<em>Symb Att</em>' containment reference isn't clear,
+   * If the meaning of the '<em>Symb Att</em>' containment reference list isn't clear,
    * there really should be more of a description here...
    * </p>
    * <!-- end-user-doc -->
-   * @return the value of the '<em>Symb Att</em>' containment reference.
-   * @see #setSymbAtt(Expr)
+   * @return the value of the '<em>Symb Att</em>' containment reference list.
    * @see org.xtext.example.whileCpp.WhileCppPackage#getExprSimple_SymbAtt()
    * @model containment="true"
    * @generated
    */
-  Expr getSymbAtt();
-
-  /**
-   * Sets the value of the '{@link org.xtext.example.whileCpp.ExprSimple#getSymbAtt <em>Symb Att</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @param value the new value of the '<em>Symb Att</em>' containment reference.
-   * @see #getSymbAtt()
-   * @generated
-   */
-  void setSymbAtt(Expr value);
+  EList<Expr> getSymbAtt();
 
 } // ExprSimple

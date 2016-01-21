@@ -49,7 +49,7 @@ WHILE | CPP
 nil | BinTree::NIL
 VAR | VAR en la déclarant si pas déjà fait
 (cons a b) | BinTree::cons({a,b})
-(cons a b c d) | BinTree::cons({a,b,c,d})
+(cons a b c d) | BinTree::cons({a,cons({b,cons({c,d})})})
 (hd a) | BinTree::hd(a)
 (tl a) | BinTree::tl(a)
 (func a, b, c, etc.) | func({a,b,c,etc})
